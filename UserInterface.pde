@@ -23,4 +23,8 @@ class UserInterface() {
     // render everything here
 
   }
+  
+  public void updateHelpWindow(float posx, float posy) {
+    helpWindow.update(posx, posy);
+  }
 }
