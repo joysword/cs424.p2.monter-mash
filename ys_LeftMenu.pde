@@ -23,7 +23,7 @@ class ys_LeftMenu {
       fill(BG_COLOR);
       noStroke();
       rectMode(CORNER);
-      rect(0,0,d_w,height);
+      rect(0,0,w,height);
       
       popStyle();
     }
