@@ -51,7 +51,7 @@ class ys_HelpWindow
     fill(0);
     textSize(10*scale);
     textAlign(CENTER, CENTER);
-    text("CREDITS", btnX+btnLen/2, btnY+btnLen/2);
+    text("CREDITS", btnX+btnW/2, btnY+btnH/2);
     popStyle();
   }
   
@@ -64,12 +64,16 @@ class ys_HelpWindow
   //
   void update(float _x, float _y)
   {
-    if (_x >= btnX && _x <= btnX+btnLen && _y >= btnY && _y <= btnY+btnLen) {
+    if (_x >= btnX && _x <= btnX+btnW && _y >= btnY && _y <= btnY+btnH) {
       switchActive();
     }
   }
+
+  void switchActive() {
+    isDisplay = !isDisplay;
+  }
   
   boolean getIsDisplay() {
-    return isActive;
+    return isDisplay;
   }
 }

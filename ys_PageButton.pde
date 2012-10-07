@@ -8,7 +8,7 @@ class ys_PageButton {
   float w; // width
   float diff; // distance between pageUp and pageDown
   
-  ys_PageButton(float _x, float _y, float _w, float _diff, float n) {
+  ys_PageButton(float _x, float _y, float _w, float _diff, int n) {
     x = _x;
     y = _y;
     w = _w;
@@ -33,7 +33,7 @@ class ys_PageButton {
         if (page > 0) {
           page--;
         }
-      } else if (_x>= btn_x && _x <= btn_x + btn_w && _y >= btn_y +btn_diff * 0.5 && _y <= btn_y + btn_diff + btn_w * 0.5) {
+      } else if (_x>= x && _x <= x + w && _y >= y + diff * 0.5 && _y <= y + diff + w * 0.5) {
         if (page<pageCount-1) {
           page++;
         }

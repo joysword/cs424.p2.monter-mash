@@ -10,7 +10,7 @@ class TouchListener implements OmicronTouchListener{
     // This is an optional call if you want the function call in the main applet class.
     // 'OmicronExample' should be replaced with the sketch name i.e. ((SketchName)applet).touchDown( ID, xPos, yPos, xWidth, yWidth );
     // Make sure applet is defined as PApplet and that 'applet = this;' is in setup().
-    ((Shi424P1)applet).touchDown( ID, xPos, yPos, xWidth, yWidth );
+    ((cs424p2)applet).touchDown( ID, xPos, yPos, xWidth, yWidth );
   }// touchDown
   
   // Called on a touch move event
@@ -20,7 +20,7 @@ class TouchListener implements OmicronTouchListener{
     noStroke();
     ellipse( xPos, yPos, xWidth, yWidth );
     
-    ((Shi424P1)applet).touchMove( ID, xPos, yPos, xWidth, yWidth );
+    ((cs424p2)applet).touchMove( ID, xPos, yPos, xWidth, yWidth );
   }// touchMove
   
   // Called on a touch up event
@@ -30,7 +30,7 @@ class TouchListener implements OmicronTouchListener{
     noStroke();
     ellipse( xPos, yPos, xWidth, yWidth );
     
-    ((Shi424P1)applet).touchUp( ID, xPos, yPos, xWidth, yWidth );
+    ((cs424p2)applet).touchUp( ID, xPos, yPos, xWidth, yWidth );
   }// touchUp
   
 }// TouchListener

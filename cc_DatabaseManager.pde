@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import de.bezier.data.sql.*;
 
 //--------------------------------- TEST method -----------------------------------------
@@ -11,6 +12,13 @@ void setup()
   }
   println("wft?"+array.size());
 }
+=======
+/*
+
+//import de.bezier.data.sql.*;
+
+
+>>>>>>> update 10/7, LeftButton completed!
 
 private float[] inflation= {
   25, 25, 25, 25.64, 26.32, 27.03, 27.03, 27.78, 27.78, 27.78, 27.03, 27.03, 26.32, 26.32, 25.64, 
@@ -73,7 +81,11 @@ public class IMDB {
   PApplet context;
 
 
+<<<<<<< HEAD
   public IMDB(PApplet context) {
+=======
+  public IMDB(PApplet context){
+>>>>>>> update 10/7, LeftButton completed!
     this.context=context;
     String user     = "root";
     String pass     = "root";
@@ -81,6 +93,7 @@ public class IMDB {
     msql = new MySQL( context, "localhost", database, user, pass );
   }
 
+<<<<<<< HEAD
   //test
   public void queryTest()
   {
@@ -290,3 +303,65 @@ public ArrayList<YearCountPair> getFilmNumber(String keyword, String info, int i
 }
 
 
+=======
+//test
+  public void queryTest()
+  {
+      if ( msql.connect() )
+      {
+          msql.query( "SELECT * FROM title LIMIT 5" );
+          msql.next();
+          println( "number of rows: " + msql.getString(2) );
+          msql.next();
+          println( "number of rows: " + msql.getString(2) );
+      }
+      else
+      {
+      }
+  }
+
+  //------------------------- USE THIS METHOD TO COUNT OVERALL NUMBER OF FILMS PER YEAR --------------------------------
+  //returns ArrayList<YearCountPair> containing a list of pairs films-count , year
+  public ArrayList<YearCountPair> getFilmsPerYear(){
+   ArrayList<YearCountPair> array = new ArrayList<YearCountPair>();
+   if ( msql.connect() )
+      {
+          msql.query( "SELECT COUNT( * ) , production_year "+
+                      "FROM title "+
+                      "WHERE production_year >=1890 and production_year<=2012 "+
+                      "GROUP BY production_year" );
+          array=createArrayFromQuery(array,msql);
+      }
+   else{
+   }
+   return array;
+  }
+
+  // private method to put the query into an arraylist
+  private ArrayList<YearCountPair> createArrayFromQuery(ArrayList<YearCountPair> array, MySQL msql){
+    while(msql.next()){
+      array.add(new YearCountPair(msql.getInt(1),msql.getInt(2)));
+    }
+    return array;
+  }
+
+  //------------------------- USE THIS METHOD TO COUNT FILM WITH A GIVEN KEYWORD PER YEAR --------------------------------
+  // Method to retrieve a list of pairs year-count containing the number of films related to the searched keyword
+  public ArrayList<YearCountPair> getFilmsPerYearGivenKeyword(String keyword){ 
+     ArrayList<YearCountPair> array = new ArrayList<YearCountPair>();
+     if ( msql.connect() )
+      {
+          msql.query( "SELECT COUNT(*), production_year "+
+                      "FROM per_keyword_query "+
+                      "WHERE keyword like " + "\"%"+keyword+"%\""+
+                      "and production_year >=1890 and production_year<=2012 "+
+                      "GROUP BY production_year ");
+          array=createArrayFromQuery(array,msql);
+      }
+   else{
+   }
+   return array;
+  }
+}
+*/
+>>>>>>> update 10/7, LeftButton completed!

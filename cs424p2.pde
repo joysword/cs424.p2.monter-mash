@@ -1,3 +1,6 @@
+import processing.net.*;
+import omicronAPI.*;
+
 OmicronAPI omicronManager;
 TouchListener touchListener;
 
@@ -17,14 +20,20 @@ public void init() {
 ///////////////////////////////////////////////////
 UserInterface ui;
 
+final int scale = 1;
+
 final int Width = 1632;
 final int Height = 461;
 
+int columnCount = 10;
 //final int Width = 1440;
 //final int Height = 460;
 
 //final int Width = 8160;
 //final int Height = 2304;
+
+int showYearMin, showYearMax;
+int currentPage;
 ///////////////////////////////////
 //
 //
@@ -49,8 +58,13 @@ void setup()
   applet = this;
 
   // setup Font
-  plotFont = createFont("Verdana", 10*scale);
+  PFont plotFont = createFont("Verdana", 10);
   textFont(plotFont);
+
+  showYearMin = yearMin;
+  showYearMax = yearMax;
+
+  currentPage = FIRST_PAGE;
 
   ui = new UserInterface();
   
@@ -68,6 +82,7 @@ void setup()
 //
 ///////////////////////////////////
 void draw() {
+
   background(BG_COLOR);
   
   //render graphs or other things

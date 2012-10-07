@@ -8,6 +8,12 @@ void touchUp(int ID, float xPos, float yPos, float xWidth, float yWidth){
 
   //
   ui.updateHelpWindow(xPos, yPos);
+
+  //
+  ui.updateFirstPage(xPos, yPos);
+
+  //
+  ui.updateLeftBar(xPos);
 }
 
 void touchMove(int ID, float xPos, float yPos, float xWidth, float yWidth){
