@@ -1,13 +1,14 @@
-/*public class YearCountPair{
-  int count;
+public class cc_YearCountPair{
+  float count;
   int year_value;
+  int budget;
   
-  public YearCountPair(int count,int year_value){
+  public cc_YearCountPair(float count,int year_value){
     this.count=count;
     this.year_value=year_value;
   }
   
-  public int getCount(){
+  public float getCount(){
     return count; 
   }
   
@@ -15,5 +16,7 @@
     return year_value;
   }
   
+  public int getBudget(){
+    return budget;
+  }
 }
-*/

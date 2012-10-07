@@ -1,25 +1,20 @@
-<<<<<<< HEAD
 import de.bezier.data.sql.*;
 
 //--------------------------------- TEST method -----------------------------------------
-
+/*
 void setup()
 {
   IMDB imdb=new IMDB(this);
-  ArrayList<YearCountPair> array = imdb.getFilmNumber("vampire","horror",3);
-  for (YearCountPair p: array) {
+  ArrayList<cc_> array = imdb.getFilmNumber("vampire","horror",3);
+  for (cc_cc_YearCountPair p: array) {
     println(p.getYear()+" "+p.getCount());
   }
   println("wft?"+array.size());
 }
-=======
-/*
+*/
 
-//import de.bezier.data.sql.*;
-
-
->>>>>>> update 10/7, LeftButton completed!
-
+//This class manages the database
+public class cc_DatabaseManager {
 private float[] inflation= {
   25, 25, 25, 25.64, 26.32, 27.03, 27.03, 27.78, 27.78, 27.78, 27.03, 27.03, 26.32, 26.32, 25.64, 
   26.32, 25.64, 24.39, 25, 25, 24.39, 24.39, 23.81, 23.26, 22.73, 22.73, 20.83, 17.86, 15.15, 13.33, 11.49, 12.82, 13.7, 
@@ -74,18 +69,11 @@ private String[] mummy_kwords= {
   "mummy"
 };
 
-//This class manages the database
-public class IMDB {
-
   MySQL msql;
   PApplet context;
 
 
-<<<<<<< HEAD
-  public IMDB(PApplet context) {
-=======
-  public IMDB(PApplet context){
->>>>>>> update 10/7, LeftButton completed!
+  public cc_DatabaseManager(PApplet context) {
     this.context=context;
     String user     = "root";
     String pass     = "root";
@@ -93,7 +81,6 @@ public class IMDB {
     msql = new MySQL( context, "localhost", database, user, pass );
   }
 
-<<<<<<< HEAD
   //test
   public void queryTest()
   {
@@ -111,12 +98,12 @@ public class IMDB {
   }
 
   //------------------------- USE THIS METHOD TO COUNT OVERALL NUMBER OF FILMS PER YEAR --------------------------------
-  //returns ArrayList<YearCountPair> containing a list of pairs films-count , year
-  public ArrayList<YearCountPair> getFilmsPerYear() {
-    ArrayList<YearCountPair> array = new ArrayList<YearCountPair>();
+  //returns ArrayList<cc_cc_YearCountPair> containing a list of pairs films-count , year
+  public ArrayList<cc_YearCountPair> getFilmsPerYear() {
+    ArrayList<cc_YearCountPair> array = new ArrayList<cc_YearCountPair>();
     if ( msql.connect() )
     {
-      msql.query( "SELECT COUNT( * ) , production_year "+
+      msql.query( "SELECT production_year,COUNT( * ) "+
         "FROM title "+
         "GROUP BY production_year" );
       array=createArrayFromQuery(array, msql);
@@ -125,19 +112,41 @@ public class IMDB {
     }
     return array;
   }
-
+/*
   // private method to put the query into an arraylist
-  private ArrayList<YearCountPair> createArrayFromQuery(ArrayList<YearCountPair> array, MySQL msql) {
+  private ArrayList<cc_YearCountPair> createArrayFromQuery(ArrayList<cc_YearCountPair> array, MySQL msql) {
+    msql.next();
+    for(int i=1890;i<=2012;i++){
+      println(msql.getInt(1));
+      if(msql.getInt(1)==i){
+          array.add(new cc_YearCountPair(msql.getFloat(2), msql.getInt(1)));
+          msql.next();
+      }
+      else
+          array.add(new cc_YearCountPair(0.0,i));
+    }
+    return array;
+  }
+  */
+  private ArrayList<cc_YearCountPair> createArrayFromQuery(ArrayList<cc_YearCountPair> array, MySQL msql) {
+    int old=1890;
+    int i=0;
     while (msql.next ()) {
-      array.add(new YearCountPair(msql.getInt(1), msql.getInt(2)));
+      i=1;
+      while(msql.getInt(1)>old){
+        array.add(new cc_YearCountPair(0.0,old));
+        old++;
+      }
+      array.add(new cc_YearCountPair(msql.getFloat(2), msql.getInt(1)));
+      old++;
     }
     return array;
   }
 
   //------------------------- USE THIS METHOD TO COUNT FILM WITH A GIVEN KEYWORD PER YEAR --------------------------------
   // Method to retrieve a list of pairs year-count containing the number of films related to the searched keyword
-  public ArrayList<YearCountPair> getK(String keyword) { 
-    ArrayList<YearCountPair> array = new ArrayList<YearCountPair>();
+  public ArrayList<cc_YearCountPair> getK(String keyword) { 
+    ArrayList<cc_YearCountPair> array = new ArrayList<cc_YearCountPair>();
     if ( msql.connect() )
     {
       msql.query("select "+
@@ -160,8 +169,8 @@ public class IMDB {
   }
 
 //General query, returns years/count given keyword and info (for info check info.pdf)
-  public ArrayList<YearCountPair> getKI(String keyword, String info, int info_type) {
-    ArrayList<YearCountPair> array = new ArrayList<YearCountPair>();
+  public ArrayList<cc_YearCountPair> getKI(String keyword, String info, int info_type) {
+    ArrayList<cc_YearCountPair> array = new ArrayList<cc_YearCountPair>();
     if ( msql.connect() )
     {
       msql.query(
@@ -188,8 +197,8 @@ public class IMDB {
   }
 
 // returns the popularity of the movies with the selected keyword
-  public ArrayList<YearCountPair> getPopularity(String keyword) {
-    ArrayList<YearCountPair> array = new ArrayList<YearCountPair>();
+  public ArrayList<cc_YearCountPair> getPopularity(String keyword) {
+    ArrayList<cc_YearCountPair> array = new ArrayList<cc_YearCountPair>();
     if ( msql.connect() )
     {
       String query="select t.production_year, count(t.id) "+
@@ -214,8 +223,8 @@ public class IMDB {
   }
 
 //get film numbers given keyword
-  public ArrayList<YearCountPair> getFilmNumber(String keyword) {
-    ArrayList<YearCountPair> array = new ArrayList<YearCountPair>();
+  public ArrayList<cc_YearCountPair> getFilmNumber(String keyword) {
+    ArrayList<cc_YearCountPair> array = new ArrayList<cc_YearCountPair>();
     if ( msql.connect() )
     {
       String query="select "+
@@ -239,8 +248,8 @@ public class IMDB {
   }
 
 //get film numbers given keyword and info (for instance search 'vampires' in 'horror' films)
-public ArrayList<YearCountPair> getFilmNumber(String keyword, String info, int info_type_id) {
-    ArrayList<YearCountPair> array = new ArrayList<YearCountPair>();
+public ArrayList<cc_YearCountPair> getFilmNumber(String keyword, String info, int info_type_id) {
+    ArrayList<cc_YearCountPair> array = new ArrayList<cc_YearCountPair>();
     if ( msql.connect() )
     {
       String query="select t.production_year, count(t.id) "+
@@ -303,65 +312,3 @@ public ArrayList<YearCountPair> getFilmNumber(String keyword, String info, int i
 }
 
 
-=======
-//test
-  public void queryTest()
-  {
-      if ( msql.connect() )
-      {
-          msql.query( "SELECT * FROM title LIMIT 5" );
-          msql.next();
-          println( "number of rows: " + msql.getString(2) );
-          msql.next();
-          println( "number of rows: " + msql.getString(2) );
-      }
-      else
-      {
-      }
-  }
-
-  //------------------------- USE THIS METHOD TO COUNT OVERALL NUMBER OF FILMS PER YEAR --------------------------------
-  //returns ArrayList<YearCountPair> containing a list of pairs films-count , year
-  public ArrayList<YearCountPair> getFilmsPerYear(){
-   ArrayList<YearCountPair> array = new ArrayList<YearCountPair>();
-   if ( msql.connect() )
-      {
-          msql.query( "SELECT COUNT( * ) , production_year "+
-                      "FROM title "+
-                      "WHERE production_year >=1890 and production_year<=2012 "+
-                      "GROUP BY production_year" );
-          array=createArrayFromQuery(array,msql);
-      }
-   else{
-   }
-   return array;
-  }
-
-  // private method to put the query into an arraylist
-  private ArrayList<YearCountPair> createArrayFromQuery(ArrayList<YearCountPair> array, MySQL msql){
-    while(msql.next()){
-      array.add(new YearCountPair(msql.getInt(1),msql.getInt(2)));
-    }
-    return array;
-  }
-
-  //------------------------- USE THIS METHOD TO COUNT FILM WITH A GIVEN KEYWORD PER YEAR --------------------------------
-  // Method to retrieve a list of pairs year-count containing the number of films related to the searched keyword
-  public ArrayList<YearCountPair> getFilmsPerYearGivenKeyword(String keyword){ 
-     ArrayList<YearCountPair> array = new ArrayList<YearCountPair>();
-     if ( msql.connect() )
-      {
-          msql.query( "SELECT COUNT(*), production_year "+
-                      "FROM per_keyword_query "+
-                      "WHERE keyword like " + "\"%"+keyword+"%\""+
-                      "and production_year >=1890 and production_year<=2012 "+
-                      "GROUP BY production_year ");
-          array=createArrayFromQuery(array,msql);
-      }
-   else{
-   }
-   return array;
-  }
-}
-*/
->>>>>>> update 10/7, LeftButton completed!
