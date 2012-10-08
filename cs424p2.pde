@@ -34,6 +34,8 @@ int columnCount = 10;
 
 int showYearMin, showYearMax;
 int currentPage;
+
+//cc_MonsterPlot plot;
 ///////////////////////////////////
 //
 //
@@ -72,6 +74,12 @@ void setup()
 
   // end of setup
   smooth();
+
+
+  //test
+
+  //plot = new cc_MonsterPlot(100,1000,200,400,"female_vampire",this);
+  //plot.monsterSetup();
 } // end of setup
 
 ///////////////////////////////////
@@ -86,7 +94,8 @@ void draw() {
   background(BG_COLOR);
   
   //render graphs or other things
-  
+  //plot.monsterPlot();
+
   //end of redner graphs or other things
 
   //draw User Interface
