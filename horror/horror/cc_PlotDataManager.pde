@@ -1,7 +1,7 @@
 /**
 	Data Manager for the plot.
 */
-public class PlotDataManager{
+public class cc_PlotDataManager{
 	private cc_DatabaseManager db;
 	private ArrayList<cc_YearCountPair> data;
 	private int yearMin;
@@ -9,7 +9,7 @@ public class PlotDataManager{
 	private int dataMin;
 	private String monster;
 
-	public PlotDataManager(String monster, PApplet context){
+	public cc_PlotDataManager(String monster, PApplet context){
 			this.monster=monster;
 			db=new cc_DatabaseManager(context);
 			yearMin=1890;
