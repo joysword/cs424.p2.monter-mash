@@ -18,7 +18,10 @@ class UserInterface {
     monsterPage = new ys_MonsterPage();
     moviePage = new ys_MoviePage();
     firstPage = new ys_FirstPage(RIGHT_BAR_WIDTH);
-    helpWindow = new ys_HelpWindow(HELP_WINDOW_x, HELP_WINDOW_y, HELP_WINDOW_w, HELP_WINDOW_h, HELP_WINDOW_c, HELP_BTN_x, HELP_BTN_y, HELP_BTN_w, HELP_BTN_h);
+    
+    // customize position
+    //helpWindow = new ys_HelpWindow(HELP_WINDOW_x, HELP_WINDOW_y, HELP_WINDOW_w, HELP_WINDOW_h, HELP_WINDOW_c);
+    helpWindow = new ys_HelpWindow((Width - HELP_WINDOW_w)*0.5, (Height-HELP_WINDOW_h)*0.5, HELP_WINDOW_w, HELP_WINDOW_h, HELP_WINDOW_c);
 
     leftBar = new ys_LeftBar(LEFT_MENU_WIDTH, BTN_NUMBER, BTN_H, LEFT_BTN_NAME);
   }
@@ -41,12 +44,9 @@ class UserInterface {
     }
 
 
-    // always render Left Bar last
+    // below are always render last
     leftBar.render();
-  }
-  
-  public void updateHelpWindow(float posx, float posy) {
-    helpWindow.update(posx, posy);
+    helpWindow.render();
   }
 
   public void updateFirstPage(float posx, float posy) {
@@ -55,8 +55,12 @@ class UserInterface {
     }
   }
 
-  public void updateLeftBar(float posx) {
-    leftBar.update(posx);
+  public void updateLeftBar(float posx, float posy) {
+    leftBar.update(posx, posy);
+  }
+
+  public ys_HelpWindow getHelpWindow() {
+    return helpWindow;
   }
 
 }

@@ -28,7 +28,7 @@ class ys_LeftMenu {
     leftButton = new ys_Button[n];
 
     for (int i=0;i<num;i++) {
-      leftButton[i] = new ys_Button(x, Height * 0.5 - num/2.0*btn_h + i * btn_h, w, btn_h, strs[i]);
+      leftButton[i] = new ys_Button(x, y + h * 0.5 - num/2.0*btn_h + i * btn_h, w, btn_h, strs[i]);
     }
   }
   
@@ -46,5 +46,20 @@ class ys_LeftMenu {
     }
     
     popStyle();
+  }
+
+  void update(float posx, float posy) {
+    if(posx>x && posx<x+w && posy>y && posy<y+h) {
+      for (int i=0;i<num;i++) {
+        float yy = y + h*0.5 - num/2.0*leftButton[i].getHeight() + i*leftButton[i].getHeight();
+        if (posy > yy && posy < yy + leftButton[i].getHeight()) {
+          if (i<3) {currentPage = i;}
+          else if (i == 3) {
+            ui.getHelpWindow().switchDisplay();
+          } // on -> off, off -> on
+          break;
+        }
+      }
+    }
   }
 }

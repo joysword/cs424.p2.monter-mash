@@ -86,10 +86,10 @@ class ys_FirstPage {
     noStroke();
     fill(20);
     rectMode(CORNERS);
-    rect(uix-400*scale, 0, uix, Height);
+    rect(uix-500*scale, Height*0.4, uix, Height);
     textAlign(LEFT);
     fill(#01b2f1);
-    text("Select Filters for Graph 1:", uix-400*scale+50*scale, 30*scale);
+    text("Select Filters for Graph 1:", uix-500*scale+50*scale, 300*scale);
   }
 
   private void renderUI1() {
@@ -97,10 +97,10 @@ class ys_FirstPage {
     noStroke();
     fill(20);
     rectMode(CORNERS);
-    rect(uix-400*scale, 0, uix, Height);
+    rect(uix-500*scale, Height*0.4, uix, Height);
     textAlign(LEFT);
     fill(#00611c);
-    text("Select Filters for Graph 2:", uix-400*scale+50*scale, 30*scale);
+    text("Select Filters for Graph 2:", uix-500*scale+50*scale, 300*scale);
   }
 
   void update(float posx, float posy) {

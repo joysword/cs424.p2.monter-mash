@@ -28,4 +28,8 @@ class ys_Button {
 
 		popStyle();
 	}
+
+	public float getHeight() {
+		return h;
+	}
 }

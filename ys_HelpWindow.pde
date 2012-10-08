@@ -3,73 +3,41 @@ class ys_HelpWindow
   float x, y; //left-top corner
   float w, h; // width and height
   
-  float btnX, btnY; // where the window trigger button is
-  float btnW, btnH; // width and height of the button 
-  
   boolean isDisplay; // whether this window is being displayed
   
-  String helpContent; // what to show in this window
+  String content; // what to show in this window
   
-  ys_HelpWindow(float _x, float _y, float _w, float _h, String content, float bx, float by, float bw, float bh)
+  ys_HelpWindow(float _x, float _y, float _w, float _h, String helpContent)
   {
     x = _x;
     y = _y;
     w = _w;
     h = _h;
     
-    helpContent = content;
+    content = helpContent;
     
     isDisplay = false;
-    
-    btnX = bx;
-    btnY = by;
-    
-    btnW = bw;
-    btnH = bh;
   }
 
   public void render() {
-    pushStyle();
     if (isDisplay)
     {
+      pushStyle();
+      fill(0); //change
+      strokeWeight(3*scale);
+      stroke(#ff0066);
+      rectMode(CORNER);
+      rect(x,y,w,h);
+      fill(#ff6600);
+      textAlign(CENTER,CENTER);
+      text(content, x+w*0.5, y+h*0.5);
+      popStyle();
     }
-    pushStyle();
+    
   }
   
   private void switchDisplay()
   {
-    isDisplay = !isDisplay;
-  }
-  
-  void drawButton()
-  {
-    pushStyle();
-    noStroke();
-    fill(127);
-    rectMode(CORNER);
-    rect(btnX, btnY, btnW, btnH);
-    fill(0);
-    textSize(10*scale);
-    textAlign(CENTER, CENTER);
-    text("CREDITS", btnX+btnW/2, btnY+btnH/2);
-    popStyle();
-  }
-  
-  
-  
-  //
-  // need to change
-  //
-  //
-  //
-  void update(float _x, float _y)
-  {
-    if (_x >= btnX && _x <= btnX+btnW && _y >= btnY && _y <= btnY+btnH) {
-      switchActive();
-    }
-  }
-
-  void switchActive() {
     isDisplay = !isDisplay;
   }
   
