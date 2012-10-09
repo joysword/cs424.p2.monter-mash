@@ -69,6 +69,102 @@ private String[] mummy_kwords= {
   "mummy"
 };
 
+private String[] living_dead_kwords={
+  "undead", "back-from-the-dead", "dead-woman-with-eyes-open", "living-dead", 
+    "walking-dead","evil-dead"
+};
+
+private String[] supernatural={
+  "supernatural-horror","supernatural-being","supernatural-murderer","supernatural-creature"
+};
+private String[] demon_kwords={
+  "demon", "demonic-possession", "demon-rape", "demon-hunter", "demoness", "demonic", "demon-spawn", "inner-demon", 
+   "female-demon", "demonic-spirit", "impregnated-by-demon", "horned-demon", "balan-the-demon", 
+   "shadow-demon", "demon-lady", "impish-demon", "rogue-demon-hunter", "giant-demon"
+};
+
+private String[] possessed_kwords{
+  "possessed-human", "possessed-girl", "possessed-animal", "possessed-by-evil-spirit", "possessed-soul", "possessed-boy", "possessed-house",
+   "possessed-car"
+};
+
+private String[] ghost_kwords{
+  "ghost", "ghost-girl", "ghost-child", "vengeful-ghost", "ghost-writer", "ghost-ship", "ghost-in-mirror", "ghost-hunter", "sex-with-ghost",
+  "ghost-in-the-shell", "female-ghost","ghost-boy", "ghosts", "ghost-house-underground", "ghostbuster", "ghostbusters", "ghost-hunting","male-ghost", 
+  "seeing-ghosts", "ghost-train", "ghost-of-mother", "talking-to-a-ghost", "seeing-a-ghost", "ghost-of-father", "ghost-dog", "ghost-of-wife", 
+  "scared-ghost", "ghost-riding", "ghost-rider", "ghost-in-a-mirror", "child-ghost", "mistaken-for-ghost", "menacing-ghost", "ghost-of-baby", 
+  "disguised-as-a-ghost", "killed-by-ghost",  "ghost-on-video", "invisible-daylight-ghosts", "playful-ghost", "sexy-ghost", "holy-ghost", 
+  "ghost-human-relationship", "baby-ghost", "ghost-cage", "ghosts-japan", "tiger-ghost", "ghost-of-covered-up-murder-victim", "ghost-in-elevator",
+   "ghost-against-ghost", "ghost-of-ancestor", "bull-ghost", "friendly-ghost", "ghost-tour", "monkey-ghost", "boy-ghost", "headless-ghost-knight",
+    "ghost-of-grandfather", "ghostbusting", "haunted-by-a-ghost", "mistaken-for-a-ghost", "ghost-as-friend", "ghost-ranch-new-mexico", "silver-ghost", 
+    "ghost-investigators", "former-ghostbuster", "ghost-car", "ghost-in-the-machine", "ghost-sickness"
+};
+
+private String[] witch_wizards_kwords{
+  "wizard", "evil-wizard", "wizard-of-oz", "wizards'-duel", "magician", "stage-magician", "merlin-the-magician", "evil-magician", "mad-magician",
+  "black-magician", "female-magician", "white-magician", "mysto-the-magician", "magician-hero", "sorcerer", "evil-sorcerer",
+  "gilbert-and-sullivan's-the-sorcerer", "simon-the-sorcerer", "witch", "witch-doctor", "evil-witch", "wicked-witch", "honey-halfwitch",
+  "sea-witch", "witches-horror", "bell-witch", "flying-witch", "blair-witch",  "salem-witch-hunt",  "witch's-revenge","preteenage-witch",
+  "witches-sabbath"
+};
+
+private String[] invisible_man_kwords{
+  "invisible-man", "invisible-being", "invisible-woman", "invisible-being-makes-fotoprint", "invisible-creature", "invisible-girl", 
+  "invisible-companion"
+};
+
+private String[] michael_myers_kwords{
+  "michael-myers"
+};
+
+private String[] freddy_krueger_kwords{
+  "freddy-krueger"
+};
+
+private String[] swamp_kwords{
+  "swamp-thing", "swamp-monster", "swamp-beast", "swamp-creature"
+};
+
+private String[] jason_kwords{
+  "jason-voorhees"
+};
+
+private String[] godzilla_kwords{
+  "godzilla", "mechagodzilla"
+};
+
+private String[] muted_creatures_kwords{
+  "teenage-mutant-ninja-turtles",  "mutant-animal", "mutant-creature", "mutant-dog", "genetic-mutant",
+   "mutant-reptile", "mutant-amphibian", "bitten-by-a-mutant", "mutant-spider", "mutant-baboon", 
+   "mutant-registration-act",  "mutant-plant", "strategically-altered-mutant", "os-mutantes", "giant-mutant-koala-bear", 
+   "mutant-lizard", "liver-eating-mutant"
+};
+
+private String[] giant_kwords{
+  "giant-monster", "giant-animal", "giant-insect", "giant-spider", "giant-snake", "giant-squid", "giant-bird", "giant-lizard", "giant-cat", 
+  "giant-octopus", "giant-worm", "giant-crab", "giant-crocodile", "giant-rat", "giant-creature", "giant-dog", "giant-fish", "giant-chicken",
+   "giant-bug", "giant-invertebrate", "giant-bat", "giant-lobster", "giant-scorpion", "giant-frog", "giant-insect-larva", "giant-insect-egg",
+    "giant-lollipop", "giant-condor" "giant-bee""giant-mouse"  "giant-centipede", "giant-mosquito", "giant-snail", "giant-rabbit" "giant-web"
+};
+
+private String[] werewolf_kwords{
+  "werewolf", "female-werewolf", "werewolf-bite", "vampire-versus-werewolf", "werewolf-transformation",
+   "werewolf-family", "killed-by-a-werewolf", "werewolf-killer", "teenage-werewolf", 
+   "scratched-by-werewolf", "werewolf-doll", "werewolf-shot", "werewolf-pack-leader", "bitten-by-a-werewolf", 
+   "alpha-werewolf", "werewolf-human-relationship", "male-werewolf"
+};
+
+
+private String[] mutants_kwords{
+   "mutant","mutant-baby","mutant-human", "mutant-woman","woman-mutant",
+};
+private String[] mr_hyde_kwords{
+  "jekyll-and-hyde"
+};
+
+
+
+
   MySQL msql;
   PApplet context;
 
@@ -304,11 +400,70 @@ public ArrayList<cc_YearCountPair> getFilmNumber(String keyword, String info, in
       for (int i=0;i<mummy_kwords.length;i++)
         keyword_list=keyword_list+" k.keyword='"+mummy_kwords[i]+"' or";
     }
-
+        else if (keyword.equals("living-dead")) {
+      for (int i=0;i<living_dead_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+living_dead_kwords[i]+"' or";
+    }
+        else if (keyword.equals("supernatural")) {
+      for (int i=0;i<supernatural.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+supernatural[i]+"' or";
+    }
+        else if (keyword.equals("demon")) {
+      for (int i=0;i<demon_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+demon_kwords[i]+"' or";
+    }
+        else if (keyword.equals("possessed")) {
+      for (int i=0;i<possessed_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+possessed_kwords[i]+"' or";
+    }
+            else if (keyword.equals("ghost")) {
+      for (int i=0;i<ghost_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+ghost_kwords[i]+"' or";
+    }
+        else if (keyword.equals("witch-wizards")) {
+      for (int i=0;i<witch_wizards_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+witch_wizards_kwords[i]+"' or";
+    }
+        else if (keyword.equals("invisible-man")) {
+      for (int i=0;i<invisible_man_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+invisible_man_kwords[i]+"' or";
+    }
+            else if (keyword.equals("michael-myers")) {
+      for (int i=0;i<michael_myers_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+michael_myers_kwords[i]+"' or";
+    }
+            else if (keyword.equals("freddy-krueger")) {
+      for (int i=0;i<freddy_krueger_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+freddy_krueger_kwords[i]+"' or";
+    }
+                else if (keyword.equals("jason")) {
+      for (int i=0;i<jason_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+jason_kwords[i]+"' or";
+    }
+                else if (keyword.equals("swamp")) {
+      for (int i=0;i<swamp_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+swamp_kwords[i]+"' or";
+    }
+                else if (keyword.equals("muted-creatures")) {
+      for (int i=0;i<muted_creatures_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+muted_creatures_kwords[i]+"' or";
+    }                else if (keyword.equals("giant")) {
+      for (int i=0;i<giant_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+giant_kwords[i]+"' or";
+    }                else if (keyword.equals("mutants")) {
+      for (int i=0;i<mutants_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+mutants_kwords[i]+"' or";
+    }                else if (keyword.equals("mr-hyde")) {
+      for (int i=0;i<mr_hyde_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+mr_hyde_kwords[i]+"' or";
+    }                else if (keyword.equals("godzilla")) {
+      for (int i=0;i<godzilla_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+godzilla_kwords[i]+"' or";
+    }
     keyword_list=keyword_list.substring(0, keyword_list.length()-2);
     return keyword_list;
   }
-  
+               
 }
 
 

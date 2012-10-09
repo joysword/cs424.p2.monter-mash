@@ -20,7 +20,7 @@ public void init() {
 ///////////////////////////////////////////////////
 UserInterface ui;
 
-final int scale = 1;
+final int scale = 2;
 
 final int Width = 1632;
 final int Height = 461;
