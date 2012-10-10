@@ -94,7 +94,16 @@ public class ys_DatabaseManager {
       old++;
     }while(msql.next());
     return array;
-  } 
+  }
+
+  private ArrayList<int> createIntArrayFromQuery(ArrayList<int> array, MySQL msql) {
+    int i=0;
+    do {
+      i = 1;
+      array.add(msql.getInt(1));
+    } while (msql.next());
+    return array;
+  }
 
   //------------------------- USE THIS METHOD TO COUNT FILM WITH A GIVEN KEYWORD PER YEAR --------------------------------
   // Method to retrieve a list of pairs year-count containing the number of films related to the searched keyword
@@ -228,6 +237,99 @@ public class ys_DatabaseManager {
     }
     return array;
   }
+
+// get film id and info for a given info_type
+// FilterGenre (genres info_type_id = 3)
+// FilterQuality (rating info_type_id = 101)
+// FilterBudget (budget info_type_id = 105)
+// FilterPopularity (votes info_type_id = 100)
+  ArrayList<ys_IdInfoPair> getFilmAndInfoBasedOnInfoType(int info_type_id) {
+    ArrayList<ys_IdInfoPair> array = new ArrayList<ys_IdInfoPair>();
+    if (msql.connect()) {
+      String query = "select t.id, mi.info "+
+      " from movie_info as mi "+
+      " left join "+
+      " title as t on t.id = mi.movie_id "+
+      " where mi.info_type_id = " + info_type_id + " "+
+      " order by t.id";
+      msql.query(query);
+      array=createIdInfoPairFromQuery(array, msql);
+    }
+    else {
+
+    }
+    return array;
+  }
+
+
+// get film id for a given format (movie, tv movie, video movie)
+// FilterFormat
+  ArrayList<int> getFilmForKind(int kind_id) {
+    ArrayList<int> array = new ArrayList<int>();
+    if (msql.connect()) {
+      String query = "select t.id "+
+      " from title as t "+
+      " where kind_id = " + kind_id + " "+
+      " order by t.id";
+      msql.query(query);
+      array = createIntArrayFromQuery(array, msql);
+    }
+    else {
+
+    }
+    return array;
+  }
+
+
+//get film id for a given monster
+// FilterMonster
+  ArrayList<int> getFilmForMonster(String monster) {
+    ArrayList<int> array = new ArrayList<int>();
+    if (msql.connect() )
+    {
+      String query = "select t.id "+
+      "from "+
+      "keyword as k "+
+      "left join "+
+      "movie_keyword as mk ON k.id = mk.keyword_id "+
+      "left join "+
+      "title as t ON t.id = mk.movie_id "+
+      "where ("+
+      getKeywords(monster)+
+      ") "+
+      "order by t.id ";
+      msql.query(query);
+      array = createIntArrayFromQuery(array, msql);
+    }
+    else {
+    }
+    return array;
+  }
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //utility method to write query with keywords
