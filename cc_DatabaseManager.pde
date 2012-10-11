@@ -33,15 +33,14 @@ public static final String SUPERNATURAL_REF="supernatural";
 public static final String LIVING_DEAD_REF="living-dead";
 public static final String MUMMY_REF="mummy";
 public static final String FRANKENSTEIN_REF="frankenstein";
-public static final String DRACULA_REF"dracula";
+public static final String DRACULA_REF="dracula";
 public static final String ZOMBIE_REF="zombie";
 public static final String FEMALE_VAMPIRE_REF="female_vampire";
 public static final String SNAKE_REF="snake";
 public static final String SHARK_REF="shark";
 public static final String DINOSAUR_REF="dinosaur";
 public static final String BIGFOOT_REF="bigfoot";
-
-
+public static final String VAMPIRE_REF="vampire";
 
 private float[] inflation= {
   25, 25, 25, 25.64, 26.32, 27.03, 27.03, 27.78, 27.78, 27.78, 27.03, 27.03, 26.32, 26.32, 25.64, 
@@ -111,12 +110,12 @@ private String[] demon_kwords={
    "shadow-demon", "demon-lady", "impish-demon", "rogue-demon-hunter", "giant-demon"
 };
 
-private String[] possessed_kwords{
+private String[] possessed_kwords={
   "possessed-human", "possessed-girl", "possessed-animal", "possessed-by-evil-spirit", "possessed-soul", "possessed-boy", "possessed-house",
    "possessed-car"
 };
 
-private String[] ghost_kwords{
+private String[] ghost_kwords={
   "ghost", "ghost-girl", "ghost-child", "vengeful-ghost", "ghost-writer", "ghost-ship", "ghost-in-mirror", "ghost-hunter", "sex-with-ghost",
   "ghost-in-the-shell", "female-ghost","ghost-boy", "ghosts", "ghost-house-underground", "ghostbuster", "ghostbusters", "ghost-hunting","male-ghost", 
   "seeing-ghosts", "ghost-train", "ghost-of-mother", "talking-to-a-ghost", "seeing-a-ghost", "ghost-of-father", "ghost-dog", "ghost-of-wife", 
@@ -128,7 +127,7 @@ private String[] ghost_kwords{
     "ghost-investigators", "former-ghostbuster", "ghost-car", "ghost-in-the-machine", "ghost-sickness"
 };
 
-private String[] witch_wizards_kwords{
+private String[] witch_wizards_kwords={
   "wizard", "evil-wizard", "wizard-of-oz", "wizards'-duel", "magician", "stage-magician", "merlin-the-magician", "evil-magician", "mad-magician",
   "black-magician", "female-magician", "white-magician", "mysto-the-magician", "magician-hero", "sorcerer", "evil-sorcerer",
   "gilbert-and-sullivan's-the-sorcerer", "simon-the-sorcerer", "witch", "witch-doctor", "evil-witch", "wicked-witch", "honey-halfwitch",
@@ -136,46 +135,46 @@ private String[] witch_wizards_kwords{
   "witches-sabbath"
 };
 
-private String[] invisible_man_kwords{
+private String[] invisible_man_kwords={
   "invisible-man", "invisible-being", "invisible-woman", "invisible-being-makes-fotoprint", "invisible-creature", "invisible-girl", 
   "invisible-companion"
 };
 
-private String[] michael_myers_kwords{
+private String[] michael_myers_kwords={
   "michael-myers"
 };
 
-private String[] freddy_krueger_kwords{
+private String[] freddy_krueger_kwords={
   "freddy-krueger"
 };
 
-private String[] swamp_kwords{
+private String[] swamp_kwords={
   "swamp-thing", "swamp-monster", "swamp-beast", "swamp-creature"
 };
 
-private String[] jason_kwords{
+private String[] jason_kwords={
   "jason-voorhees"
 };
 
-private String[] godzilla_kwords{
+private String[] godzilla_kwords={
   "godzilla", "mechagodzilla"
 };
 
-private String[] muted_creatures_kwords{
+private String[] muted_creatures_kwords={
   "teenage-mutant-ninja-turtles",  "mutant-animal", "mutant-creature", "mutant-dog", "genetic-mutant",
    "mutant-reptile", "mutant-amphibian", "bitten-by-a-mutant", "mutant-spider", "mutant-baboon", 
    "mutant-registration-act",  "mutant-plant", "strategically-altered-mutant", "os-mutantes", "giant-mutant-koala-bear", 
    "mutant-lizard", "liver-eating-mutant"
 };
 
-private String[] giant_kwords{
+private String[] giant_kwords={
   "giant-monster", "giant-animal", "giant-insect", "giant-spider", "giant-snake", "giant-squid", "giant-bird", "giant-lizard", "giant-cat", 
   "giant-octopus", "giant-worm", "giant-crab", "giant-crocodile", "giant-rat", "giant-creature", "giant-dog", "giant-fish", "giant-chicken",
    "giant-bug", "giant-invertebrate", "giant-bat", "giant-lobster", "giant-scorpion", "giant-frog", "giant-insect-larva", "giant-insect-egg",
-    "giant-lollipop", "giant-condor" "giant-bee""giant-mouse"  "giant-centipede", "giant-mosquito", "giant-snail", "giant-rabbit" "giant-web"
+    "giant-lollipop", "giant-condor", "giant-bee","giant-mouse",  "giant-centipede", "giant-mosquito", "giant-snail", "giant-rabbit","giant-web"
 };
 
-private String[] werewolf_kwords{
+private String[] werewolf_kwords={
   "werewolf", "female-werewolf", "werewolf-bite", "vampire-versus-werewolf", "werewolf-transformation",
    "werewolf-family", "killed-by-a-werewolf", "werewolf-killer", "teenage-werewolf", 
    "scratched-by-werewolf", "werewolf-doll", "werewolf-shot", "werewolf-pack-leader", "bitten-by-a-werewolf", 
@@ -183,10 +182,10 @@ private String[] werewolf_kwords{
 };
 
 
-private String[] mutants_kwords{
+private String[] mutants_kwords={
    "mutant","mutant-baby","mutant-human", "mutant-woman","woman-mutant",
 };
-private String[] mr_hyde_kwords{
+private String[] mr_hyde_kwords={
   "jekyll-and-hyde"
 };
 
@@ -401,7 +400,7 @@ public ArrayList<cc_YearCountPair> getFilmNumber(String keyword, String info, in
     return array;
   }
 
-public ArrayList<cc_YearCountPair> getPopularityAnimals(){
+public ArrayList<cc_YearCountPair> getPopularityAnimals(String keyword, String info, int info_type_id){
    ArrayList<cc_YearCountPair> array = new ArrayList<cc_YearCountPair>();
     if ( msql.connect() )
     {
