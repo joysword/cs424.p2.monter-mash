@@ -106,12 +106,12 @@ class ys_FirstPageFilter {
 	// update all filters
 	private void updateFilter(float x, float y) {
 
-		//monF.update(x, y);
-		//genF.update(x, y);
+		monF.update(x, y);
+		genF.update(x, y);
 		forF.update(x, y);
 		quaF.update(x, y);
-		//popF.update(x, y);
-		//budF.update(x, y);
+		popF.update(x, y);
+		budF.update(x, y);
 	}
 
 	// update data to show

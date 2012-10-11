@@ -92,7 +92,8 @@ final float FILTER_GENRE_X_RELATIVE = 0.01;
 final float FILTER_GENRE_Y_RELATIVE = 0.54;
 final float FILTER_GENRE_W = FIRST_PAGE_FILTER_W;
 final float FILTER_GENRE_H = CHECK_ITEM_HEIGHT;
-final int FILTER_GENRE_NUM = 10; //change
+final int FILTER_GENRE_NUM = 27;
+final String[] GENRE_TYPE = {"Action","Adventure","Animation","Biography","Comedy","Crime","Drama","Experimental","Family","Fantasy","Film-Noir","Game-Show","History","Horror","Music","Musical","Mystery","News","Reality_TV","Romance","Sci-Fi","Short","Sport","Talk-Show","Thriller","War","Western"};
 
 		// Monster
 final float FILTER_MONSTER_X_RELATIVE = 0.01;
@@ -101,6 +102,7 @@ final float FILTER_MONSTER_W = FIRST_PAGE_FILTER_W;
 final float FILTER_MONSTER_H = CHECK_ITEM_HEIGHT;
 final int FILTER_MONSTER_NUM = 10;
 final int NUMBER_OF_MONSTER = 10; //change
+final String[] MONSTER_TYPE = {"Monster","Monster","Monster","Monster","Monster","Monster","Monster","Monster","Monster","Monster"};
 
 		// Budget
 final float FILTER_BUDGET_X_RELATIVE = 0.01;

@@ -23,7 +23,7 @@ class FilterFormat {
 				new CheckItem(x + (i % 5) * (CHECK_BOX_WIDTH*8) * scale, y + (i / 5 * (CHECK_BOX_WIDTH+2) + 12) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * 7, h, KIND_TYPE[i]); //change
 		}
 
-		kindId = new int[3];
+		kindId = new int[checkItemCount];
 		kindId[0] = 1; //movie
 		kindId[1] = 3; //tv movie
 		kindId[2] = 4; //video movie

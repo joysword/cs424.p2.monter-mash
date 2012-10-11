@@ -1,35 +1,76 @@
 class FilterGenre {
 	float x,y,w,h;
 
-	int n; // number of level
+	int checkItemCount; // number of level
 
-	CheckItem[] CheckItemsForFilterGenre;
+	CheckItem[] checkItemsForFilterGenre;
 
-	float[] lowerBound;
+	String[] genre;
 
-	float[] upperBound;
+	FilterGenre(float _x, float _y, float _w, float _h, int n) {	
 
-	FilterGenre(float _x, float _y, float _w, float _h, int n) {
+		x = _x;
+		y = _y;
+		w = _w;
+		h = _h;
+		checkItemCount = n;
+
+		checkItemsForFilterGenre = new CheckItem[checkItemCount];
+		
+		for (int i=0;i<checkItemCount;i++) {
+			//change
+			checkItemsForFilterGenre[i] = 
+				new CheckItem(x + (i % 5) * (CHECK_BOX_WIDTH*8) * scale, y + (i / 5 * (CHECK_BOX_WIDTH+2) + 12) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * 7, h, GENRE_TYPE[i]); //change
+		}
+
+		genre = new String[checkItemCount];
+		for (int i=0;i<checkItemCount;i++) {
+			genre[i] = GENRE_TYPE[i];
+		}
 
 	}
 	void render() {
+		pushStyle();
+		noStroke();
+		fill(CHECK_ITEM_COLOR);
+		textAlign(LEFT);
+		text("Genres:",x,y); //change
+		popStyle();
+		for (int i=0;i<checkItemCount;i++) {
+			checkItemsForFilterGenre[i].render();
+		}
+	}
 
+	// change
+	int InWhich(float _x, float _y) {
+		for (int i=0;i<checkItemCount;i++) {
+			if (checkItemsForFilterGenre[i].isIn(_x, _y)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	boolean checkIn(float _x, float _y) {
 		return false;
 	}
 	void update(float _x, float _y) {
-		
-	}
-	String getQuery() {
-		String str = "( mi.info>10"; // initiate with this IMPOSSIBLE rating, only in order to apply OR in following for condition
-		for (int i=0;i<n;i++) {
-			if (CheckItemsForFilterGenre[i].isCheck()) {
-				str = str+" OR (mi.info>" + lowerBound[i] + " AND mi.info<" + upperBound[i] + ")";
+		for (int i=0;i<checkItemCount;i++) {
+			if (checkItemsForFilterGenre[i].isIn(_x, _y)) {
+				checkItemsForFilterGenre[i].switchCheck();
+				break;
 			}
 		}
-		str = str + " AND (mi.info_type_id = 3) )"; // 3 for genres
-		return str;
+	}
+	
+	ArrayList<ys_IdGenrePair> getList(ys_DatabaseManager db) {
+		// foreach CheckItem, sum all their list to return
+		ArrayList<ys_IdGenrePair> listt = new ArrayList<ys_IdGenrePair>();
+		for (int i=0;i<checkItemCount;i++) {
+			if (checkItemsForFilterGenre[i].isCheck()) {
+				listt.addAll(db.getFilmAndGenre(genre[i]));
+			}
+		}
+		return listt;
 	}
 }
