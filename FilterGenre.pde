@@ -1,5 +1,5 @@
 class FilterGenre {
-	int x,y,w,h;
+	float x,y,w,h;
 
 	int n; // number of level
 
@@ -9,7 +9,7 @@ class FilterGenre {
 
 	float[] upperBound;
 
-	FilterGenre() {
+	FilterGenre(float _x, float _y, float _w, float _h, int n) {
 
 	}
 	void render() {

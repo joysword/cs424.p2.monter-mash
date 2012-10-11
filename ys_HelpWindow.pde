@@ -25,7 +25,7 @@ class ys_HelpWindow
       pushStyle();
       fill(0); //change
       strokeWeight(3*scale);
-      stroke(#ff0066);
+      stroke(#ff3399);
       rectMode(CORNER);
       rect(x,y,w,h);
       fill(#ff6600);

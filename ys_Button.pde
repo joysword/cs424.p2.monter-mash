@@ -22,7 +22,7 @@ class ys_Button {
 		fill(colour);
 		rectMode(CORNER);
 		rect(x, y, w, h);
-		fill(255); // color for text
+		fill(TEXT_COLOR);
 		textAlign(CENTER, CENTER);
 		text(name, x + w * 0.5, y + h * 0.5);
 

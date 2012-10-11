@@ -1,5 +1,5 @@
 class FilterPopularity {
-	int x,y,w,h;
+	float x,y,w,h;
 
 	int n; // number of levels
 
@@ -9,7 +9,7 @@ class FilterPopularity {
 
 	float[] upperBound;
 
-	FilterPopularity() {
+	FilterPopularity(float _x, float _y, float _w, float _h, int n) {
 
 	}
 	void render() {
@@ -21,16 +21,5 @@ class FilterPopularity {
 
 	void update(float _x, float _y) {
 
-	}
-
-	String getQuery() {
-		String str = "( mi.info>10"; // initiate with this IMPOSSIBLE rating, only in order to apply OR in following for condition
-		for (int i=0;i<n;i++) {
-			if (CheckItemsForFilterPopularity[i].isCheck()) {
-				str = str+" OR (mi.info>" + lowerBound[i] + " AND mi.info<" + upperBound[i] + ")";
-			}
-		}
-		str = str + " AND (mi.info_type_id = 100) )"; // 100 for votes
-		return str;
 	}
 }

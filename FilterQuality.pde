@@ -1,35 +1,77 @@
 class FilterQuality {
-	int x,y,w,h;
+	float x,y,w,h;
 	
-	int n; // number of level
+	int checkItemCount; // number of level
 
-	CheckItem[] CheckItemsForFilterQuality;
+	CheckItem[] checkItemsForFilterQuality;
 
 	float[] lowerBound;
 
 	float[] upperBound;
 
-	FilterQuality() {
+	FilterQuality(float _x, float _y, float _w, float _h, int n) {
+		
+		x = _x;
+		y = _y;
+		w = _w;
+		h = _h;
+		checkItemCount = n;
+
+		checkItemsForFilterQuality = new CheckItem[checkItemCount];
+		lowerBound = new float[checkItemCount];
+		upperBound = new float[checkItemCount];
+		for (int i=0;i<checkItemCount;i++) {
+			//change
+			checkItemsForFilterQuality[i] = 
+				new CheckItem(x + (i % 5) * (CHECK_BOX_WIDTH*8) * scale, y + (i / 5 * (CHECK_BOX_WIDTH+2) + 12) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * 7, h, String.valueOf(i+0.1)+'~'+String.valueOf(i+1)+".0"); //change
+			lowerBound[i] = i+0.1;
+			upperBound[i] = i+1;
+		}
 
 	}
 	void render() {
+		pushStyle();
+		noStroke();
+		fill(CHECK_ITEM_COLOR);
+		textAlign(LEFT);
+		text("Ratings:",x,y); //change
+		popStyle();
+		for (int i=0;i<checkItemCount;i++) {
+			checkItemsForFilterQuality[i].render();
+		}
+	}
 
+	// change
+	int InWhich(float _x, float _y) {
+		for (int i=0;i<checkItemCount;i++) {
+			if (checkItemsForFilterQuality[i].isIn(_x, _y)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	boolean checkIn(float _x, float _y) {
 		return false;
 	}
+
 	void update(float _x, float _y) {
-		
-	}
-	String getQuery() {
-		String str = "( mi.info>10"; // initiate with this IMPOSSIBLE rating, only in order to apply OR in following for condition
-		for (int i=0;i<n;i++) {
-			if (CheckItemsForFilterQuality[i].isCheck()) {
-				str = str+" OR (mi.info>" + lowerBound[i] + " AND mi.info<" + upperBound[i] + ")";
+		for (int i=0;i<checkItemCount;i++) {
+			if (checkItemsForFilterQuality[i].isIn(_x, _y)) {
+				checkItemsForFilterQuality[i].switchCheck();
+				break;
 			}
 		}
-		str = str + " AND (mi.info_type_id = 101) )"; // 101 for rating
-		return str;
+	}
+
+	ArrayList<ys_IdQualityPair> getList(ys_DatabaseManager db) {
+		// foreach CheckItem, sum all their list to return
+		ArrayList<ys_IdQualityPair> listt = new ArrayList<ys_IdQualityPair>();
+		for (int i=0;i<checkItemCount; i++) {
+			if (checkItemsForFilterQuality[i].isCheck()) {
+				listt.addAll(db.getFilmAndQuality(lowerBound[i], upperBound[i]));
+			}
+		}
+		return listt;
 	}
 }

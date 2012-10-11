@@ -23,14 +23,25 @@ final float LEFT_BAR_DEFAULT_WIDTH = 30*scale;
 final float LEFT_MENU_WIDTH = 200*scale;
 final int BTN_NUMBER = 4;
 final float BTN_H = 30*scale;
-String[] LEFT_BTN_NAME = {"Main Page","Monsters","Movies","Help and Credit"};
-final int BUTTON_COLOR = #ff6600; // change
+String[] LEFT_BTN_NAME = {"Timelines","Monsters","Movies","Help and Credits"};
+
+
+// about global color scheme
+final int BUTTON_COLOR = #ff6600;
+final int POP_UP_COLOR = #342C2C;
+final int TEXT_COLOR = 255;
+final int CHECK_ITEM_COLOR = 150; // checkbox, filter title, etc
 
 // about pages
 final int FIRST_PAGE = 0;
 final int MONSTER_PAGE = 1;
 final int MOVIE_PAGE = 2;
 
+//
+//
+//
+//
+//
 // about First Page UI
 final int HOW_MANY_FILTERS = 6;
 final int HOW_MANY_GRAPH = 2;
@@ -41,21 +52,68 @@ final float FILTER_X = Width - 180*scale;
 final float FILTER_Y = 100*scale;
 final float FILTER_DIFF = 80*scale;
 final float LABEL_WIDTH = 100*scale;
-final float CHECK_BOX_WIDTH = 20*scale;
-final float CHECK_ITEM_HEIGHT = 20*scale;
+
+
 final String[] FILTER_TXT = {
 	"MONSTERS:\n Godzilla, Vampire","GENRES:\n Musical","QUALITY:\n >7.0","FORMAT:\n Color","BUDGET:\n high","POPULARITY:\n >4000 votes"
 };
 
 	// about Filters
 
-// FIRST_PAGE_FILTER_X is decided by RIGHT_BAR_WIDTH and FIRST_PAGE_FILTER_W
+		// General CheckItem values
+		final float CHECK_BOX_WIDTH = 12*scale;
+		final float CHECK_ITEM_HEIGHT = CHECK_BOX_WIDTH;
+		// FIRST_PAGE_FILTER_X is decided by RIGHT_BAR_WIDTH and FIRST_PAGE_FILTER_W
 //final float FIRST_PAGE_FILTER_X = 0.6*Width;
 final float FIRST_PAGE_FILTER_Y = 0.45*Height;
 final float FIRST_PAGE_FILTER_W = 0.5*Width - RIGHT_BAR_WIDTH;
 final float FIRST_PAGE_FILTER_H = Height - FIRST_PAGE_FILTER_Y;
-final float FPF_BTN_X_RELATIVE = 0.4;
-final float FPF_BTN_Y_RELATIVE = 0.9;
+final float FPF_BTN_X_RELATIVE = 0.85;
+final float FPF_BTN_Y_RELATIVE = 0.85;
 final float FPF_BTN_W = 60*scale;
 final float FPF_BTN_H = 32*scale;
 
+		// Rating (Quality)
+final float FILTER_QUALITY_X_RELATIVE = 0.01;
+final float FILTER_QUALITY_Y_RELATIVE = 0.04;
+final float FILTER_QUALITY_W = FIRST_PAGE_FILTER_W;
+final float FILTER_QUALITY_H = CHECK_ITEM_HEIGHT;
+final int FILTER_QUALITY_NUM = 10;
+
+		// Votes (Popularity)
+final float FILTER_POPULARITY_X_RELATIVE = 0.01;
+final float FILTER_POPULARITY_Y_RELATIVE = 0.34;
+final float FILTER_POPULARITY_W = FIRST_PAGE_FILTER_W;
+final float FILTER_POPULARITY_H = CHECK_ITEM_HEIGHT;
+final int FILTER_POPULARITY_NUM = 10; //change
+
+		// Genres
+final float FILTER_GENRE_X_RELATIVE = 0.01;
+final float FILTER_GENRE_Y_RELATIVE = 0.54;
+final float FILTER_GENRE_W = FIRST_PAGE_FILTER_W;
+final float FILTER_GENRE_H = CHECK_ITEM_HEIGHT;
+final int FILTER_GENRE_NUM = 10; //change
+
+		// Monster
+final float FILTER_MONSTER_X_RELATIVE = 0.01;
+final float FILTER_MONSTER_Y_RELATIVE = 0.74;
+final float FILTER_MONSTER_W = FIRST_PAGE_FILTER_W;
+final float FILTER_MONSTER_H = CHECK_ITEM_HEIGHT;
+final int FILTER_MONSTER_NUM = 10;
+final int NUMBER_OF_MONSTER = 10; //change
+
+		// Budget
+final float FILTER_BUDGET_X_RELATIVE = 0.01;
+final float FILTER_BUDGET_Y_RELATIVE = 0.94;
+final float FILTER_BUDGET_W = FIRST_PAGE_FILTER_W;
+final float FILTER_BUDGET_H = CHECK_ITEM_HEIGHT;
+final int FILTER_BUDGET_NUM = 3;
+
+		// Format
+final float FILTER_FORMAT_X_RELATIVE = 0.01;
+final float FILTER_FORMAT_Y_RELATIVE = 0.24;
+final float FILTER_FORMAT_W = FIRST_PAGE_FILTER_W;
+final float FILTER_FORMAT_H = CHECK_ITEM_HEIGHT;
+final int FILTER_FORMAT_NUM = 3;
+final int NUMBER_OF_FORMAT = 3;
+final String[] KIND_TYPE = {"Movie","TV Movie","Video Movie"};  

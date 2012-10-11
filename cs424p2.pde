@@ -60,7 +60,7 @@ void setup()
   applet = this;
 
   // setup Font
-  PFont plotFont = createFont("Verdana", 10);
+  PFont plotFont = createFont("Helvetica-Bold", 11);//change
   textFont(plotFont);
 
   showYearMin = yearMin;

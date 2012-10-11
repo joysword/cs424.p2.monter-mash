@@ -11,8 +11,6 @@ class ys_FirstPage {
 
 	private float btnx, btny, btnw, btnh;
 
-	private ys_CheckItem[] filters;
-
 	private boolean isSelecting[];
 
   private ys_FirstPageFilter[] filter;
@@ -23,7 +21,7 @@ class ys_FirstPage {
 
 		rightX = Width - _w;
 
-		filterX = rightX - FIRST_PAGE_FILTER_W;
+		filterX = rightX - FIRST_PAGE_FILTER_W - 5*scale;
 		filterY = FIRST_PAGE_FILTER_Y;
 		filterW = FIRST_PAGE_FILTER_W;
 		filterH = FIRST_PAGE_FILTER_H;
@@ -31,25 +29,16 @@ class ys_FirstPage {
 		btnx = filterX+filterW*FPF_BTN_X_RELATIVE;
 		btny = filterY+filterH*FPF_BTN_Y_RELATIVE;
 		btnw = FPF_BTN_W;
-		btnh = FPF_BTN_W;
+		btnh = FPF_BTN_H;
 
-		filters = new ys_CheckItem[HOW_MANY_FILTERS];
-		for (int i=0;i<HOW_MANY_FILTERS;i++) {
-			filters[i] = new ys_CheckItem(FILTER_X, FILTER_Y + FILTER_DIFF * i, CHECK_BOX_WIDTH, LABEL_WIDTH, CHECK_ITEM_HEIGHT, FILTER_TXT[i]);
-		}
-
+    filter = new ys_FirstPageFilter[HOW_MANY_GRAPH];
     isSelecting = new boolean[HOW_MANY_GRAPH];
     for (int i=0;i<HOW_MANY_GRAPH;i++) {
 		  isSelecting[i] = false;
-    }
-
-    db = new ys_DatabaseManager(applet); //change
-
-    filter = new ys_FirstPageFilter[HOW_MANY_GRAPH];
-    for (int i=0;i<HOW_MANY_GRAPH;i++) {
       filter[i] = new ys_FirstPageFilter(filterX, filterY, filterW, filterH, btnx, btny, btnw, btnh);
     }
 
+    db = new ys_DatabaseManager(applet); //change
 	}
 
 	void render() {
@@ -83,18 +72,18 @@ class ys_FirstPage {
     for (int i=0;i<HOW_MANY_GRAPH;i++) {
       if (posx >= rightX && posy > eachHeight * i && posy < eachHeight * (i+1)) {
         isSelecting[i] = !isSelecting[i];
-      }
-
-      // only one can be chosen
-      if (isSelecting[i]) {
-        for (int j=0;j<HOW_MANY_GRAPH;j++) {
-          if (j != i) isSelecting[j] = false;
+        if (isSelecting[i]) {
+          for (int j=0;j<HOW_MANY_GRAPH;j++) {
+            if (j != i) isSelecting[j] = false;
+          }
         }
+        break;
       }
     }
     for (int i=0;i<HOW_MANY_GRAPH;i++) {
       if (isSelecting[i]) {
-        filter[i].update(posx, posy);
+        filter[i].update(posx, posy, db);
+        break; // only 1 is under attack
       }
     }
 	}
@@ -102,14 +91,14 @@ class ys_FirstPage {
   private void renderRight() {
     pushStyle();
     noStroke();
-    fill(#342C2C); /// change change change change change
+    fill(#342C2C); //change change change change change
     rectMode(CORNERS);
     rect(rightX, 0, Width, Height);
     textAlign(LEFT);
     for (int i=0;i<HOW_MANY_FILTERS;i++) {
       fill(#01b2f1);
       text(FILTER_TXT[i],rightX+25*scale, 20*scale + i * 35*scale);
-      fill(#00611c);
+      fill(#29C567);
       text(FILTER_TXT[i],rightX+25*scale, Height * 0.5 + 20*scale + i * 35*scale);
     }
     strokeWeight(2*scale);

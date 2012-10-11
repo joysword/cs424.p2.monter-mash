@@ -36,16 +36,16 @@ class ys_LeftMenu {
     
     pushStyle();
     
-    fill(#342C2C); // need change
+    fill(POP_UP_COLOR); // need change
     noStroke();
     rectMode(CORNER);
     rect(x,y, w, h);
 
+    popStyle();
+
     for (int i=0;i<num;i++) {
         leftButton[i].render();
     }
-    
-    popStyle();
   }
 
   void update(float posx, float posy) {

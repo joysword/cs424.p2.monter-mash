@@ -96,11 +96,38 @@ public class ys_DatabaseManager {
     return array;
   }
 
-  private ArrayList<int> createIntArrayFromQuery(ArrayList<int> array, MySQL msql) {
+  private ArrayList<Integer> createIntArrayFromQuery(ArrayList<Integer> array, MySQL msql) {
     int i=0;
     do {
       i = 1;
       array.add(msql.getInt(1));
+    } while (msql.next());
+    return array;
+  }
+
+  private ArrayList<ys_IdGenrePair> createIdGenrePairFromQuery(ArrayList<ys_IdGenrePair> array, MySQL msql) {
+    int i=0;
+    do {
+      i = 1;
+      array.add(new ys_IdGenrePair(msql.getInt(1),msql.getString(2)));
+    } while (msql.next());
+    return array;
+  }
+
+  private ArrayList<ys_IdQualityPair> createIdQualityPairFromQuery(ArrayList<ys_IdQualityPair> array, MySQL msql) {
+    int i=0;
+    do {
+      i = 1;
+      array.add(new ys_IdQualityPair(msql.getInt(1), msql.getFloat(2)));
+    } while (msql.next());
+    return array;
+  }
+
+  private ArrayList<ys_IdPopularityPair> createIdPopulartiyPairFromQuery(ArrayList<ys_IdPopularityPair> array, MySQL msql) {
+    int i=0;
+    do {
+      i = 1;
+      array.add(new ys_IdPopularityPair(msql.getInt(1), msql.getInt(2)));
     } while (msql.next());
     return array;
   }
@@ -243,15 +270,14 @@ public class ys_DatabaseManager {
 // FilterQuality (rating info_type_id = 101)
 // FilterBudget (budget info_type_id = 105)
 // FilterPopularity (votes info_type_id = 100)
+/*
   ArrayList<ys_IdInfoPair> getFilmAndInfoBasedOnInfoType(int info_type_id) {
     ArrayList<ys_IdInfoPair> array = new ArrayList<ys_IdInfoPair>();
     if (msql.connect()) {
-      String query = "select t.id, mi.info "+
+      String query = "select mi.movie_id, mi.info "+
       " from movie_info as mi "+
-      " left join "+
-      " title as t on t.id = mi.movie_id "+
       " where mi.info_type_id = " + info_type_id + " "+
-      " order by t.id";
+      " order by mi.movie_id";
       msql.query(query);
       array=createIdInfoPairFromQuery(array, msql);
     }
@@ -260,12 +286,77 @@ public class ys_DatabaseManager {
     }
     return array;
   }
+*/
 
+  ArrayList<ys_IdGenrePair> getFilmAndGenre(String genre) {
+    ArrayList<ys_IdGenrePair> array = new ArrayList<ys_IdGenrePair>();
+    if (msql.connect()) {
+      String query = "select movie_id, genre "+
+      " from movie_genre "+
+      " where genre = \"" + genre +"\" "+
+      " order by movie_id";
+      msql.query(query);
+      array=createIdGenrePairFromQuery(array, msql);
+    }
+    else {
+
+    }
+    return array;
+  }
+
+  ArrayList<ys_IdQualityPair> getFilmAndQuality(float lower, float upper) {
+    String str="(";
+    for (float i=lower;i<upper;i+=0.1) {
+      str = str + " rating = " + i + " or";
+    }
+    str = str + " rating = " + upper + ") ";
+    ArrayList<ys_IdQualityPair> array = new ArrayList<ys_IdQualityPair>();
+    if (msql.connect()) {
+      String query = "select movie_id, rating "+
+      " from movie_rating "+
+      " where " + str +
+      " order by movie_id";
+      msql.query(query);
+      array = createIdQualityPairFromQuery(array, msql);
+    }
+    else {
+
+    }
+    return array;
+  }
+
+  // change
+  ArrayList<ys_IdBudgetPair> getFilmAndBudget(float lower, float upper) {
+    ArrayList<ys_IdBudgetPair> array = new ArrayList<ys_IdBudgetPair>();
+
+    return array;
+  }
+
+  ArrayList<ys_IdPopularityPair> getFilmAndPopularity(int lower, int upper) {
+    String str="(";
+      for (int i=lower;i<upper;i+=0.1) {
+        str = str + " votes = " + i + " or";
+      }
+      str = str + " votes = " + upper + ") ";
+    ArrayList<ys_IdPopularityPair> array = new ArrayList<ys_IdPopularityPair>();
+    if (msql.connect()) {
+      String query = "select movie_id, votes "+
+      " from movie_votes "+
+      " where " + str +
+      " order by movie_id";
+      msql.query(query);
+      array = createIdPopulartiyPairFromQuery(array, msql);
+    }
+    else {
+
+    }
+    return array;
+  }
 
 // get film id for a given format (movie, tv movie, video movie)
 // FilterFormat
-  ArrayList<int> getFilmForKind(int kind_id) {
-    ArrayList<int> array = new ArrayList<int>();
+  ArrayList<Integer> getFilmForKind(int kind_id) {
+    ArrayList<Integer> array = new ArrayList<Integer>();
     if (msql.connect()) {
       String query = "select t.id "+
       " from title as t "+
@@ -283,8 +374,8 @@ public class ys_DatabaseManager {
 
 //get film id for a given monster
 // FilterMonster
-  ArrayList<int> getFilmForMonster(String monster) {
-    ArrayList<int> array = new ArrayList<int>();
+  ArrayList<Integer> getFilmForMonster(String monster) {
+    ArrayList<Integer> array = new ArrayList<Integer>();
     if (msql.connect() )
     {
       String query = "select t.id "+

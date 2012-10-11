@@ -1,5 +1,5 @@
 class FilterBudget {
-	int x,y,w,h;
+	float x,y,w,h;
 
 	int n; // number of level
 
@@ -9,7 +9,7 @@ class FilterBudget {
 
 	float[] upperBound;
 
-	FilterBudget() {
+	FilterBudget(float _x, float _y, float _w, float _h, int n) {
 
 	}
 	void render() {

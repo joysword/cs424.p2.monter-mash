@@ -1,5 +1,5 @@
 class FilterMonster {
-	int x,y,w,h;
+	float x,y,w,h;
 
 	int n; // number of level
 
@@ -9,7 +9,7 @@ class FilterMonster {
 
 	float[] upperBound;
 
-	FilterMonster() {
+	FilterMonster(float _x, float _y, float _w, float _h, int n) {
 
 	}
 	void render() {
@@ -30,7 +30,5 @@ class FilterMonster {
 		}
 		str = str + " AND (mi.info_type_id = 10) )"; // 10 for keywords
 		return str;
-	}
-}return str;
 	}
 }

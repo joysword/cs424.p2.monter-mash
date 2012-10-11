@@ -1,38 +1,76 @@
 class FilterFormat {
-	int x,y,w,h;
+	float x,y,w,h;
 
-	int n; // number of level
+	int checkItemCount; // number of formats
 
-	CheckItem[] CheckItemsForFilterFormat;
+	CheckItem[] checkItemsForFilterFormat;
 
-	float[] lowerBound;
+	int[] kindId;
 
-	float[] upperBound;
+	FilterFormat(float _x, float _y, float _w, float _h, int n) {
 
-	FilterFormat() {
+		x = _x;
+		y = _y;
+		w = _w;
+		h = _h;
+		checkItemCount = n;
 
+		checkItemsForFilterFormat = new CheckItem[checkItemCount];
+		
+		for (int i=0;i<checkItemCount;i++) {
+			//change
+			checkItemsForFilterFormat[i] = 
+				new CheckItem(x + (i % 5) * (CHECK_BOX_WIDTH*8) * scale, y + (i / 5 * (CHECK_BOX_WIDTH+2) + 12) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * 7, h, KIND_TYPE[i]); //change
+		}
+
+		kindId = new int[3];
+		kindId[0] = 1; //movie
+		kindId[1] = 3; //tv movie
+		kindId[2] = 4; //video movie
 	}
 	void render() {
+		pushStyle();
+		noStroke();
+		fill(CHECK_ITEM_COLOR);
+		textAlign(LEFT);
+		text("Formats:",x,y); //change
+		popStyle();
+		for (int i=0;i<checkItemCount;i++) {
+			checkItemsForFilterFormat[i].render();
+		}
+	}
 
+	// change
+	int InWhich(float _x, float _y) {
+		for (int i=0;i<checkItemCount;i++) {
+			if (checkItemsForFilterFormat[i].isIn(_x, _y)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	boolean checkIn(float _x, float _y) {
-		return false;	
+		return false;
 	}
+
 	void update(float _x, float _y) {
-		
-	}
-	void update(float _x, float _y) {
-		
-	}
-	String getQuery() {
-		String str = "( mi.info>10"; // initiate with this IMPOSSIBLE rating, only in order to apply OR in following for condition
-		for (int i=0;i<n;i++) {
-			if (CheckItemsForFilterFormat[i].isCheck()) {
-				str = str+" OR (mi.info>" + lowerBound[i] + " AND mi.info<" + upperBound[i] + ")";
+		for (int i=0;i<checkItemCount;i++) {
+			if (checkItemsForFilterFormat[i].isIn(_x, _y)) {
+				checkItemsForFilterFormat[i].switchCheck();
+				break;
 			}
 		}
-		str = str + " AND (mi.info_type_id = 101) )";
-		return str;
+	}
+
+	ArrayList<Integer> getList(ys_DatabaseManager db) {
+		// foreach CheckItem, sum all their list to return
+		ArrayList<Integer> listt = new ArrayList<Integer>();
+		for (int i=0;i<checkItemCount;i++) {
+			if (checkItemsForFilterFormat[i].isCheck()) {
+				listt.addAll(db.getFilmForKind(kindId[i]));
+			}
+		}
+		return listt;
 	}
 }
