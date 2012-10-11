@@ -461,7 +461,42 @@ public ArrayList<cc_YearCountPair> getFilmNumberAnimals(String keyword, String i
     }
     return array;
   }
+  
+public ArrayList<cc_YearCountPair> filtersQuery(String keyword, String[] info, int[] info_type_id){
+  ArrayList<cc_YearCountPair> array = new ArrayList<cc_YearCountPair>();
+    if ( msql.connect() )
+    {
+      String query="SELECT t.production_year,count(t.id) "+
+                   "FROM title t left join movie_info mi on t.id=mi.movie_id "+
+                   "left join movie_keyword mk on t.id=mk.movie_id "+
+                   "left join keyword k on k.id=mk.keyword_id "+
+                   "WHERE "+
+                    getKeywords(keyword)+
+                   " and"+ 
+                   "("+
+                    getInfo(info,info_type_id)+
+                   ") group by t.production_year order by t.production_year";
+      println(query);
+      msql.query(query);
+      array=createArrayFromQuery(array, msql);
+      println("OK!");
+    }
+    else {
+    }
+    return array;
 
+}
+
+
+  private String getInfo(String[] info, int[] info_type_id){
+    String info_list="";
+    for(int i=0;i<info.length;i++){
+      info_list=" (not mi.info_type_id="+info_type_id[i]+" or mi.info=\""+info[i]+"\")"+" and";
+    }
+    //remove last and
+    return info_list.substring(0, info_list.length()-3);
+  }
+  
 //utility method to write query with keywords
   private String getKeywords(String keyword) {
     String keyword_list="";
