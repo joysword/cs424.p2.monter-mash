@@ -63,4 +63,12 @@ class UserInterface {
     return helpWindow;
   }
 
+  public ys_FirstPage getFirstPage() {
+    return firstPage;
+  }
+
+  public ys_LeftBar getLeftBar() {
+    return leftBar;
+  }
+
 }

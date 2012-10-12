@@ -20,7 +20,7 @@ class MenuWindow {
 
 	Top10Window top10Window;
 
-	int yearr;
+	int yearX;
 
 
 	MenuWindow(float _x, float _y, float _w, int n, float btn_h, String[] strs) {
@@ -49,6 +49,7 @@ class MenuWindow {
 
 
 	void render() {
+		// render Menu
 		if (isDisplayMenu) {
 		    for (int i=0;i<num;i++) {
 		        popUpButton[i].render();
@@ -57,7 +58,7 @@ class MenuWindow {
 		else if (isDisplayWindow) {
 			switch (whichWindow) {
 				case TOP_10_WINDOW:
-					top10Window.render(yearr);
+					top10Window.render(yearX);
 					break;
 			}
 		}
@@ -96,9 +97,9 @@ class MenuWindow {
 		isDisplayMenu = false;
 	}
 
-	void turnOn(int year_) {
+	void turnOn(int _x) {
 		isDisplayMenu = true;
-		yearr = year_;
+		yearX = _x;
 	}
 
 	void closeWindow() {

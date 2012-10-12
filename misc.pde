@@ -37,6 +37,7 @@ final int PLOT_BG_COLOR = 30;
 final int PLOT_LINE_COLOR = 255;
 
 final int CURVE_COLOR_TEMP = 255;
+final int BAR_COLOR_TEMP = 255;
 
 final int POP_UP_WINDOW_BG_COLOR = POP_UP_COLOR;
 final int POP_UP_WINDOW_TEXT_COLOR = TEXT_COLOR;
@@ -55,6 +56,24 @@ final int MOVIE_PAGE = 2;
 // about First Page UI
 final int HOW_MANY_FILTERS = 6;
 final int HOW_MANY_GRAPH = 2;
+
+	// about Year button
+final float YEAR_BUTTON_X = 0.6*Width;
+final float YEAR_BUTTON_W = 80*scale;
+final float YEAR_BUTTON_H = 40*scale;
+final float YEAR_BUTTON_Y = Height - YEAR_BUTTON_H;	
+
+	// about Decade button
+final float DECADE_BUTTON_X = 0.65*Width;
+final float DECADE_BUTTON_W = 80*scale;
+final float DECADE_BUTTON_H = 40*scale;
+final float DECADE_BUTTON_Y = Height - DECADE_BUTTON_H;
+
+	// about Tabular button
+final float TABULAR_BUTTON_X = 0.7*Width;
+final float TABULAR_BUTTON_W = 80*scale;
+final float TABULAR_BUTTON_H = 40*scale;
+final float TABULAR_BUTTON_Y = Height - TABULAR_BUTTON_H;
 
 	// about RIGHT BAR
 final float RIGHT_BAR_WIDTH = 320*scale;
@@ -136,8 +155,8 @@ final int YEAR_MIN = 1890;
 
 final float PLOT_X1 = 60*scale;
 final float PLOT_X2 = 1260*scale;
-final float PLOT_Y1 = 100*scale;
-final float PLOT_Y2 = Height - 50*scale;
+final float PLOT_Y1 = 70*scale;
+final float PLOT_Y2 = Height - 100*scale;
 
 final int OUTLINE_WIDTH = 4*scale;
 final int INLINE_WIDTH = scale;
@@ -147,10 +166,10 @@ final int UPPER_RIGHT = 1;
 final int LOWER_LEFT = 2;
 final int LOWER_RIGHT = 3;
 
-final float POP_UP_MENU_W = 100*scale;
+final float POP_UP_MENU_W = 200*scale;
 final int POP_UP_MENU_N = 3; //change
 final float POP_UP_BUTTON_H = 30*scale;
-final String[] POP_UP_BUTTON_NAME = {"Top 10","ATTENTION!","MONSTER IN UIC"};
+final String[] POP_UP_BUTTON_NAME = {"Top 10 Monsters of Decade","ATTENTION!","MONSTER IN UIC"};
 
 final int TOP_10_WINDOW = 0;
 final int TEMP_WINDOW_1 = 1;
@@ -168,3 +187,4 @@ final float POP_UP_WINDOW_H = 0.8*Height;
 //
 final int YEAR_MODE = 0;
 final int DECADE_MODE = 1;
+final int TABULAR_MODE = 2;

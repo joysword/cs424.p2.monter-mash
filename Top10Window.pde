@@ -9,7 +9,7 @@ class Top10Window {
 		h = _h;
 	}
 
-	void render(int year_) {
+	void render(int yearX) {
 		pushStyle();
 
 		fill(POP_UP_WINDOW_BG_COLOR);
@@ -20,7 +20,8 @@ class Top10Window {
 		fill(POP_UP_WINDOW_TEXT_COLOR);
 		textAlign(LEFT, CENTER);
 		textSize(14*scale);
-		text("Top 10 Monsters of "+year_, x+w*0.05, y+h*0.05);
+		int yearr = yearX/10*10;
+		text("Top 10 Monsters of "+yearr+"'s", x+w*0.05, y+h*0.05);
 
 		//main stuff
 

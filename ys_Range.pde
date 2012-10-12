@@ -37,9 +37,8 @@ class ys_Range {
   
   // return to default position (when enter Decade Mode)
   public void resume() {
-    leftLock.resume();
-    rightLock.resume();
-    showYearMin = yearMin;
-    showYearMax = yearMax;
+    //leftLock.resume();
+    //rightLock.resume();
+    //ui.getFirstPage().getPlot().setShowYear(yearMin, yearMax);
   }
 }

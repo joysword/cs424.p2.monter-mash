@@ -6,10 +6,12 @@ class FirstPlot{
 
   float plotX1, plotX2, plotY1, plotY2;
   float unitWidth;
+  float decadeWidth;
 
   int yearMin, yearMax;
   int showYearMin, showYearMax;
   int yearCount;
+  int decadeCount;
 
   //Integrator[] interpolators;
 
@@ -24,9 +26,7 @@ class FirstPlot{
   float dataScale;
   float dragStartY;
 
-  boolean showTable;
-
-  int yearMode;
+  int displayMode;
 
   FirstPlot() {
 
@@ -102,56 +102,32 @@ class FirstPlot{
 //    }
 //    pieChart[0].setDisplay();
 
-    showTable = false;
-
     isDragRight = false;
     isDragLeft = false;
     isDrag = false;
 
     dataScale = 1;
 
-    yearMode = YEAR_MODE;
+    displayMode = YEAR_MODE;
   }
 
 
   void render() {
-    if (showTable == false) {
-      yearCount = showYearMax-showYearMin+1;
-      unitWidth = (plotX2-plotX1)/yearCount;
-      if (yearMode == YEAR_MODE) {
-        drawPlot();
-      }
-      else if (yearMode == DECADE_MODE) {
-        drawBar();
-      }
+    yearCount = showYearMax-showYearMin+1;
+    unitWidth = (plotX2-plotX1)/yearCount;
+    decadeCount = 11; //change
+    decadeWidth = (plotX2 - plotX1) / decadeCount;
+
+    // three way
+    if (displayMode == YEAR_MODE) {
+      drawPlot();
     }
-    else {
-      //drawTable();
+    else if (displayMode == DECADE_MODE) {
+      drawBar();
     }
-    //draw Legend
-    //  for (int i=0;i<DATA_SET_COUNT;i++) {
-    //    legend[i].render();
-    //  }
-
-      //draw pie Title
-      //drawPieTitle();
-      //draw Pie Charts
-      //drawPieCharts();
-
-  //draw Title
-  //    if (ui.getDisplayMode() == ONE_COUNTRY_MODE) {
-  //      drawTitle(countryNames[currentRow[0]]);
-  //    }
-  //    if (ui.getDisplayMode() == MULTI_COUNTRY_MODE) {
-  //      int i=0;
-  //      while (i<DATA_SET_COUNT && ui.getDataSelector(i).getCheck() == false) i++;
-  //      if (i<DATA_SET_COUNT)
-  //      {
-  //        drawTitle(ui.getDataSelector(i).getTxt()+ " " + unitText[i]);
-  //      }
-  //    }
-
-  //draw TimeLine
+    else if (displayMode == TABULAR_MODE) {
+      drawTable();
+    }
   }
 
   // change
@@ -162,7 +138,7 @@ class FirstPlot{
     textAlign(LEFT, TOP);
     
     popStyle();
-  }  
+  }
 
   //void setupDashLine(float sp1, float sp2) {
    //spacing[0] = sp1;
@@ -279,15 +255,19 @@ class FirstPlot{
 
   private void drawBar() {
     pushStyle();
-    /*
-    fill(245);
+    
+    fill(PLOT_BG_COLOR);
+    strokeWeight(OUTLINE_WIDTH);
+    stroke(PLOT_LINE_COLOR);
     rectMode(CORNERS);
-    noStroke();
-    rect(plotX1, plotY1, plotX2, plotY2);
+    rect(plotX1,plotY1,plotX2,plotY2);
 
-    fill(0);
-    textSize(10*scale);
-    textAlign(CENTER);
+    drawDecadeLabels();
+
+    noFill();
+    strokeWeight(INLINE_WIDTH);
+    drawDataBar(0,0,0); //change
+    /*
 
     // Use thin, gray lines to draw the grid
     stroke(0);
@@ -316,56 +296,13 @@ class FirstPlot{
       }
     }
     
-    //one country, many data sets
-    if (ui.getDisplayMode() == ONE_COUNTRY_MODE) {
-      int cnt = 0;
-      for (int i=0;i < DATA_SET_COUNT;i++) {
-        if (ui.dataSelector[i].getCheck() == true) {
-          cnt++;
-        }
-      }
-      // only 1 data set is being displayed
-      if (cnt == 1) {
-        for (int i=0;i<DATA_SET_COUNT;i++) {
-          if (ui.dataSelector[i].getCheck() == true) {
-            drawVolumeLabels(i);
-            break;
-          }
-        }
-      }
-      else {
-        drawVolumeLabels(displayVolume);
-      }
-    }
-
-    if (ui.getDisplayMode() == ONE_COUNTRY_MODE) {
-      for (int i = 0; i < DATA_SET_COUNT; i ++) {
-        if (ui.dataSelector[i].getCheck() == true) {
-          //drawDataCurve(currentRow[0], i, showYearMin, showYearMax);
-          drawDataBar(currentRow[0], i, i);
-        }
-      }
-    }
-
-    if (ui.getDisplayMode() == MULTI_COUNTRY_MODE) {
-      for (int i = 0; i < DATA_SET_COUNT; i++) {
-        if (ui.dataSelector[i].getCheck() == true) {
-          for (int j=0;j < DATA_SET_COUNT; j++) {
-            if (currentDisplay[j] == true) {
-              //drawDataCurve(currentRow[j], j, showYearMin, showYearMax);
-              drawDataBar(currentRow[j], i, j);
-            }
-          }
-          break;
-        }
-      }
-    }*/
+    */
     popStyle();
   }
 
   private void drawAxisLabels() {
-    pushStyle();/*
-    fill(0);
+    pushStyle();
+  /*fill(0);
     textSize(13*scale);
     textLeading(15);
 
@@ -447,6 +384,25 @@ class FirstPlot{
     popStyle();
   }
 
+  void drawDecadeLabels() {
+    pushStyle();
+
+    fill(PLOT_LINE_COLOR);
+    textSize(12*scale);
+    textAlign(CENTER);
+
+    stroke(100);
+    strokeWeight(scale);
+
+    for (int i=1;i<11;i++) {
+      text((showYearMin+(i-1)*10) + " -- " + (showYearMin+i*10-1), plotX1+(i-0.5)*decadeWidth, plotY2 + textAscent() + 5*scale);
+      line(plotX1+i*decadeWidth, plotY2 - OUTLINE_WIDTH*0.5, plotX1+i*decadeWidth, plotY1 + OUTLINE_WIDTH*0.5);
+    }
+    text((showYearMin+100) + " -- " + (showYearMin+109), plotX1+10.5*decadeWidth, plotY2 + textAscent() + 5*scale);
+
+    popStyle();
+  }
+
 /*
   void drawVolumeLabels(int i) {
 
@@ -489,7 +445,7 @@ class FirstPlot{
 
         for (int i=0;i<yearCount;i++) {
           if (true == true) {
-            float value = (i+showYearMin)%100;//(i%10>4)?50:40;//random(40,80); //change
+            float value = random(40,80);//(i+showYearMin)%100;//(i%10>4)?50:40; //change
             float x = (left+right)/2;
             float y = map(value, dataMin, dataMax*dataScale, plotY2, plotY1);
             fill(CURVE_COLOR_TEMP);
@@ -521,89 +477,27 @@ class FirstPlot{
     popStyle();
   }
 
-/*
+
   void drawDataBar(int row, int table, int col) {
     pushStyle();
 
-    fill(colors[col]);
-    //noFill();
-    noStroke();
-    int left = 0;
-    int right = 10;
-    float amount = 0;
-    boolean isValid = true;
-    float barWidth = 18*scale;
+    
+    noFill();
+    stroke(BAR_COLOR_TEMP);
+    strokeWeight(INLINE_WIDTH);
 
-    // 11111111
-    for (int i=left;i<right;i++) {
-      if (dataSets[table].getData().isValid(row, i)) {
-        amount += dataSets[table].getData().getFloat(row, i);
-      } 
-      else
-      {
-        isValid = false;
-        break;
-      }
-    }
-    if (isValid) {
+
+    float decadeWidth = (plotX2 - plotX1) / 11;
+    for (int i=0;i<11;i++) {
+
+      float xx1 = plotX1 + decadeWidth*(i+0.2);
+      float xx2 = plotX1 + decadeWidth*(i+0.8);
+      float yy = map(random(40, 80), dataMin, dataMax*dataScale, plotY2, plotY1);
       rectMode(CORNERS);
-      amount = amount * 0.1;
-      float xx = plotX1 + (1+left*0.2)/6.0*(plotX2-plotX1) - barWidth*(3-col);
-      float yy = map(amount, dataMin, dataMax[table]*dataScale, plotY2, plotY1);
-      //println("table:" + table + ",,,  " + xx + "  " + yy);
-      rect(xx, yy, xx+barWidth, plotY2);
+      rect(xx1, yy, xx2, plotY2);
     }
-
-    // 2222222
-    left += 10;
-    right += 10;
-    amount = 0;
-    isValid = true;
-    for (int i=left;i<right;i++) {
-      if (dataSets[table].getData().isValid(row, i)) {
-        amount += dataSets[table].getData().getFloat(row, i);
-      } 
-      else
-      {
-        isValid = false;
-        break;
-      }
-    }
-
-    if (isValid) {
-      rectMode(CORNERS);
-      amount = amount * 0.1;
-      //rect(plotX1 + (1+left*0.2)/6.0*(plotX2-plotX1) - barWidth, map(amount, dataMin, dataMax[table], plotY2, plotY1), plotX1 + (1+left*0.2)/6.0*(plotX2-plotX1) + barWidth, plotY2);
-      float xx = plotX1 + (1+left*0.2)/6.0*(plotX2-plotX1) - barWidth*(3-col);
-      float yy = map(amount, dataMin, dataMax[table]*dataScale, plotY2, plotY1);
-      rect(xx, yy, xx+barWidth, plotY2);
-    }
-
-    // 3333333
-    left += 10;
-    right += 10;
-    amount = 0;
-    isValid = true;
-    for (int i=left;i<right;i++) {
-      if (dataSets[table].getData().isValid(row, i)) {
-        amount += dataSets[table].getData().getFloat(row, i);
-      } 
-      else
-      {
-        isValid = false;
-        break;
-      }
-    }
-
-    if (isValid) {
-      rectMode(CORNERS);
-      amount = amount * 0.1;
-      //rect(plotX1 + (1+left*0.2)/6.0*(plotX2-plotX1) - barWidth, map(amount, dataMin, dataMax[table], plotY2, plotY1), plotX1 + (1+left*0.2)/6.0*(plotX2-plotX1) + barWidth, plotY2);
-      float xx = plotX1 + (1+left*0.2)/6.0*(plotX2-plotX1) - barWidth*(3-col);
-      float yy = map(amount, dataMin, dataMax[table]*dataScale, plotY2, plotY1);
-      rect(xx, yy, xx+barWidth, plotY2);
-    }
-  }*/
+    popStyle();
+  }
 
   void drawDataCurveDash(int row, int colour, int i, int yMin, int yMax, int begin, int end) {
     pushStyle();
@@ -684,10 +578,42 @@ class FirstPlot{
     popStyle();  
   }
 
+  private void drawTable() {
+    pushStyle();
+
+    for (int i=0;i<3;i++) { //change
+      for (int j=0;j<yearCount;j++) {
+        rectMode(CORNER);
+        rect(plotX1 + j*unitWidth, plotY1+i*50*scale, unitWidth, 50*scale);
+      }
+    }
+    popStyle();
+  }
+
   public int getYear(float posx, float posy) {
     if (posx>plotX1 && posx<plotX2 && posy>plotY1 && posy<plotY2) {
       return floor((posx - plotX1) / unitWidth) + showYearMin;
     }
     return -1;
+  }
+
+  public int getDecade(float posx, float posy) {
+    if (posx>plotX1 && posx<plotX2 && posy>plotY1 && posy<plotY2) {
+      return floor((posx - plotX1) / decadeWidth)*10 + yearMin;
+    }
+    return -1;
+  }
+
+  public void setShowYear(int minn, int maxx) {
+    showYearMin = minn;
+    showYearMax = maxx;
+  }
+
+  public int getDisplayMode() {
+    return displayMode;
+  }
+
+  public void setDisplayMode(int mode) {
+    displayMode = mode;
   }
 }

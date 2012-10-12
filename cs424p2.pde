@@ -31,8 +31,6 @@ int columnCount = 10;
 
 //final int Width = 8160;
 //final int Height = 2304;
-
-int showYearMin, showYearMax;
 int currentPage;
 
 //cc_MonsterPlot plot;
@@ -60,11 +58,8 @@ void setup()
   applet = this;
 
   // setup Font
-  PFont plotFont = createFont("Helvetica-Bold", 11);//change
+  PFont plotFont = createFont("Helvetica-Bold", 12*scale);//change
   textFont(plotFont);
-
-  showYearMin = yearMin;
-  showYearMax = yearMax;
 
   currentPage = FIRST_PAGE;
 

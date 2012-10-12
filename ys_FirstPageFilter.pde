@@ -75,14 +75,16 @@ class ys_FirstPageFilter {
 	    	fill(#29C16B);
 	    	break;
 	    }
+	    textSize(18*scale);
 	    text("Select Filters for Graph " + (i+1) + ":", x+5*scale, y-5*scale);//change
-		popStyle();
 		fill(BUTTON_COLOR);
 		noStroke();
 		rect(btnx, btny, btnw, btnh);
 		textAlign(CENTER,CENTER);
 		fill(255);
+		textSize(12*scale);
 		text("UPDATE", btnx + btnw*0.5, btny + btnh*0.5);
+		popStyle();
 
 		monF.render();
 		genF.render();
@@ -126,7 +128,7 @@ class ys_FirstPageFilter {
 		ArrayList<ys_IdPopularityPair> popL = popF.getList(db);
 		ArrayList<ys_IdBudgetPair> budL = budF.getList(db);
 
-		
+
 
 		// update data
 	}

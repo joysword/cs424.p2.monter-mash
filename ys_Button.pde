@@ -37,4 +37,11 @@ class ys_Button {
 		x = _x;
 		y = _y;
 	}
+
+	boolean checkIn(float _x, float _y) {
+		if (_x > x && _x < x+w && _y > y && _y < y+h) {
+			return true;
+		}
+		return false;
+	}
 }

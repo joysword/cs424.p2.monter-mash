@@ -67,4 +67,8 @@ class ys_LeftBar {
 	private void switchDisplay() {
 		isDisplay = !isDisplay;
 	}
+
+	public boolean getIsDisplay() {
+		return isDisplay;
+	}
 }
