@@ -10,9 +10,18 @@ class MenuWindow {
 
 	ys_Button[] popUpButton;
 
-	boolean isDisplay;
+	boolean isDisplayMenu;
+
+	boolean isDisplayWindow;
 
 	int num;
+
+	int whichWindow;
+
+	Top10Window top10Window;
+
+	int yearr;
+
 
 	MenuWindow(float _x, float _y, float _w, int n, float btn_h, String[] strs) {
 
@@ -30,15 +39,27 @@ class MenuWindow {
 			popUpButton[i] = new ys_Button(x, y + i * lineH, w, lineH, strs[i]);
 		}
 
-		isDisplay = false;
+		isDisplayMenu = false;
+		isDisplayWindow = false;
+
+		whichWindow = -1;
+
+		top10Window = new Top10Window(POP_UP_WINDOW_X, POP_UP_WINDOW_Y, POP_UP_WINDOW_W, POP_UP_WINDOW_H);
 	}
 
 
 	void render() {
-		if (isDisplay) {
+		if (isDisplayMenu) {
 		    for (int i=0;i<num;i++) {
 		        popUpButton[i].render();
 		    }
+		}
+		else if (isDisplayWindow) {
+			switch (whichWindow) {
+				case TOP_10_WINDOW:
+					top10Window.render(yearr);
+					break;
+			}
 		}
 	}
 
@@ -72,20 +93,39 @@ class MenuWindow {
 	}
 
 	void shutDown() {
-		isDisplay = false;
+		isDisplayMenu = false;
 	}
 
-	void turnOn() {
-		isDisplay = true;
+	void turnOn(int year_) {
+		isDisplayMenu = true;
+		yearr = year_;
 	}
 
-	boolean getIsDisplay() {
-		return isDisplay;
+	void closeWindow() {
+		isDisplayWindow = false;
+	}
+
+	boolean getIsDisplayMenu() {
+		return isDisplayMenu;
+	}
+
+	boolean getIsDisplayWindow() {
+		return isDisplayWindow;
 	}
 
 	boolean checkIn(float _x, float _y) {
 		if (_x > x && _y > y && _x < x + w && _y < y + h)
 			return true;
 		return false;
+	}
+
+	void showWindow(float _y) {
+		isDisplayWindow = true;
+		for (int i=0;i<POP_UP_MENU_N;i++) {
+			if (_y < y + (i + 1)*lineH) {
+				whichWindow = POP_UP_WINDOW[i];
+				break;
+			}
+		}
 	}
 }

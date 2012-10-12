@@ -23,12 +23,12 @@ class ys_HelpWindow
     if (isDisplay)
     {
       pushStyle();
-      fill(0); //change
-      strokeWeight(3*scale);
-      stroke(#ff3399);
+      fill(POP_UP_WINDOW_BG_COLOR); //change
+      strokeWeight(BOARD_WEIGHT);
+      stroke(WINDOW_BOARD_COLOR);
       rectMode(CORNER);
       rect(x,y,w,h);
-      fill(#ff6600);
+      fill(POP_UP_WINDOW_TEXT_COLOR);
       textAlign(CENTER,CENTER);
       text(content, x+w*0.5, y+h*0.5);
       popStyle();
@@ -43,5 +43,9 @@ class ys_HelpWindow
   
   boolean getIsDisplay() {
     return isDisplay;
+  }
+
+  void setNotDisplay() {
+    isDisplay = false;
   }
 }

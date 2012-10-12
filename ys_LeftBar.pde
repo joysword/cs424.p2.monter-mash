@@ -55,6 +55,9 @@ class ys_LeftBar {
 	void update(float posx, float posy) {
 		if (posx < LEFT_BAR_DEFAULT_WIDTH) {
 			switchDisplay();
+			if (!isDisplay) {
+				ui.getHelpWindow().setNotDisplay();
+			}
 		}
 		if (isDisplay) {
 			menu.update(posx, posy);

@@ -38,6 +38,10 @@ final int PLOT_LINE_COLOR = 255;
 
 final int CURVE_COLOR_TEMP = 255;
 
+final int POP_UP_WINDOW_BG_COLOR = POP_UP_COLOR;
+final int POP_UP_WINDOW_TEXT_COLOR = TEXT_COLOR;
+final int WINDOW_BOARD_COLOR = #ff3399; final int BOARD_WEIGHT = 3*scale;
+
 // about pages
 final int FIRST_PAGE = 0;
 final int MONSTER_PAGE = 1;
@@ -148,6 +152,14 @@ final int POP_UP_MENU_N = 3; //change
 final float POP_UP_BUTTON_H = 30*scale;
 final String[] POP_UP_BUTTON_NAME = {"Top 10","ATTENTION!","MONSTER IN UIC"};
 
+final int TOP_10_WINDOW = 0;
+final int TEMP_WINDOW_1 = 1;
+final int TEMP_WINDOW_2 = 2;
+final int[] POP_UP_WINDOW = {TOP_10_WINDOW,TEMP_WINDOW_1,TEMP_WINDOW_2};
+final float POP_UP_WINDOW_X = 0.1*Width; //change
+final float POP_UP_WINDOW_Y = 0.1*Height;
+final float POP_UP_WINDOW_W = 0.8*Width;
+final float POP_UP_WINDOW_H = 0.8*Height;
 
 
 //

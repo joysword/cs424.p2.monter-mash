@@ -74,24 +74,25 @@ class ys_FirstPage {
   }
 
 	private void updateGraph(float posx, float posy) {
-    if (popUp.getIsDisplay() == false) {
-      int year_ = plot.getYear(posx, posy);
-      if (year_ != -1) { // year_ != -1 means that click is inside the plot
-        int type = (posx<rightX*0.6)? ( (posy<Height*0.5)?UPPER_LEFT:LOWER_LEFT ):( (posy<Height*0.5)?UPPER_RIGHT:LOWER_RIGHT );
-        println(type);
-        popUp.setPos(posx, posy, type);
-        popUp.turnOn();
-      }
+    if (popUp.getIsDisplayWindow() == true) {
+      popUp.closeWindow();
     }
-    else // pop up is ON
-    {
-      // click outside
-      if (!popUp.checkIn(posx, posy)) {
-        popUp.shutDown();
+    else {
+      if (popUp.getIsDisplayMenu() == false) {
+        int year_ = plot.getYear(posx, posy);
+        if (year_ != -1) { // year_ != -1 means that click is inside the plot
+          int type = (posx<rightX*0.6)? ( (posy<Height*0.5)?UPPER_LEFT:LOWER_LEFT ):( (posy<Height*0.5)?UPPER_RIGHT:LOWER_RIGHT );
+          popUp.setPos(posx, posy, type);
+          popUp.turnOn(year_);
+        }
       }
-      else // click inside the menu
+      else // pop up is ON
       {
-        // 触发事件 trigger event
+        // click inside
+        if (popUp.checkIn(posx, posy)) {
+          popUp.showWindow(posy);
+        }
+        popUp.shutDown();
       }
     }
 	}
