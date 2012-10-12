@@ -94,7 +94,7 @@ public class monsterTaxonomy {
   }
 
   public void setup() {
-
+  
 singleMonsterPane=new SingleMonsterPane(this.centerX,this.centerY,this.widthT*0.8,this.heightT*0.9, color(0));
     //vampires
 
@@ -369,6 +369,10 @@ if(!(((monsterNode)this.nodesList.get(i)).moving)){
        
       
     
+  }
+  
+  public SingleMonsterPane getMonsterPane(){
+   return singleMonsterPane;
   }
 }
 

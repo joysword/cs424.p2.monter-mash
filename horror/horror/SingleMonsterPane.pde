@@ -25,7 +25,7 @@ public class SingleMonsterPane {
      this.movieTape=loadImage("movieTape.png");
      
      this.plot1=new cc_MonsterPlot(round(this.centerX-this.widthT/4-this.widthT/3/2),round(this.centerX-this.widthT/4+this.widthT/3/2),round(this.centerY+this.heightT/5-this.heightT/3/2),round(this.centerY+this.heightT/5
-       +this.heightT/3/2),"vampire","zombie",context);
+       +this.heightT/4),"vampire","zombie",context);
          // this.plot1=new cc_MonsterPlot(this.centerX-this.widthT/4,this.centerY+this.heightT/5,this.widthT/3,this.heightT/3,"vampire","zombie",context);
 
      plot1.monsterSetup();
@@ -72,6 +72,10 @@ public class SingleMonsterPane {
   if(myX>this.centerX+this.widthT*0.47-this.hideButton.width/scaling && myX<this.centerX+this.widthT*0.47+this.hideButton.width/scaling
   && myY>this.centerY+this.heightT*0.44-this.hideButton.height/scaling && myY<this.centerY+this.heightT*0.44+this.hideButton.height/scaling){
   this.hide();}
+  }
+  
+  public cc_MonsterPlot getPlot(){
+   return plot1; 
   }
 }
 
