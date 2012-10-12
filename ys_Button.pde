@@ -32,4 +32,9 @@ class ys_Button {
 	public float getHeight() {
 		return h;
 	}
+
+	void setPos(float _x, float _y) {
+		x = _x;
+		y = _y;
+	}
 }

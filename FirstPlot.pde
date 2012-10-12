@@ -683,4 +683,11 @@ class FirstPlot{
 */
     popStyle();  
   }
+
+  public int getYear(float posx, float posy) {
+    if (posx>plotX1 && posx<plotX2 && posy>plotY1 && posy<plotY2) {
+      return floor((posx - plotX1) / unitWidth) + showYearMin;
+    }
+    return -1;
+  }
 }

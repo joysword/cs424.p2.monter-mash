@@ -45,6 +45,8 @@ class ys_FirstPage {
     db = new ys_DatabaseManager(applet); //change
 
     plot = new FirstPlot();
+
+    popUp = new MenuWindow(0, 0, POP_UP_MENU_W, POP_UP_MENU_N, POP_UP_BUTTON_H, POP_UP_BUTTON_NAME);
 	}
 
 	void render() {
@@ -63,6 +65,7 @@ class ys_FirstPage {
         break;
       }
     }
+    popUp.render();
 	}
 
   void update(float posx, float posy) {
@@ -71,8 +74,25 @@ class ys_FirstPage {
   }
 
 	private void updateGraph(float posx, float posy) {
-    if (posx >= rightX && posy < Height * 0.5) {
-		  // pop up window when click certain year
+    if (popUp.getIsDisplay() == false) {
+      int year_ = plot.getYear(posx, posy);
+      if (year_ != -1) { // year_ != -1 means that click is inside the plot
+        int type = (posx<rightX*0.6)? ( (posy<Height*0.5)?UPPER_LEFT:LOWER_LEFT ):( (posy<Height*0.5)?UPPER_RIGHT:LOWER_RIGHT );
+        println(type);
+        popUp.setPos(posx, posy, type);
+        popUp.turnOn();
+      }
+    }
+    else // pop up is ON
+    {
+      // click outside
+      if (!popUp.checkIn(posx, posy)) {
+        popUp.shutDown();
+      }
+      else // click inside the menu
+      {
+        // 触发事件 trigger event
+      }
     }
 	}
 

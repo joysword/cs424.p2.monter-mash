@@ -15,8 +15,8 @@ class ys_LeftMenu {
 
   int num; // number of buttons
   
-  ys_LeftMenu (float _w, int n, float btn_h, String[] strs) {
-    // width, number, names
+  ys_LeftMenu(float _w, int n, float btn_h, String[] strs) {
+    // width, number, height, names
 
     x = LEFT_BAR_DEFAULT_WIDTH;
     y = 0;
@@ -25,7 +25,7 @@ class ys_LeftMenu {
 
     num = n;
 
-    leftButton = new ys_Button[n];
+    leftButton = new ys_Button[num];
 
     for (int i=0;i<num;i++) {
       leftButton[i] = new ys_Button(x, y + h * 0.5 - num/2.0*btn_h + i * btn_h, w, btn_h, strs[i]);

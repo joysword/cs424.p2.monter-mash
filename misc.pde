@@ -138,6 +138,16 @@ final float PLOT_Y2 = Height - 50*scale;
 final int OUTLINE_WIDTH = 4*scale;
 final int INLINE_WIDTH = scale;
 
+final int UPPER_LEFT = 0;
+final int UPPER_RIGHT = 1;
+final int LOWER_LEFT = 2;
+final int LOWER_RIGHT = 3;
+
+final float POP_UP_MENU_W = 100*scale;
+final int POP_UP_MENU_N = 3; //change
+final float POP_UP_BUTTON_H = 30*scale;
+final String[] POP_UP_BUTTON_NAME = {"Top 10","ATTENTION!","MONSTER IN UIC"};
+
 
 
 //
