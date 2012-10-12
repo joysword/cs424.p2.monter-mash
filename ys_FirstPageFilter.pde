@@ -119,6 +119,15 @@ class ys_FirstPageFilter {
 		filter_current = filter_temp;
 		isDisplay = false;
 
+		ArrayList<Integer> monL = monF.getList(db);
+		ArrayList<ys_IdGenrePair> genL = genF.getList(db);
+		ArrayList<Integer> forL = forF.getList(db);
+		ArrayList<ys_IdQualityPair> quaL = quaF.getList(db);
+		ArrayList<ys_IdPopularityPair> popL = popF.getList(db);
+		ArrayList<ys_IdBudgetPair> budL = budF.getList(db);
+
+		
+
 		// update data
 	}
 }

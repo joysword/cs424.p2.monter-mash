@@ -16,7 +16,7 @@ class FilterQuality {
 		w = _w;
 		h = _h;
 		checkItemCount = n;
-
+		
 		checkItemsForFilterQuality = new CheckItem[checkItemCount];
 		lowerBound = new float[checkItemCount];
 		upperBound = new float[checkItemCount];

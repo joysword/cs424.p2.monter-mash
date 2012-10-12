@@ -5,7 +5,6 @@
 // CONSTANT and OTHER
 //
 //
-final int BG_COLOR = 0;
 
 
 // about Help Window
@@ -27,10 +26,17 @@ String[] LEFT_BTN_NAME = {"Timelines","Monsters","Movies","Help and Credits"};
 
 
 // about global color scheme
+final int BG_COLOR = 0;
+
 final int BUTTON_COLOR = #ff6600;
 final int POP_UP_COLOR = #342C2C;
 final int TEXT_COLOR = 255;
 final int CHECK_ITEM_COLOR = 150; // checkbox, filter title, etc
+
+final int PLOT_BG_COLOR = 30;
+final int PLOT_LINE_COLOR = 255;
+
+final int CURVE_COLOR_TEMP = 255;
 
 // about pages
 final int FIRST_PAGE = 0;
@@ -118,4 +124,25 @@ final float FILTER_FORMAT_W = FIRST_PAGE_FILTER_W;
 final float FILTER_FORMAT_H = CHECK_ITEM_HEIGHT;
 final int FILTER_FORMAT_NUM = 3;
 final int NUMBER_OF_FORMAT = 3;
-final String[] KIND_TYPE = {"Movie","TV Movie","Video Movie"};  
+final String[] KIND_TYPE = {"Movie","TV Movie","Video Movie"};
+
+// aoubt First Page Plot
+final int YEAR_MAX = 2012;
+final int YEAR_MIN = 1890;
+
+final float PLOT_X1 = 60*scale;
+final float PLOT_X2 = 1260*scale;
+final float PLOT_Y1 = 100*scale;
+final float PLOT_Y2 = Height - 50*scale;
+
+final int OUTLINE_WIDTH = 4*scale;
+final int INLINE_WIDTH = scale;
+
+
+
+//
+
+//
+//
+final int YEAR_MODE = 0;
+final int DECADE_MODE = 1;

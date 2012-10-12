@@ -15,7 +15,11 @@ class ys_FirstPage {
 
   private ys_FirstPageFilter[] filter;
 
+  FirstPlot plot;
+
   ys_DatabaseManager db;
+
+  MenuWindow popUp;
 
 	ys_FirstPage(float _w) {
 
@@ -39,15 +43,20 @@ class ys_FirstPage {
     }
 
     db = new ys_DatabaseManager(applet); //change
+
+    plot = new FirstPlot();
 	}
 
 	void render() {
-		// render graph1
+		// render graph
 		//graph[0].render(0);
 		//graph[1].render(1);
+    plot.render();
 
+    // render right bar
     renderRight();
 
+    // render filter panel
     for (int i=0;i<HOW_MANY_GRAPH;i++) {
       if (isSelecting[i]) {
         renderFilter(i);
