@@ -20,9 +20,9 @@ final int yearMax = 2009;
 // aobut LEFT BAR
 final float LEFT_BAR_DEFAULT_WIDTH = 30*scale;
 final float LEFT_MENU_WIDTH = 200*scale;
-final int BTN_NUMBER = 4;
+final int BTN_NUMBER = 5;
 final float BTN_H = 30*scale;
-String[] LEFT_BTN_NAME = {"Timelines","Monsters","Movies","Help and Credits"};
+String[] LEFT_BTN_NAME = {"Timeline", "Monsters", "Movies", "Change Language", "Help and Credits"};
 
 
 // about global color scheme
