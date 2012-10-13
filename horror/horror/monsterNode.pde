@@ -1,5 +1,5 @@
 public class monsterNode {
-  private String monsterName;
+  public String monsterName="vampire";
   private float centerX;
   private float centerY;
   private float diameter;

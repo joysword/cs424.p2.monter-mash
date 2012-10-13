@@ -95,7 +95,7 @@ public class monsterTaxonomy {
 
   public void setup() {
   
-singleMonsterPane=new SingleMonsterPane(this.centerX,this.centerY,this.widthT*0.8,this.heightT*0.9, color(0));
+    singleMonsterPane=new SingleMonsterPane(this.centerX,this.centerY,this.widthT*0.8,this.heightT*0.9, color(0));
     //vampires
 
     vampires_pic=loadImage("vampires.png");
@@ -141,7 +141,7 @@ singleMonsterPane=new SingleMonsterPane(this.centerX,this.centerY,this.widthT*0.
     zombies = new monsterNode("Zombies", 0, 0, this.nodeDiameterChild, zombies_pic);
     zombies.setFather(livingDead);
         zombies.setCenter(zombies.father.centerX-this.nodeDiameterChild*1.5, zombies.father.centerY-this.nodeDiameterChild*1.5);
-;    zombies.setFather(livingDead);
+    zombies.setFather(livingDead);
     this.addNode(zombies);
     
    frankenstein_pic=loadImage("frankenstein.png");
@@ -355,7 +355,7 @@ if(!(((monsterNode)this.nodesList.get(i)).moving)){
   this.singleMonsterPane.setMonster((monsterNode)this.nodesList.get(i));
         print("\n"+(((monsterNode)this.nodesList.get(i))).monsterName);
         this.singleMonsterPane.show();}
-    
+        singleMonsterPane.setFirstTime();
       }
     }
   }
@@ -363,11 +363,8 @@ if(!(((monsterNode)this.nodesList.get(i)).moving)){
   public void noMoving(){
            for (int i=0;i<this.nodesList.size();i++) {
 
-
-
        (((monsterNode)this.nodesList.get(i)).moving)=false;}
-       
-      
+
     
   }
   
@@ -375,4 +372,5 @@ if(!(((monsterNode)this.nodesList.get(i)).moving)){
    return singleMonsterPane;
   }
 }
+
 

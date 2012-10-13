@@ -1,26 +1,32 @@
 public class RadarChart {
+
   private float centerX;
   private float centerY;
   private float diameter;
   private float angle;
-private float dimension;
+  private float dimension;
+  private RadarDataManager radarDataManager;
 
-  public RadarChart(float centerX, float centerY, float diameter, float dimension) {
+  public RadarChart(float centerX, float centerY, float diameter, float dimension){
     this.centerX=centerX;
     this.centerY=centerY;
     this.diameter=diameter;
-      this.dimension=dimension;
-        this.angle=360/this.dimension;
+    this.dimension=dimension;
+    this.angle=360/this.dimension;
   }
 
-  void draw() {
+  public void setupData(String monster){
+    radarDataManager=new RadarDataManager(monster);
+  }
+
+  public void draw() {
     stroke(255);
     strokeWeight(25/scaling);
     point(this.centerX, this.centerY);
     this.drawAxis();
-    this.drawShape(80,100,20,100,30,100,50,100,90,100);
+    //this.drawShape(radarDataManager.getXdataPop(),radarDataManager.getDataMax(cc_PlottedData.POPULARITY),20,100,30,100,50,100,90,100);
+    this.drawShape(1,1,20,100,30,100,50,100,90,100);
     this.drawLabels("Label 1","Label 2","Label 3","Label 4", "Label 5");
-   
   }
 
   private float getX(float ang, float len) {
@@ -53,7 +59,6 @@ private float dimension;
 }
   private void drawShape(float v1,float m1,float v2, float m2, float v3, float m3, float v4, float m4, float v5, float m5){
   float[] point1,point2,point3,point4,point5;
-    
     point1=this.drawPoint(v1,m1,this.angle);
   point2=this.drawPoint(v2,m2,this.angle*2);
   point3=this.drawPoint(v3,m3,this.angle*3);

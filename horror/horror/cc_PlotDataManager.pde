@@ -22,6 +22,7 @@ public class cc_PlotDataManager{
 			if(dataType==cc_PlottedData.NUMBER_FILMS)
 				data=db.getFilmNumber(monster);
 			else if(dataType==cc_PlottedData.POPULARITY)
+				print("cane");
 				data=db.getPopularity(monster);
 		}else{
 			if(dataType==cc_PlottedData.NUMBER_FILMS)
@@ -71,5 +72,7 @@ public class cc_PlotDataManager{
 
   private boolean animal(){
   		if(monster.equals(cc_DatabaseManager.SHARK_REF)||monster.equals(cc_DatabaseManager.SNAKE_REF))
+                  return true;
+                else return false;
   }
 }

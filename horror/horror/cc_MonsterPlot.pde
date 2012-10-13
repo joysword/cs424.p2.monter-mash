@@ -13,7 +13,7 @@ public class cc_MonsterPlot {
   private static final float Y_UPPER_PROPORTION_INNER= 0.15;
   private static final float Y_LOWER_PROPORTION_INNER= 0.15;
   private static final float DISTANCE_LABEL_FROM_PLOT= 0.03;
-  private static final float TEXT_FACTOR=0.012;
+  private static final float TEXT_FACTOR=0.007;
   private static final float STROKE_1_PROPORTION=0.001;
   private static final float LINE_PROPORITON=3.0;
   private static final int OP=50;
@@ -36,7 +36,7 @@ public class cc_MonsterPlot {
   private float refX;
 
 
-  public cc_MonsterPlot(int leftX, int rightX, int upperY, int lowerY, String monster1, String monster2, PApplet context) {
+  public cc_MonsterPlot(int leftX, int rightX, int upperY, int lowerY) {
     this.leftX=leftX;
     this.rightX=rightX;
     this.upperY=upperY;
@@ -45,11 +45,14 @@ public class cc_MonsterPlot {
     innerRightX=round(rightX-(rightX-leftX)*X_RIGHT_PROPORTION_INNER);
     innerUpperY=round(upperY+(lowerY-upperY)*Y_UPPER_PROPORTION_INNER);
     innerLowerY=round(lowerY-(lowerY-upperY)*Y_LOWER_PROPORTION_INNER);
+    scroll=new cc_MonsterScroll(innerLeftX, innerRightX, innerLowerY, lowerY);
+  }
+  
+  public void setupData(String monster1, String monster2){
     dataManager1=new cc_PlotDataManager(monster1, context);
     dataManager1.setData(cc_PlottedData.NUMBER_FILMS);
     dataManager2=new cc_PlotDataManager(monster2, context);
     dataManager2.setData(cc_PlottedData.NUMBER_FILMS);
-    scroll=new cc_MonsterScroll(innerLeftX, innerRightX, innerLowerY, lowerY);
   }
 
   public void monsterSetup() {
@@ -185,8 +188,7 @@ public class cc_MonsterPlot {
 
   public void setFontSize() {
     float fontSizeFloat=height*TEXT_FACTOR;
-    int fontSize=floor(fontSizeFloat);
-    textSize(fontSize);
+    textSize(fontSizeFloat);
   }
 
   private float getMax() {
