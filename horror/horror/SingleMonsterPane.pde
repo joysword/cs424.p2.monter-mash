@@ -3,7 +3,7 @@ public class SingleMonsterPane {
   private cc_MonsterPlot plot1;
   private Map worldMap;
   private RadarChart radar;
-  private ImageButton compareMonster;
+ private ImageButton compareMonster;
 
   private float centerX;
   private float centerY;
@@ -12,7 +12,7 @@ public class SingleMonsterPane {
   private boolean show=false;
   private color background;
   private monsterNode monster;
-  private PImage hideButton;
+  private PShape hideButton;
   private PImage movieTape;
   private boolean firstTime=true;
 
@@ -22,14 +22,14 @@ public class SingleMonsterPane {
     this.widthT=widthT;
     this.heightT=heightT;
     this.background=background;
-    this.hideButton=loadImage("hideButton.png");
+    this.hideButton=loadShape("hideButton.svg");
     this.movieTape=loadImage("movieTape.png");
     // this.plot1=new cc_MonsterPlot(this.centerX-this.widthT/4,this.centerY+this.heightT/5,this.widthT/3,this.heightT/3,"vampire","zombie",context);
     this.plot1=new cc_MonsterPlot(round(this.centerX-this.widthT/4-this.widthT/3/2), round(this.centerX-this.widthT/4+this.widthT/3/2), 
     round(this.centerY+this.heightT/5-this.heightT/3/2), round(this.centerY+this.heightT/5+this.heightT/4));
     this.worldMap=new Map(loadShape("worldMap.svg"), this.centerX+this.widthT/7, this.centerY-this.heightT/5, this.widthT/3, this.heightT/3);
     this.radar=new RadarChart(this.centerX+this.widthT/7, this.centerY+this.heightT/5, this.heightT/6, 5.0);
-    this.compareMonster=new ImageButton(loadImage("compareMonster.png"), this.centerX+this.widthT*0.3, this.centerY+this.heightT*0.45, 3);
+    this.compareMonster=new ImageButton(loadShape("compareMonster.svg"), this.centerX+this.widthT*0.35, this.centerY+this.heightT*0.45, 400/scaling,150/scaling);
   }
 
 
@@ -62,7 +62,8 @@ public class SingleMonsterPane {
     compareMonster.draw();
     imageMode(CENTER);
     image(this.monster.avatar, this.centerX-this.widthT/4, this.centerY-this.heightT/4+this.heightT/20, this.monster.avatar.width/3, this.monster.avatar.height/3);
-    image(this.hideButton, this.centerX-this.widthT*0.47, this.centerY+this.heightT*0.44, this.hideButton.width/scaling*2, this.hideButton.height/scaling*2);
+    fill(255);
+    shape(this.hideButton, this.centerX+this.widthT*0.47, this.centerY+this.heightT*0.44, 130/scaling, 130/scaling);
   }
 
   public void show() {
@@ -78,9 +79,10 @@ public class SingleMonsterPane {
   }
 
   public void checkHideButton(float myX, float myY) {
-    if (myX>this.centerX+this.widthT*0.47-this.hideButton.width/scaling && myX<this.centerX+this.widthT*0.47+this.hideButton.width/scaling
-      && myY>this.centerY+this.heightT*0.44-this.hideButton.height/scaling && myY<this.centerY+this.heightT*0.44+this.hideButton.height/scaling) {
+    if (myX>this.centerX+this.widthT*0.47-130/scaling/2 && myX<this.centerX+this.widthT*0.47+130/scaling/2
+      && myY>this.centerY+this.heightT*0.44-130/scaling/2 && myY<this.centerY+this.heightT*0.44+130/scaling/2) {
       this.hide();
+        taxonomy.indexMoving=-1;
     }
   }
 

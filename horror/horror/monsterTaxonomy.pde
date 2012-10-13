@@ -8,7 +8,7 @@ public class monsterTaxonomy {
   private float nodeDiameterFather, nodeDiameterChild;
   private color background;
   public ArrayList nodesList= new ArrayList();
-  private int indexMoving;
+  private int indexMoving=-1;
 
   //vampires
   private     monsterNode vampires; 
@@ -335,7 +335,7 @@ this.addNode(possessedObjects);
 
     for (int i=0;i<this.nodesList.size();i++) {
 
-      if (((monsterNode)this.nodesList.get(i)).checkOn(myX, myY)) {
+      if (((monsterNode)this.nodesList.get(i)).checkOn(myX, myY)&& (indexMoving==i || indexMoving==-1)) {
 
 
         (((monsterNode)this.nodesList.get(i))).setCenter(myX, myY);
