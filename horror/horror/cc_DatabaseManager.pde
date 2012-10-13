@@ -43,7 +43,7 @@ public class cc_DatabaseManager {
   public static final String DINOSAUR_REF="dinosaur";
   public static final String BIGFOOT_REF="bigfoot";
   public static final String VAMPIRE_REF="vampire";
-
+  public static final String WEREWOLF_REF="werewolf";
   private float[] inflation= {
     25, 25, 25, 25.64, 26.32, 27.03, 27.03, 27.78, 27.78, 27.78, 27.03, 27.03, 26.32, 26.32, 25.64, 
     26.32, 25.64, 24.39, 25, 25, 24.39, 24.39, 23.81, 23.26, 22.73, 22.73, 20.83, 17.86, 15.15, 13.33, 11.49, 12.82, 13.7, 
@@ -56,8 +56,8 @@ public class cc_DatabaseManager {
   //-------------------------------- IMDB CLASS --------------------------------------------
 
   private String[] vampire_kwords= {
-    "vampire", "female-vampire", "vampire-slayer", "vampire-hunter", "vampire-bat", "vampire-bite", 
-    "vampire-human-love", "lesbian-vampire", "vampire-vs-vampire", "chinese-vampire", "child-vampire", "vampire-human-relationship", 
+    "vampire", "vampire-slayer", "vampire-hunter", "vampire-bat", "vampire-bite", 
+    "vampire-human-love", "vampire-vs-vampire", "chinese-vampire", "child-vampire", "vampire-human-relationship", 
     "master-vampire", "vampire-sex", "vampire-cult", "vampire-driving-a-car", "bisexual-vampire", "vampire-versus-werewolf", 
     "vampire-girl", "space-vampire", "bitten-by-a-vampire", "ancient-vampire", "gay-vampire", "vampire-staked", "sex-vampire", 
     "vampire-teeth", "erotic-vampire", "male-vampire", "vampire-cop", "taoist-vampire", "turning-into-a-vampire", 
@@ -205,12 +205,13 @@ public class cc_DatabaseManager {
   MySQL msql;
   PApplet context;
 
+////VARIABLES ENDS HERE
 
   public cc_DatabaseManager(PApplet context) {
     this.context=context;
     String user     = "root";
     String pass     = "root";
-    String database = "cs424imdb";
+    String database = "cs424imdb2";
     msql = new MySQL( context, "localhost", database, user, pass );
   }
 
@@ -699,10 +700,143 @@ public class cc_DatabaseManager {
     }
     return array;
   }
+  
+  public ArrayList<cc_YearCountPair> getFormat(){
+       ArrayList<cc_YearCountPair> array = new ArrayList<cc_YearCountPair>();
+    if ( msql.connect() )
+    {
+      String query1=   
+      "SELECT year,count "+
+      "from format_count "+
+      "where genre=\""+
+      genre+
+      "\" and monster=\""+
+      monster+
+      "\" and clustered_by=1 "+
+      "group by year "+
+      "order by year";
+      String query2=   
+         "SELECT year,count "+
+      "from format_count "+
+      "where genre=\""+
+      genre+
+      "\" and monster=\""+
+      monster+
+      "\" and clustered_by=3 "+
+      "group by year "+
+      "order by year";
+       String query3=   
+       "SELECT year,count "+
+      "from format_count "+
+      "where genre=\""+
+      genre+
+      "\" and monster=\""+
+      monster+
+      "\" and clustered_by=4 "+
+      "group by year "+
+      "order by year";
+      msql.query(query);
+      array=createArrayFromQuery(array, msql);
+
+    }
+    else {
+    }
+    return array;
+
+  } 
+
+
+private void initArray(ArrayList<FormatInstance> array){
+  for(int i=0;i<123;i++){
+   array.add(new FormatInstance(1890+i,0,0,0)); 
+  }
+}
+
+private void addLow(ArrayList<FormatInstance> array,MySQL msql){
+  int year,count;
+  while(msql.next()){
+    year=msql.getInt(1);
+    count=msql.getInt(2);
+    if(year>1889)
+    array.get(year-1890).setLow(count);
+  }
+}
+
+private void addMed(ArrayList<FormatInstance> array,MySQL msql){
+  int year,count;
+  while(msql.next()){
+    println("CANE");
+    year=msql.getInt(1);
+    count=msql.getInt(2);
+        if(year>1889)
+    array.get(year-1890).setMed(count);
+  }
+}
+
+private void addHigh(ArrayList<FormatInstance> array,MySQL msql){
+  int year,count;
+  while(msql.next()){
+    println("CAVALLO");
+    year=msql.getInt(1);
+    count=msql.getInt(2);
+        if(year>1889)
+    array.get(year-1890).setHigh(count);
+  }
+}
+
+
+public ArrayList<FormatInstance> getFormat(String genre, String monster){
+    ArrayList<FormatInstance> array = new ArrayList<FormatInstance>();
+    initArray(array);
+    if ( msql.connect() )
+    {
+      String query1=   
+      "SELECT year,count "+
+      "from format_count "+
+      "where genre=\""+
+      genre+
+      "\" and monster=\""+
+      monster+
+      "\" and clustered_by=1 "+
+      "group by year "+
+      "order by year";
+      println(query1);
+      msql.query(query1);
+      addLow(array,msql);
+      String query2=   
+         "SELECT year,count "+
+      "from format_count "+
+      "where genre=\""+
+      genre+
+      "\" and monster=\""+
+      monster+
+      "\" and clustered_by=3 "+
+      "group by year "+
+      "order by year";
+      msql.query(query2);
+      addMed(array,msql);
+       String query3=   
+       "SELECT year,count "+
+      "from format_count "+
+      "where monster=\""+
+      genre+
+      "\" and monster=\""+
+      monster+
+      "\" and clustered_by=4 "+
+      "group by year "+
+      "order by year";
+      msql.query(query3);
+      addHigh(array,msql);
+    }
+    else {
+    }
+    return array;
+
+  } 
 
   private String getGenres(String[] genres) {
     String info_list="";
-    if (genres.length<2) return "";
+    if (genres.length<1) return "";
     for (int i=0;i<genres.length;i++) {
       info_list=" mi.info=\""+genres[i]+"\" and";
     }
@@ -823,6 +957,10 @@ public class cc_DatabaseManager {
     else if (keyword.equals(SNAKE_REF)) {
       for (int i=0;i<snake_kwords.length;i++)
         keyword_list=keyword_list+" k.keyword='"+snake_kwords[i]+"' or";
+    }
+        else if (keyword.equals(WEREWOLF_REF) {
+      for (int i=0;i<werewolf_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+werewolf_kwords[i]+"' or";
     }
     if (keyword_list.length()<2) return "";
     keyword_list=keyword_list.substring(0, keyword_list.length()-2);
