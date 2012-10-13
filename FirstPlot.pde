@@ -19,14 +19,14 @@ class FirstPlot{
 
   //Legend[] legend;
 
-  boolean isDragLeft;
-  boolean isDragRight;
   boolean isDrag;
 
   float dataScale;
   float dragStartY;
 
   int displayMode;
+
+  ys_Range range;
 
   FirstPlot() {
 
@@ -102,13 +102,14 @@ class FirstPlot{
 //    }
 //    pieChart[0].setDisplay();
 
-    isDragRight = false;
-    isDragLeft = false;
+    
     isDrag = false;
 
     dataScale = 1;
 
     displayMode = YEAR_MODE;
+
+    range = new ys_Range(RANGE_X, RANGE_Y, RANGE_W, RANGE_H, RANGE_LOCK_W, RANGE_LOCK_H);
   }
 
 
@@ -121,6 +122,7 @@ class FirstPlot{
     // three way
     if (displayMode == YEAR_MODE) {
       drawPlot();
+      range.render();
     }
     else if (displayMode == DECADE_MODE) {
       drawBar();
@@ -615,5 +617,33 @@ class FirstPlot{
 
   public void setDisplayMode(int mode) {
     displayMode = mode;
+  }
+
+  public ys_Range getRange() {
+    return range;
+  }
+
+  public void updateRangeL(float _x) {
+    range.update(_x, 0);
+  }
+
+  public void updateRangeR(float _x) {
+    range.update(_x, 1);
+  }
+
+  public int getShowYearMax() {
+    return showYearMax;
+  }
+
+  public int getShowYearMin() {
+    return showYearMin;
+  }
+
+  public void setShowYearMin(int yy) {
+    showYearMin = yy;
+  }
+
+  public void setShowYearMax(int yy) {
+    showYearMax = yy;
   }
 }

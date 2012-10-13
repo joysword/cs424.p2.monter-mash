@@ -22,7 +22,7 @@ class ys_TimeLock {
   public void render()
   {
     pushStyle();
-    fill(0);
+    fill(TIME_LOCK_COLOR);
     rectMode(CORNERS);
     ellipse(x,y,w*2,h*2);
     //rect(x-w*scale,y-h*scale,x+w*scale,y+h*scale);

@@ -18,6 +18,23 @@ class ys_Range {
   
   // need change
   public void render() {
+    pushStyle();
+    
+    noFill();
+    stroke(RANGE_COLOR);
+    strokeWeight(h);
+    
+    line(x,y,x+w, y);
+    
+    for (int column = 1890; column < 2013; column++) {
+      if (column%10 == 0) {
+        float xx = map(column, 1890, 2013, x, x+w);
+        line(xx, y-h, xx, y+h);
+        //text(years[column], x, (plotY2 + textAscent() + 7)*scale);
+      }
+    }
+  
+    popStyle();
     leftLock.render();
     rightLock.render();
   }
@@ -32,7 +49,21 @@ class ys_Range {
   
   // need change
   public void update(float _x, int l_r) {
-   
+
+    if (ui.getFirstPage().getPlot().getDisplayMode() == YEAR_MODE) { 
+      int Year = (int) map(_x, x,x+w, YEAR_MIN, YEAR_MAX);
+      if (l_r == 0) {
+        if (Year < YEAR_MIN) Year = YEAR_MIN;
+        if (Year >= ui.getFirstPage().getPlot().getShowYearMax()) Year = ui.getFirstPage().getPlot().getShowYearMax()-1;
+      leftLock.setX(w*(Year-YEAR_MIN)/(YEAR_MAX-YEAR_MIN) + x);
+      ui.getFirstPage().getPlot().setShowYearMin(Year);
+    } else if (l_r == 1) {
+      if (Year > YEAR_MAX) Year = YEAR_MAX;
+      if (Year <= ui.getFirstPage().getPlot().getShowYearMin()) Year = ui.getFirstPage().getPlot().getShowYearMin()+1;
+      rightLock.setX(w*(Year-YEAR_MIN)/(YEAR_MAX-YEAR_MIN) + x);
+      ui.getFirstPage().getPlot().setShowYearMax(Year);
+    }
+   }
   }
   
   // return to default position (when enter Decade Mode)

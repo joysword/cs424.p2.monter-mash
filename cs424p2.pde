@@ -33,6 +33,9 @@ int columnCount = 10;
 //final int Height = 2304;
 int currentPage;
 
+boolean global_isDragLeft; //drag Left Timelock of Range on First Page
+boolean global_isDragRight;
+
 //cc_MonsterPlot plot;
 ///////////////////////////////////
 //
@@ -62,6 +65,9 @@ void setup()
   textFont(plotFont);
 
   currentPage = FIRST_PAGE;
+
+  global_isDragRight = false;
+  global_isDragLeft = false;
 
   ui = new UserInterface();
   

@@ -15,19 +15,20 @@ class ys_FirstPage {
 
 	private ys_FirstPageFilter[] filter;
 
-	FirstPlot plot;
+	private FirstPlot plot;
 
-	ys_DatabaseManager db;
+	private ys_DatabaseManager db;
 
-	MenuWindow popUp;
+	private MenuWindow popUp;
 
-	ys_Button yearBtn;
+	private ys_Button yearBtn;
 
-	ys_Button tabularBtn;
+	private ys_Button tabularBtn;
 
-	ys_Button decadeBtn; 
+	private ys_Button decadeBtn;
 
 ////////////////
+
 	public ys_FirstPage(float _w) {
 
 		rightX = Width - _w;
@@ -78,8 +79,8 @@ class ys_FirstPage {
 		// render filter panel
 		for (int i=0;i<HOW_MANY_GRAPH;i++) {
 			if (isSelecting[i]) {
-				renderFilter(i);
-				break;
+				filter[i].render(i);
+                break;
 			}
 		}
 		popUp.render();
@@ -87,7 +88,17 @@ class ys_FirstPage {
 
 	void update(float posx, float posy) {
 		if (ui.getLeftBar().getIsDisplay() == false) {
-			updateGraph(posx, posy);
+            boolean selecting = false;
+            for (int i=0;i<HOW_MANY_GRAPH;i++)
+            {
+                if (isSelecting[i]) {
+                    selecting = true;
+                    break;
+                }
+            }
+            if (!selecting) {
+                updateGraph(posx, posy);
+            }
 		}
 		updateInterface(posx, posy);
 	}
@@ -190,11 +201,7 @@ class ys_FirstPage {
 		popStyle();
 	}
 
-	private void renderFilter(int i) {
-		filter[i].render(i);
-	}
-
-	FirstPlot getPlot() {
+	public FirstPlot getPlot() {
 		return plot;
 	}
 }

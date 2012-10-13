@@ -43,6 +43,9 @@ final int POP_UP_WINDOW_BG_COLOR = POP_UP_COLOR;
 final int POP_UP_WINDOW_TEXT_COLOR = TEXT_COLOR;
 final int WINDOW_BOARD_COLOR = #ff3399; final int BOARD_WEIGHT = 3*scale;
 
+final int RANGE_COLOR = 125;
+final int TIME_LOCK_COLOR = #ff6600;
+
 // about pages
 final int FIRST_PAGE = 0;
 final int MONSTER_PAGE = 1;
@@ -155,8 +158,8 @@ final int YEAR_MIN = 1890;
 
 final float PLOT_X1 = 60*scale;
 final float PLOT_X2 = 1260*scale;
-final float PLOT_Y1 = 70*scale;
-final float PLOT_Y2 = Height - 100*scale;
+final float PLOT_Y1 = 60*scale;
+final float PLOT_Y2 = Height - 140*scale;
 
 final int OUTLINE_WIDTH = 4*scale;
 final int INLINE_WIDTH = scale;
@@ -180,8 +183,13 @@ final float POP_UP_WINDOW_Y = 0.1*Height;
 final float POP_UP_WINDOW_W = 0.8*Width;
 final float POP_UP_WINDOW_H = 0.8*Height;
 
-
-//
+	// about Range
+final float RANGE_X = PLOT_X1;
+final float RANGE_Y = PLOT_Y2 + 40*scale;
+final float RANGE_W = PLOT_X2 - PLOT_X1;
+final float RANGE_H = 6*scale;
+final float RANGE_LOCK_W = 7*scale;
+final float RANGE_LOCK_H = 7*scale;
 
 //
 //
