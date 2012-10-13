@@ -445,9 +445,20 @@ class FirstPlot{
         float left = plotX1;
         float right = left+unitWidth;
 
+        // test function
+
+        dataMax = 0;
+
+        for (int i=0;i<global_data.size();i++) {
+          if (global_data.get(i).getCount() > dataMax) {
+            dataMax = global_data.get(i).getCount();
+          }
+        }
+/*
         for (int i=0;i<yearCount;i++) {
           if (true == true) {
-            float value = random(40,80);//(i+showYearMin)%100;//(i%10>4)?50:40; //change
+            //float value = random(40,80);//(i+showYearMin)%100;//(i%10>4)?50:40; //change
+            float value = global_data.get(i).getCount();
             float x = (left+right)/2;
             float y = map(value, dataMin, dataMax*dataScale, plotY2, plotY1);
             fill(CURVE_COLOR_TEMP);
@@ -458,7 +469,7 @@ class FirstPlot{
           }
           left = right;
           right += unitWidth;
-        }
+        }*/
 
         /*
         for (int col = showYearMin-yearMin; col < showYearMax-yearMin+1; col++) {

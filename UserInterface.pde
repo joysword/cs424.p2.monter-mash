@@ -12,6 +12,8 @@ class UserInterface {
   ys_FirstPage firstPage;
 
   ys_LeftBar leftBar;
+
+  cc_DatabaseManager db;
   
   UserInterface() {
     
@@ -24,6 +26,8 @@ class UserInterface {
     helpWindow = new ys_HelpWindow((Width - HELP_WINDOW_w)*0.5, (Height-HELP_WINDOW_h)*0.5, HELP_WINDOW_w, HELP_WINDOW_h, HELP_WINDOW_c);
 
     leftBar = new ys_LeftBar(LEFT_MENU_WIDTH, BTN_NUMBER, BTN_H, LEFT_BTN_NAME);
+
+    db = new cc_DatabaseManager(applet);
   }
   
   
@@ -69,6 +73,10 @@ class UserInterface {
 
   public ys_LeftBar getLeftBar() {
     return leftBar;
+  }
+
+  public cc_DatabaseManager getDB() {
+    return db;
   }
 
 }

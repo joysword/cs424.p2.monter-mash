@@ -36,6 +36,8 @@ int currentPage;
 boolean global_isDragLeft; //drag Left Timelock of Range on First Page
 boolean global_isDragRight;
 
+ArrayList<cc_YearCountPair> global_data;
+
 //cc_MonsterPlot plot;
 ///////////////////////////////////
 //
@@ -68,6 +70,8 @@ void setup()
 
   global_isDragRight = false;
   global_isDragLeft = false;
+
+  global_data = new ArrayList<cc_YearCountPair>();
 
   ui = new UserInterface();
   

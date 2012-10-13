@@ -20,7 +20,8 @@ class FilterFormat {
 		for (int i=0;i<checkItemCount;i++) {
 			//change
 			checkItemsForFilterFormat[i] = 
-				new CheckItem(x + (i % 5) * (CHECK_BOX_WIDTH*8) * scale, y + (i / 5 * (CHECK_BOX_WIDTH+2) + 12) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * 7, h, KIND_TYPE[i]); //change
+				new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH) * scale, y + (i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH+2) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-1), h, 
+				 KIND_TYPE[i]); //change
 		}
 
 		kindId = new int[checkItemCount];
@@ -63,12 +64,12 @@ class FilterFormat {
 		}
 	}
 
-	ArrayList<Integer> getList(ys_DatabaseManager db) {
+	ArrayList<Integer> getList(cc_DatabaseManager db) {
 		// foreach CheckItem, sum all their list to return
 		ArrayList<Integer> listt = new ArrayList<Integer>();
 		for (int i=0;i<checkItemCount;i++) {
 			if (checkItemsForFilterFormat[i].isCheck()) {
-				listt.addAll(db.getFilmForKind(kindId[i]));
+				//listt.addAll(db.getFilmForKind(kindId[i]));
 			}
 		}
 		return listt;

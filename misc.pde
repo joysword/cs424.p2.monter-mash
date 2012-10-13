@@ -93,34 +93,38 @@ final String[] FILTER_TXT = {
 	// about Filters
 
 		// General CheckItem values
-		final float CHECK_BOX_WIDTH = 12*scale;
-		final float CHECK_ITEM_HEIGHT = CHECK_BOX_WIDTH;
+final float CHECK_BOX_WIDTH = 12*scale;
+final float CHECK_ITEM_HEIGHT = CHECK_BOX_WIDTH;
+final int NUMBER_EACH_LINE = 4;
+final float RELATIVE_WIDTH = 7.6;
+final float TITLE_TO_BOX = 10*scale;
+
 		// FIRST_PAGE_FILTER_X is decided by RIGHT_BAR_WIDTH and FIRST_PAGE_FILTER_W
 //final float FIRST_PAGE_FILTER_X = 0.6*Width;
-final float FIRST_PAGE_FILTER_Y = 0.45*Height;
-final float FIRST_PAGE_FILTER_W = 0.5*Width - RIGHT_BAR_WIDTH;
+final float FIRST_PAGE_FILTER_Y = 0.4*Height;
+final float FIRST_PAGE_FILTER_W = 0.7*Width - RIGHT_BAR_WIDTH;
 final float FIRST_PAGE_FILTER_H = Height - FIRST_PAGE_FILTER_Y;
-final float FPF_BTN_X_RELATIVE = 0.85;
-final float FPF_BTN_Y_RELATIVE = 0.85;
+final float FPF_BTN_X_RELATIVE = 0.9;
+final float FPF_BTN_Y_RELATIVE = 0.9;
 final float FPF_BTN_W = 60*scale;
-final float FPF_BTN_H = 32*scale;
+final float FPF_BTN_H = 26*scale;
 
 		// Rating (Quality)
-final float FILTER_QUALITY_X_RELATIVE = 0.01;
-final float FILTER_QUALITY_Y_RELATIVE = 0.04;
+final float FILTER_QUALITY_X_RELATIVE = 0.51;
+final float FILTER_QUALITY_Y_RELATIVE = 0.05;
 final float FILTER_QUALITY_W = FIRST_PAGE_FILTER_W;
 final float FILTER_QUALITY_H = CHECK_ITEM_HEIGHT;
 final int FILTER_QUALITY_NUM = 10;
 
 		// Votes (Popularity)
-final float FILTER_POPULARITY_X_RELATIVE = 0.01;
-final float FILTER_POPULARITY_Y_RELATIVE = 0.34;
+final float FILTER_POPULARITY_X_RELATIVE = 0.51;
+final float FILTER_POPULARITY_Y_RELATIVE = 0.30;
 final float FILTER_POPULARITY_W = FIRST_PAGE_FILTER_W;
 final float FILTER_POPULARITY_H = CHECK_ITEM_HEIGHT;
 final int FILTER_POPULARITY_NUM = 10; //change
 
 		// Genres
-final float FILTER_GENRE_X_RELATIVE = 0.01;
+final float FILTER_GENRE_X_RELATIVE = 0.51;
 final float FILTER_GENRE_Y_RELATIVE = 0.54;
 final float FILTER_GENRE_W = FIRST_PAGE_FILTER_W;
 final float FILTER_GENRE_H = CHECK_ITEM_HEIGHT;
@@ -129,7 +133,7 @@ final String[] GENRE_TYPE = {"Action","Adventure","Animation","Biography","Comed
 
 		// Monster
 final float FILTER_MONSTER_X_RELATIVE = 0.01;
-final float FILTER_MONSTER_Y_RELATIVE = 0.74;
+final float FILTER_MONSTER_Y_RELATIVE = 0.05;
 final float FILTER_MONSTER_W = FIRST_PAGE_FILTER_W;
 final float FILTER_MONSTER_H = CHECK_ITEM_HEIGHT;
 final int FILTER_MONSTER_NUM = 10;
@@ -138,14 +142,14 @@ final String[] MONSTER_TYPE = {"Monster","Monster","Monster","Monster","Monster"
 
 		// Budget
 final float FILTER_BUDGET_X_RELATIVE = 0.01;
-final float FILTER_BUDGET_Y_RELATIVE = 0.94;
+final float FILTER_BUDGET_Y_RELATIVE = 0.68;
 final float FILTER_BUDGET_W = FIRST_PAGE_FILTER_W;
 final float FILTER_BUDGET_H = CHECK_ITEM_HEIGHT;
 final int FILTER_BUDGET_NUM = 3;
 
 		// Format
 final float FILTER_FORMAT_X_RELATIVE = 0.01;
-final float FILTER_FORMAT_Y_RELATIVE = 0.24;
+final float FILTER_FORMAT_Y_RELATIVE = 0.84;
 final float FILTER_FORMAT_W = FIRST_PAGE_FILTER_W;
 final float FILTER_FORMAT_H = CHECK_ITEM_HEIGHT;
 final int FILTER_FORMAT_NUM = 3;

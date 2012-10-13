@@ -20,7 +20,8 @@ class FilterMonster {
 		for (int i=0;i<checkItemCount;i++) {
 			//change
 			checkItemsForFilterMonster[i] = 
-				new CheckItem(x + (i % 5) * (CHECK_BOX_WIDTH*8) * scale, y + (i / 5 * (CHECK_BOX_WIDTH+2) + 12) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * 7, h, MONSTER_TYPE[i]); //change
+				new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH) * scale, y + (i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH+2) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-1), h, 
+				 MONSTER_TYPE[i]); //change
 		}
 
 		monster = new String[checkItemCount];
@@ -60,12 +61,12 @@ class FilterMonster {
 		}
 	}
 
-	ArrayList<Integer> getList(ys_DatabaseManager db) {
+	ArrayList<Integer> getList(cc_DatabaseManager db) {
 		// foreach CheckItem, sum all their list to return
 		ArrayList<Integer> listt = new ArrayList<Integer>();
 		for (int i=0;i<checkItemCount;i++) {
 			if (checkItemsForFilterMonster[i].isCheck()) {
-				listt.addAll(db.getFilmForMonster(monster[i]));
+				//listt.addAll(db.getFilmForMonster(monster[i]));
 			}
 		}
 		return listt;

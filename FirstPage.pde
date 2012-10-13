@@ -17,7 +17,7 @@ class ys_FirstPage {
 
 	private FirstPlot plot;
 
-	private ys_DatabaseManager db;
+	//private cc_DatabaseManager db;
 
 	private MenuWindow popUp;
 
@@ -50,7 +50,9 @@ class ys_FirstPage {
 			filter[i] = new ys_FirstPageFilter(filterX, filterY, filterW, filterH, btnx, btny, btnw, btnh);
 		}
 
-		db = new ys_DatabaseManager(applet); //change
+        //db = new cc_DatabaseManager(applet);
+
+		//db = ui.getDB(); //change
 
 		plot = new FirstPlot();
 
@@ -162,7 +164,7 @@ class ys_FirstPage {
 		// filter
 		for (int i=0;i<HOW_MANY_GRAPH;i++) {
 			if (isSelecting[i]) {
-				filter[i].update(posx, posy, db);
+				filter[i].update(posx, posy, ui.getDB());
 				canSeeButton = false;
 				break; // only 1 is under attack
 			}

@@ -9,6 +9,7 @@ class ys_FirstPageFilter {
 	FilterPopularity popF;
 	FilterBudget budF;
 
+
 	ArrayList<ys_IdGenrePair> idGenre;
 	ArrayList<ys_IdQualityPair> idQuality;
 	ArrayList<ys_IdPopularityPair> idPopularity;
@@ -95,12 +96,14 @@ class ys_FirstPageFilter {
 	}
 
 
-	void update(float posx, float posy, ys_DatabaseManager db) {
+	void update(float posx, float posy, cc_DatabaseManager db) {
 
-		if (x>btnx && x < btnx + btnw && y>btny && y<btny + btnh) {
+		if (posx>btnx && posx < btnx + btnw && posy>btny && posy<btny + btnh) {
+			println("updat confirm");
 			updateConfirm(posx, posy, db);
 		}
 		else {
+			println("update filter");
 			updateFilter(posx, posy);
 		}
 	}
@@ -117,20 +120,31 @@ class ys_FirstPageFilter {
 	}
 
 	// update data to show
-	private void updateConfirm(float x, float y, ys_DatabaseManager db) {
+	private void updateConfirm(float x, float y, cc_DatabaseManager db) {
 		filter_current = filter_temp;
 		isDisplay = false;
 
-		ArrayList<Integer> monL = monF.getList(db);
-		ArrayList<ys_IdGenrePair> genL = genF.getList(db);
-		ArrayList<Integer> forL = forF.getList(db);
-		ArrayList<ys_IdQualityPair> quaL = quaF.getList(db);
-		ArrayList<ys_IdPopularityPair> popL = popF.getList(db);
-		ArrayList<ys_IdBudgetPair> budL = budF.getList(db);
-
-
+		//ArrayList<Integer> monL = monF.getList(db);
+		//ArrayList<ys_IdGenrePair> genL = genF.getList(db);
+		//ArrayList<Integer> forL = forF.getList(db);
+		//ArrayList<ys_IdQualityPair> quaL = quaF.getList(db);
+		//ArrayList<ys_IdPopularityPair> popL = popF.getList(db);
+		//ArrayList<ys_IdBudgetPair> budL = budF.getList(db);
 
 		// update data
+		
+		//test function
+		String[] str_ = new String[1];
+		//str_[0] = "Sci-Fi";
+		str_[0] = "Thriller";
+		global_data = db.getFormatMovie("zombie", str_);
+
+		println("data size: "+global_data.size());
+
+		
+
+		for (int i=0;i<global_data.size();i++) {
+			println(global_data.get(i).getCount() + "  " + global_data.get(i).getYear());
+		}
 	}
 }
-

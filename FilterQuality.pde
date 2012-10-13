@@ -23,7 +23,8 @@ class FilterQuality {
 		for (int i=0;i<checkItemCount;i++) {
 			//change
 			checkItemsForFilterQuality[i] = 
-				new CheckItem(x + (i % 5) * (CHECK_BOX_WIDTH*8) * scale, y + (i / 5 * (CHECK_BOX_WIDTH+2) + 12) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * 7, h, String.valueOf(i+0.1)+'~'+String.valueOf(i+1)+".0"); //change
+				new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH) * scale, y + (i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH+2) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-1), h, 
+				 String.valueOf(i+0.1)+'~'+String.valueOf(i+1)+".0"); //change
 			lowerBound[i] = i+0.1;
 			upperBound[i] = i+1;
 		}
@@ -64,12 +65,12 @@ class FilterQuality {
 		}
 	}
 
-	ArrayList<ys_IdQualityPair> getList(ys_DatabaseManager db) {
+	ArrayList<ys_IdQualityPair> getList(cc_DatabaseManager db) {
 		// foreach CheckItem, sum all their list to return
 		ArrayList<ys_IdQualityPair> listt = new ArrayList<ys_IdQualityPair>();
 		for (int i=0;i<checkItemCount; i++) {
 			if (checkItemsForFilterQuality[i].isCheck()) {
-				listt.addAll(db.getFilmAndQuality(lowerBound[i], upperBound[i]));
+				//listt.addAll(db.getFilmAndQuality(lowerBound[i], upperBound[i]));
 			}
 		}
 		return listt;

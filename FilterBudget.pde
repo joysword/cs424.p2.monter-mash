@@ -23,8 +23,8 @@ class FilterBudget {
 		for (int i=0;i<checkItemCount;i++) {
 			//change
 			checkItemsForFilterBudget[i] = 
-				new CheckItem(x + (i % 5) * (CHECK_BOX_WIDTH*8) * scale, y + (i / 5 * (CHECK_BOX_WIDTH+2) + 12) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * 7, h, 
-				(i == 0)?"High":((i==1)?"Low":"None")); //change
+				new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH) * scale, y + (i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH+2) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-1), h, 
+				 (i == 0)?"High":((i==1)?"Low":"None")); //change
 			lowerBound[i] = i+0.1;//change
 			upperBound[i] = i+1;//change
 		}
@@ -52,11 +52,11 @@ class FilterBudget {
 		}
 	}
 
-	ArrayList<ys_IdBudgetPair> getList(ys_DatabaseManager db) {
+	ArrayList<ys_IdBudgetPair> getList(cc_DatabaseManager db) {
 		ArrayList<ys_IdBudgetPair> listt = new ArrayList<ys_IdBudgetPair>();
 		for (int i=0;i<checkItemCount; i++) {
 			if (checkItemsForFilterBudget[i].isCheck()) {
-				listt.addAll(db.getFilmAndBudget(lowerBound[i], upperBound[i]));
+				//listt.addAll(db.getFilmAndBudget(lowerBound[i], upperBound[i]));
 			}
 		}
 		return listt;

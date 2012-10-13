@@ -23,7 +23,8 @@ class FilterPopularity {
 		for (int i=0;i<checkItemCount;i++) {
 			//change
 			checkItemsForFilterPopularity[i] = 
-				new CheckItem(x + (i % 5) * (CHECK_BOX_WIDTH*8) * scale, y + (i / 5 * (CHECK_BOX_WIDTH+2) + 12) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * 7, h, String.valueOf((i+0.1)*100)+'~'+String.valueOf((i+1)*100)); //change
+				new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH) * scale, y + (i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH+2) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-1), h, 
+				 String.valueOf((i+0.1)*100)+'~'+String.valueOf((i+1)*100)); //change
 			lowerBound[i] = i*100;
 			upperBound[i] = (i+1)*100;
 		}
@@ -33,7 +34,7 @@ class FilterPopularity {
 		noStroke();
 		fill(CHECK_ITEM_COLOR);
 		textAlign(LEFT);
-		text("Ratings:",x,y); //change
+		text("Votes:",x,y); //change
 		popStyle();
 		for (int i=0;i<checkItemCount;i++) {
 			checkItemsForFilterPopularity[i].render();
@@ -62,12 +63,12 @@ class FilterPopularity {
 		}
 	}
 
-	ArrayList<ys_IdPopularityPair> getList(ys_DatabaseManager db) {
+	ArrayList<ys_IdPopularityPair> getList(cc_DatabaseManager db) {
 		// foreach CheckItem, sum all their list to return
 		ArrayList<ys_IdPopularityPair> listt = new ArrayList<ys_IdPopularityPair>();
 		for (int i=0;i<checkItemCount; i++) {
 			if (checkItemsForFilterPopularity[i].isCheck()) {
-				listt.addAll(db.getFilmAndPopularity(lowerBound[i], upperBound[i]));
+				//listt.addAll(db.getFilmAndPopularity(lowerBound[i], upperBound[i]));
 			}
 		}
 		return listt;
