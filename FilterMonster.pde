@@ -20,7 +20,7 @@ class FilterMonster {
 		for (int i=0;i<checkItemCount;i++) {
 			//change
 			checkItemsForFilterMonster[i] = 
-				new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH) * scale, y + (i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH+2) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-1), h, 
+				new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH) * scale, y + (i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH + 8) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-1), h, 
 				 MONSTER_TYPE[i]); //change
 		}
 
@@ -32,9 +32,9 @@ class FilterMonster {
 	void render() {
 		pushStyle();
 		noStroke();
-		fill(CHECK_ITEM_COLOR);
+		fill(TEXT_COLOR);
 		textAlign(LEFT);
-		text("Monsters:",x,y); //change
+		text("Monster:",x,y); //change
 		popStyle();
 		for (int i=0;i<checkItemCount;i++) {
 			checkItemsForFilterMonster[i].render();
@@ -56,6 +56,16 @@ class FilterMonster {
 		for (int i=0;i<checkItemCount;i++) {
 			if (checkItemsForFilterMonster[i].isIn(_x, _y)) {
 				checkItemsForFilterMonster[i].switchCheck();
+
+				// comment out this 'if' statement if users are allowed to select multiple
+				if (checkItemsForFilterMonster[i].getIsCheck()) {
+					for (int j=0;j<checkItemCount;j++) {
+						if (j != i) {
+							checkItemsForFilterMonster[j].uncheckIt();
+						}
+					}
+				}
+				//
 				break;
 			}
 		}

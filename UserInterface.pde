@@ -19,7 +19,7 @@ class UserInterface {
     
     monsterPage = new ys_MonsterPage();
     moviePage = new ys_MoviePage();
-    firstPage = new ys_FirstPage(RIGHT_BAR_WIDTH);
+    firstPage = new ys_FirstPage(RIGHT_BAR_WIDTH, RIGHT_BAR_Y_1, RIGHT_BAR_Y_2);
     
     // customize position
     //helpWindow = new ys_HelpWindow(HELP_WINDOW_x, HELP_WINDOW_y, HELP_WINDOW_w, HELP_WINDOW_h, HELP_WINDOW_c);

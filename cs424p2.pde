@@ -22,12 +22,10 @@ UserInterface ui;
 
 final int scale = 1;
 
-final int Width = 1632;
-final int Height = 461;
+final int Width = 1632*scale;
+final int Height = 461*scale;
 
 int columnCount = 10;
-//final int Width = 1440;
-//final int Height = 460;
 
 //final int Width = 8160;
 //final int Height = 2304;
@@ -35,6 +33,7 @@ int currentPage;
 
 boolean global_isDragLeft; //drag Left Timelock of Range on First Page
 boolean global_isDragRight;
+boolean global_leftBarClick;
 
 ArrayList<cc_YearCountPair> global_data;
 
@@ -70,6 +69,7 @@ void setup()
 
   global_isDragRight = false;
   global_isDragLeft = false;
+  global_leftBarClick = false;
 
   global_data = new ArrayList<cc_YearCountPair>();
 

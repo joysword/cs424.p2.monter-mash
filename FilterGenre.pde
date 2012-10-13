@@ -20,7 +20,7 @@ class FilterGenre {
 		for (int i=0;i<checkItemCount;i++) {
 			//change
 			checkItemsForFilterGenre[i] = 
-				new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH) * scale, y + (i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH+2) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-1), h, 
+				new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH) * scale, y + (i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH + 8) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-1), h, 
 				 GENRE_TYPE[i]); //change
 		}
 
@@ -33,9 +33,9 @@ class FilterGenre {
 	void render() {
 		pushStyle();
 		noStroke();
-		fill(CHECK_ITEM_COLOR);
+		fill(TEXT_COLOR);
 		textAlign(LEFT);
-		text("Genres:",x,y); //change
+		text("Genre:",x,y); //change
 		popStyle();
 		for (int i=0;i<checkItemCount;i++) {
 			checkItemsForFilterGenre[i].render();
@@ -59,6 +59,22 @@ class FilterGenre {
 		for (int i=0;i<checkItemCount;i++) {
 			if (checkItemsForFilterGenre[i].isIn(_x, _y)) {
 				checkItemsForFilterGenre[i].switchCheck();
+
+				/*/ comment out these statements if users are allowed to select multiple
+				int cnt = 0;
+				for (int j=0;j<checkItemCount && cnt < 2;j++) {
+					if (checkItemsForFilterGenre[j].getIsCheck()) cnt++;
+				}
+				if (j >= 2) {
+					if (checkItemsForFilterGenre[i].getIsCheck()) {
+						for (int j=0;j<checkItemCount;j++) {
+							if (j != i) {
+								checkItemsForFilterGenre[j].uncheckIt();
+							}
+						}
+					}
+				}
+				/*/
 				break;
 			}
 		}

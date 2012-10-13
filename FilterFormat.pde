@@ -34,7 +34,7 @@ class FilterFormat {
 		noStroke();
 		fill(CHECK_ITEM_COLOR);
 		textAlign(LEFT);
-		text("Formats:",x,y); //change
+		text("Format: (choose one)",x,y); //change
 		popStyle();
 		for (int i=0;i<checkItemCount;i++) {
 			checkItemsForFilterFormat[i].render();

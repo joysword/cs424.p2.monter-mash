@@ -8,6 +8,7 @@ class ys_FirstPageFilter {
 	FilterQuality quaF;
 	FilterPopularity popF;
 	FilterBudget budF;
+	FilterGeneral generalF;
 
 
 	ArrayList<ys_IdGenrePair> idGenre;
@@ -46,6 +47,7 @@ class ys_FirstPageFilter {
 		quaF = new FilterQuality(x+FILTER_QUALITY_X_RELATIVE * w, y+FILTER_QUALITY_Y_RELATIVE * h, FILTER_QUALITY_W, FILTER_QUALITY_H, FILTER_QUALITY_NUM);
 		popF = new FilterPopularity(x+FILTER_POPULARITY_X_RELATIVE * w, y+FILTER_POPULARITY_Y_RELATIVE * h, FILTER_POPULARITY_W, FILTER_POPULARITY_H, FILTER_POPULARITY_NUM);
 		budF = new FilterBudget(x+FILTER_BUDGET_X_RELATIVE * w, y+FILTER_BUDGET_Y_RELATIVE * h, FILTER_BUDGET_W, FILTER_BUDGET_H, FILTER_BUDGET_NUM);
+		generalF = new FilterGeneral(x+FILTER_GENERAL_X_RELATIVE * w, y+FILTER_GENERAL_Y_RELATIVE * h, FILTER_GENERAL_W, FILTER_GENERAL_H, FILTER_GENERAL_NUM);
 
 		isDisplay = false;
 
@@ -67,6 +69,10 @@ class ys_FirstPageFilter {
 		noStroke();
 	    rectMode(CORNER);
 	    rect(x, y, w, h);
+	    strokeWeight(BOARD_WEIGHT);
+	    stroke(BUTTON_COLOR); //orange
+	    line(x+w*0.4, y, x+w*0.4, y+h);
+	    line(x+w*0.8, y, x+w*0.8, y+h);
 	    textAlign(LEFT, BOTTOM);
 	    switch (i) {
 	    	case 0:
@@ -89,17 +95,18 @@ class ys_FirstPageFilter {
 
 		monF.render();
 		genF.render();
-		forF.render();
-		quaF.render();
-		popF.render();
-		budF.render();
+		//forF.render();
+		//quaF.render();
+		//popF.render();
+		//budF.render();
+		generalF.render();
 	}
 
 
 	void update(float posx, float posy, cc_DatabaseManager db) {
 
 		if (posx>btnx && posx < btnx + btnw && posy>btny && posy<btny + btnh) {
-			println("updat confirm");
+			println("update confirm");
 			updateConfirm(posx, posy, db);
 		}
 		else {
@@ -113,10 +120,11 @@ class ys_FirstPageFilter {
 
 		monF.update(x, y);
 		genF.update(x, y);
-		forF.update(x, y);
-		quaF.update(x, y);
-		popF.update(x, y);
-		budF.update(x, y);
+		//forF.update(x, y);
+		//quaF.update(x, y);
+		//popF.update(x, y);
+		//budF.update(x, y);
+		generalF.update(x, y);
 	}
 
 	// update data to show

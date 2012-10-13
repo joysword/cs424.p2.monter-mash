@@ -5,7 +5,7 @@
 
 class ys_FirstPage {
 
-	private float rightX;
+	private float rightX, rightY1, rightY2;
 
 	private float filterX, filterY, filterW, filterH;
 
@@ -15,7 +15,9 @@ class ys_FirstPage {
 
 	private ys_FirstPageFilter[] filter;
 
-	private FirstPlot plot;
+	private FirstPlot plot1;
+
+	private FirstPlot plot2;
 
 	//private cc_DatabaseManager db;
 
@@ -27,11 +29,19 @@ class ys_FirstPage {
 
 	private ys_Button decadeBtn;
 
+	private ys_Range range;
+
+	private boolean isDrag;
+
+	private int displayMode;
+
 ////////////////
 
-	public ys_FirstPage(float _w) {
+	public ys_FirstPage(float _w, float _y1, float _y2) {
 
 		rightX = Width - _w;
+		rightY1 = _y1;
+		rightY2 = _y2;
 
 		filterX = rightX - FIRST_PAGE_FILTER_W - 5*scale;
 		filterY = FIRST_PAGE_FILTER_Y;
@@ -54,7 +64,9 @@ class ys_FirstPage {
 
 		//db = ui.getDB(); //change
 
-		plot = new FirstPlot();
+		plot1 = new FirstPlot(PLOT_1_X1,PLOT_1_Y1,PLOT_1_X2,PLOT_1_Y2, 1);
+
+		plot2 = new FirstPlot(PLOT_2_X1,PLOT_2_Y1,PLOT_2_X2,PLOT_2_Y2, 2);
 
 		popUp = new MenuWindow(0, 0, POP_UP_MENU_W, POP_UP_MENU_N, POP_UP_BUTTON_H, POP_UP_BUTTON_NAME);
 
@@ -63,13 +75,19 @@ class ys_FirstPage {
 		tabularBtn = new ys_Button(TABULAR_BUTTON_X, TABULAR_BUTTON_Y, TABULAR_BUTTON_W, TABULAR_BUTTON_H, "Tabular");
 
 		decadeBtn = new ys_Button(DECADE_BUTTON_X, DECADE_BUTTON_Y, DECADE_BUTTON_W, DECADE_BUTTON_H, "Decade");
+
+		range = new ys_Range(RANGE_X, RANGE_Y, RANGE_W, RANGE_H, RANGE_LOCK_W, RANGE_LOCK_H);
+
+		isDrag = false;
+
+		displayMode = YEAR_MODE;
 	}
 
 	void render() {
 		// render graph
-		//graph[0].render(0);
-		//graph[1].render(1);
-		plot.render();
+		plot1.render();
+		plot2.render();
+		range.render();
 
 		// render buttons
 		yearBtn.render();
@@ -115,16 +133,16 @@ class ys_FirstPage {
 			// if menu is not on -> if not Tabular mode, turn menu on
 			if (popUp.getIsDisplayMenu() == false) {
 				// year mode
-				if (plot.getDisplayMode() == YEAR_MODE) {
-					int year_ = plot.getYear(posx, posy);
+				if (displayMode == YEAR_MODE) {
+					int year_ = plot1.getYear(posx, posy);
 					if (year_!=-1) {
 						int type = (posx<rightX*0.6)? ( (posy<Height*0.5)?UPPER_LEFT:LOWER_LEFT ):( (posy<Height*0.5)?UPPER_RIGHT:LOWER_RIGHT );
 						popUp.setPos(posx, posy, type);
 						popUp.turnOn(year_);
 					}
 				}
-				else if (plot.getDisplayMode() == DECADE_MODE) {
-					int year_ = plot.getDecade(posx, posy);
+				else if (displayMode == DECADE_MODE) {
+					int year_ = plot1.getDecade(posx, posy);
 					if (year_!=-1) {
 						int type = (posx<rightX*0.6)? ( (posy<Height*0.5)?UPPER_LEFT:LOWER_LEFT ):( (posy<Height*0.5)?UPPER_RIGHT:LOWER_RIGHT );
 						popUp.setPos(posx, posy, type);
@@ -173,13 +191,13 @@ class ys_FirstPage {
 		// buttons
 		if (canSeeButton) {
 			if (yearBtn.checkIn(posx, posy)) {
-				plot.setDisplayMode(YEAR_MODE);
+				displayMode = YEAR_MODE;
 			}
 			else if (decadeBtn.checkIn(posx, posy)) {
-				plot.setDisplayMode(DECADE_MODE);
+				displayMode = DECADE_MODE;
 			}
 			else if (tabularBtn.checkIn(posx, posy)) {
-				plot.setDisplayMode(TABULAR_MODE);
+				displayMode = TABULAR_MODE;
 			}
 		}
 	}
@@ -187,23 +205,50 @@ class ys_FirstPage {
 	private void renderRight() {
 		pushStyle();
 		noStroke();
-		fill(#342C2C); //change change change change change
+		fill(POP_UP_COLOR);
 		rectMode(CORNERS);
-		rect(rightX, 0, Width, Height);
+		rect(rightX, rightY1, Width, rightY2);
 		textAlign(LEFT);
 		for (int i=0;i<HOW_MANY_FILTERS;i++) {
 			fill(#01b2f1);
-			text(FILTER_TXT[i],rightX+25*scale, 20*scale + i * 35*scale);
+			text(FILTER_TXT[i],rightX+25*scale, rightY1 + 20*scale + i * 35*scale);
 			fill(#29C567);
-			text(FILTER_TXT[i],rightX+25*scale, Height * 0.5 + 20*scale + i * 35*scale);
+			text(FILTER_TXT[i],rightX+25*scale, (rightY1+rightY2) * 0.5 + 20*scale + i * 35*scale);
 		}
-		strokeWeight(2*scale);
-		stroke(#ff6600);
-		line(rightX,Height * 0.5, Width, Height* 0.5);
+		strokeWeight(BOARD_WEIGHT);
+		stroke(BUTTON_COLOR);
+		line(rightX, (rightY1+rightY2)*0.5, Width, (rightY1+rightY2)*0.5);
+		line(rightX, rightY1, rightX, rightY2);
 		popStyle();
 	}
 
-	public FirstPlot getPlot() {
-		return plot;
+	public FirstPlot getPlot(int which) {
+		if (which == 1) return plot1;
+		return plot2;
 	}
+
+	public boolean getIsSelecting() {
+		for (int i=0;i<HOW_MANY_GRAPH;i++) {
+			if (isSelecting[i]) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public ys_Range getRange() {
+    	return range;
+  	}
+
+  	public void updateRangeL(float _x) {
+    	range.update(_x, 0);
+  	}
+
+  	public void updateRangeR(float _x) {
+    	range.update(_x, 1);
+  	}
+
+  	public int getDisplayMode() {
+  		return displayMode;
+  	}
 }

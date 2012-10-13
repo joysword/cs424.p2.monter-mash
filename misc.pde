@@ -41,7 +41,8 @@ final int BAR_COLOR_TEMP = 255;
 
 final int POP_UP_WINDOW_BG_COLOR = POP_UP_COLOR;
 final int POP_UP_WINDOW_TEXT_COLOR = TEXT_COLOR;
-final int WINDOW_BOARD_COLOR = #ff3399; final int BOARD_WEIGHT = 3*scale;
+final int WINDOW_BOARD_COLOR = #ff3399;
+final int BOARD_WEIGHT = 3*scale;
 
 final int RANGE_COLOR = 125;
 final int TIME_LOCK_COLOR = #ff6600;
@@ -61,25 +62,27 @@ final int HOW_MANY_FILTERS = 6;
 final int HOW_MANY_GRAPH = 2;
 
 	// about Year button
-final float YEAR_BUTTON_X = 0.6*Width;
+final float YEAR_BUTTON_X = 0.82*Width;
 final float YEAR_BUTTON_W = 80*scale;
 final float YEAR_BUTTON_H = 40*scale;
-final float YEAR_BUTTON_Y = Height - YEAR_BUTTON_H;	
+final float YEAR_BUTTON_Y = Height - YEAR_BUTTON_H*3.6 - 50*scale;
 
 	// about Decade button
-final float DECADE_BUTTON_X = 0.65*Width;
+final float DECADE_BUTTON_X = 0.82*Width;
 final float DECADE_BUTTON_W = 80*scale;
 final float DECADE_BUTTON_H = 40*scale;
-final float DECADE_BUTTON_Y = Height - DECADE_BUTTON_H;
+final float DECADE_BUTTON_Y = Height - DECADE_BUTTON_H*2.4 - 50*scale;
 
 	// about Tabular button
-final float TABULAR_BUTTON_X = 0.7*Width;
+final float TABULAR_BUTTON_X = 0.82*Width;
 final float TABULAR_BUTTON_W = 80*scale;
 final float TABULAR_BUTTON_H = 40*scale;
-final float TABULAR_BUTTON_Y = Height - TABULAR_BUTTON_H;
+final float TABULAR_BUTTON_Y = Height - TABULAR_BUTTON_H*1.2 - 50*scale;
 
 	// about RIGHT BAR
-final float RIGHT_BAR_WIDTH = 320*scale;
+final float RIGHT_BAR_WIDTH = Width*0.1;
+final float RIGHT_BAR_Y_1 = Height*0.0;
+final float RIGHT_BAR_Y_2 = Height*1.0;
 final float FILTER_X = Width - 180*scale;
 final float FILTER_Y = 100*scale;
 final float FILTER_DIFF = 80*scale;
@@ -93,11 +96,15 @@ final String[] FILTER_TXT = {
 	// about Filters
 
 		// General CheckItem values
-final float CHECK_BOX_WIDTH = 12*scale;
+final float CHECK_BOX_WIDTH = 15*scale;
 final float CHECK_ITEM_HEIGHT = CHECK_BOX_WIDTH;
-final int NUMBER_EACH_LINE = 4;
+
+
+final float TITLE_TO_BOX = 14*scale;
 final float RELATIVE_WIDTH = 7.6;
-final float TITLE_TO_BOX = 10*scale;
+final float RELATIVE_WIDTH_GENERAL = 15;
+final int NUMBER_EACH_LINE = 3;
+final int NUMBER_EACH_LINE_GENERAL = 1;
 
 		// FIRST_PAGE_FILTER_X is decided by RIGHT_BAR_WIDTH and FIRST_PAGE_FILTER_W
 //final float FIRST_PAGE_FILTER_X = 0.6*Width;
@@ -108,6 +115,23 @@ final float FPF_BTN_X_RELATIVE = 0.9;
 final float FPF_BTN_Y_RELATIVE = 0.9;
 final float FPF_BTN_W = 60*scale;
 final float FPF_BTN_H = 26*scale;
+
+		// Monster
+final float FILTER_MONSTER_X_RELATIVE = 0.02;
+final float FILTER_MONSTER_Y_RELATIVE = 0.05;
+final float FILTER_MONSTER_W = FIRST_PAGE_FILTER_W;
+final float FILTER_MONSTER_H = CHECK_ITEM_HEIGHT;
+final int FILTER_MONSTER_NUM = 10;
+final int NUMBER_OF_MONSTER = 10; //change
+final String[] MONSTER_TYPE = {" Monster"," Monster"," Monster"," Monster"," Monster"," Monster"," Monster"," Monster"," Monster"," Monster"};
+
+		// Genres
+final float FILTER_GENRE_X_RELATIVE = 0.42;
+final float FILTER_GENRE_Y_RELATIVE = 0.05;
+final float FILTER_GENRE_W = FIRST_PAGE_FILTER_W;
+final float FILTER_GENRE_H = CHECK_ITEM_HEIGHT;
+final int FILTER_GENRE_NUM = 27;
+final String[] GENRE_TYPE = {" Action"," Adventure"," Animation"," Biography"," Comedy"," Crime"," Drama"," Experimental"," Family"," Fantasy"," Film-Noir"," Game-Show"," History"," Horror"," Music"," Musical"," Mystery"," News"," Reality TV"," Romance"," Sci-Fi"," Short"," Sport"," Talk-Show"," Thriller"," War"," Western"};
 
 		// Rating (Quality)
 final float FILTER_QUALITY_X_RELATIVE = 0.51;
@@ -123,23 +147,6 @@ final float FILTER_POPULARITY_W = FIRST_PAGE_FILTER_W;
 final float FILTER_POPULARITY_H = CHECK_ITEM_HEIGHT;
 final int FILTER_POPULARITY_NUM = 10; //change
 
-		// Genres
-final float FILTER_GENRE_X_RELATIVE = 0.51;
-final float FILTER_GENRE_Y_RELATIVE = 0.54;
-final float FILTER_GENRE_W = FIRST_PAGE_FILTER_W;
-final float FILTER_GENRE_H = CHECK_ITEM_HEIGHT;
-final int FILTER_GENRE_NUM = 27;
-final String[] GENRE_TYPE = {"Action","Adventure","Animation","Biography","Comedy","Crime","Drama","Experimental","Family","Fantasy","Film-Noir","Game-Show","History","Horror","Music","Musical","Mystery","News","Reality_TV","Romance","Sci-Fi","Short","Sport","Talk-Show","Thriller","War","Western"};
-
-		// Monster
-final float FILTER_MONSTER_X_RELATIVE = 0.01;
-final float FILTER_MONSTER_Y_RELATIVE = 0.05;
-final float FILTER_MONSTER_W = FIRST_PAGE_FILTER_W;
-final float FILTER_MONSTER_H = CHECK_ITEM_HEIGHT;
-final int FILTER_MONSTER_NUM = 10;
-final int NUMBER_OF_MONSTER = 10; //change
-final String[] MONSTER_TYPE = {"Monster","Monster","Monster","Monster","Monster","Monster","Monster","Monster","Monster","Monster"};
-
 		// Budget
 final float FILTER_BUDGET_X_RELATIVE = 0.01;
 final float FILTER_BUDGET_Y_RELATIVE = 0.68;
@@ -154,16 +161,29 @@ final float FILTER_FORMAT_W = FIRST_PAGE_FILTER_W;
 final float FILTER_FORMAT_H = CHECK_ITEM_HEIGHT;
 final int FILTER_FORMAT_NUM = 3;
 final int NUMBER_OF_FORMAT = 3;
-final String[] KIND_TYPE = {"Movie","TV Movie","Video Movie"};
+final String[] KIND_TYPE = {" Movie"," TV Movie"," Video Movie"};
+
+		// General
+final float FILTER_GENERAL_X_RELATIVE = 0.82;
+final float FILTER_GENERAL_Y_RELATIVE = 0.05;
+final float FILTER_GENERAL_W = FIRST_PAGE_FILTER_W;
+final float FILTER_GENERAL_H = CHECK_ITEM_HEIGHT;
+final int FILTER_GENERAL_NUM = 6;
+final String[] FILTER_TYPE = {" BUDGET"," QUALITY"," FORMAT"," POPULARITY"," COUNTRY"," CERTIFICATE"};
 
 // aoubt First Page Plot
 final int YEAR_MAX = 2012;
 final int YEAR_MIN = 1890;
 
-final float PLOT_X1 = 60*scale;
-final float PLOT_X2 = 1260*scale;
-final float PLOT_Y1 = 60*scale;
-final float PLOT_Y2 = Height - 140*scale;
+final float PLOT_1_X1 = 100*scale;
+final float PLOT_1_X2 = 1300*scale;
+final float PLOT_2_X1 = PLOT_1_X1;
+final float PLOT_2_X2 = PLOT_1_X2;
+
+final float PLOT_1_Y1 = Height*0.2;
+final float PLOT_1_Y2 = Height*0.5;
+final float PLOT_2_Y2 = Height*0.55;
+final float PLOT_2_Y1 = Height*0.85;
 
 final int OUTLINE_WIDTH = 4*scale;
 final int INLINE_WIDTH = scale;
@@ -188,12 +208,13 @@ final float POP_UP_WINDOW_W = 0.8*Width;
 final float POP_UP_WINDOW_H = 0.8*Height;
 
 	// about Range
-final float RANGE_X = PLOT_X1;
-final float RANGE_Y = PLOT_Y2 + 40*scale;
-final float RANGE_W = PLOT_X2 - PLOT_X1;
+final float RANGE_X = PLOT_1_X1;
+final float RANGE_W = PLOT_1_X2 - PLOT_1_X1;
 final float RANGE_H = 6*scale;
 final float RANGE_LOCK_W = 7*scale;
 final float RANGE_LOCK_H = 7*scale;
+
+final float RANGE_Y = Height*0.9;
 
 //
 //

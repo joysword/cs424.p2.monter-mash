@@ -50,18 +50,20 @@ class ys_Range {
   // need change
   public void update(float _x, int l_r) {
 
-    if (ui.getFirstPage().getPlot().getDisplayMode() == YEAR_MODE) { 
+    if (ui.getFirstPage().getDisplayMode() == YEAR_MODE) { 
       int Year = (int) map(_x, x,x+w, YEAR_MIN, YEAR_MAX);
       if (l_r == 0) {
         if (Year < YEAR_MIN) Year = YEAR_MIN;
-        if (Year >= ui.getFirstPage().getPlot().getShowYearMax()) Year = ui.getFirstPage().getPlot().getShowYearMax()-1;
+        if (Year >= ui.getFirstPage().getPlot(1).getShowYearMax()) Year = ui.getFirstPage().getPlot(1).getShowYearMax()-1;
       leftLock.setX(w*(Year-YEAR_MIN)/(YEAR_MAX-YEAR_MIN) + x);
-      ui.getFirstPage().getPlot().setShowYearMin(Year);
+      ui.getFirstPage().getPlot(1).setShowYearMin(Year);
+      ui.getFirstPage().getPlot(2).setShowYearMin(Year);
     } else if (l_r == 1) {
       if (Year > YEAR_MAX) Year = YEAR_MAX;
-      if (Year <= ui.getFirstPage().getPlot().getShowYearMin()) Year = ui.getFirstPage().getPlot().getShowYearMin()+1;
+      if (Year <= ui.getFirstPage().getPlot(1).getShowYearMin()) Year = ui.getFirstPage().getPlot(1).getShowYearMin()+1;
       rightLock.setX(w*(Year-YEAR_MIN)/(YEAR_MAX-YEAR_MIN) + x);
-      ui.getFirstPage().getPlot().setShowYearMax(Year);
+      ui.getFirstPage().getPlot(1).setShowYearMax(Year);
+      ui.getFirstPage().getPlot(2).setShowYearMax(Year);
     }
    }
   }
