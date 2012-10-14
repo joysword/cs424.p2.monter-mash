@@ -37,5 +37,16 @@ public class FormatInstance{
 		return high;
 	}
 
+	public int get(int i){
+		switch(i){
+			case 0:
+				return getLow();
+			case 1:
+				return getMed();
+			case 2:
+				return getHigh();
+		}
+        return -1;
+	}
 
 }

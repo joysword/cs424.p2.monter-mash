@@ -74,26 +74,20 @@ public class CertificateInstance {
         switch(i){
             case 0:
                 return G;
-                break;
             case 1:
                 return PG;
-                break;
             case 2:
                 return R;
-                break;
             case 3:
                 return PG13;
-                break;
             case 4:
                 return NC17;
-                break;
             case 5:
                 return OTHERS;
-                break;
             case 6:
                 return NR;
-                break;
         }
+        return -1;
     
     
     }
