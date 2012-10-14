@@ -2,6 +2,7 @@ class FirstPlot{
 
   float dataMin;
   float dataMax;
+  float dataMax_decade;
   float originalDataMax;
 
   float plotX1, plotX2, plotY1, plotY2;
@@ -66,8 +67,6 @@ class FirstPlot{
     //unitHeight = (tableY2-tableY1)/displayNumber;
 
     dataMin = 0;
-    dataMax = 100; //change
-    originalDataMax = dataMax;
     //for (int i=0;i<DATA_SET_COUNT;i++) {
       //dataMax[i] = ceil(dataSets[i].getData().getTableMax()/dataSets[i].getInterval())*dataSets[i].getInterval();
       //originalDataMax[i] = dataMax[i];
@@ -120,7 +119,7 @@ class FirstPlot{
     rect(plotX1,plotY1,plotX2,plotY2);
 
     //drawAxisLabels();
-
+    drawVolumeLabels();
     
     drawYearLabels();
 
@@ -148,12 +147,13 @@ class FirstPlot{
     rectMode(CORNERS);
     rect(plotX1,plotY1,plotX2,plotY2);
 
-    
+    drawVolumeLabels();
+
     drawDecadeLabels();
 
     noFill();
     strokeWeight(INLINE_WIDTH);
-    drawDataBar(0,0,0); //change
+    drawDataBar(BAR_COLOR_TEMP); //change
 
     popStyle();
   }
@@ -269,33 +269,50 @@ class FirstPlot{
     popStyle();
   }
 
-/*
-  void drawVolumeLabels(int i) {
+  void drawVolumeLabels() {
 
     pushStyle();
-    fill(0);
-    textSize(10*scale);
+    fill(PLOT_LINE_COLOR);
+    textSize(12*scale);
     textAlign(RIGHT);
 
-    stroke(224);
+    stroke(100);
     strokeWeight(1);
 
     //for (float v = dataMin; v <= dataMax[i]; v += volumeInterval[i]) {
-    for (float v = dataMin; v < dataMax[i]*dataScale; v += (dataMax[i]*dataScale-dataMin)/15) {
+    if (ui.getFirstPage().displayMode == YEAR_MODE) {
+      for (float v = dataMin; v < dataMax*dataScale; v += int((dataMax*dataScale-dataMin)/4)/10*10) {
 
-      float y = map(v, dataMin, dataMax[i]*dataScale, plotY2, plotY1);  
-      float textOffset = textAscent()/2;  // Center vertically
-      if (v == dataMin) {
-        textOffset = 0;                   // Align by the bottom
-      } 
-      else if (v == dataMax[i]) {
-        textOffset = textAscent();        // Align by the top
+        float y = map(v, dataMin, dataMax*dataScale, plotY2, plotY1);  
+        float textOffset = textAscent()/2;  // Center vertically
+        if (v == dataMin) {
+        } 
+        else if (v == dataMax) {
+          text(round(v), plotX1 - 10, y + textAscent());
+        }
+        else {
+          text(round(v), plotX1 - 10, y + textOffset);
+        }
+        line(plotX1, y, plotX2, y);     // Draw major tick
       }
-      text(round(v), plotX1 - 10, y + textOffset);
-      line(plotX1, y, plotX2, y);     // Draw major tick
+    }
+    else if (ui.getFirstPage().displayMode == DECADE_MODE) {
+      for (float v = dataMin; v < dataMax_decade*dataScale; v += int((dataMax_decade*dataScale-dataMin)/4)/10*10) {
+
+        float y = map(v, dataMin, dataMax_decade*dataScale, plotY2, plotY1);  
+        float textOffset = textAscent()/2;  // Center vertically
+        if (v == dataMin) {
+          textOffset = 0;                   // Align by the bottom
+        } 
+        else if (v == dataMax_decade) {
+          textOffset = textAscent();        // Align by the top
+        }
+        text(round(v), plotX1 - 10, y + textOffset);
+        //line(plotX1, y, plotX2, y);     // Draw major tick
+      }
     }
     popStyle();
-  }*/
+  }
 
   private void drawDataCurve(int row, int colour, int ii, int yMin, int yMax) {
     pushStyle();
@@ -314,15 +331,17 @@ class FirstPlot{
         dataMax = 0;
 
         for (int i=0;i<global_data.size();i++) {
-          if (global_data.get(i).getCount() > dataMax) {
-            dataMax = global_data.get(i).getCount();
+          if (global_data.get(i).getLow() > dataMax) {
+            dataMax = global_data.get(i).getLow();
           }
         }
-/*
-        for (int i=0;i<yearCount;i++) {
+
+        dataMax *= 1.05;
+
+        for (int i=showYearMin;i<=showYearMax;i++) {
           if (true == true) {
             //float value = random(40,80);//(i+showYearMin)%100;//(i%10>4)?50:40; //change
-            float value = global_data.get(i).getCount();
+            float value = global_data.get(i-yearMin).getLow();
             float x = (left+right)/2;
             float y = map(value, dataMin, dataMax*dataScale, plotY2, plotY1);
             fill(CURVE_COLOR_TEMP);
@@ -333,7 +352,7 @@ class FirstPlot{
           }
           left = right;
           right += unitWidth;
-        }*/
+        }
 
         /*
         for (int col = showYearMin-yearMin; col < showYearMax-yearMin+1; col++) {
@@ -355,24 +374,44 @@ class FirstPlot{
   }
 
 
-  void drawDataBar(int row, int table, int col) {
+  void drawDataBar(int colour) {
     pushStyle();
 
     
-    noFill();
-    stroke(BAR_COLOR_TEMP);
-    strokeWeight(INLINE_WIDTH);
+    fill(colour);
+    noStroke();//BAR_COLOR_TEMP);
+    //strokeWeight(INLINE_WIDTH);
 
+    dataMax_decade = 0;
+
+    for (int i=0;i<11;i++) {
+      float max_ = 0;
+      for (int j=i*10;j<(i*10)+10 && j<yearCount;j++) {
+        max_ += global_data.get(j).getLow();
+      }
+      if (max_ > dataMax_decade) {
+        dataMax_decade = max_;
+      }
+    }
+
+    dataMax_decade *= 1.05;
 
     float decadeWidth = (plotX2 - plotX1) / 11;
     for (int i=0;i<11;i++) {
 
+      float value = 0;
+      for (int j=(i*10);j<i*10+10 && j<yearCount;j++) {
+        value += global_data.get(j).getLow();
+      }
       float xx1 = plotX1 + decadeWidth*(i+0.2);
       float xx2 = plotX1 + decadeWidth*(i+0.8);
-      float yy = map(random(40, 80), dataMin, dataMax*dataScale, plotY2, plotY1);
+      float yy = map(value, dataMin, dataMax_decade*dataScale, plotY2, plotY1);
       rectMode(CORNERS);
       rect(xx1, yy, xx2, plotY2);
+      //println("value: "+value);
     }
+    //println("dataMax_decade: "+dataMax_decade);
+
     popStyle();
   }
 
@@ -469,7 +508,7 @@ class FirstPlot{
 
   // used in YEAR MODE to find DECADE
   public int getYear(float posx, float posy) {
-    if (posx>plotX1 && posx<plotX2 && posy>plotY1 && posy<plotY2) {
+    if (posx>plotX1 && posx<plotX2 &&  posy>getMin(plotY1,plotY2) && posy<getMax(plotY1, plotY2)) {
       return floor((posx - plotX1) / unitWidth) + showYearMin;
     }
     return -1;
@@ -497,5 +536,17 @@ class FirstPlot{
 
   public void setShowYearMax(int yy) {
     showYearMax = yy;
+  }
+
+  public void setYearsMinMax(int x, int y) {
+    showYearMin = x;
+    showYearMax = y;
+  }
+
+  private float getMin(float x, float y) {
+    return (x>y)?y:x;
+  }
+  private float getMax(float x, float y) {
+    return (x>y)?x:y;
   }
 }

@@ -138,15 +138,32 @@ class ys_FirstPage {
 					if (year_!=-1) {
 						int type = (posx<rightX*0.6)? ( (posy<Height*0.5)?UPPER_LEFT:LOWER_LEFT ):( (posy<Height*0.5)?UPPER_RIGHT:LOWER_RIGHT );
 						popUp.setPos(posx, posy, type);
-						popUp.turnOn(year_);
+						popUp.turnOn(year_, 1);
 					}
+					else {
+						year_ = plot2.getYear(posx, posy);
+						if (year_!=-1) {
+							int type = (posx<rightX*0.6)? ( (posy<Height*0.5)?UPPER_LEFT:LOWER_LEFT ):( (posy<Height*0.5)?UPPER_RIGHT:LOWER_RIGHT );
+							popUp.setPos(posx, posy, type);
+							popUp.turnOn(year_, 2);
+						}
+					}
+
 				}
 				else if (displayMode == DECADE_MODE) {
 					int year_ = plot1.getDecade(posx, posy);
 					if (year_!=-1) {
 						int type = (posx<rightX*0.6)? ( (posy<Height*0.5)?UPPER_LEFT:LOWER_LEFT ):( (posy<Height*0.5)?UPPER_RIGHT:LOWER_RIGHT );
 						popUp.setPos(posx, posy, type);
-						popUp.turnOn(year_);
+						popUp.turnOn(year_, 1);
+					}
+					else {
+						year_ = plot2.getDecade(posx, posy);
+						if (year_!=-1) {
+							int type = (posx<rightX*0.6)? ( (posy<Height*0.5)?UPPER_LEFT:LOWER_LEFT ):( (posy<Height*0.5)?UPPER_RIGHT:LOWER_RIGHT );
+							popUp.setPos(posx, posy, type);
+							popUp.turnOn(year_, 2);
+						}
 					}
 				}
 			}
@@ -195,9 +212,17 @@ class ys_FirstPage {
 			}
 			else if (decadeBtn.checkIn(posx, posy)) {
 				displayMode = DECADE_MODE;
+				plot1.setYearsMinMax(YEAR_MIN,YEAR_MAX);
+				plot2.setYearsMinMax(YEAR_MIN,YEAR_MAX);
+				range.getLeftLock().resume();
+				range.getRightLock().resume();
 			}
 			else if (tabularBtn.checkIn(posx, posy)) {
 				displayMode = TABULAR_MODE;
+				plot1.setYearsMinMax(YEAR_MIN,YEAR_MAX);
+				plot2.setYearsMinMax(YEAR_MIN,YEAR_MAX);
+				range.getLeftLock().resume();
+				range.getRightLock().resume();
 			}
 		}
 	}

@@ -22,6 +22,8 @@ class MenuWindow {
 
 	int yearX;
 
+	int which;
+
 
 	MenuWindow(float _x, float _y, float _w, int n, float btn_h, String[] strs) {
 
@@ -45,6 +47,8 @@ class MenuWindow {
 		whichWindow = -1;
 
 		top10Window = new Top10Window(POP_UP_WINDOW_X, POP_UP_WINDOW_Y, POP_UP_WINDOW_W, POP_UP_WINDOW_H);
+
+		which = 0;
 	}
 
 
@@ -97,9 +101,10 @@ class MenuWindow {
 		isDisplayMenu = false;
 	}
 
-	void turnOn(int _x) {
+	void turnOn(int _x, int _which) {
 		isDisplayMenu = true;
 		yearX = _x;
+		which = _which;
 	}
 
 	void closeWindow() {

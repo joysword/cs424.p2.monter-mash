@@ -142,17 +142,6 @@ class ys_FirstPageFilter {
 		// update data
 		
 		//test function
-		String[] str_ = new String[1];
-		//str_[0] = "Sci-Fi";
-		str_[0] = "Thriller";
-		global_data = db.getFormatMovie("zombie", str_);
-
-		println("data size: "+global_data.size());
-
-		
-
-		for (int i=0;i<global_data.size();i++) {
-			println(global_data.get(i).getCount() + "  " + global_data.get(i).getYear());
-		}
+		global_data = ui.getDB().getFormat("horror","vampire");
 	}
 }

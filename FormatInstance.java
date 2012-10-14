@@ -11,9 +11,9 @@ public class FormatInstance{
 		this.high=high;
 	}
 
-        public int getYear(){
+    public int getYear(){
                 return year;
-        }
+    }
 	public void setLow(int low){
 		this.low=low;
 	}

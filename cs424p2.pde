@@ -35,7 +35,7 @@ boolean global_isDragLeft; //drag Left Timelock of Range on First Page
 boolean global_isDragRight;
 boolean global_leftBarClick;
 
-ArrayList<cc_YearCountPair> global_data;
+ArrayList<FormatInstance> global_data;
 
 //cc_MonsterPlot plot;
 ///////////////////////////////////
@@ -62,7 +62,7 @@ void setup()
   applet = this;
 
   // setup Font
-  PFont plotFont = createFont("Helvetica-Bold", 12*scale);//change
+  PFont plotFont = createFont("Helvetica-Bold", 14*scale);//change
   textFont(plotFont);
 
   currentPage = FIRST_PAGE;
@@ -71,9 +71,11 @@ void setup()
   global_isDragLeft = false;
   global_leftBarClick = false;
 
-  global_data = new ArrayList<cc_YearCountPair>();
+  global_data = new ArrayList<FormatInstance>();
 
   ui = new UserInterface();
+
+  global_data = ui.getDB().getFormat("horror","vampire");
   
   // setup other things
 

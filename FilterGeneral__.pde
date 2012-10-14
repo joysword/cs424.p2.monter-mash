@@ -19,7 +19,7 @@ class FilterGeneral {
 		for (int i=0;i<checkItemCount;i++) {
 			//change
 			checkItems[i] = 
-				new CheckItem(x + (i % NUMBER_EACH_LINE_GENERAL) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH_GENERAL) * scale, y + (i / NUMBER_EACH_LINE_GENERAL * (CHECK_BOX_WIDTH + 8) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH_GENERAL-1), h, 
+				new CheckItem(x + (i % NUMBER_EACH_LINE_GENERAL) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH_GENERAL), y + (i / NUMBER_EACH_LINE_GENERAL * (CHECK_BOX_WIDTH + 8) + TITLE_TO_BOX), CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH_GENERAL-1), h, 
 				 FILTER_TYPE[i]); //change
 		}
 

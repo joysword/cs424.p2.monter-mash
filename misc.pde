@@ -112,13 +112,13 @@ final float FIRST_PAGE_FILTER_Y = 0.4*Height;
 final float FIRST_PAGE_FILTER_W = 0.7*Width - RIGHT_BAR_WIDTH;
 final float FIRST_PAGE_FILTER_H = Height - FIRST_PAGE_FILTER_Y;
 final float FPF_BTN_X_RELATIVE = 0.9;
-final float FPF_BTN_Y_RELATIVE = 0.9;
+final float FPF_BTN_Y_RELATIVE = 0.85;
 final float FPF_BTN_W = 60*scale;
-final float FPF_BTN_H = 26*scale;
+final float FPF_BTN_H = 30*scale;
 
 		// Monster
 final float FILTER_MONSTER_X_RELATIVE = 0.02;
-final float FILTER_MONSTER_Y_RELATIVE = 0.05;
+final float FILTER_MONSTER_Y_RELATIVE = 0.1;
 final float FILTER_MONSTER_W = FIRST_PAGE_FILTER_W;
 final float FILTER_MONSTER_H = CHECK_ITEM_HEIGHT;
 final int FILTER_MONSTER_NUM = 10;
@@ -127,7 +127,7 @@ final String[] MONSTER_TYPE = {" Monster"," Monster"," Monster"," Monster"," Mon
 
 		// Genres
 final float FILTER_GENRE_X_RELATIVE = 0.42;
-final float FILTER_GENRE_Y_RELATIVE = 0.05;
+final float FILTER_GENRE_Y_RELATIVE = 0.1;
 final float FILTER_GENRE_W = FIRST_PAGE_FILTER_W;
 final float FILTER_GENRE_H = CHECK_ITEM_HEIGHT;
 final int FILTER_GENRE_NUM = 27;
@@ -135,7 +135,7 @@ final String[] GENRE_TYPE = {" Action"," Adventure"," Animation"," Biography"," 
 
 		// Rating (Quality)
 final float FILTER_QUALITY_X_RELATIVE = 0.51;
-final float FILTER_QUALITY_Y_RELATIVE = 0.05;
+final float FILTER_QUALITY_Y_RELATIVE = 0.1;
 final float FILTER_QUALITY_W = FIRST_PAGE_FILTER_W;
 final float FILTER_QUALITY_H = CHECK_ITEM_HEIGHT;
 final int FILTER_QUALITY_NUM = 10;
@@ -165,7 +165,7 @@ final String[] KIND_TYPE = {" Movie"," TV Movie"," Video Movie"};
 
 		// General
 final float FILTER_GENERAL_X_RELATIVE = 0.82;
-final float FILTER_GENERAL_Y_RELATIVE = 0.05;
+final float FILTER_GENERAL_Y_RELATIVE = 0.1;
 final float FILTER_GENERAL_W = FIRST_PAGE_FILTER_W;
 final float FILTER_GENERAL_H = CHECK_ITEM_HEIGHT;
 final int FILTER_GENERAL_NUM = 6;

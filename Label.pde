@@ -50,7 +50,7 @@ class Label {
     pushStyle();
     textAlign(LEFT,CENTER);
     fill(TEXT_COLOR); //change
-    textSize(11*scale);
+    textSize(14*scale);
     text(txt, x+2*scale, y+h*0.5);
     popStyle();
   }
