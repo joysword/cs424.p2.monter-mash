@@ -700,51 +700,6 @@ public class cc_DatabaseManager {
     }
     return array;
   }
-  
-  public ArrayList<cc_YearCountPair> getFormat(){
-       ArrayList<cc_YearCountPair> array = new ArrayList<cc_YearCountPair>();
-    if ( msql.connect() )
-    {
-      String query1=   
-      "SELECT year,count "+
-      "from format_count "+
-      "where genre=\""+
-      genre+
-      "\" and monster=\""+
-      monster+
-      "\" and clustered_by=1 "+
-      "group by year "+
-      "order by year";
-      String query2=   
-         "SELECT year,count "+
-      "from format_count "+
-      "where genre=\""+
-      genre+
-      "\" and monster=\""+
-      monster+
-      "\" and clustered_by=3 "+
-      "group by year "+
-      "order by year";
-       String query3=   
-       "SELECT year,count "+
-      "from format_count "+
-      "where genre=\""+
-      genre+
-      "\" and monster=\""+
-      monster+
-      "\" and clustered_by=4 "+
-      "group by year "+
-      "order by year";
-      msql.query(query);
-      array=createArrayFromQuery(array, msql);
-
-    }
-    else {
-    }
-    return array;
-
-  } 
-
 
 private void initArray(ArrayList<FormatInstance> array){
   for(int i=0;i<123;i++){
@@ -958,7 +913,7 @@ public ArrayList<FormatInstance> getFormat(String genre, String monster){
       for (int i=0;i<snake_kwords.length;i++)
         keyword_list=keyword_list+" k.keyword='"+snake_kwords[i]+"' or";
     }
-        else if (keyword.equals(WEREWOLF_REF) {
+        else if (keyword.equals(WEREWOLF_REF)) {
       for (int i=0;i<werewolf_kwords.length;i++)
         keyword_list=keyword_list+" k.keyword='"+werewolf_kwords[i]+"' or";
     }
