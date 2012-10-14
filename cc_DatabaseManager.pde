@@ -964,6 +964,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
 
   } 
   
+  /*
   private ArrayList<String> getFilms(String init){
     ArrayList<String> array= new ArrayList<String>();
      if ( msql.connect() )
@@ -979,7 +980,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
     }
     return array;
   }
-
+*/
   
   private String getGenres(String[] genres){
     String info_list="";
