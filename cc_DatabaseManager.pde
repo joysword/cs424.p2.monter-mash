@@ -677,6 +677,7 @@ public class cc_DatabaseManager {
 
 
 
+
   public ArrayList<cc_YearCountPair> filtersQuery(String keyword, String[] info, int[] info_type_id) {
     ArrayList<cc_YearCountPair> array = new ArrayList<cc_YearCountPair>();
     if ( msql.connect() )
@@ -979,6 +980,17 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
     return array;
   }
 
+  
+  private String getGenres(String[] genres){
+    String info_list="";
+    if (genres.length<1) return "";
+    for (int i=0;i<genres.length;i++) {
+      info_list=" mi.info=\""+genres[i]+"\" and";
+    }
+    //remove last and
+    return info_list.substring(0, info_list.length()-3);
+  }
+  
 
   private String getInfo(String[] info, int[] info_type_id) {
     String info_list="";
