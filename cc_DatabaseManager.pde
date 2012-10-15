@@ -14,7 +14,7 @@ void setup()
  println("wft?"+array.size());
  }
  */
-//This class manages the database
+//This class manages the databasep
 public class cc_DatabaseManager {
 
   public static final String GODZILLA_REF="godzilla";
@@ -677,7 +677,6 @@ public class cc_DatabaseManager {
 
 
 
-
   public ArrayList<cc_YearCountPair> filtersQuery(String keyword, String[] info, int[] info_type_id) {
     ArrayList<cc_YearCountPair> array = new ArrayList<cc_YearCountPair>();
     if ( msql.connect() )
@@ -710,7 +709,7 @@ private void initArray(ArrayList<FormatInstance> array){
 
 private void initArrayCert(ArrayList<CertificateInstance> array){
   for(int i=0;i<123;i++){
-   array.add(new CertificateInstance(1890+i,0,0,0,0,0,0,0)); 
+   array.add(new CertificateInstance(1890+i,0,0,0)); 
   }
 }
 
@@ -796,7 +795,56 @@ public ArrayList<FormatInstance> getFormat(String genre, String monster){
 
   } 
   
-    
+
+public ArrayList<FormatInstance> getQuality(String genre, String monster){
+    ArrayList<FormatInstance> array = new ArrayList<FormatInstance>();
+    initArray(array);
+    if ( msql.connect() )
+    {
+      String query1=   
+      "SELECT year,count "+
+      "from format_count "+
+      "where genre=\""+
+      genre+
+      "\" and monster=\""+
+      monster+
+      "\" and clustered_by=\"LOW\" "+
+      "group by year "+
+      "order by year";
+      println(query1);
+      msql.query(query1);
+      addLow(array,msql);
+      String query2=   
+         "SELECT year,count "+
+      "from format_count "+
+      "where genre=\""+
+      genre+
+      "\" and monster=\""+
+      monster+
+      "\" and clustered_by=\"MEDIUM\" "+
+      "group by year "+
+      "order by year";
+      msql.query(query2);
+      addMed(array,msql);
+       String query3=   
+       "SELECT year,count "+
+      "from format_count "+
+      "where monster=\""+
+      genre+
+      "\" and monster=\""+
+      monster+
+      "\" and clustered_by=\"HIGH\" "+
+      "group by year "+
+      "order by year";
+      msql.query(query3);
+      addHigh(array,msql);
+    }
+    else {
+    }
+    return array;
+
+  } 
+  
 
 private void addG(ArrayList<CertificateInstance> array,MySQL msql){
   int year,count;
@@ -964,7 +1012,6 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
 
   } 
   
-  /*
   private ArrayList<String> getFilms(String init){
     ArrayList<String> array= new ArrayList<String>();
      if ( msql.connect() )
@@ -980,18 +1027,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
     }
     return array;
   }
-*/
-  
-  private String getGenres(String[] genres){
-    String info_list="";
-    if (genres.length<1) return "";
-    for (int i=0;i<genres.length;i++) {
-      info_list=" mi.info=\""+genres[i]+"\" and";
-    }
-    //remove last and
-    return info_list.substring(0, info_list.length()-3);
-  }
-  
+
 
   private String getInfo(String[] info, int[] info_type_id) {
     String info_list="";
