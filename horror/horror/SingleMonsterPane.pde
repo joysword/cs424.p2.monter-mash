@@ -61,7 +61,7 @@ public class SingleMonsterPane {
     radar.draw();
     compareMonster.draw();
     imageMode(CENTER);
-    image(this.monster.avatar, this.centerX-this.widthT/4, this.centerY-this.heightT/4+this.heightT/20, this.monster.avatar.width/3, this.monster.avatar.height/3);
+    image(this.monster.avatar, this.centerX-this.widthT/4, this.centerY-this.heightT/4+this.heightT/20, this.monster.avatar.width/scaling*2, this.monster.avatar.height/scaling*2);
     fill(255);
     shape(this.hideButton, this.centerX+this.widthT*0.47, this.centerY+this.heightT*0.44, 130/scaling, 130/scaling);
   }
