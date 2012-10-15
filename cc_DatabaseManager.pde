@@ -232,7 +232,7 @@ public class cc_DatabaseManager {
   }
 
 //GIORGIO's METHOD
-  private String getPureKeywords(String keyword) {
+  public String getPureKeywords(String keyword) {
     String keyword_list="";
     if (keyword.equals(VAMPIRE_REF)) {
       for (int i=0;i<4;i++)
