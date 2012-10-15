@@ -65,7 +65,7 @@ final int MOVIE_PAGE = 2;
 //
 //
 // about First Page UI
-final int HOW_MANY_FILTERS = 6;
+final int HOW_MANY_FILTERS = 3;
 final int HOW_MANY_GRAPH = 2;
 
 // about Year button
@@ -97,9 +97,13 @@ final float LABEL_WIDTH = 100*scale;
 
 
 final String[] FILTER_TXT_1 = {
-  "MONSTERS:\n Godzilla, Vampire", "GENRES:\n Musical", "QUALITY:\n >7.0", "FORMAT:\n Color", "BUDGET:\n high", "POPULARITY:\n >4000 votes"
+  "MONSTERS:\n vampire", "GENRES:\n horror", "FILTER:\n Certificate"
 };
-final String[] FILTER_TXT_2 = FILTER_TXT_1;
+final String[] FILTER_TXT_2 = {
+	"MONSTERS:\n vampire", "GENRES:\n horror", "FILTER:\n Certificate"
+};
+//final String FILTER_TXT_1 = "1111";
+//final String FILTER_TXT_2 = "2222";
 
 // about Filters
 
@@ -185,6 +189,13 @@ final int FILTER_GENERAL_NUM = 6;
 final String[] FILTER_TYPE = {
   " BUDGET", " QUALITY", " FORMAT", " POPULARITY", " COUNTRY", " CERTIFICATE"
 };
+final int BUDGET = 0;
+final int QUALITY = 1;
+final int FORMAT = 2;
+final int POPULARITY = 3;
+final int COUNTRY = 4;
+final int CERTIFICATE = 5;
+
 final int[] NUMBER_OF_CLUSTERS = {
 	3,3,3,3,7,7
 };
