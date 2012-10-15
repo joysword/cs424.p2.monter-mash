@@ -84,15 +84,16 @@ class ys_FirstPage {
   }
 
   void render() {
+    renderTitle();
     // render graph
     plot1.render();
     plot2.render();
     range.render();
 
     // render buttons
-    yearBtn.render();
-    tabularBtn.render();
-    decadeBtn.render();
+    yearBtn.render(false, 14);
+    tabularBtn.render(false, 14);
+    decadeBtn.render(false, 14);
     // render right bar
     renderRight();
 
@@ -229,6 +230,15 @@ class ys_FirstPage {
     }
   }
 
+  private void renderTitle() {
+    pushStyle();
+    noStroke();
+    fill(TITLE_COLOR);
+    textSize(TITLE_SIZE);
+    textAlign(CENTER,CENTER);
+    text("MELT METRIC MONSTER MASH MILLENNIUM", width*0.5, height*0.1);
+
+  }
   private void renderRight() {
     pushStyle();
     noStroke();
@@ -236,11 +246,15 @@ class ys_FirstPage {
     rectMode(CORNERS);
     rect(rightX, rightY1, Width, rightY2);
     textAlign(LEFT);
+    textSize(14*scale);
     for (int i=0;i<HOW_MANY_FILTERS;i++) {
+      //1
       fill(#01b2f1);
-      text(FILTER_TXT[i], rightX+25*scale, rightY1 + 20*scale + i * 35*scale);
+      text(filterTxt1[i], rightX+25*scale, rightY1 + 20*scale + i * 35*scale);
+
+      //2
       fill(#29C567);
-      text(FILTER_TXT[i], rightX+25*scale, (rightY1+rightY2) * 0.5 + 20*scale + i * 35*scale);
+      text(filterTxt2[i], rightX+25*scale, (rightY1+rightY2) * 0.5 + 20*scale + i * 35*scale);
     }
     strokeWeight(BOARD_WEIGHT);
     stroke(BUTTON_COLOR);

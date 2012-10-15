@@ -26,9 +26,11 @@ String[] LEFT_BTN_NAME = {
   "Timeline", "Monsters", "Movies", "Change Language", "Help and Credits"
 };
 
+final int TITLE_SIZE = 42*scale;
 
 // about global color scheme
 final int BG_COLOR = 0;
+final int TITLE_COLOR = #81262C;
 
 final int BUTTON_COLOR = #ff6600;
 final int POP_UP_COLOR = #342C2C;
@@ -95,9 +97,10 @@ final float FILTER_DIFF = 80*scale;
 final float LABEL_WIDTH = 100*scale;
 
 
-final String[] FILTER_TXT = {
+final String[] FILTER_TXT_1 = {
   "MONSTERS:\n Godzilla, Vampire", "GENRES:\n Musical", "QUALITY:\n >7.0", "FORMAT:\n Color", "BUDGET:\n high", "POPULARITY:\n >4000 votes"
 };
+final String[] FILTER_TXT_2 = FILTER_TXT_1;
 
 // about Filters
 
@@ -107,7 +110,7 @@ final float CHECK_ITEM_HEIGHT = CHECK_BOX_WIDTH;
 
 
 final float TITLE_TO_BOX = 14*scale;
-final float RELATIVE_WIDTH = 7.6;
+final float RELATIVE_WIDTH = 8.2;
 final float RELATIVE_WIDTH_GENERAL = 15;
 final int NUMBER_EACH_LINE = 3;
 final int NUMBER_EACH_LINE_GENERAL = 1;
@@ -127,11 +130,10 @@ final float FILTER_MONSTER_X_RELATIVE = 0.02;
 final float FILTER_MONSTER_Y_RELATIVE = 0.1;
 final float FILTER_MONSTER_W = FIRST_PAGE_FILTER_W;
 final float FILTER_MONSTER_H = CHECK_ITEM_HEIGHT;
-final int FILTER_MONSTER_NUM = 10;
-final int NUMBER_OF_MONSTER = 10; //change
 final String[] MONSTER_TYPE = {
-  " Monster", " Monster", " Monster", " Monster", " Monster", " Monster", " Monster", " Monster", " Monster", " Monster"
+  " demon", " dracula", " female-vampire", " freddy-krueger", " ghost", " godzilla", " invisible-man", " jason", " living-dead", " michael-myers", " mr-hyde", " mummy", " mutant", " muted-cretures", " supernatural", " swamp", " vampire", " werewolf", " witch-wizrds"
 };
+final int FILTER_MONSTER_NUM = MONSTER_TYPE.length;
 
 // Genres
 final float FILTER_GENRE_X_RELATIVE = 0.42;
@@ -184,10 +186,11 @@ final int FILTER_GENERAL_NUM = 6;
 final String[] FILTER_TYPE = {
   " BUDGET", " QUALITY", " FORMAT", " POPULARITY", " COUNTRY", " CERTIFICATE"
 };
+final int[] NUMBER_OF_CLUSTERS = {
+	3,3,3,3,7,7
+};
 
 // aoubt First Page Plot
-
-final int NUMBER_OF_CLUSTERS = 3;
 
 final int YEAR_MAX = 2012;
 final int YEAR_MIN = 1890;

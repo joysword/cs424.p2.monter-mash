@@ -25,6 +25,8 @@ class FirstPlot {
 
   int which; // 1 or 2
 
+  float minimumY;
+
   FirstPlot(float x1, float y1, float x2, float y2, int _which) {
 
 
@@ -87,6 +89,8 @@ class FirstPlot {
     //      legend[i] = new Legend(PAGE_BTN_X+PAGE_BTN_W+LEGEND_DIFF, LIST_Y + (i - 1)*2.1*LIST_LINE_H + 12*scale, LIST_LINE_H, ui.dataSelector[i].getTxt()+"\n"+unitText[i], colors[i]);
     //    }
     dataScale = 1;
+
+    minimumY = plotY2 - (plotY2 - plotY1) * 0.05;
   }
 
 
@@ -133,7 +137,7 @@ class FirstPlot {
     //////////END OF VOLUME
 
     //drawDataCurve(currentRow[j], j, i, showYearMin, showYearMax);
-    drawDataCurve(0, 0, 0, 0, 0); //change
+    drawDataCurve(currentFilter, NUMBER_OF_CLUSTERS[currentFilter]);
 
     popStyle();
   }
@@ -153,7 +157,7 @@ class FirstPlot {
 
     noFill();
     strokeWeight(INLINE_WIDTH);
-    drawDataBar(BAR_COLOR_TEMP); //change
+    drawDataBar(currentFilter, NUMBER_OF_CLUSTERS[currentFilter]); //change
 
     popStyle();
   }
@@ -283,15 +287,15 @@ class FirstPlot {
     if (ui.getFirstPage().displayMode == YEAR_MODE) {
       for (float v = dataMin; v < dataMax*dataScale; v += int((dataMax*dataScale-dataMin)/4)/10*10) {
 
-        float y = map(v, dataMin, dataMax*dataScale, plotY2, plotY1);  
+        float y = map(v, dataMin, dataMax*dataScale, minimumY, plotY1);  
         float textOffset = textAscent()/2;  // Center vertically
         if (v == dataMin) {
         } 
         else if (v == dataMax) {
-          text(round(v), plotX1 - 10, y + textAscent());
+          text(round(v), plotX1 - 10*scale, y + textAscent());
         }
         else {
-          text(round(v), plotX1 - 10, y + textOffset);
+          text(round(v), plotX1 - 10*scale, y + textOffset);
         }
         line(plotX1, y, plotX2, y);     // Draw major tick
       }
@@ -299,22 +303,24 @@ class FirstPlot {
     else if (ui.getFirstPage().displayMode == DECADE_MODE) {
       for (float v = dataMin; v < dataMax_decade*dataScale; v += int((dataMax_decade*dataScale-dataMin)/4)/10*10) {
 
-        float y = map(v, dataMin, dataMax_decade*dataScale, plotY2, plotY1);  
+        float y = map(v, dataMin, dataMax_decade*dataScale, minimumY, plotY1);  
         float textOffset = textAscent()/2;  // Center vertically
         if (v == dataMin) {
-          textOffset = 0;                   // Align by the bottom
+          //textOffset = 0;                   // Align by the bottom
         } 
         else if (v == dataMax_decade) {
-          textOffset = textAscent();        // Align by the top
+          text(round(v), plotX1 - 10*scale, y + textAscent());
         }
-        text(round(v), plotX1 - 10, y + textOffset);
-        //line(plotX1, y, plotX2, y);     // Draw major tick
+        else {
+          text(round(v), plotX1 - 10*scale, y + textOffset);
+        }
+        line(plotX1, y, plotX2, y);     // Draw major tick
       }
     }
     popStyle();
   }
 
-  private void drawDataCurve(int row, int colour, int ii, int yMin, int yMax) {
+  private void drawDataCurve(int whichFilter, int howManyCluters) {
     pushStyle();
 
     noFill();
@@ -326,10 +332,10 @@ class FirstPlot {
 
     dataMax = 0;
 
-    for (int i=0;i<global_data.size();i++) {
+    for (int i=0;i<global_certificate.size();i++) {
       float temp_value = 0;
-      for (int j=0;j<NUMBER_OF_CLUSTERS;j++) {
-        temp_value += global_data.get(i).get(j);
+      for (int j=0;j<howManyCluters;j++) {
+        temp_value += global_certificate.get(i).get(j);
       }
       if (temp_value > dataMax) {
         dataMax = temp_value;
@@ -340,7 +346,7 @@ class FirstPlot {
 
     float left, right;
 
-    for (int clust=0;clust<NUMBER_OF_CLUSTERS;clust++) {
+    for (int clust=0;clust<howManyCluters;clust++) {
       left = plotX1;
       right = left+unitWidth;
       beginShape();
@@ -352,11 +358,11 @@ class FirstPlot {
           //float value = random(40,80);//(i+showYearMin)%100;//(i%10>4)?50:40; //change
           float value = 0;
           for (int j=0;j<=clust;j++) {
-            value += global_data.get(i-yearMin).get(j);
+            value += global_certificate.get(i-yearMin).get(j);
           }
           float x = (left+right)/2;
-          float y = map(value, dataMin, dataMax*dataScale, plotY2, plotY1);
-          ellipse(x, y, 4*scale, 6*scale);
+          float y = map(value, dataMin, dataMax*dataScale, minimumY, plotY1);
+          //ellipse(x, y, 4*scale, 6*scale);
           noFill();
 
           vertex(x, y);
@@ -370,20 +376,20 @@ class FirstPlot {
   }
 
 
-  void drawDataBar(int colour) {
+  void drawDataBar(int whichFilter, int howManyCluters) {
     pushStyle();
 
 
-    fill(colour);
+    fill(CLUSTER_COLOR[0]);
     noStroke();//BAR_COLOR_TEMP);
     //strokeWeight(INLINE_WIDTH);
 
     dataMax_decade = 0;
 
-    for (int i=0;i<global_data.size();i++) {
+    for (int i=0;i<global_certificate.size();i++) {
       float temp_value = 0;
-      for (int j=0;j<NUMBER_OF_CLUSTERS;j++) {
-        temp_value += global_data.get(i).get(j);
+      for (int j=0;j<howManyCluters;j++) {
+        temp_value += global_certificate.get(i).get(j);
       }
       if (temp_value > dataMax_decade) {
         dataMax_decade = temp_value;
@@ -397,13 +403,13 @@ class FirstPlot {
 
       float value = 0;
       for (int j=(i*10);j<i*10+10 && j<yearCount;j++) {
-        value += global_data.get(j).get(0);
+        value += global_certificate.get(j).get(0);
       }
       float xx1 = plotX1 + decadeWidth*(i+0.2);
       float xx2 = plotX1 + decadeWidth*(i+0.8);
-      float yy = map(value, dataMin, dataMax_decade*dataScale, plotY2, plotY1);
+      float yy = map(value, dataMin, dataMax_decade*dataScale, minimumY, plotY1);
       rectMode(CORNERS);
-      rect(xx1, yy, xx2, plotY2);
+      rect(xx1, yy, xx2, minimumY);
       //println("value: "+value);
     }
     //println("dataMax_decade: "+dataMax_decade);
@@ -426,7 +432,7 @@ class FirstPlot {
      if (dataSets[i].getData().isValid(row, col) && col>=begin-1980 && col<=end-1980) {
      float value = dataSets[i].getData().getFloat(row, col);
      float x = (left+right)/2;
-     float y = map(value, dataMin, dataMax[i]*dataScale, plotY2, plotY1);
+     float y = map(value, dataMin, dataMax[i]*dataScale, minimumY, plotY1);
      dashPoint[col][0] = x;
      dashPoint[col][1] = y;
      ellipse(x, y, 3*scale, 4*scale);
@@ -468,7 +474,7 @@ class FirstPlot {
      value += dataSets[i].getData().getFloat(row[j], col);
      }
      float x = (left+right)/2;
-     float y = map(value, dataMin, dataMax[i]*dataScale, plotY2, plotY1);
+     float y = map(value, dataMin, dataMax[i]*dataScale, minimumY, plotY1);
      dashPoint[col][0] = x;
      dashPoint[col][1] = y;
      ellipse(x, y, 3*scale, 4*scale);

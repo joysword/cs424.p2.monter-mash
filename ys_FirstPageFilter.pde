@@ -105,11 +105,9 @@ class ys_FirstPageFilter {
   void update(float posx, float posy, cc_DatabaseManager db) {
 
     if (posx>btnx && posx < btnx + btnw && posy>btny && posy<btny + btnh) {
-      println("update confirm");
       updateConfirm(posx, posy, db);
     }
     else {
-      println("update filter");
       updateFilter(posx, posy);
     }
   }
@@ -138,10 +136,32 @@ class ys_FirstPageFilter {
     //ArrayList<ys_IdPopularityPair> popL = popF.getList(db);
     //ArrayList<ys_IdBudgetPair> budL = budF.getList(db);
 
-    // update data
+    // get which monster
+    int monId = monF.getMonsterType();
+    String mon = "";
+    if (monId >= 0 && monId < FILTER_MONSTER_NUM) {
+      mon = MONSTER_TYPE[monId].substring(1); // get rid of space
+    }
+
+    // get which genre
+    int genId = genF.getGenreType();
+    String gen = "";
+    if (genId >= 0 && genId < FILTER_GENRE_NUM) {
+      gen = GENRE_TYPE[genId].substring(1);  // get rid of space
+    }
+
+    // get which filter
+    currentFilter = generalF.getFilterType();
 
     //test function
-    global_data = ui.getDB().getCertificates("horror", "vampire");
+    // mon = -1
+    // gen = -1
+    global_certificate = ui.getDB().getCertificates(gen, mon);
+    global_format = ui.getDB().getFormat(gen, mon);
+    global_popularity = ui.getDB().getPopularity(gen, mon);
+    global_quality = ui.getDB().getQuality(gen, mon);
+    //global_country;
+    //global_budget;
   }
 }
 

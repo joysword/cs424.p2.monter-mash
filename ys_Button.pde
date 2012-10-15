@@ -15,7 +15,7 @@ class ys_Button {
     colour = BUTTON_COLOR;
   }
 
-  void render() {
+  void render(boolean isLeft, int fontsize) {
 
     pushStyle();
     noStroke();
@@ -23,8 +23,15 @@ class ys_Button {
     rectMode(CORNER);
     rect(x, y, w, h);
     fill(TEXT_COLOR);
-    textAlign(LEFT, CENTER);
-    text(name, x + w*0.05, y + h * 0.5);
+    textSize(fontsize*scale);
+    if (isLeft) {
+      textAlign(LEFT, CENTER);
+      text(name, x + w*0.05, y + h * 0.5);
+    }
+    else {
+      textAlign(CENTER, CENTER);
+      text(name, x + w*0.5, y + h * 0.5);
+    }
 
     popStyle();
   }

@@ -34,6 +34,7 @@ class FilterGenre {
     noStroke();
     fill(TEXT_COLOR);
     textAlign(LEFT);
+    textSize(24*scale);
     text("Genre:", x, y); //change
     popStyle();
     for (int i=0;i<checkItemCount;i++) {
@@ -59,21 +60,15 @@ class FilterGenre {
       if (checkItemsForFilterGenre[i].isIn(_x, _y)) {
         checkItemsForFilterGenre[i].switchCheck();
 
-        /*/ comment out these statements if users are allowed to select multiple
-         				int cnt = 0;
-         				for (int j=0;j<checkItemCount && cnt < 2;j++) {
-         					if (checkItemsForFilterGenre[j].getIsCheck()) cnt++;
-         				}
-         				if (j >= 2) {
-         					if (checkItemsForFilterGenre[i].getIsCheck()) {
-         						for (int j=0;j<checkItemCount;j++) {
-         							if (j != i) {
-         								checkItemsForFilterGenre[j].uncheckIt();
-         							}
-         						}
-         					}
-         				}
-         				/*/
+        // comment out these statements if users are allowed to select multiple
+        if (checkItemsForFilterGenre[i].getIsCheck()) {
+          for (int j=0;j<checkItemCount;j++) {
+            if (j != i) {
+              checkItemsForFilterGenre[j].uncheckIt();
+            }
+          }
+        }
+        //
         break;
       }
     }
@@ -88,6 +83,13 @@ class FilterGenre {
       }
     }
     return listt;
+  }
+
+  int getGenreType() {
+    for (int i=0;i<checkItemCount;i++) {
+      if (checkItemsForFilterGenre[i].getIsCheck()) return i;
+    }
+    return -1;
   }
 }
 

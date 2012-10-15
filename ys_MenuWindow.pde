@@ -60,7 +60,7 @@ class MenuWindow {
     // render Menu
     if (isDisplayMenu) {
       for (int i=0;i<num;i++) {
-        popUpButton[i].render();
+        popUpButton[i].render(false, 14);
       }
     }
     else if (isDisplayWindow) {

@@ -88,8 +88,8 @@ public class monsterTaxonomy {
     this.centerY=centerY;
     this.widthT=widthT;
     this.heightT=heightT;
-    nodeDiameterFather=this.heightT/5;
-    nodeDiameterChild=this.heightT/7;
+    nodeDiameterFather=this.heightT/3;
+    nodeDiameterChild=this.heightT/5;
     this.background=background;
   }
 
@@ -257,6 +257,8 @@ public class monsterTaxonomy {
 
   public void draw() {
 
+    pushStyle();
+
     // if(indexMoving==this.nodesList.indexOf(vampires)){
     //dracula.setCenter(dracula.father.centerX-this.nodeDiameterChild*1.5, dracula.father.centerY-this.nodeDiameterChild*1.5);}
 
@@ -310,6 +312,8 @@ public class monsterTaxonomy {
     //connections between mutants
     connect(mutants, werewolves, color(0));
 
+    popStyle();
+
     for (int i=0;i<this.nodesList.size();i++) {
       ((monsterNode)this.nodesList.get(i)).draw();
     }
@@ -317,6 +321,7 @@ public class monsterTaxonomy {
     if (this.singleMonsterPane.show) {
       this.singleMonsterPane.draw();
     }
+
   }
 
   public void addNode(monsterNode node) {

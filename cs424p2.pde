@@ -40,8 +40,17 @@ int currentPage;
 boolean global_isDragLeft; //drag Left Timelock of Range on First Page
 boolean global_isDragRight;
 
-//ArrayList<FormatInstance> global_data;
-ArrayList<CertificateInstance> global_data;
+ArrayList<FormatInstance> global_format;
+ArrayList<CertificateInstance> global_certificate;
+//ArrayList<> global_country;
+ArrayList<FormatInstance> global_popularity;
+ArrayList<FormatInstance> global_quality;
+//ArrayList<> global_budget;
+
+String[] filterTxt1;
+String[] filterTxt2;
+
+int currentFilter;
 
 //cc_MonsterPlot plot;
 ///////////////////////////////////
@@ -74,16 +83,30 @@ void setup()
 
   currentPage = FIRST_PAGE;
 
+  currentFilter = 5; // certificate
+
   global_isDragRight = false;
   global_isDragLeft = false;
 
   //global_data = new ArrayList<FormatInstance>();
-  global_data = new ArrayList<CertificateInstance>();
+  global_certificate = new ArrayList<CertificateInstance>();
+  global_format = new ArrayList<FormatInstance>();
+  //global_budget;
+  global_quality = new ArrayList<FormatInstance>();
+  //global_country;
+  global_popularity = new ArrayList<FormatInstance>();
 
   ui = new UserInterface();
 
   //global_data = ui.getDB().getFormat("horror","vampire");
-  global_data = ui.getDB().getCertificates("horror", "vampire");
+  //global_data = ui.getDB().getCertificates("horror", "vampire");
+  global_certificate = ui.getDB().getCertificates("horror", "vampire");
+  global_popularity = ui.getDB().getPopularity("horror", "vampire");
+  global_quality = ui.getDB().getQuality("horror", "vampire");
+  global_format = ui.getDB().getFormat("horror", "vampire");
+
+  filterTxt1 = FILTER_TXT_1;
+  filterTxt2 = FILTER_TXT_2;
 
   // setup other things
 

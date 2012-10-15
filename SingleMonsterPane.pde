@@ -41,7 +41,7 @@ public class SingleMonsterPane {
   }
 
   public void draw() {
-
+    pushStyle();
 
     if (firstTime) {
       plot1.setupData(matchName(monster.monsterName), "snake");
@@ -82,6 +82,8 @@ public class SingleMonsterPane {
     textAlign(CENTER, BOTTOM);
     textSize(75/scaling);
     text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster.monsterName)), this.centerX+this.widthT/7, this.centerY-120/scaling);
+
+    popStyle();
   }
 
   public void show() {

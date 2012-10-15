@@ -31,28 +31,39 @@ class MonsterPage {
     movie = new Movie("Tutti belli Meluelli", 2012, "horror", 60, "very good movie", "PG13", 3000);
     moviePane = new SingleMoviePane(width/2, height/2, width/6*4, height*0.95, movie);
     top10Pane = new Top10Pane(width/2, height/2, width/6*4, height*0.8);
-    taxonomy = new monsterTaxonomy(width/2, height/2, width/6*4, height*0.95, color(255));
+    taxonomy = new monsterTaxonomy(width*0.52, height*0.65, width*0.95, height*0.7, color(255));
     taxonomy.setup();
   }
 
   void render() {
+
+    pushStyle();
+
+    fill(TITLE_COLOR);
+    textSize(TITLE_SIZE);
+    textAlign(CENTER,CENTER);
+    text("MADDENED MUSCLE MONSTER MASH MUSEUM", width*0.5, height*0.15);
+
+    popStyle();
     //taxonomyButton.draw();
     //movieButton.draw();
-    top10Button.draw();
+    //top10Button.draw();
 
-    if (taxonomyTab) {
+    //if (taxonomyTab) {
       taxonomy.draw();
-    }
-    else if (movieTab) {
+    //}
+    /*else if (movieTab) {
       moviePane.draw();
-    }
-
+    }*/
+/*
     if (showTop10) {
       top10Pane.draw();
     }
+    */
   }
 
   void mousePressed_(float posx, float posy) {
+    /*
     if (top10Button.checkOn(posx, posy)) {
       if (showTop10) {
         showTop10 = false;
@@ -61,6 +72,7 @@ class MonsterPage {
         showTop10 = true;
       }
     }
+    */
     /*
     if (movieButton.checkOn(posx, posy)) {
       movieTab = true;

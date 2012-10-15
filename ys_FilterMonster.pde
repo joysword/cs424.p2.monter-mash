@@ -34,6 +34,7 @@ class FilterMonster {
     noStroke();
     fill(TEXT_COLOR);
     textAlign(LEFT);
+    textSize(24*scale);
     text("Monster:", x, y); //change
     popStyle();
     for (int i=0;i<checkItemCount;i++) {
@@ -80,6 +81,13 @@ class FilterMonster {
       }
     }
     return listt;
+  }
+
+  int getMonsterType() {
+    for (int i=0;i<checkItemCount;i++) {
+      if (checkItemsForFilterMonster[i].getIsCheck()) return i;
+    }
+    return -1;
   }
 }
 

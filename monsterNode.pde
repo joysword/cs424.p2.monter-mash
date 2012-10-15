@@ -24,6 +24,7 @@ public class monsterNode {
     this.centerY=y_n;
   }
   public void draw() {
+    pushStyle();
     noStroke();
     // fill(this.nodeColor);
     imageMode(CENTER);
@@ -41,6 +42,7 @@ public class monsterNode {
         text(this.monsterName, this.centerX-this.diameter*0.6, this.centerY);
       }
     }
+    popStyle();
   }
   public boolean   checkOn(float myX, float myY) {
     if (dist(myX, myY, this.centerX, this.centerY)<this.diameter/2) {

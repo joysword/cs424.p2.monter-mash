@@ -44,7 +44,7 @@ class ys_LeftMenu {
     popStyle();
 
     for (int i=0;i<num;i++) {
-      leftButton[i].render();
+      leftButton[i].render(false, 18); // align(center)
     }
   }
 
