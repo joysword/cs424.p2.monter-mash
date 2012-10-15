@@ -31,7 +31,7 @@ class ys_HelpWindow
       fill(POP_UP_WINDOW_TEXT_COLOR);
       textAlign(LEFT, CENTER);
       textSize(120/scaling);
-      text(content, x+w*0.04, y+h*0.1);
+      text(content, x+w*0.04, y+h*0.5);
       popStyle();
     }
   }

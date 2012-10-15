@@ -11,9 +11,8 @@
 final float HELP_WINDOW_x = 200*scale;
 final float HELP_WINDOW_y = 100*scale;
 final float HELP_WINDOW_w = 800*scale;
-final float HELP_WINDOW_h = 300*scale;
-final String HELP_WINDOW_c = "Timeline tab: \nuse the slider on the bottom to change time range"; //hhhhhelp
-
+final float HELP_WINDOW_h = 400*scale;
+final String HELP_WINDOW_c = "Click on change language on the right to change the language of the application\nTimeline tab: \nUse the slider on the bottom to change the time range\nUse the panel on the right to filter displayed data\nclick Decade button to cluster data or Tabular to switch to tabular view\nMonster tab:\nNodes are draggable, click on a node to see data of a particular monster\nclick on 'compare monster' to compare with another monster\nMovies tab:\nUse the on-screen keyboard to search for one movie"; //hhhhhelp
 final int yearMin = 1890;
 final int yearMax = 2009;
 
