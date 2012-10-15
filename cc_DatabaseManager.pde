@@ -837,6 +837,76 @@ private void initArrayCert(ArrayList<CertificateInstance> array){
   }
 }
 
+private void initArrayCountry(ArrayList<CountryInstance> array){
+  for(int i=0;i<123;i++){
+   array.add(new CountryInstance(1890+i,0,0,0,0,0,0,0)); 
+  }
+}
+
+private void addUSA(ArrayList<CountryInstance> array,MySQL msql){
+  int year,count;
+  while(msql.next()){
+    year=msql.getInt(1);
+    count=msql.getInt(2);
+        if(year>1889)
+    array.get(year-1890).setUSA(count);
+  }
+}
+private void addUK(ArrayList<CountryInstance> array,MySQL msql){
+  int year,count;
+  while(msql.next()){
+    year=msql.getInt(1);
+    count=msql.getInt(2);
+        if(year>1889)
+    array.get(year-1890).setUK(count);
+  }
+}
+private void addFrance(ArrayList<CountryInstance> array,MySQL msql){
+  int year,count;
+  while(msql.next()){
+    year=msql.getInt(1);
+    count=msql.getInt(2);
+        if(year>1889)
+    array.get(year-1890).setFrance(count);
+  }
+}
+private void addJapan(ArrayList<CountryInstance> array,MySQL msql){
+  int year,count;
+  while(msql.next()){
+    year=msql.getInt(1);
+    count=msql.getInt(2);
+        if(year>1889)
+    array.get(year-1890).setJapan(count);
+  }
+}
+private void addGermany(ArrayList<CountryInstance> array,MySQL msql){
+  int year,count;
+  while(msql.next()){
+    year=msql.getInt(1);
+    count=msql.getInt(2);
+        if(year>1889)
+    array.get(year-1890).setGermany(count);
+  }
+}
+private void addCanada(ArrayList<CountryInstance> array,MySQL msql){
+  int year,count;
+  while(msql.next()){
+    year=msql.getInt(1);
+    count=msql.getInt(2);
+        if(year>1889)
+    array.get(year-1890).setCanada(count);
+  }
+}
+private void addOthers(ArrayList<CountryInstance> array,MySQL msql){
+  int year,count;
+  while(msql.next()){
+    year=msql.getInt(1);
+    count=msql.getInt(2);
+        if(year>1889)
+    array.get(year-1890).setOthers(count);
+  }
+}
+
 private void addLow(ArrayList<FormatInstance> array,MySQL msql){
   int year,count;
   while(msql.next()){
@@ -1089,7 +1159,106 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
     }
     return array;
 
-  } 
+  }
+
+  public ArrayList<CountryInstance> getCountries(String genre, String monster){
+    ArrayList<CountryInstance> array = new ArrayList<CountryInstance>();
+    initArrayCountry(array);
+        if(!genre.equals(""))
+          genre=" genre=\""+genre+"\" and";
+    if ( msql.connect() )
+    {
+      String query1=   
+      "SELECT year,count "+
+      "from certificates_count "+
+      "where "+
+      genre+
+      " monster=\""+
+      monster+
+      "\" and clustered_by=\"USA\" "+
+      "group by year "+
+      "order by year";
+      println(query1);
+      msql.query(query1);
+      addUSA(array,msql);
+      String query2=   
+         "SELECT year,count "+
+      "from certificates_count "+
+      "where "+
+      genre+
+      " monster=\""+
+      monster+
+      "\" and clustered_by=\"UK\" "+
+      "group by year "+
+      "order by year";
+      msql.query(query2);
+      addUK(array,msql);
+       String query3=   
+       "SELECT year,count "+
+      "from certificates_count "+
+      "where "+
+      genre+
+      "\" monster=\""+
+      monster+
+      "\" and clustered_by=\"France\" "+
+      "group by year "+
+      "order by year";
+      msql.query(query3);
+      addFrance(array,msql);
+            String query4=   
+       "SELECT year,count "+
+      "from certificates_count "+
+      "where "+
+      genre+
+      " monster=\""+
+      monster+
+      "\" and clustered_by=\"Japan\" "+
+      "group by year "+
+      "order by year";
+      msql.query(query4);
+      addJapan(array,msql);
+            String query5=   
+       "SELECT year,count "+
+      "from certificates_count "+
+      "where "+
+      genre+
+      " monster=\""+
+      monster+
+      "\" and clustered_by=\"Germany\" "+
+      "group by year "+
+      "order by year";
+      msql.query(query5);
+      addGermany(array,msql);
+            String query6=   
+       "SELECT year,count "+
+      "from certificates_count "+
+      "where "+
+      genre+
+      " monster=\""+
+      monster+
+      "\" and clustered_by=\"Canada\" "+
+      "group by year "+
+      "order by year";
+      msql.query(query6);
+      addCanada(array,msql);
+            String query7=   
+       "SELECT year,count "+
+      "from certificates_count "+
+      "where "+
+      genre+
+      "\" monster=\""+
+      monster+
+      "\" and clustered_by=\"Others\" "+
+      "group by year "+
+      "order by year";
+      msql.query(query7);
+      addOthers(array,msql);
+    }
+    else {
+    }
+    return array;
+
+  }  
   
 
   public ArrayList<FormatInstance> getQuality(String genre, String monster){
