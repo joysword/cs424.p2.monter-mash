@@ -1142,7 +1142,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
     if ( msql.connect() )
     {
       String query1=   
-      "SELECT year,count "+
+      "SELECT year,SUM( count )  "+
       "from popularity_count "+
       "where genre=\""+
       genre+
@@ -1155,7 +1155,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       msql.query(query1);
       addLow(array,msql);
       String query2=   
-         "SELECT year,count "+
+         "SELECT year,SUM( count )  "+
       "from popularity_count "+
       "where genre=\""+
       genre+
@@ -1167,7 +1167,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       msql.query(query2);
       addMed(array,msql);
        String query3=   
-       "SELECT year,count "+
+       "SELECT year,SUM( count )  "+
       "from popularity_count "+
       "where monster=\""+
       genre+
