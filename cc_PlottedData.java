@@ -1,0 +1,4 @@
+public enum cc_PlottedData {
+  POPULARITY, NUMBER_FILMS, BUDGET, NUMBER_TOTAL, TOTAL_HORROR
+}
+

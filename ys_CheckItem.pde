@@ -1,63 +1,49 @@
-class ys_CheckItem {
-  
-  ys_CheckBox cb;
-  
-  ys_Label btn;
-  
-  float w;
-  
-  float x,y;
-  
-  float h;
-  
-  ys_CheckItem(float _x, float _y, float wid1, float wid2, float height, String str, boolean act) {
-    cb = new ys_CheckBox(_x+wid1, _y, wid1, height);
-    btn = new ys_Label(_x, _y, wid2, height, str);
+class CheckItem {
+
+  float x, y;
+  float w, h;
+
+  CheckBox cb;
+
+  Label lbl;
+
+  CheckItem(float _x, float _y, float w1, float w2, float _h, String strr) { 
+    cb = new CheckBox(_x, _y, w1, _h);
+    lbl = new Label(_x+w1, _y, w2, _h, strr);
+
     x = _x;
     y = _y;
-    w = wid1+wid2;
-    h = height;
+    w = w1+w2;
+    h = _h;
   }
-  
-  ys_CheckItem(float _x, float _y, float wid1, float wid2, float height, String str) {
-    cb = new ys_CheckBox(_x+wid1, _y, wid1, height);
-    btn = new ys_Label(_x, _y, wid2, height, str);
-    x = _x;
-    y = _y;
-    w = wid1+wid2;
-    h = height;
-  }
-  
-  public void render()
-  {
+
+  public void render() {
     cb.render();
-    btn.render();
+    lbl.render();
   }
-  
-  public boolean isCheck()
-  {
+
+  public boolean getIsCheck() {
     return cb.getIsCheck();
   }
-  
-  public boolean canCheck()
-  {
-    return cb.getCanCheck();
+  public boolean isCheck() {
+    return cb.getIsCheck();
   }
-  
-  public void setCheck(boolean bb)
+
+  public void checkIt()
   {
-    cb.setIsCheck(bb);
+    cb.checkIt();
   }
-  
-  public void CheckUnCheck()
+
+  public void uncheckIt()
   {
-    cb.CheckUnCheck();
+    cb.uncheckIt();
   }
-  
-  public void update(float mousex, float mousey)
+
+  public void switchCheck()
   {
+    cb.switchCheck();
   }
-  
+
   public float getX()
   {
     return x;
@@ -74,24 +60,8 @@ class ys_CheckItem {
   {
     return h;
   }
-  
-  public void setActive()
-  {
-    cb.setIsCheck(true);
-  }
-  
-  public void setNotActive()
-  {
-    cb.setIsCheck(false);
-  }
-  
-  public boolean getCheck()
-  {
-    return cb.getIsCheck();
-  }
-  
-  public String getTxt() {
-    return btn.getTxt();
+  public boolean isIn(float _x, float _y) {
+    return cb.isIn(_x, _y);
   }
 }
-  
+

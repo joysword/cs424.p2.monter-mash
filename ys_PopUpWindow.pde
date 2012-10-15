@@ -1,8 +1,8 @@
 class ys_PopUpWindow {
-	float x, y;
-	float w;
-	float lineH;
+  float x, y;
+  float w;
+  float lineH;
 
-	int num;
-
+  int num;
 }
+

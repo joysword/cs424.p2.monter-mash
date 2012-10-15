@@ -2,20 +2,20 @@ class ys_HelpWindow
 {
   float x, y; //left-top corner
   float w, h; // width and height
-  
+
   boolean isDisplay; // whether this window is being displayed
-  
+
   String content; // what to show in this window
-  
+
   ys_HelpWindow(float _x, float _y, float _w, float _h, String helpContent)
   {
     x = _x;
     y = _y;
     w = _w;
     h = _h;
-    
+
     content = helpContent;
-    
+
     isDisplay = false;
   }
 
@@ -27,20 +27,19 @@ class ys_HelpWindow
       strokeWeight(BOARD_WEIGHT);
       stroke(WINDOW_BOARD_COLOR);
       rectMode(CORNER);
-      rect(x,y,w,h);
+      rect(x, y, w, h);
       fill(POP_UP_WINDOW_TEXT_COLOR);
-      textAlign(CENTER,CENTER);
+      textAlign(CENTER, CENTER);
       text(content, x+w*0.5, y+h*0.5);
       popStyle();
     }
-    
   }
-  
+
   private void switchDisplay()
   {
     isDisplay = !isDisplay;
   }
-  
+
   boolean getIsDisplay() {
     return isDisplay;
   }
@@ -49,3 +48,4 @@ class ys_HelpWindow
     isDisplay = false;
   }
 }
+

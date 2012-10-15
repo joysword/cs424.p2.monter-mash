@@ -2,7 +2,8 @@ import de.bezier.data.sql.*;
 
 //This class manages the database for 1st page
 public class ys_DatabaseManager {
-  private float[] inflation= {25, 25, 25, 25.64, 26.32, 27.03, 27.03, 27.78, 27.78, 27.78, 27.03, 27.03, 26.32, 26.32, 25.64, 
+  private float[] inflation= {
+    25, 25, 25, 25.64, 26.32, 27.03, 27.03, 27.78, 27.78, 27.78, 27.03, 27.03, 26.32, 26.32, 25.64, 
     26.32, 25.64, 24.39, 25, 25, 24.39, 24.39, 23.81, 23.26, 22.73, 22.73, 20.83, 17.86, 15.15, 13.33, 11.49, 12.82, 13.7, 
     13.33, 13.33, 13.16, 12.99, 13.16, 13.33, 13.33, 13.7, 15.15, 16.67, 17.54, 17.24, 16.67, 16.39, 15.87, 16.39, 16.39, 
     16.39, 15.63, 14.08, 13.33, 12.99, 12.82, 11.76, 10.31, 9.52, 9.62, 9.52, 8.85, 8.62, 8.62, 8.55, 8.55, 8.4, 8.13, 
@@ -84,15 +85,16 @@ public class ys_DatabaseManager {
   private ArrayList<cc_YearCountPair> createArrayFromQuery(ArrayList<cc_YearCountPair> array, MySQL msql) {
     int old=1890;
     int i=0;
-    do{
+    do {
       i=1;
-      while(msql.getInt(1)>old){
-        array.add(new cc_YearCountPair(0.0,old));
+      while (msql.getInt (1)>old) {
+        array.add(new cc_YearCountPair(0.0, old));
         old++;
       }
       array.add(new cc_YearCountPair(msql.getFloat(2), msql.getInt(1)));
       old++;
-    }while(msql.next());
+    }
+    while (msql.next ());
     return array;
   }
 
@@ -101,7 +103,8 @@ public class ys_DatabaseManager {
     do {
       i = 1;
       array.add(msql.getInt(1));
-    } while (msql.next());
+    } 
+    while (msql.next ());
     return array;
   }
 
@@ -109,8 +112,9 @@ public class ys_DatabaseManager {
     int i=0;
     do {
       i = 1;
-      array.add(new ys_IdGenrePair(msql.getInt(1),msql.getString(2)));
-    } while (msql.next());
+      array.add(new ys_IdGenrePair(msql.getInt(1), msql.getString(2)));
+    } 
+    while (msql.next ());
     return array;
   }
 
@@ -119,7 +123,8 @@ public class ys_DatabaseManager {
     do {
       i = 1;
       array.add(new ys_IdQualityPair(msql.getInt(1), msql.getFloat(2)));
-    } while (msql.next());
+    } 
+    while (msql.next ());
     return array;
   }
 
@@ -128,7 +133,8 @@ public class ys_DatabaseManager {
     do {
       i = 1;
       array.add(new ys_IdPopularityPair(msql.getInt(1), msql.getInt(2)));
-    } while (msql.next());
+    } 
+    while (msql.next ());
     return array;
   }
 
@@ -157,7 +163,7 @@ public class ys_DatabaseManager {
     return array;
   }
 
-//General query, returns years/count given keyword and info (for info check info.pdf)
+  //General query, returns years/count given keyword and info (for info check info.pdf)
   public ArrayList<cc_YearCountPair> getKI(String keyword, String info, int info_type) {
     ArrayList<cc_YearCountPair> array = new ArrayList<cc_YearCountPair>();
     if ( msql.connect() )
@@ -185,7 +191,7 @@ public class ys_DatabaseManager {
     return array;
   }
 
-// returns the popularity of the movies with the selected keyword
+  // returns the popularity of the movies with the selected keyword
   public ArrayList<cc_YearCountPair> getPopularity(String keyword) {
     ArrayList<cc_YearCountPair> array = new ArrayList<cc_YearCountPair>();
     if ( msql.connect() )
@@ -211,7 +217,7 @@ public class ys_DatabaseManager {
     return array;
   }
 
-//get film numbers given keyword
+  //get film numbers given keyword
   public ArrayList<cc_YearCountPair> getFilmNumber(String keyword) {
     ArrayList<cc_YearCountPair> array = new ArrayList<cc_YearCountPair>();
     if ( msql.connect() )
@@ -236,7 +242,7 @@ public class ys_DatabaseManager {
     return array;
   }
 
-//get film numbers given keyword and info (for instance search 'vampires' in 'horror' films)
+  //get film numbers given keyword and info (for instance search 'vampires' in 'horror' films)
   public ArrayList<cc_YearCountPair> getFilmNumber(String keyword, String info, int info_type_id) {
     ArrayList<cc_YearCountPair> array = new ArrayList<cc_YearCountPair>();
     if ( msql.connect() )
@@ -265,41 +271,40 @@ public class ys_DatabaseManager {
     return array;
   }
 
-// get film id and info for a given info_type
-// FilterGenre (genres info_type_id = 3)
-// FilterQuality (rating info_type_id = 101)
-// FilterBudget (budget info_type_id = 105)
-// FilterPopularity (votes info_type_id = 100)
-/*
+  // get film id and info for a given info_type
+  // FilterGenre (genres info_type_id = 3)
+  // FilterQuality (rating info_type_id = 101)
+  // FilterBudget (budget info_type_id = 105)
+  // FilterPopularity (votes info_type_id = 100)
+  /*
   ArrayList<ys_IdInfoPair> getFilmAndInfoBasedOnInfoType(int info_type_id) {
-    ArrayList<ys_IdInfoPair> array = new ArrayList<ys_IdInfoPair>();
-    if (msql.connect()) {
-      String query = "select mi.movie_id, mi.info "+
-      " from movie_info as mi "+
-      " where mi.info_type_id = " + info_type_id + " "+
-      " order by mi.movie_id";
-      msql.query(query);
-      array=createIdInfoPairFromQuery(array, msql);
-    }
-    else {
-
-    }
-    return array;
-  }
-*/
+   ArrayList<ys_IdInfoPair> array = new ArrayList<ys_IdInfoPair>();
+   if (msql.connect()) {
+   String query = "select mi.movie_id, mi.info "+
+   " from movie_info as mi "+
+   " where mi.info_type_id = " + info_type_id + " "+
+   " order by mi.movie_id";
+   msql.query(query);
+   array=createIdInfoPairFromQuery(array, msql);
+   }
+   else {
+   
+   }
+   return array;
+   }
+   */
 
   ArrayList<ys_IdGenrePair> getFilmAndGenre(String genre) {
     ArrayList<ys_IdGenrePair> array = new ArrayList<ys_IdGenrePair>();
     if (msql.connect()) {
       String query = "select movie_id, genre "+
-      " from movie_genre "+
-      " where genre = \"" + genre +"\" "+
-      " order by movie_id";
+        " from movie_genre "+
+        " where genre = \"" + genre +"\" "+
+        " order by movie_id";
       msql.query(query);
       array=createIdGenrePairFromQuery(array, msql);
     }
     else {
-
     }
     return array;
   }
@@ -313,14 +318,13 @@ public class ys_DatabaseManager {
     ArrayList<ys_IdQualityPair> array = new ArrayList<ys_IdQualityPair>();
     if (msql.connect()) {
       String query = "select movie_id, rating "+
-      " from movie_rating "+
-      " where " + str +
-      " order by movie_id";
+        " from movie_rating "+
+        " where " + str +
+        " order by movie_id";
       msql.query(query);
       array = createIdQualityPairFromQuery(array, msql);
     }
     else {
-
     }
     return array;
   }
@@ -334,61 +338,59 @@ public class ys_DatabaseManager {
 
   ArrayList<ys_IdPopularityPair> getFilmAndPopularity(int lower, int upper) {
     String str="(";
-      for (int i=lower;i<upper;i+=0.1) {
-        str = str + " votes = " + i + " or";
-      }
-      str = str + " votes = " + upper + ") ";
+    for (int i=lower;i<upper;i+=0.1) {
+      str = str + " votes = " + i + " or";
+    }
+    str = str + " votes = " + upper + ") ";
     ArrayList<ys_IdPopularityPair> array = new ArrayList<ys_IdPopularityPair>();
     if (msql.connect()) {
       String query = "select movie_id, votes "+
-      " from movie_votes "+
-      " where " + str +
-      " order by movie_id";
+        " from movie_votes "+
+        " where " + str +
+        " order by movie_id";
       msql.query(query);
       array = createIdPopulartiyPairFromQuery(array, msql);
     }
     else {
-
     }
     return array;
   }
 
-// get film id for a given format (movie, tv movie, video movie)
-// FilterFormat
+  // get film id for a given format (movie, tv movie, video movie)
+  // FilterFormat
   ArrayList<Integer> getFilmForKind(int kind_id) {
     ArrayList<Integer> array = new ArrayList<Integer>();
     if (msql.connect()) {
       String query = "select t.id "+
-      " from title as t "+
-      " where kind_id = " + kind_id + " "+
-      " order by t.id";
+        " from title as t "+
+        " where kind_id = " + kind_id + " "+
+        " order by t.id";
       msql.query(query);
       array = createIntArrayFromQuery(array, msql);
     }
     else {
-
     }
     return array;
   }
 
 
-//get film id for a given monster
-// FilterMonster
+  //get film id for a given monster
+  // FilterMonster
   ArrayList<Integer> getFilmForMonster(String monster) {
     ArrayList<Integer> array = new ArrayList<Integer>();
     if (msql.connect() )
     {
       String query = "select t.id "+
-      "from "+
-      "keyword as k "+
-      "left join "+
-      "movie_keyword as mk ON k.id = mk.keyword_id "+
-      "left join "+
-      "title as t ON t.id = mk.movie_id "+
-      "where ("+
-      getKeywords(monster)+
-      ") "+
-      "order by t.id ";
+        "from "+
+        "keyword as k "+
+        "left join "+
+        "movie_keyword as mk ON k.id = mk.keyword_id "+
+        "left join "+
+        "title as t ON t.id = mk.movie_id "+
+        "where ("+
+        getKeywords(monster)+
+        ") "+
+        "order by t.id ";
       msql.query(query);
       array = createIntArrayFromQuery(array, msql);
     }
@@ -402,7 +404,6 @@ public class ys_DatabaseManager {
 
 
 
- 
 
 
 
@@ -423,7 +424,8 @@ public class ys_DatabaseManager {
 
 
 
-//utility method to write query with keywords
+
+  //utility method to write query with keywords
   private String getKeywords(String keyword) {
     String keyword_list="";
     if (keyword.equals("vampire")) {
@@ -455,5 +457,4 @@ public class ys_DatabaseManager {
     return keyword_list;
   }
 }
-
 

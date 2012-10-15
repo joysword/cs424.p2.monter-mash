@@ -7,6 +7,10 @@ TouchListener touchListener;
 // Link to this Processing applet - used for touchDown() callback example
 PApplet applet;
 
+
+// for integrating
+PApplet context;
+
 // Override of PApplet init() which is called before setup()
 public void init() {
   super.init();
@@ -22,6 +26,8 @@ UserInterface ui;
 
 final int scale = 1;
 
+final int scaling = 7;
+
 final int Width = 1632*scale;
 final int Height = 461*scale;
 
@@ -33,9 +39,9 @@ int currentPage;
 
 boolean global_isDragLeft; //drag Left Timelock of Range on First Page
 boolean global_isDragRight;
-boolean global_leftBarClick;
 
-ArrayList<FormatInstance> global_data;
+//ArrayList<FormatInstance> global_data;
+ArrayList<CertificateInstance> global_data;
 
 //cc_MonsterPlot plot;
 ///////////////////////////////////
@@ -60,6 +66,7 @@ void setup()
 
   // Sets applet to this sketch
   applet = this;
+  context = this;
 
   // setup Font
   PFont plotFont = createFont("Helvetica-Bold", 14*scale);//change
@@ -69,17 +76,18 @@ void setup()
 
   global_isDragRight = false;
   global_isDragLeft = false;
-  global_leftBarClick = false;
 
-  global_data = new ArrayList<FormatInstance>();
+  //global_data = new ArrayList<FormatInstance>();
+  global_data = new ArrayList<CertificateInstance>();
 
   ui = new UserInterface();
 
-  global_data = ui.getDB().getFormat("horror","vampire");
-  
+  //global_data = ui.getDB().getFormat("horror","vampire");
+  global_data = ui.getDB().getCertificates("horror", "vampire");
+
   // setup other things
 
-  // end of setup
+    // end of setup
   smooth();
 
 
@@ -99,7 +107,7 @@ void setup()
 void draw() {
 
   background(BG_COLOR);
-  
+
   //render graphs or other things
   //plot.monsterPlot();
 
@@ -110,3 +118,4 @@ void draw() {
 
   omicronManager.process();
 }
+

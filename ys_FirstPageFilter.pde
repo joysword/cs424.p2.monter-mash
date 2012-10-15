@@ -1,147 +1,147 @@
 class ys_FirstPageFilter {
 
-	float x,y,w,h;
+  float x, y, w, h;
 
-	FilterMonster monF;
-	FilterGenre genF;
-	FilterFormat forF;
-	FilterQuality quaF;
-	FilterPopularity popF;
-	FilterBudget budF;
-	FilterGeneral generalF;
-
-
-	ArrayList<ys_IdGenrePair> idGenre;
-	ArrayList<ys_IdQualityPair> idQuality;
-	ArrayList<ys_IdPopularityPair> idPopularity;
-	ArrayList<ys_IdBudgetPair> idBudget;
-	ArrayList<Integer> idFormat;
-
-	//change
-	ArrayList<Integer> idMonster;
+  FilterMonster monF;
+  FilterGenre genF;
+  //FilterFormat forF;
+  //FilterQuality quaF;
+  //FilterPopularity popF;
+  //FilterBudget budF;
+  FilterGeneral generalF;
 
 
-	String filter_temp;
-	String filter_current;
+  //ArrayList<ys_IdGenrePair> idGenre;
+  //ArrayList<ys_IdQualityPair> idQuality;
+  //ArrayList<ys_IdPopularityPair> idPopularity;
+  //ArrayList<ys_IdBudgetPair> idBudget;
+  //ArrayList<Integer> idFormat;
 
-	float btnx, btny, btnw, btnh;
-
-	boolean isDisplay;
-
-	ys_FirstPageFilter(float _x, float _y, float _w, float _h, float bx, float by, float bw, float bh) {
-
-		x = _x;
-		y = _y;
-		w = _w;
-		h = _h;
-
-		btnx = bx;
-		btny = by;
-		btnw = bw;
-		btnh = bh;
-
-		// change construtor parameters
-		monF = new FilterMonster(x+FILTER_MONSTER_X_RELATIVE * w, y+FILTER_MONSTER_Y_RELATIVE * h, FILTER_MONSTER_W, FILTER_MONSTER_H, FILTER_MONSTER_NUM);
-		genF = new FilterGenre(x+FILTER_GENRE_X_RELATIVE * w, y+FILTER_GENRE_Y_RELATIVE * h, FILTER_GENRE_W, FILTER_GENRE_H, FILTER_GENRE_NUM);
-		forF = new FilterFormat(x+FILTER_FORMAT_X_RELATIVE * w, y+FILTER_FORMAT_Y_RELATIVE * h, FILTER_FORMAT_W, FILTER_FORMAT_H, FILTER_FORMAT_NUM);
-		quaF = new FilterQuality(x+FILTER_QUALITY_X_RELATIVE * w, y+FILTER_QUALITY_Y_RELATIVE * h, FILTER_QUALITY_W, FILTER_QUALITY_H, FILTER_QUALITY_NUM);
-		popF = new FilterPopularity(x+FILTER_POPULARITY_X_RELATIVE * w, y+FILTER_POPULARITY_Y_RELATIVE * h, FILTER_POPULARITY_W, FILTER_POPULARITY_H, FILTER_POPULARITY_NUM);
-		budF = new FilterBudget(x+FILTER_BUDGET_X_RELATIVE * w, y+FILTER_BUDGET_Y_RELATIVE * h, FILTER_BUDGET_W, FILTER_BUDGET_H, FILTER_BUDGET_NUM);
-		generalF = new FilterGeneral(x+FILTER_GENERAL_X_RELATIVE * w, y+FILTER_GENERAL_Y_RELATIVE * h, FILTER_GENERAL_W, FILTER_GENERAL_H, FILTER_GENERAL_NUM);
-
-		isDisplay = false;
-
-		idGenre = new ArrayList<ys_IdGenrePair>();
-		idQuality = new ArrayList<ys_IdQualityPair>();
-		idPopularity = new ArrayList<ys_IdPopularityPair>();
-		idBudget = new ArrayList<ys_IdBudgetPair>();
-
-		idFormat = new ArrayList<Integer>();
-
-		//change
-		idMonster = new ArrayList<Integer>();
-
-	}
-
-	void render(int i) {
-		pushStyle();
-		fill(POP_UP_COLOR); //change
-		noStroke();
-	    rectMode(CORNER);
-	    rect(x, y, w, h);
-	    strokeWeight(BOARD_WEIGHT);
-	    stroke(BUTTON_COLOR); //orange
-	    line(x+w*0.4, y, x+w*0.4, y+h);
-	    line(x+w*0.8, y, x+w*0.8, y+h);
-	    textAlign(LEFT, BOTTOM);
-	    switch (i) {
-	    	case 0:
-	    	fill(#01b2f1);
-	    	break;
-	    	case 1:
-	    	fill(#29C16B);
-	    	break;
-	    }
-	    textSize(18*scale);
-	    text("Select Filters for Graph " + (i+1) + ":", x+5*scale, y-5*scale);//change
-		fill(BUTTON_COLOR);
-		noStroke();
-		rect(btnx, btny, btnw, btnh);
-		textAlign(CENTER,CENTER);
-		fill(255);
-		textSize(12*scale);
-		text("UPDATE", btnx + btnw*0.5, btny + btnh*0.5);
-		popStyle();
-
-		monF.render();
-		genF.render();
-		//forF.render();
-		//quaF.render();
-		//popF.render();
-		//budF.render();
-		generalF.render();
-	}
+  //change
+  //ArrayList<Integer> idMonster;
 
 
-	void update(float posx, float posy, cc_DatabaseManager db) {
+  String filter_temp;
+  String filter_current;
 
-		if (posx>btnx && posx < btnx + btnw && posy>btny && posy<btny + btnh) {
-			println("update confirm");
-			updateConfirm(posx, posy, db);
-		}
-		else {
-			println("update filter");
-			updateFilter(posx, posy);
-		}
-	}
+  float btnx, btny, btnw, btnh;
 
-	// update all filters
-	private void updateFilter(float x, float y) {
+  boolean isDisplay;
 
-		monF.update(x, y);
-		genF.update(x, y);
-		//forF.update(x, y);
-		//quaF.update(x, y);
-		//popF.update(x, y);
-		//budF.update(x, y);
-		generalF.update(x, y);
-	}
+  ys_FirstPageFilter(float _x, float _y, float _w, float _h, float bx, float by, float bw, float bh) {
 
-	// update data to show
-	private void updateConfirm(float x, float y, cc_DatabaseManager db) {
-		filter_current = filter_temp;
-		isDisplay = false;
+    x = _x;
+    y = _y;
+    w = _w;
+    h = _h;
 
-		//ArrayList<Integer> monL = monF.getList(db);
-		//ArrayList<ys_IdGenrePair> genL = genF.getList(db);
-		//ArrayList<Integer> forL = forF.getList(db);
-		//ArrayList<ys_IdQualityPair> quaL = quaF.getList(db);
-		//ArrayList<ys_IdPopularityPair> popL = popF.getList(db);
-		//ArrayList<ys_IdBudgetPair> budL = budF.getList(db);
+    btnx = bx;
+    btny = by;
+    btnw = bw;
+    btnh = bh;
 
-		// update data
-		
-		//test function
-		global_data = ui.getDB().getFormat("horror","vampire");
-	}
+    // change construtor parameters
+    monF = new FilterMonster(x+FILTER_MONSTER_X_RELATIVE * w, y+FILTER_MONSTER_Y_RELATIVE * h, FILTER_MONSTER_W, FILTER_MONSTER_H, FILTER_MONSTER_NUM);
+    genF = new FilterGenre(x+FILTER_GENRE_X_RELATIVE * w, y+FILTER_GENRE_Y_RELATIVE * h, FILTER_GENRE_W, FILTER_GENRE_H, FILTER_GENRE_NUM);
+    //forF = new FilterFormat(x+FILTER_FORMAT_X_RELATIVE * w, y+FILTER_FORMAT_Y_RELATIVE * h, FILTER_FORMAT_W, FILTER_FORMAT_H, FILTER_FORMAT_NUM);
+    //quaF = new FilterQuality(x+FILTER_QUALITY_X_RELATIVE * w, y+FILTER_QUALITY_Y_RELATIVE * h, FILTER_QUALITY_W, FILTER_QUALITY_H, FILTER_QUALITY_NUM);
+    //popF = new FilterPopularity(x+FILTER_POPULARITY_X_RELATIVE * w, y+FILTER_POPULARITY_Y_RELATIVE * h, FILTER_POPULARITY_W, FILTER_POPULARITY_H, FILTER_POPULARITY_NUM);
+    //budF = new FilterBudget(x+FILTER_BUDGET_X_RELATIVE * w, y+FILTER_BUDGET_Y_RELATIVE * h, FILTER_BUDGET_W, FILTER_BUDGET_H, FILTER_BUDGET_NUM);
+    generalF = new FilterGeneral(x+FILTER_GENERAL_X_RELATIVE * w, y+FILTER_GENERAL_Y_RELATIVE * h, FILTER_GENERAL_W, FILTER_GENERAL_H, FILTER_GENERAL_NUM);
+
+    isDisplay = false;
+
+    //idGenre = new ArrayList<ys_IdGenrePair>();
+    //idQuality = new ArrayList<ys_IdQualityPair>();
+    //idPopularity = new ArrayList<ys_IdPopularityPair>();
+    //idBudget = new ArrayList<ys_IdBudgetPair>();
+
+    //idFormat = new ArrayList<Integer>();
+
+    //change
+    //idMonster = new ArrayList<Integer>();
+  }
+
+  void render(int i) {
+    pushStyle();
+    fill(POP_UP_COLOR); //change
+    noStroke();
+    rectMode(CORNER);
+    rect(x, y, w, h);
+    strokeWeight(BOARD_WEIGHT);
+    stroke(BUTTON_COLOR); //orange
+    line(x+w*0.4, y, x+w*0.4, y+h);
+    line(x+w*0.8, y, x+w*0.8, y+h);
+    textAlign(LEFT, BOTTOM);
+    switch (i) {
+    case 0:
+      fill(#01b2f1);
+      break;
+    case 1:
+      fill(#29C16B);
+      break;
+    }
+    textSize(24*scale);
+    text("Select Filters for Graph " + (i+1) + ":", x+5*scale, y-5*scale);//change
+    fill(BUTTON_COLOR);
+    noStroke();
+    rect(btnx, btny, btnw, btnh);
+    textAlign(CENTER, CENTER);
+    fill(255);
+    textSize(13*scale);
+    text("UPDATE", btnx + btnw*0.5, btny + btnh*0.5);
+    popStyle();
+
+    monF.render();
+    genF.render();
+    //forF.render();
+    //quaF.render();
+    //popF.render();
+    //budF.render();
+    generalF.render();
+  }
+
+
+  void update(float posx, float posy, cc_DatabaseManager db) {
+
+    if (posx>btnx && posx < btnx + btnw && posy>btny && posy<btny + btnh) {
+      println("update confirm");
+      updateConfirm(posx, posy, db);
+    }
+    else {
+      println("update filter");
+      updateFilter(posx, posy);
+    }
+  }
+
+  // update all filters
+  private void updateFilter(float x, float y) {
+
+    monF.update(x, y);
+    genF.update(x, y);
+    //forF.update(x, y);
+    //quaF.update(x, y);
+    //popF.update(x, y);
+    //budF.update(x, y);
+    generalF.update(x, y);
+  }
+
+  // update data to show
+  private void updateConfirm(float x, float y, cc_DatabaseManager db) {
+    filter_current = filter_temp;
+    isDisplay = false;
+
+    //ArrayList<Integer> monL = monF.getList(db);
+    //ArrayList<ys_IdGenrePair> genL = genF.getList(db);
+    //ArrayList<Integer> forL = forF.getList(db);
+    //ArrayList<ys_IdQualityPair> quaL = quaF.getList(db);
+    //ArrayList<ys_IdPopularityPair> popL = popF.getList(db);
+    //ArrayList<ys_IdBudgetPair> budL = budF.getList(db);
+
+    // update data
+
+    //test function
+    global_data = ui.getDB().getCertificates("horror", "vampire");
+  }
 }
+

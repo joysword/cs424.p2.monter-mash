@@ -1,68 +1,31 @@
-class ys_Label {
-  
-  PVector pos;
-  PVector size;
+class Label {
+
+  float x, y, w, h;
   String txt;
-  
+
   boolean isClick;
-  boolean canClick;
-  
-  ys_Label (float x, float y, float w, float h, String str)
+
+  Label (float _x, float _y, float _w, float _h, String strr)
   {
-    pos = new PVector(x,y);
-    size = new PVector(w,h);
-    txt = str;
+    x = _x;
+    y =  _y;
+    w = _w;
+    h = _h;
+    txt = strr;
   }
-  
-  ys_Label (PVector p, PVector s, String str)
-  {
-    pos = p;
-    size = s;
-    txt = str;
-  }
-  
-  public void setIsClick(boolean bb)
-  {
-    isClick = bb;
-  }
-  
-  public boolean getIsClick()
-  {
-    return isClick;
-  }
-  
-  public void setCanClick(boolean bb)
-  {
-    canClick = bb;
-  }
-  
-  public boolean getCanClick()
-  {
-    return canClick;
-  }
-  
-  public void ClickUnClick()
-  {
-    if (canClick)
-    {
-      isClick = !isClick;
-    }
-    else {println("can't click it");}
-  }
-  
-  
+
   public void render()
   {
     pushStyle();
-    textAlign(LEFT,CENTER);
-    fill(0);
-    
-    text(txt, pos.x+1*scale, pos.y+size.y/2);
+    textAlign(LEFT, CENTER);
+    fill(TEXT_COLOR); //change
+    textSize(14*scale);
+    text(txt, x+2*scale, y+h*0.5);
     popStyle();
   }
-  
+
   public String getTxt() {
     return txt;
   }
 }
-    
+

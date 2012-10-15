@@ -1,65 +1,68 @@
-class ys_CheckBox {
-  
-  PVector pos;
-  PVector size;
-  
+class CheckBox {
+
+  float x, y, w, h;
+
   boolean isCheck;
-  boolean canCheck;
-  
-  ys_CheckBox(float x, float y, float w, float h)
+  //boolean canCheck;
+
+  CheckBox(float x, float y, float w, float h)
   {
-    pos = new PVector(x,y);
-    size = new PVector(w,h);
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+
+    isCheck = false;
   }
-  
-  public void setIsCheck(boolean bb)
+
+  public void checkIt()
   {
-    isCheck = bb;
+    isCheck = true;
   }
-  
+
+  public void uncheckIt()
+  {
+    isCheck = false;
+  }
+
+  public void switchCheck()
+  {
+    isCheck = ! isCheck;
+  }
+
   public boolean getIsCheck()
   {
     return isCheck;
   }
-  
-  public void setCanCheck(boolean bb)
-  {
-    canCheck = bb;
-  }
-  
-  public boolean getCanCheck()
-  {
-    return canCheck;
-  }
-  
-  public void CheckUnCheck()
-  {
-    if (canCheck)
-    {
-      isCheck = !isCheck;
-    }
-    else {println("can't check it");}
-  }
-  
+
   public void render()
   {
     pushStyle();
     noFill();
-    stroke(127);
-    strokeWeight(1*scale);
+    stroke(150); //change
+    strokeWeight(2*scale);
     rectMode(CORNER);
-    rect(pos.x, pos.y, size.x, size.y);
+    rect(x, y, w, h);
     if (isCheck)
     {
-      line(pos.x, pos.y, pos.x+size.x, pos.y+size.y);
-      line(pos.x, pos.y+size.y, pos.x+size.x, pos.y);
+      line(x, y, x+w, y+h);
+      line(x, y+h, x+w, y);
     }
     popStyle();
   }
-  
+
   public float getW()
   {
-    return size.x;
+    return w;
+  }
+
+  public boolean isIn(float _x, float _y) {
+    if (_x > x && _x < x+w && _y > y && _y < y+h) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }
 

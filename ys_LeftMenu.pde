@@ -14,11 +14,11 @@ class ys_LeftMenu {
   ys_Button[] leftButton;
 
   int num; // number of buttons
-  
+
   ys_LeftMenu(float _w, int n, float btn_h, String[] strs) {
     // width, number, height, names
 
-    x = LEFT_BAR_DEFAULT_WIDTH;
+      x = LEFT_BAR_DEFAULT_WIDTH;
     y = 0;
     w = _w;
     h = Height;
@@ -28,32 +28,35 @@ class ys_LeftMenu {
     leftButton = new ys_Button[num];
 
     for (int i=0;i<num;i++) {
-      leftButton[i] = new ys_Button(x, y + h * 0.5 - num/2.0*btn_h + i * btn_h, w, btn_h, strs[i]);
+      leftButton[i] = new ys_Button(x, y + h * 0.5 - num/2.0*(btn_h+3*scale) + i * (btn_h+3*scale), w, btn_h, strs[i]);
     }
   }
-  
+
   void render() {
-    
+
     pushStyle();
-    
+
     fill(POP_UP_COLOR); // need change
     noStroke();
     rectMode(CORNER);
-    rect(x,y, w, h);
+    rect(x, y, w, h);
 
     popStyle();
 
     for (int i=0;i<num;i++) {
-        leftButton[i].render();
+      leftButton[i].render();
     }
   }
 
   void update(float posx, float posy) {
-    if(posx>x && posx<x+w && posy>y && posy<y+h) {
+    if (posx>x && posx<x+w && posy>y && posy<y+h) {
       for (int i=0;i<num;i++) {
         float yy = y + h*0.5 - num/2.0*leftButton[i].getHeight() + i*leftButton[i].getHeight();
         if (posy > yy && posy < yy + leftButton[i].getHeight()) {
-          if (i<3) {currentPage = i;}
+          if (i<3) {
+            currentPage = i; 
+            println("currentPage: "+currentPage);
+          }
           else if (i == 3) {
             // change language 语言
           }
@@ -66,3 +69,4 @@ class ys_LeftMenu {
     }
   }
 }
+

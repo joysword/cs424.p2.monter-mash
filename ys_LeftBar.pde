@@ -6,69 +6,72 @@
 
 class ys_LeftBar {
 
-	boolean isDisplay;
+  boolean isDisplay;
 
-	ys_LeftMenu menu;
+  ys_LeftMenu menu;
 
-	ys_LeftBar(float _w, int n, float btn_h, String[] strs) {
+  ys_LeftBar(float _w, int n, float btn_h, String[] strs) {
 
-		isDisplay = false;
+    isDisplay = false;
 
-		menu = new ys_LeftMenu(_w, n, btn_h, strs);
-	}
+    menu = new ys_LeftMenu(_w, n, btn_h, strs);
+  }
 
-	void render() {
-		if (isDisplay == false) {
-			pushStyle();
+  void render() {
+    if (isDisplay == false) {
+      pushStyle();
 
-			fill(80);
-			noStroke();
-			rectMode(CORNER);
-			rect(0, 0, LEFT_BAR_DEFAULT_WIDTH, Height);
-			stroke(150);
-			line(5*scale, Height * 0.5 - LEFT_BAR_DEFAULT_WIDTH+10*scale, LEFT_BAR_DEFAULT_WIDTH - 5*scale, Height * 0.5);
-			line(5*scale, Height * 0.5 + LEFT_BAR_DEFAULT_WIDTH-10*scale, LEFT_BAR_DEFAULT_WIDTH - 5*scale, Height * 0.5);
+      fill(80);
+      noStroke();
+      rectMode(CORNER);
+      rect(0, 0, LEFT_BAR_DEFAULT_WIDTH, Height);
+      stroke(150);
+      strokeWeight(5*scale);
+      line(5*scale, Height * 0.5 - LEFT_BAR_DEFAULT_WIDTH+10*scale, LEFT_BAR_DEFAULT_WIDTH - 5*scale, Height * 0.5);
+      line(5*scale, Height * 0.5 + LEFT_BAR_DEFAULT_WIDTH-10*scale, LEFT_BAR_DEFAULT_WIDTH - 5*scale, Height * 0.5);
 
-			popStyle();
-		}
-		else {
-			pushStyle();
+      popStyle();
+    }
+    else {
+      pushStyle();
 
-			fill(80);
-			noStroke();
-			rectMode(CORNER);
-			rect(0, 0, LEFT_BAR_DEFAULT_WIDTH, Height);
-			stroke(150);
-			line(5*scale, Height * 0.5, LEFT_BAR_DEFAULT_WIDTH - 5*scale, Height * 0.5 - LEFT_BAR_DEFAULT_WIDTH+10*scale);
-			line(5*scale, Height * 0.5, LEFT_BAR_DEFAULT_WIDTH - 5*scale, Height * 0.5 + LEFT_BAR_DEFAULT_WIDTH-10*scale);
+      fill(80);
+      noStroke();
+      rectMode(CORNER);
+      rect(0, 0, LEFT_BAR_DEFAULT_WIDTH, Height);
+      stroke(150);
+      strokeWeight(5*scale);
+      line(5*scale, Height * 0.5, LEFT_BAR_DEFAULT_WIDTH - 5*scale, Height * 0.5 - LEFT_BAR_DEFAULT_WIDTH+10*scale);
+      line(5*scale, Height * 0.5, LEFT_BAR_DEFAULT_WIDTH - 5*scale, Height * 0.5 + LEFT_BAR_DEFAULT_WIDTH-10*scale);
 
-			stroke(200);
-			line(LEFT_BAR_DEFAULT_WIDTH,0, LEFT_BAR_DEFAULT_WIDTH,Height);
+      stroke(200);
+      strokeWeight(scale);
+      line(LEFT_BAR_DEFAULT_WIDTH, 0, LEFT_BAR_DEFAULT_WIDTH, Height);
 
-			menu.render();
+      menu.render();
 
-			popStyle();
-		}
+      popStyle();
+    }
+  }
 
-	}
+  void update(float posx, float posy) {
+    if (posx < LEFT_BAR_DEFAULT_WIDTH && posx > scale) {
+      switchDisplay();
+      if (!isDisplay) {
+        ui.getHelpWindow().setNotDisplay();
+      }
+    }
+    if (isDisplay) {
+      menu.update(posx, posy);
+    }
+  }
 
-	void update(float posx, float posy) {
-		if (posx < LEFT_BAR_DEFAULT_WIDTH) {
-			switchDisplay();
-			if (!isDisplay) {
-				ui.getHelpWindow().setNotDisplay();
-			}
-		}
-		if (isDisplay) {
-			menu.update(posx, posy);
-		}
-	}
+  private void switchDisplay() {
+    isDisplay = !isDisplay;
+  }
 
-	private void switchDisplay() {
-		isDisplay = !isDisplay;
-	}
-
-	public boolean getIsDisplay() {
-		return isDisplay;
-	}
+  public boolean getIsDisplay() {
+    return isDisplay;
+  }
 }
+
