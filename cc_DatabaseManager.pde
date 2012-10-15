@@ -236,92 +236,116 @@ public class cc_DatabaseManager {
     String keyword_list="";
     if (keyword.equals(VAMPIRE_REF)) {
       for (int i=0;i<4;i++)
+      if(vampire_kwords.length()>i)
         keyword_list=keyword_list+vampire_kwords[i]+"\n";
     }
     else if (keyword.equals(FEMALE_VAMPIRE_REF)) {
       for (int i=0;i<4;i++)
+       if(female_vampire_kwords.length()>i)
         keyword_list=keyword_list+female_vampire_kwords[i]+"\n";
     }
     else if (keyword.equals(ZOMBIE_REF)) {
       for (int i=0;i<4;i++)
+        if(zombie_kwords.length()>i)
         keyword_list=keyword_list+zombie_kwords[i]+"\n";
     }
     else if (keyword.equals(DRACULA_REF)) {
       for (int i=0;i<4 && i<dracula_kwords.length;i++)
+       if(dracula_kwords.length()>i)
         keyword_list=keyword_list+dracula_kwords[i]+"\n";
     }
     else if (keyword.equals(FRANKENSTEIN_REF)) {
       for (int i=0;i<4;i++)
+       if(frankenstein_kwords.length()>i)
         keyword_list=keyword_list+frankenstein_kwords[i]+"\n";
     }
     else if (keyword.equals(MUMMY_REF)) {
       for (int i=0;i<4 && i<mummy_kwords.length;i++)
+      if(mummy_kwords.length()>i)
         keyword_list=keyword_list+mummy_kwords[i]+"\n";
     }
         else if (keyword.equals(LIVING_DEAD_REF)) {
       for (int i=0;i<4;i++)
+       if(living_dead_kwords.length()>i)
         keyword_list=keyword_list+living_dead_kwords[i]+"\n";
     }
         else if (keyword.equals(SUPERNATURAL_REF)) {
       for (int i=0;i<4;i++)
+       if(supernatural.length()>i)
         keyword_list=keyword_list+supernatural[i]+"\n";
     }
         else if (keyword.equals(DEMON_REF)) {
       for (int i=0;i<4;i++)
+      if(demon_kwords.length()>i)
         keyword_list=keyword_list+demon_kwords[i]+"\n";
     }
         else if (keyword.equals(POSSESSED_REF)) {
       for (int i=0;i<4;i++)
+       if(possessed_kwords.length()>i)
         keyword_list=keyword_list+possessed_kwords[i]+"\n";
     }
             else if (keyword.equals(GHOST_REF)) {
       for (int i=0;i<4;i++)
+      if(ghost_kwords.length()>i)
         keyword_list=keyword_list+ghost_kwords[i]+"\n";
     }
         else if (keyword.equals(WITCH_WIZARD_REF)) {
       for (int i=0;i<4;i++)
+      if(witch_wizards_kwords.length()>i)
         keyword_list=keyword_list+witch_wizards_kwords[i]+"\n";
     }
         else if (keyword.equals(INVISIBLE_REF)) {
       for (int i=0;i<4;i++)
+      if(invisible_man_kwords.length()>i)
         keyword_list=keyword_list+invisible_man_kwords[i]+"\n";
     }
             else if (keyword.equals(MYERS_REF)) {
       for (int i=0;i<4;i++)
+       if(michael_myers_kwords.length()>i)
         keyword_list=keyword_list+michael_myers_kwords[i]+"\n";
     }
             else if (keyword.equals(FREDDY_REF)) {
       for (int i=0;i<4 && i<freddy_krueger_kwords.length;i++)
+      if(freddy_krueger_kwords.length()>i)
         keyword_list=keyword_list+freddy_krueger_kwords[i]+"\n";
     }
                 else if (keyword.equals(JSON_REF)) {
       for (int i=0;i<4 && i<jason_kwords.length;i++)
+        if(jason_kwords.length()>i)
         keyword_list=keyword_list+jason_kwords[i]+"\n";
     }
                 else if (keyword.equals(SWAMP_REF)) {
       for (int i=0;i<4;i++)
+      if(swamp_kwords.length()>i)
         keyword_list=keyword_list+swamp_kwords[i]+"\n";
     }
                 else if (keyword.equals(MUTED_CREATURES_REF)) {
       for (int i=0;i<4;i++)
+       if(muted_creatures_kwords.length()>i)
         keyword_list=keyword_list+muted_creatures_kwords[i]+"\n";
     }                else if (keyword.equals(GIANT_REF)) {
       for (int i=0;i<4;i++)
+      if(giant_kwords.length()>i)
         keyword_list=keyword_list+giant_kwords[i]+"\n";
     }                else if (keyword.equals(MUNTANTS_REF)) {
       for (int i=0;i<4;i++)
+        if(mutants_kwords.length()>i)
         keyword_list=keyword_list+mutants_kwords[i]+"\n";
     } else if (keyword.equals(MRHYDE_REF)) {
       for (int i=0;i<4;i++)
+      if(mr_hyde_kwords.length()>i)
         keyword_list=keyword_list+mr_hyde_kwords[i]+"\n";
     }                else if (keyword.equals(GODZILLA_REF)) {
       for (int i=0;i<4 && i<godzilla_kwords.length;i++)
+      if(godzilla_kwords.length()>i)
         keyword_list=keyword_list+godzilla_kwords[i]+"\n";
     } else if (keyword.equals(SHARK_REF)) {
       for (int i=0;i<4 && i<snake_kwords.length;i++)
+      if(shark_kwords.length()>i)
         keyword_list=keyword_list+shark_kwords[i]+"\n";
     } else if (keyword.equals(SNAKE_REF)) {
       for (int i=0;i<4 && i<snake_kwords.length;i++)
+      if(snake_kwords.length()>i)
         keyword_list=keyword_list+snake_kwords[i]+"\n";
     }
     if(keyword_list.length()<2) return "";
