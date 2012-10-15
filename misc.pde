@@ -10,9 +10,9 @@
 // about Help Window
 final float HELP_WINDOW_x = 200*scale;
 final float HELP_WINDOW_y = 100*scale;
-final float HELP_WINDOW_w = 500*scale;
+final float HELP_WINDOW_w = 800*scale;
 final float HELP_WINDOW_h = 300*scale;
-final String HELP_WINDOW_c = "C, G, S"; //hhhhhelp
+final String HELP_WINDOW_c = "Timeline tab: \nuse the slider on the bottom to change time range"; //hhhhhelp
 
 final int yearMin = 1890;
 final int yearMax = 2009;

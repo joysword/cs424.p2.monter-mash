@@ -10,9 +10,7 @@ class MoviePage {
   monsterTaxonomy taxonomy;
   PApplet context;
   ScrollMouseManager scrollMouseManager;
-  ImageButton movieButton;
-  ImageButton taxonomyButton;
-  ImageButton top10Button;
+  
 
 
   MoviePage() {
@@ -24,9 +22,7 @@ class MoviePage {
 
     scrollMouseManager = new ScrollMouseManager();
 
-    movieButton = new ImageButton(loadShape("movieButton.svg"), width/12, height/2, width/6, height/6);
-    taxonomyButton = new ImageButton(loadShape("taxonomyButton.svg"), width/12, height/3, width/6, height/6);
-    top10Button = new ImageButton(loadShape("showTop10.svg"), width/12, height/12, width/6, height/6);
+    
 
     movie = new Movie("Tutti belli Meluelli", 2012, "horror", 60, "very good movie", "PG13", 3000);
     moviePane = new SingleMoviePane(width/2, height/2, width/6*4, height*0.95, movie);
@@ -36,9 +32,7 @@ class MoviePage {
   }
 
   void render() {
-    taxonomyButton.draw();
-    movieButton.draw();
-    top10Button.draw();
+   
 
     if (taxonomyTab) {
       taxonomy.draw();
@@ -53,7 +47,7 @@ class MoviePage {
   }
 
   void mousePressed_(float posx, float posy) {
-    if (top10Button.checkOn(posx, posy)) {
+    /*if (top10Button.checkOn(posx, posy)) {
       if (showTop10) {
         showTop10 = false;
       }
@@ -70,7 +64,7 @@ class MoviePage {
       taxonomyTab = true;
       movieTab = false;
     }
-
+*/
     if (taxonomyTab) {
       if (taxonomy.singleMonsterPane.show) {
         taxonomy.singleMonsterPane.checkHideButton(posx, posy);

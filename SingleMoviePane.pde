@@ -16,16 +16,16 @@ public class SingleMoviePane {
     this.widthS=widthS;
     this.heightS=heightS;
 
-    this.keyboard=new Keyboard(this.centerX-this.widthS/2+this.widthS*0.705, this.centerY-this.heightS/2+this.heightS*0.5, this.heightS/15, color(255));
+    this.keyboard=new Keyboard(this.centerX-this.widthS/2+this.widthS*0.8, this.centerY-this.heightS/2+this.heightS*0.5, this.heightS/15, color(255));
     this.movie=movie;
-    this.suggestionBox= new SuggestionBox(this.centerX-this.widthS/2+this.widthS*0.85, this.centerY-this.heightS/2+this.heightS*0.2, this.widthS*0.2, this.heightS*0.08);
+    this.suggestionBox= new SuggestionBox(this.centerX-this.widthS/2+this.widthS*0.95, this.centerY-this.heightS/2+this.heightS*0.2, this.widthS*0.2, this.heightS*0.08);
     this.ciack=loadShape("ciack2.svg");
   }
 
   public void draw() {
     rectMode(CENTER);
     fill(0);
-    stroke(0, 255, 0);
+    //stroke(0, 255, 0);
     rect(this.centerX, this.centerY, this.widthS, this.heightS);
     line(this.centerX-this.widthS/2+this.widthS*0.7, this.centerY-this.heightS/2, this.centerX-this.widthS/2+this.widthS*0.7, this.centerY+this.heightS/2);
     shapeMode(CENTER);

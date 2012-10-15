@@ -29,8 +29,9 @@ class ys_HelpWindow
       rectMode(CORNER);
       rect(x, y, w, h);
       fill(POP_UP_WINDOW_TEXT_COLOR);
-      textAlign(CENTER, CENTER);
-      text(content, x+w*0.5, y+h*0.5);
+      textAlign(LEFT, CENTER);
+      textSize(120/scaling);
+      text(content, x+w*0.04, y+h*0.1);
       popStyle();
     }
   }
