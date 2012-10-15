@@ -88,8 +88,8 @@ public class monsterTaxonomy {
     this.centerY=centerY;
     this.widthT=widthT;
     this.heightT=heightT;
-    nodeDiameterFather=this.heightT/3;
-    nodeDiameterChild=this.heightT/5;
+    nodeDiameterFather=this.heightT/3.5;
+    nodeDiameterChild=this.heightT/5.3;
     this.background=background;
   }
 
@@ -99,24 +99,24 @@ public class monsterTaxonomy {
     //vampires
 
     vampires_pic=loadImage("vampires.png");
-    vampires = new monsterNode("vampires", this.centerX-this.widthT/2+this.widthT*0.1, this.centerY-this.heightT/2+this.heightT*0.9, this.nodeDiameterFather, vampires_pic);
+    vampires = new monsterNode("vampires", this.centerX-this.widthT/2+this.widthT*0.1, this.centerY-this.heightT/2+this.heightT*0.85, this.nodeDiameterFather, vampires_pic);
     this.addNode(vampires);
 
     dracula_pic=loadImage("dracula.png");
     dracula = new monsterNode("Dracula", 0, 0, this.nodeDiameterChild, dracula_pic);
     dracula.setFather(vampires);
-    dracula.setCenter(dracula.father.centerX-this.nodeDiameterChild*1.3, dracula.father.centerY-this.nodeDiameterChild*1.5);
+    dracula.setCenter(149*7/scaling, 268*7/scaling);
     this.addNode(dracula);
 
     femaleVampires_pic=loadImage("femalevampires.png");
-    femaleVampires = new monsterNode("Female Vampires", 0, 0, this.nodeDiameterChild, femaleVampires_pic);
+    femaleVampires = new monsterNode("Female\nVampires", 0, 0, this.nodeDiameterChild, femaleVampires_pic);
     femaleVampires.setFather(vampires);
-    femaleVampires.setCenter(femaleVampires.father.centerX+this.nodeDiameterChild*2.5, femaleVampires.father.centerY-this.nodeDiameterChild);
+    femaleVampires.setCenter(femaleVampires.father.centerX+this.nodeDiameterChild*2.5, femaleVampires.father.centerY-this.nodeDiameterChild*0.5);
     this.addNode(femaleVampires);
 
     //extraterrestrials
     Extraterrestrials_pic=loadImage("extraterrestrial.png");
-    Extraterrestrials = new monsterNode("Extraterrestrials", this.centerX-this.widthT/2+this.widthT*0.93, this.centerY-this.heightT/2+this.heightT*0.3, this.nodeDiameterFather, Extraterrestrials_pic);
+    Extraterrestrials = new monsterNode("Extraterrestrials", 1517*7/scaling, 191*7/scaling, this.nodeDiameterFather, Extraterrestrials_pic);
     this.addNode(Extraterrestrials);
 
     predator_pic=loadImage("predator.png");
@@ -140,19 +140,19 @@ public class monsterTaxonomy {
     zombies_pic=loadImage("zombies.png");
     zombies = new monsterNode("Zombies", 0, 0, this.nodeDiameterChild, zombies_pic);
     zombies.setFather(livingDead);
-    zombies.setCenter(zombies.father.centerX-this.nodeDiameterChild*1.9, zombies.father.centerY-this.nodeDiameterChild*0.8);
+    zombies.setCenter(153*7/scaling, 120*7/scaling);
     zombies.setFather(livingDead);
     this.addNode(zombies);
 
     frankenstein_pic=loadImage("frankenstein.png");
     frankenstein = new monsterNode("Frankenstein", 50, 50, this.nodeDiameterChild, frankenstein_pic);
     frankenstein.setFather(livingDead);
-    frankenstein.setCenter(frankenstein.father.centerX+this.nodeDiameterChild*1.9, frankenstein.father.centerY-this.nodeDiameterChild*1);   
+    frankenstein.setCenter(377*7/scaling, 125*7/scaling);   
     this.addNode(frankenstein);
 
     //humanoids
     humanoids_pic=loadImage("humanoids.png");
-    humanoids = new monsterNode("Humanoids", this.centerX-this.widthT/2+this.widthT*0.48, this.centerY-this.heightT/2+this.heightT*0.39, this.nodeDiameterFather, humanoids_pic);
+    humanoids = new monsterNode("Humanoids",752*7/scaling, 229*7/scaling, this.nodeDiameterFather, humanoids_pic);
     this.addNode(humanoids);
 
     witches_pic=loadImage("witches.png");
@@ -164,17 +164,17 @@ public class monsterTaxonomy {
     swampCreature_pic=loadImage("swampcreatures.png");
     swampCreature = new monsterNode("Swamp\nCreature", 0, 0, this.nodeDiameterChild, swampCreature_pic);
     swampCreature.setFather(humanoids);
-    swampCreature.setCenter(swampCreature.father.centerX-this.nodeDiameterChild*0.6, swampCreature.father.centerY+this.nodeDiameterChild*1.9);
+    swampCreature.setCenter(745*7/scaling, 331*7/scaling);
     this.addNode(swampCreature);
 
     invisibleMan_pic=loadImage("invisible.png");
-    invisibleMan = new monsterNode("The Invisible\nMan", 0, 0, this.nodeDiameterChild, invisibleMan_pic);
+    invisibleMan = new monsterNode("The Invisible Man", 0, 0, this.nodeDiameterChild, invisibleMan_pic);
     invisibleMan.setFather(humanoids);
-    invisibleMan.setCenter(invisibleMan.father.centerX+this.nodeDiameterChild*0.5, invisibleMan.father.centerY-this.nodeDiameterChild*1.9);
+    invisibleMan.setCenter(789*7/scaling, 118*7/scaling);
     this.addNode(invisibleMan);
 
     freddykrueger_pic=loadImage("freddykrueger.png");
-    freddykrueger = new monsterNode("Freddy Krueger", 0, 0, this.nodeDiameterChild, freddykrueger_pic);
+    freddykrueger = new monsterNode("Freddy", 886*7/scaling, 180*7/scaling, this.nodeDiameterChild, freddykrueger_pic);
     freddykrueger.setFather(humanoids);
     freddykrueger.setCenter(freddykrueger.father.centerX+this.nodeDiameterChild*2, freddykrueger.father.centerY-this.nodeDiameterChild*0.4);
     this.addNode(freddykrueger);
@@ -182,30 +182,30 @@ public class monsterTaxonomy {
     jason_pic=loadImage("jason.png");
     jason = new monsterNode("Jason", 0, 0, this.nodeDiameterChild, jason_pic);
     jason.setFather(humanoids);
-    jason.setCenter(jason.father.centerX+this.nodeDiameterChild*1.5, jason.father.centerY+this.nodeDiameterChild*1.5);
+    jason.setCenter(894*7/scaling, 322*7/scaling);
     this.addNode(jason);
 
 
     //supernaturalForces
     supernaturalForces_pic=loadImage("supernatural.png");
-    supernaturalForces = new monsterNode("supernatural Forces", this.centerX-this.widthT/2+this.widthT*0.35, this.centerY-this.heightT/2+this.heightT*0.65, this.nodeDiameterFather, supernaturalForces_pic);
+    supernaturalForces = new monsterNode("supernatural Forces", 579*7/scaling, 283*7/scaling, this.nodeDiameterFather, supernaturalForces_pic);
     this.addNode(supernaturalForces);
 
     demons_pic=loadImage("demons.png");
     demons = new monsterNode("Demons", 0, 0, this.nodeDiameterChild, demons_pic);
     demons.setFather(supernaturalForces);
-    demons.setCenter(demons.father.centerX-this.nodeDiameterChild*1.5, demons.father.centerY+this.nodeDiameterChild*1.5);
+    demons.setCenter(526*7/scaling,408*7/scaling);
     this.addNode(demons);
 
     possessedObjects_pic=loadImage("possessedobjects.png");
     possessedObjects = new monsterNode("Possessed Objects", 0, 0, this.nodeDiameterChild, possessedObjects_pic);
     possessedObjects.setFather(supernaturalForces);
-    possessedObjects.setCenter(possessedObjects.father.centerX+this.nodeDiameterChild*1.5, possessedObjects.father.centerY+this.nodeDiameterChild*1.5);
+    possessedObjects.setCenter(643*7/scaling, 406*7/scaling);
     this.addNode(possessedObjects);
 
     //plants and animals
     plantsAnimals_pic=loadImage("animals.png");
-    plantsAnimals = new monsterNode("Plants and\nAnimals", this.centerX-this.widthT/2+this.widthT*0.7, this.centerY-this.heightT/2+this.heightT*0.7, this.nodeDiameterFather, plantsAnimals_pic);
+    plantsAnimals = new monsterNode("Plants and\nAnimals", 1136*7/scaling, 307*7/scaling, this.nodeDiameterFather, plantsAnimals_pic);
     this.addNode(plantsAnimals);
 
     snakes_pic=loadImage("snakes.png");
@@ -215,26 +215,26 @@ public class monsterTaxonomy {
     this.addNode(snakes);
 
     prehistoric_pic=loadImage("dinosaurs.png");
-    prehistoric = new monsterNode("Prehistoric\nCreatures", 0, 0, this.nodeDiameterChild, prehistoric_pic);
+    prehistoric = new monsterNode("Dinosaurs", 0, 0, this.nodeDiameterChild, prehistoric_pic);
     prehistoric.setFather(plantsAnimals);
-    prehistoric.setCenter(prehistoric.father.centerX-this.nodeDiameterChild*1.5, prehistoric.father.centerY+this.nodeDiameterChild*1.5);
+    prehistoric.setCenter(1000*7/scaling, 402*7/scaling);
     this.addNode(prehistoric);
 
     aquatic_pic=loadImage("piranha.png");
-    aquatic = new monsterNode("Aquatic\nCreatures", 0, 0, this.nodeDiameterChild, aquatic_pic);
+    aquatic = new monsterNode("Piranha", 0, 0, this.nodeDiameterChild, aquatic_pic);
     aquatic.setFather(plantsAnimals);
-    aquatic.setCenter(aquatic.father.centerX-this.nodeDiameterChild*1.5, aquatic.father.centerY-this.nodeDiameterChild*1.5);
+    aquatic.setCenter(1027*7/scaling, 245*7/scaling);
     this.addNode(aquatic);
 
     sharks_pic=loadImage("sharks.png");
     sharks = new monsterNode("Sharks", 0, 0, this.nodeDiameterChild, sharks_pic);
     sharks.setFather(plantsAnimals);
-    sharks.setCenter(sharks.father.centerX+this.nodeDiameterChild*1.5, sharks.father.centerY+this.nodeDiameterChild*1.5);
+    sharks.setCenter(1164*7/scaling, 402*7/scaling);
     this.addNode(sharks);
 
     //mutants
     mutants_pic=loadImage("mutants.png");
-    mutants = new monsterNode("Mutants", this.centerX-this.widthT/2+this.widthT*0.8, this.centerY-this.heightT/2+this.heightT*0.2, this.nodeDiameterFather, mutants_pic);
+    mutants = new monsterNode("Mutants", this.centerX-this.widthT/2+this.widthT*0.85, this.centerY-this.heightT/2+this.heightT*0.2, this.nodeDiameterFather, mutants_pic);
     this.addNode(mutants);
 
     werewolves_pic=loadImage("werewolves.png");
@@ -251,7 +251,7 @@ public class monsterTaxonomy {
     godzilla_pic=loadImage("godzilla.png");
     godzilla = new monsterNode("Godzilla", 0, 0, this.nodeDiameterChild, godzilla_pic);
     godzilla.setFather(mutatedCreatures);
-    godzilla.setCenter(godzilla.father.centerX+this.nodeDiameterChild*1.5, godzilla.father.centerY+this.nodeDiameterChild*0.8);
+    godzilla.setCenter(1482*7/scaling,390*7/scaling);
     this.addNode(godzilla);
   }
 

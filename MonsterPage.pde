@@ -31,7 +31,7 @@ class MonsterPage {
     movie = new Movie("Tutti belli Meluelli", 2012, "horror", 60, "very good movie", "PG13", 3000);
     moviePane = new SingleMoviePane(width/2, height/2, width/6*4, height*0.95, movie);
     top10Pane = new Top10Pane(width/2, height/2, width/6*4, height*0.8);
-    taxonomy = new monsterTaxonomy(width*0.5, height*0.6, width*0.9, height*0.7, color(255));
+    taxonomy = new monsterTaxonomy(width*0.5, height*0.57, width*0.95, height*0.79, color(255));
     taxonomy.setup();
   }
 
@@ -42,7 +42,7 @@ class MonsterPage {
     fill(TITLE_COLOR);
     textSize(TITLE_SIZE);
     textAlign(CENTER,CENTER);
-    text("MADDENED MUSCLE MONSTER MASH MUSEUM", width*0.5, height*0.15);
+    text("MADDENED MUSCLE MONSTER MASH MUSEUM", width*0.5, height*0.1);
 
     popStyle();
     //taxonomyButton.draw();

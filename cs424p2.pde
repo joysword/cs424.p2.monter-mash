@@ -128,7 +128,7 @@ void setup()
 //
 ///////////////////////////////////
 void draw() {
-
+print("\nx: "+mouseX+" y: "+mouseY);
   background(BG_COLOR);
 
   //render graphs or other things
