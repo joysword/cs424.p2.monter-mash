@@ -238,7 +238,7 @@ public class cc_DatabaseManager {
     this.context=context;
     String user     = "root";
     String pass     = "root";
-    String database = "cs424imdb2";
+    String database = "cs424imdb7";
     msql = new MySQL( context, "localhost", database, user, pass );
   }
 
@@ -1477,7 +1477,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       genre+
       " monster=\""+
       monster+
-      "\" and clustered_by=\"HIGH BUDGET\" "+
+      "\" and clustered_by=\"HIGH_BUDGET\" "+
       "group by year "+
       "order by year";
       println(query1);
@@ -1490,7 +1490,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       genre+
       " monster=\""+
       monster+
-      "\" and clustered_by=\"LOW BUDGET\" "+
+      "\" and clustered_by=\"LOW_BUDGET\" "+
       "group by year "+
       "order by year";
       msql.query(query2);
@@ -1502,7 +1502,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       genre+
       " monster=\""+
       monster+
-      "\" and clustered_by=\"NO BUDGET\" "+
+      "\" and clustered_by=\"NO_BUDGET\" "+
       "group by year "+
       "order by year";
       msql.query(query3);
