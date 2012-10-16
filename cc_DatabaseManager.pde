@@ -390,10 +390,11 @@ public class cc_DatabaseManager {
     int i=0;
     do {
       i=1;
-      while (msql.getInt (1)>old) {
+      while (msql.getInt(1)>old) {
         array.add(new cc_YearCountPair(0.0, old));
         old++;
       }
+      print(msql.getFloat(1)+" "+msql.getFloat(2));
       array.add(new cc_YearCountPair(msql.getFloat(2), msql.getInt(1)));
       old++;
     }
@@ -495,18 +496,12 @@ public class cc_DatabaseManager {
     if ( msql.connect() )
     {
       String query="select "+
-        "t.production_year, count(t.id) "+
+        "year,sum(count) "+
         "from "+
-        "keyword as k "+
-        "left join "+
-        "movie_keyword as mk ON k.id = mk.keyword_id "+
-        "left join "+
-        "title as t ON t.id = mk.movie_id "+
-        "where ("+
-        getKeywords(keyword)+
-        ") "+
-        " group by t.production_year "+
-        "order by t.production_year ";
+        "quality_count "+
+        "where monster=\""+keyword+"\""+
+        " group by year "+
+        "order by year ";
       msql.query(query);
       array=createArrayFromQuery(array, msql);
     }
@@ -1114,8 +1109,8 @@ private void addOTHERS(ArrayList<CertificateInstance> array,MySQL msql){
 public ArrayList<Instance> getCertificates(String genre, String monster){
     ArrayList<Instance> array = new ArrayList<Instance>();
     initArray(array);
-        if(!genre.equals(""))
-          genre=" genre=\""+genre+"\" and";
+    if(!genre.equals(""))
+       genre=" genre=\""+genre+"\" and";
     if ( msql.connect() )
     {
       String query1=   
@@ -1148,7 +1143,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from certificates_count "+
       "where "+
       genre+
-      "\" monster=\""+
+      " monster=\""+
       monster+
       "\" and clustered_by=\"R\" "+
       "group by year "+
@@ -1196,7 +1191,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from certificates_count "+
       "where "+
       genre+
-      "\" monster=\""+
+      " monster=\""+
       monster+
       "\" and clustered_by=\"NR\" "+
       "group by year "+
@@ -1219,7 +1214,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
     {
       String query1=   
       "SELECT year,sum(count) "+
-      "from certificates_count "+
+      "from countries_count "+
       "where "+
       genre+
       " monster=\""+
@@ -1232,7 +1227,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       add(0,array,msql);
       String query2=   
          "SELECT year,sum(count) "+
-      "from certificates_count "+
+      "from countries_count "+
       "where "+
       genre+
       " monster=\""+
@@ -1244,19 +1239,20 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       add(1,array,msql);
        String query3=   
        "SELECT year,sum(count) "+
-      "from certificates_count "+
+      "from countries_count "+
       "where "+
       genre+
-      "\" monster=\""+
+      " monster=\""+
       monster+
       "\" and clustered_by=\"France\" "+
       "group by year "+
       "order by year";
+      println(query3);
       msql.query(query3);
       add(2,array,msql);
             String query4=   
        "SELECT year,sum(count) "+
-      "from certificates_count "+
+      "from countries_count "+
       "where "+
       genre+
       " monster=\""+
@@ -1264,11 +1260,12 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "\" and clustered_by=\"Japan\" "+
       "group by year "+
       "order by year";
+      println(query4);
       msql.query(query4);
       add(3,array,msql);
             String query5=   
        "SELECT year,sum(count) "+
-      "from certificates_count "+
+      "from countries_count "+
       "where "+
       genre+
       " monster=\""+
@@ -1280,7 +1277,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       add(4,array,msql);
             String query6=   
        "SELECT year,sum(count) "+
-      "from certificates_count "+
+      "from countries_count "+
       "where "+
       genre+
       " monster=\""+
@@ -1292,10 +1289,10 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       add(5,array,msql);
             String query7=   
        "SELECT year,sum(count) "+
-      "from certificates_count "+
+      "from countries_count "+
       "where "+
       genre+
-      "\" monster=\""+
+      " monster=\""+
       monster+
       "\" and clustered_by=\"Others\" "+
       "group by year "+
