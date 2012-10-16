@@ -17,6 +17,8 @@ public class SingleMonsterPane {
   private PShape hideButton;
   private PImage movieTape;
   private boolean firstTime=true;
+  private String monster1="vampire";
+  private String monster2="zombie";
 
   public SingleMonsterPane(float centerX, float centerY, float widthT, float heightT, color background) {
     this.centerX=centerX;
@@ -40,12 +42,24 @@ public class SingleMonsterPane {
     firstTime=true;
   }
 
+
+  private void setupMonster1(){
+    plot1.setupDataMonster1(monster1);
+    top5Genres.setupDataMonster1(monster1);
+  }
+  
+  private void setupMonster2(){
+    plot1.setupDataMonster2(monster2);
+    top5Genres.setupDataMonster2(monster2);
+  }
+  
+  
   public void draw() {
     pushStyle();
 
     if (firstTime) {
-      plot1.setupData(matchName(monster.monsterName), "snake");
-      //radar.setupData(matchName(monster.monsterName));
+      setupMonster1();
+      setupMonster2();
       firstTime=false;
       plot1.monsterSetup();
     }

@@ -48,12 +48,15 @@ public class cc_MonsterPlot {
     scroll=new cc_MonsterScroll(innerLeftX, innerRightX, innerLowerY, lowerY);
   }
 
-  public void setupData(String monster1, String monster2) {
+  public void setupDataMonster1(String monster1){
     dataManager1=new cc_PlotDataManager(monster1, context);
     dataManager1.setData(cc_PlottedData.NUMBER_FILMS);
+  }
+  public void setupDataMonster2(String monster2){
     dataManager2=new cc_PlotDataManager(monster2, context);
     dataManager2.setData(cc_PlottedData.NUMBER_FILMS);
   }
+
 
   public void monsterSetup() {
     dataManager1.setData(cc_PlottedData.NUMBER_FILMS); 
