@@ -825,12 +825,12 @@ public class cc_DatabaseManager {
     return array;
   }
 
-private void initArray(ArrayList<FormatInstance> array){
+private void initArray(ArrayList<Instance> array){
   for(int i=0;i<123;i++){
-   array.add(new FormatInstance(1890+i,0,0,0)); 
+   array.add(new Instance(1890+i)); 
   }
 }
-
+/*
 private void initArrayCert(ArrayList<CertificateInstance> array){
   for(int i=0;i<123;i++){
    array.add(new CertificateInstance(1890+i,0,0,0,0,0,0,0)); 
@@ -842,7 +842,17 @@ private void initArrayCountry(ArrayList<CountryInstance> array){
    array.add(new CountryInstance(1890+i,0,0,0,0,0,0,0)); 
   }
 }
-
+*/
+private void add(int i,ArrayList<Instance> array,MySQL msql){
+  int year,count;
+  while(msql.next()){
+    year=msql.getInt(1);
+    count=msql.getInt(2);
+        if(year>1889)
+    array.get(year-1890).set(i,count);
+  }
+}
+/*
 private void addUSA(ArrayList<CountryInstance> array,MySQL msql){
   int year,count;
   while(msql.next()){
@@ -939,7 +949,7 @@ private void addHigh(ArrayList<FormatInstance> array,MySQL msql){
   }
 }
 
-
+*/
 public ArrayList<FormatInstance> getFormat(String genre, String monster){
     ArrayList<FormatInstance> array = new ArrayList<FormatInstance>();
     initArray(array);
@@ -959,7 +969,7 @@ public ArrayList<FormatInstance> getFormat(String genre, String monster){
       "order by year";
       println(query1);
       msql.query(query1);
-      addLow(array,msql);
+      add(0,array,msql);
       String query2=   
          "SELECT year,count "+
       "from format_count "+
@@ -971,7 +981,7 @@ public ArrayList<FormatInstance> getFormat(String genre, String monster){
       "group by year "+
       "order by year";
       msql.query(query2);
-      addMed(array,msql);
+      add(1,array,msql);
        String query3=   
        "SELECT year,count "+
       "from format_count "+
@@ -983,14 +993,14 @@ public ArrayList<FormatInstance> getFormat(String genre, String monster){
       "group by year "+
       "order by year";
       msql.query(query3);
-      addHigh(array,msql);
+      add(2,array,msql);
     }
     else {
     }
     return array;
 
   } 
-  
+ /* 
     
 
 private void addG(ArrayList<CertificateInstance> array,MySQL msql){
@@ -1061,10 +1071,10 @@ private void addOTHERS(ArrayList<CertificateInstance> array,MySQL msql){
     array.get(year-1890).setOTHERS(count);
   }
 }
-
+*/
 public ArrayList<CertificateInstance> getCertificates(String genre, String monster){
     ArrayList<CertificateInstance> array = new ArrayList<CertificateInstance>();
-    initArrayCert(array);
+    initArray(array);
         if(!genre.equals(""))
           genre=" genre=\""+genre+"\" and";
     if ( msql.connect() )
@@ -1081,7 +1091,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "order by year";
       println(query1);
       msql.query(query1);
-      addG(array,msql);
+      add(0,array,msql);
       String query2=   
          "SELECT year,count "+
       "from certificates_count "+
@@ -1093,7 +1103,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "group by year "+
       "order by year";
       msql.query(query2);
-      addPG(array,msql);
+      add(1,array,msql);
        String query3=   
        "SELECT year,count "+
       "from certificates_count "+
@@ -1105,7 +1115,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "group by year "+
       "order by year";
       msql.query(query3);
-      addR(array,msql);
+      add(2,array,msql);
             String query4=   
        "SELECT year,count "+
       "from certificates_count "+
@@ -1117,7 +1127,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "group by year "+
       "order by year";
       msql.query(query4);
-      addPG13(array,msql);
+      add(3,array,msql);
             String query5=   
        "SELECT year,count "+
       "from certificates_count "+
@@ -1129,7 +1139,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "group by year "+
       "order by year";
       msql.query(query5);
-      addNC17(array,msql);
+      add(4,array,msql);
             String query6=   
        "SELECT year,count "+
       "from certificates_count "+
@@ -1141,7 +1151,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "group by year "+
       "order by year";
       msql.query(query6);
-      addOTHERS(array,msql);
+      add(5,array,msql);
             String query7=   
        "SELECT year,count "+
       "from certificates_count "+
@@ -1153,7 +1163,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "group by year "+
       "order by year";
       msql.query(query7);
-      addNR(array,msql);
+      add(6,array,msql);
     }
     else {
     }
@@ -1163,7 +1173,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
 
   public ArrayList<CountryInstance> getCountries(String genre, String monster){
     ArrayList<CountryInstance> array = new ArrayList<CountryInstance>();
-    initArrayCountry(array);
+    initArray(array);
         if(!genre.equals(""))
           genre=" genre=\""+genre+"\" and";
     if ( msql.connect() )
@@ -1180,7 +1190,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "order by year";
       println(query1);
       msql.query(query1);
-      addUSA(array,msql);
+      add(0,array,msql);
       String query2=   
          "SELECT year,count "+
       "from certificates_count "+
@@ -1192,7 +1202,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "group by year "+
       "order by year";
       msql.query(query2);
-      addUK(array,msql);
+      add(1,array,msql);
        String query3=   
        "SELECT year,count "+
       "from certificates_count "+
@@ -1204,7 +1214,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "group by year "+
       "order by year";
       msql.query(query3);
-      addFrance(array,msql);
+      add(2,array,msql);
             String query4=   
        "SELECT year,count "+
       "from certificates_count "+
@@ -1216,7 +1226,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "group by year "+
       "order by year";
       msql.query(query4);
-      addJapan(array,msql);
+      add(3,array,msql);
             String query5=   
        "SELECT year,count "+
       "from certificates_count "+
@@ -1228,7 +1238,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "group by year "+
       "order by year";
       msql.query(query5);
-      addGermany(array,msql);
+      add(4,array,msql);
             String query6=   
        "SELECT year,count "+
       "from certificates_count "+
@@ -1240,7 +1250,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "group by year "+
       "order by year";
       msql.query(query6);
-      addCanada(array,msql);
+      add(5,array,msql);
             String query7=   
        "SELECT year,count "+
       "from certificates_count "+
@@ -1252,7 +1262,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "group by year "+
       "order by year";
       msql.query(query7);
-      addOthers(array,msql);
+      add(6,array,msql);
     }
     else {
     }
@@ -1261,8 +1271,8 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
   }  
   
 
-  public ArrayList<FormatInstance> getQuality(String genre, String monster){
-    ArrayList<FormatInstance> array = new ArrayList<FormatInstance>();
+  public ArrayList<Instance> getQuality(String genre, String monster){
+    ArrayList<Instance> array = new ArrayList<Instance>();
     initArray(array);
     if(!genre.equals(""))
           genre=" genre=\""+genre+"\" and";
@@ -1280,7 +1290,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "order by year";
       println(query1);
       msql.query(query1);
-      addLow(array,msql);
+      add(0,array,msql);
       String query2=   
          "SELECT year,count "+
       "from quality_count "+
@@ -1292,7 +1302,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "group by year "+
       "order by year";
       msql.query(query2);
-      addMed(array,msql);
+      add(1,array,msql);
        String query3=   
        "SELECT year,count "+
       "from quality_count "+
@@ -1304,7 +1314,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "group by year "+
       "order by year";
       msql.query(query3);
-      addHigh(array,msql);
+      add(2,array,msql);
     }
     else {
     }
@@ -1330,7 +1340,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "order by year";
       println(query1);
       msql.query(query1);
-      addLow(array,msql);
+      add(0,array,msql);
       String query2=   
          "SELECT year,SUM( count )  "+
       "from popularity_count "+
@@ -1342,7 +1352,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "group by year "+
       "order by year";
       msql.query(query2);
-      addMed(array,msql);
+      add(1,array,msql);
        String query3=   
        "SELECT year,SUM( count )  "+
       "from popularity_count "+
@@ -1354,7 +1364,7 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
       "group by year "+
       "order by year";
       msql.query(query3);
-      addHigh(array,msql);
+      add(2,array,msql);
     }
     else {
     }
