@@ -95,7 +95,11 @@ public class SingleMonsterPane {
         compareMonster2.draw();
 
     imageMode(CENTER);
-    image(this.monster.avatar, this.centerX-this.widthT/4, this.centerY-this.heightT/4.3+this.heightT/20, 750/scaling, 750/scaling);
+    if(this.monster_2==null){image(this.monster.avatar, this.centerX-this.widthT/4, this.centerY-this.heightT/4.3+this.heightT/20, 750/scaling, 750/scaling);}
+    else{ 
+    image(this.monster.avatar, this.centerX-this.widthT/4-450/scaling, this.centerY-this.heightT/4.3+this.heightT/20, 750/scaling, 750/scaling);
+    image(this.monster_2.avatar, this.centerX-this.widthT/4+450/scaling, this.centerY-this.heightT/4.3+this.heightT/20, 750/scaling, 750/scaling);}
+
     fill(255);
     shape(this.hideButton, this.centerX+this.widthT*0.47, this.centerY+this.heightT*0.44, 130/scaling, 130/scaling);
     textAlign(CENTER, BOTTOM);
