@@ -342,7 +342,7 @@ public class monsterTaxonomy {
       if ((((monsterNode)this.nodesList.get(i)).checkOn(myX, myY)|| indexMoving==i)&& (indexMoving==i || indexMoving==-1)) {
 
 
-        (((monsterNode)this.nodesList.get(i))).setCenter(myX, myY);
+        (((monsterNode)this.nodesList.get(i))).setCenter(myX+distanceX,myY+distanceY);
         indexMoving=i;
         (((monsterNode)this.nodesList.get(i))).moving=true;
       }

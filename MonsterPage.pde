@@ -1,3 +1,5 @@
+float distanceX, distanceY;
+
 class MonsterPage {
   boolean taxonomyTab;
   boolean movieTab;
@@ -119,6 +121,8 @@ float finalX, finalY;
       if (((monsterNode)taxonomy.nodesList.get(i)).checkOn(xPos, yPos)){
   finalX=((monsterNode)taxonomy.nodesList.get(i)).centerX;
     finalY=((monsterNode)taxonomy.nodesList.get(i)).centerY;
+    distanceX=finalX-xPos;
+    distanceY=finalY-yPos;
   break;}}
   
   //print("\nx "+finalX+" y "+finalY);
