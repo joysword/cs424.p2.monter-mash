@@ -87,7 +87,7 @@ class MoviePage {
         }
         int check = moviePane.suggestionBox.checkOnSuggestion(posx, posy);
         if (check!=-1 && moviePane.suggestionBox.suggestions.size() > 0) {
-          moviePane.suggestionBox.inputTaken = (String)moviePane.suggestionBox.suggestions.get(check);
+          moviePane.suggestionBox.inputTaken = moviePane.suggestionBox.suggestions.get(check).getString();
           print("\n" + check + moviePane.suggestionBox.inputTaken);
           moviePane.suggestionBox.input = "";
           moviePane.suggestionBox.suggestions.clear();

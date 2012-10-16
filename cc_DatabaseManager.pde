@@ -827,11 +827,12 @@ public class cc_DatabaseManager {
     return array;
   }
 
-public ArrayList<StringCountPair> getFilmList() {
+public ArrayList<StringCountPair> getFilmList(String input) {
     ArrayList<StringCountPair> array = new ArrayList<StringCountPair>();
     if ( msql.connect() )
     {
-      String query="SELECT distinct title, id from title group by title";
+      String query="SELECT distinct title, id from title where title like \"%"+input+"%\" limit 3";
+      print(query);
       msql.query(query);
       array=createArrayFromQueryGenre(array, msql);
     }
@@ -1403,23 +1404,60 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
     return array;
 
   } 
-  /*
-  private ArrayList<String> getFilms(String init){
-    ArrayList<String> array= new ArrayList<String>();
-     if ( msql.connect() )
+
+   public ArrayList<Instance> getBudget(String genre, String monster){
+    ArrayList<Instance> array = new ArrayList<Instance>();
+    if(!genre.equals(""))
+          genre=" genre=\""+genre+"\" and";
+    initArray(array);
+    if ( msql.connect() )
     {
-    String query=" SELECT title " +
-   " FROM title "+
-   " WHERE title LIKE  \"%"+init+"%\""+
-   " LIMIT 3";
-    msql.query(query);
-    array=createArray(array,msql);
+      String query1=   
+      "SELECT year,SUM( count )  "+
+      "from budget_count "+
+      "where "+
+      genre+
+      " monster=\""+
+      monster+
+      "\" and clustered_by=\"HIGH BUDGET\" "+
+      "group by year "+
+      "order by year";
+      println(query1);
+      msql.query(query1);
+      add(0,array,msql);
+      String query2=   
+         "SELECT year,SUM( count )  "+
+      "from budget_count "+
+      "where "+
+      genre+
+      " monster=\""+
+      monster+
+      "\" and clustered_by=\"LOW BUDGET\" "+
+      "group by year "+
+      "order by year";
+      msql.query(query2);
+      add(1,array,msql);
+       String query3=   
+       "SELECT year,SUM( count )  "+
+      "from budget_count "+
+      "where "+
+      genre+
+      " monster=\""+
+      monster+
+      "\" and clustered_by=\"NO BUDGET\" "+
+      "group by year "+
+      "order by year";
+      msql.query(query3);
+      add(2,array,msql);
     }
     else {
     }
     return array;
-  }
-*/
+
+  } 
+  
+
+
   
   private String getGenres(String[] genres){
     String info_list="";
