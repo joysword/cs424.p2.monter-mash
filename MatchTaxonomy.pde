@@ -39,7 +39,7 @@ public static class MatchTaxonomy {/*
     if (matchString=="Possessed Objects")
       return "possessed";
     if (matchString=="Plants and\nAnimals")
-      return "animals";
+      return "animal";
     if (matchString=="Snakes")
       return "snake";
     if (matchString=="Dinosaurs")

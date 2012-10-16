@@ -47,6 +47,8 @@ public class cc_DatabaseManager {
   public static final String ALIEN_REF="alien";
   public static final String PREDATOR_REF="predator";
   public static final String PIRANHA_REF="piranha";
+  public static final String ANIMAL_REF="animal";
+  public static final String HUMANOIDS_REF="humanoids";
   private float[] inflation= {
     25, 25, 25, 25.64, 26.32, 27.03, 27.03, 27.78, 27.78, 27.78, 27.03, 27.03, 26.32, 26.32, 25.64, 
     26.32, 25.64, 24.39, 25, 25, 24.39, 24.39, 23.81, 23.26, 22.73, 22.73, 20.83, 17.86, 15.15, 13.33, 11.49, 12.82, 13.7, 
@@ -221,7 +223,7 @@ public class cc_DatabaseManager {
   };
 
   private String[] animal_kwords={
-    "snake","shark"
+    "snake","shark","dinosaur","piranha"
   };
 
 
@@ -392,6 +394,14 @@ public class cc_DatabaseManager {
       for (int i=0;i<4 && i<werewolf_kwords.length;i++)
       if(werewolf_kwords.length>i)
         keyword_list=keyword_list+werewolf_kwords[i]+"\n";
+    }else if (keyword.equals(HUMANOIDS_REF)) {
+      for (int i=0;i<4 && i<humanoids_kwords.length;i++)
+      if(humanoids_kwords.length>i)
+        keyword_list=keyword_list+humanoids_kwords[i]+"\n";
+    }else if (keyword.equals(ANIMAL_REF)) {
+      for (int i=0;i<4 && i<animal_kwords.length;i++)
+      if(animal_kwords.length>i)
+        keyword_list=keyword_list+animal_kwords[i]+"\n";
     }
 
 
@@ -1648,6 +1658,12 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
     }else if (keyword.equals(PIRANHA_REF)) {
       for (int i=0;i<piranha_kwords.length;i++)
         keyword_list=keyword_list+" k.keyword='"+piranha_kwords[i]+"' or";
+    }else if (keyword.equals(ANIMAL_REF)) {
+      for (int i=0;i<animal_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+animal_kwords[i]+"' or";
+    }else if (keyword.equals(HUMANOIDS_REF)) {
+      for (int i=0;i<humanoids_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+humanoids_kwords[i]+"' or";
     }
     if (keyword_list.length()<2) return "";
     keyword_list=keyword_list.substring(0, keyword_list.length()-2);
