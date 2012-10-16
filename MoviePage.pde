@@ -1,4 +1,4 @@
-class MoviePage {
+public class MoviePage {
   boolean taxonomyTab;
   boolean movieTab;
   boolean showTop10;

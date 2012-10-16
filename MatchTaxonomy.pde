@@ -9,11 +9,11 @@ public static class MatchTaxonomy {/*
  */
   public static String matchName(String matchString) {
     if (matchString=="Extraterrestrials")
-      return "";
+      return "alien";
     if (matchString=="Predator")
-      return "";
+      return "predator";
     if (matchString=="Living Dead")
-      return "";
+      return "living-dead";
     if (matchString=="Mummy")
       return "mummy";
     if (matchString=="Zombies")
@@ -21,14 +21,14 @@ public static class MatchTaxonomy {/*
     if (matchString=="Frankenstein")
       return "frankenstein";
     if (matchString=="Humanoids")
-      return "";
+      return "humanoids";
     if (matchString=="Witches and\nWizards")
       return "witch-wizards";
     if (matchString=="Swamp\nCreature")
       return "swamp";
-    if (matchString=="The Invisible\nMan")
+    if (matchString=="The Invisible Man")
       return "invisible-man";
-    if (matchString=="Freddy Krueger")
+    if (matchString=="Freddy")
       return "freddy-krueger";
     if (matchString=="Jason")
       return "jason";
@@ -39,26 +39,26 @@ public static class MatchTaxonomy {/*
     if (matchString=="Possessed Objects")
       return "possessed";
     if (matchString=="Plants and\nAnimals")
-      return "";
+      return "animals";
     if (matchString=="Snakes")
       return "snake";
-    if (matchString=="Prehistoric\nCreatures")
-      return "";
+    if (matchString=="Dinosaurs")
+      return "dinosaur";
     if (matchString=="Aquatic\nCreatures")
-      return "";
+      return "piranha";
     if (matchString=="Sharks")
       return "shark";
     if (matchString=="Mutants")
       return "mutants";
     if (matchString=="Werewolves")
-      return "";
+      return "werewolf";
     if (matchString=="Mutated Creatures")
       return "muted-creatures";
     if (matchString=="vampires")
       return "vampire";
     if (matchString=="Dracula")
       return "dracula";
-    if (matchString=="Female Vampires")
+    if (matchString=="Female\nVampires")
       return "female_vampire";
     if (matchString=="Godzilla")
       return "godzilla"; 

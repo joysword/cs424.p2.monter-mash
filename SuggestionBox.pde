@@ -79,7 +79,7 @@ public class SuggestionBox {
   public ArrayList getMatch(String query) {
     String movie = null;
     query = query.toLowerCase();
-    ArrayList matched=db.getFilmList(query);
+    ArrayList<StringCountPair> matched=db.getFilmList(query);
     /*
     ArrayList matched = new ArrayList();
     for (int i=0; i<this.movieTitles.size(); i++) {

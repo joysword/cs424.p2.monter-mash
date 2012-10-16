@@ -57,7 +57,7 @@ public class cc_DatabaseManager {
     1.46, 1.43, 1.41, 1.38, 1.33, 1.3, 1.27, 1.25, 1.21, 1.17, 1.14, 1.11, 1.06, 1.07, 1.05, 1.02, 1
   };
   //-------------------------------- IMDB CLASS --------------------------------------------
-  private String[] pirhana_kwords= {
+  private String[] piranha_kwords= {
     "piranha", "piranha-pool", "piranha-attack", "red-bellied-piranha"
   };
   private String[] vampire_kwords= {
@@ -214,6 +214,14 @@ public class cc_DatabaseManager {
 
   private String[] predator_kwords={
     "predatorial-horror"
+  };
+
+  private String[] humanoids_kwords={
+    "wizard", "invisible-man","evil-wizard", "wizard-of-oz"
+  };
+
+  private String[] animal_kwords={
+    "snake","shark"
   };
 
 
@@ -379,6 +387,13 @@ public class cc_DatabaseManager {
     }else if (keyword.equals(PIRANHA_REF)) {
       for (int i=0;i<4 && i<piranha_kwords.length;i++)
       if(piranha_kwords.length>i)
+        keyword_list=keyword_list+piranha_kwords[i]+"\n";
+    }else if (keyword.equals(WEREWOLF_REF)) {
+      for (int i=0;i<4 && i<werewolf_kwords.length;i++)
+      if(werewolf_kwords.length>i)
+        keyword_list=keyword_list+werewolf_kwords[i]+"\n";
+    }
+
 
        
     if(keyword_list.length()<2) return "";
@@ -1630,7 +1645,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
     }else if (keyword.equals(PREDATOR_REF)) {
       for (int i=0;i<predator_kwords.length;i++)
         keyword_list=keyword_list+" k.keyword='"+predator_kwords[i]+"' or";
-    }else if (keyword.equals(PIRHANA_REF)) {
+    }else if (keyword.equals(PIRANHA_REF)) {
       for (int i=0;i<piranha_kwords.length;i++)
         keyword_list=keyword_list+" k.keyword='"+piranha_kwords[i]+"' or";
     }
