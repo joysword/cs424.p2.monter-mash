@@ -354,6 +354,7 @@ public class monsterTaxonomy {
     for (int i=0;i<this.nodesList.size();i++) {
 
       if (((monsterNode)this.nodesList.get(i)).checkOn(myX, myY)) {
+        indexMoving=i;
         if (!(((monsterNode)this.nodesList.get(i)).moving)) {
 
           this.singleMonsterPane.setMonster((monsterNode)this.nodesList.get(i));

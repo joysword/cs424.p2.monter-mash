@@ -61,6 +61,7 @@ float finalX, finalY;
   }
 
   void mousePressed_(float xPos, float yPos) {
+    print("\n moving: "+taxonomy.indexMoving);
     /*
     if (top10Button.checkOn(posx, posy)) {
       if (showTop10) {
@@ -69,6 +70,7 @@ float finalX, finalY;
       else {
         showTop10 = true;
       }
+      
     }
     */
     /*
@@ -123,10 +125,12 @@ float finalX, finalY;
     finalY=((monsterNode)taxonomy.nodesList.get(i)).centerY;
     distanceX=finalX-xPos;
     distanceY=finalY-yPos;
+    taxonomy.indexMoving=i;
   break;}}
   
   //print("\nx "+finalX+" y "+finalY);
-    
+  
+   print("\n moving: "+taxonomy.indexMoving); 
   }
 
   void mouseDragged_(float posx, float posy) {
