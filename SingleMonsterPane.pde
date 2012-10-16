@@ -104,7 +104,12 @@ public class SingleMonsterPane {
     shape(this.hideButton, this.centerX+this.widthT*0.47, this.centerY+this.heightT*0.44, 130/scaling, 130/scaling);
     textAlign(CENTER, BOTTOM);
     textSize(75/scaling);
-    text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster.monsterName)), this.centerX+this.widthT/7, this.centerY-120/scaling);
+    
+       if(this.monster_2==null){
+    text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster.monsterName)), this.centerX+this.widthT/7, this.centerY-120/scaling);}
+else{
+text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster.monsterName)), this.centerX+this.widthT/10, this.centerY-120/scaling);
+   text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster_2.monsterName)), this.centerX+this.widthT/5, this.centerY-120/scaling);}
 
     popStyle();
   }
