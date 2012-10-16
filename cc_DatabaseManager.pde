@@ -238,7 +238,7 @@ public class cc_DatabaseManager {
     this.context=context;
     String user     = "root";
     String pass     = "root";
-    String database = "cs424imdb7";
+    String database = "cs424imdb2";
     msql = new MySQL( context, "localhost", database, user, pass );
   }
 
