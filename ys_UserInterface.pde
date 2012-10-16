@@ -8,6 +8,7 @@ class UserInterface {
   // define every elements of user interface
   //ys_MonsterPage monsterPage;
   ys_HelpWindow helpWindow;
+  ys_HelpWindow creditWindow;
   ys_FirstPage firstPage;
 
   MonsterPage monsterPage;
