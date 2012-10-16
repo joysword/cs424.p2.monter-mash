@@ -87,14 +87,9 @@ float finalX, finalY;
    if (taxonomyTab) { 
       taxonomy.noMoving();
     if (this.taxonomy.singleMonsterPane.show) {
-      this.taxonomy.singleMonsterPane.checkHideButton(xPos, yPos);
-      if(this.taxonomy.singleMonsterPane.compareMonster1.checkOn(xPos, yPos)){
-      this.taxonomy.singleMonsterPane.hide();
-      monsterToSelect=1;}
       
-      else if(this.taxonomy.singleMonsterPane.compareMonster2.checkOn(xPos, yPos)){
-      this.taxonomy.singleMonsterPane.hide();
-      monsterToSelect=2;}
+      
+      
       
     }
     scrollMouseManager.knobPressed(taxonomy.getMonsterPane().getPlot(), xPos, yPos);
@@ -154,10 +149,22 @@ float finalX, finalY;
   }
 
   void mouseReleased_(float xPos, float yPos) {
+    if (this.taxonomy.singleMonsterPane.show) {
+      if(this.taxonomy.singleMonsterPane.compareMonster1.checkOn(xPos, yPos)){
+      this.taxonomy.singleMonsterPane.hide();
+      monsterToSelect=1;}
+      
+      else if(this.taxonomy.singleMonsterPane.compareMonster2.checkOn(xPos, yPos)){
+      this.taxonomy.singleMonsterPane.hide();
+      monsterToSelect=2;}
+      
+      this.taxonomy.singleMonsterPane.checkHideButton(xPos, yPos);}
+      
    if (taxonomy.indexMoving!=-1) {
          print("\naaa "+abs(xPos-finalX));
 
-     if((abs(xPos-finalX)<taxonomy.nodeDiameterChild/2 || abs(yPos-finalY)<taxonomy.nodeDiameterChild/2)){print("\nmosso"); 
+     if(((abs(xPos-finalX)<taxonomy.nodeDiameterChild/2 || abs(yPos-finalY)<taxonomy.nodeDiameterChild/2)  )&& 
+     !this.taxonomy.singleMonsterPane.show && !this.taxonomy.singleMonsterPane.compareMonster1.checkOn(xPos, yPos) && !this.taxonomy.singleMonsterPane.compareMonster2.checkOn(xPos, yPos)){print("\nmosso"); 
     
      if(monsterToSelect==1){
      taxonomy.singleMonsterPane.monster1=((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving)).monsterName;
@@ -174,8 +181,8 @@ float finalX, finalY;
  }
     //print(""+((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving)).moving);
   
-
-    taxonomy.selectNodes(xPos, yPos);
+if(!this.taxonomy.singleMonsterPane.compareMonster1.checkOn(xPos, yPos)){
+    taxonomy.selectNodes(xPos, yPos);}
     taxonomy.noMoving();
   }
   taxonomy.indexMoving=-1;
