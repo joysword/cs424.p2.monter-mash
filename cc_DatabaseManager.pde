@@ -950,8 +950,8 @@ private void addHigh(ArrayList<FormatInstance> array,MySQL msql){
 }
 
 */
-public ArrayList<FormatInstance> getFormat(String genre, String monster){
-    ArrayList<FormatInstance> array = new ArrayList<FormatInstance>();
+public ArrayList<Instance> getFormat(String genre, String monster){
+    ArrayList<Instance> array = new ArrayList<Instance>();
     initArray(array);
             if(!genre.equals(""))
           genre=" genre=\""+genre+"\" and";
@@ -1072,8 +1072,8 @@ private void addOTHERS(ArrayList<CertificateInstance> array,MySQL msql){
   }
 }
 */
-public ArrayList<CertificateInstance> getCertificates(String genre, String monster){
-    ArrayList<CertificateInstance> array = new ArrayList<CertificateInstance>();
+public ArrayList<Instance> getCertificates(String genre, String monster){
+    ArrayList<Instance> array = new ArrayList<Instance>();
     initArray(array);
         if(!genre.equals(""))
           genre=" genre=\""+genre+"\" and";
@@ -1171,8 +1171,8 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
 
   }
 
-  public ArrayList<CountryInstance> getCountries(String genre, String monster){
-    ArrayList<CountryInstance> array = new ArrayList<CountryInstance>();
+  public ArrayList<Instance> getCountries(String genre, String monster){
+    ArrayList<Instance> array = new ArrayList<Instance>();
     initArray(array);
         if(!genre.equals(""))
           genre=" genre=\""+genre+"\" and";
@@ -1321,8 +1321,8 @@ public ArrayList<CertificateInstance> getCertificates(String genre, String monst
     return array;
   }
 
-    public ArrayList<FormatInstance> getPopularity(String genre, String monster){
-    ArrayList<FormatInstance> array = new ArrayList<FormatInstance>();
+    public ArrayList<Instance> getPopularity(String genre, String monster){
+    ArrayList<Instance> array = new ArrayList<Instance>();
     if(!genre.equals(""))
           genre=" genre=\""+genre+"\" and";
     initArray(array);
