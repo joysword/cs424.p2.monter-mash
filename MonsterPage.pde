@@ -1,4 +1,5 @@
 float distanceX, distanceY;
+int monsterToSelect=1;
 
 class MonsterPage {
   boolean taxonomyTab;
@@ -87,6 +88,14 @@ float finalX, finalY;
       taxonomy.noMoving();
     if (this.taxonomy.singleMonsterPane.show) {
       this.taxonomy.singleMonsterPane.checkHideButton(xPos, yPos);
+      if(this.taxonomy.singleMonsterPane.compareMonster1.checkOn(xPos, yPos)){
+      this.taxonomy.singleMonsterPane.hide();
+      monsterToSelect=1;}
+      
+      else if(this.taxonomy.singleMonsterPane.compareMonster2.checkOn(xPos, yPos)){
+      this.taxonomy.singleMonsterPane.hide();
+      monsterToSelect=2;}
+      
     }
     scrollMouseManager.knobPressed(taxonomy.getMonsterPane().getPlot(), xPos, yPos);
   }
@@ -148,9 +157,21 @@ float finalX, finalY;
    if (taxonomy.indexMoving!=-1) {
          print("\naaa "+abs(xPos-finalX));
 
-     if((abs(xPos-finalX)<40/scaling || abs(yPos-finalY)<40/scaling)){print("\nmosso"); 
-     taxonomy.singleMonsterPane.setMonster((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving));
+     if((abs(xPos-finalX)<taxonomy.nodeDiameterChild/2 || abs(yPos-finalY)<taxonomy.nodeDiameterChild/2)){print("\nmosso"); 
+    
+     if(monsterToSelect==1){
+     taxonomy.singleMonsterPane.monster1=((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving)).monsterName;
+      taxonomy.singleMonsterPane.monster=((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving));
+     taxonomy.singleMonsterPane.setupMonster1();
    taxonomy.singleMonsterPane.show();}
+ 
+ if(monsterToSelect==2){
+     taxonomy.singleMonsterPane.monster2=((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving)).monsterName;
+      taxonomy.singleMonsterPane.monster_2=((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving));
+     taxonomy.singleMonsterPane.setupMonster2();
+   taxonomy.singleMonsterPane.show();}
+   
+ }
     //print(""+((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving)).moving);
   
 

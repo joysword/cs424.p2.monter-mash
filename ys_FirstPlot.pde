@@ -1,8 +1,8 @@
 class FirstPlot {
 
   float dataMin;
-  //float dataMax;
-  //float dataMax_decade;
+  float dataMax_this;
+  float dataMax_this_decade;
   float originalDataMax;
 
   float plotX1, plotX2, plotY1, plotY2;
@@ -26,6 +26,8 @@ class FirstPlot {
   int which; // 1 or 2
 
   float minimumY;
+
+  boolean isSameY;
 
   FirstPlot(float x1, float y1, float x2, float y2, int _which) {
 
@@ -69,13 +71,8 @@ class FirstPlot {
     //unitHeight = (tableY2-tableY1)/displayNumber;
 
     dataMin = 0;
-    //for (int i=0;i<DATA_SET_COUNT;i++) {
-    //dataMax[i] = ceil(dataSets[i].getData().getTableMax()/dataSets[i].getInterval())*dataSets[i].getInterval();
-    //originalDataMax[i] = dataMax[i];
-    //}
-
-
-    //setupDecade();
+    dataMax_this = 0;
+    dataMax_this_decade = 0;
 
     //    legend = new Legend[DATA_SET_COUNT];
     //    for (int i=0;i<DATA_SET_COUNT;i++) {
@@ -84,6 +81,8 @@ class FirstPlot {
     dataScale = 1;
 
     minimumY = plotY2 - (plotY2 - plotY1) * 0.05;
+
+    isSameY = false;
   }
 
 
@@ -92,6 +91,20 @@ class FirstPlot {
     unitWidth = (plotX2-plotX1)/yearCount;
     decadeCount = 11; //change
     decadeWidth = (plotX2 - plotX1) / decadeCount;
+    if (isSameY) {
+      dataMax_this = dataMax;
+      dataMax_this_decade = dataMax_decade;
+    }
+    else {
+      if (whichGraph == 0) {
+        dataMax_this = dataMax1;
+        dataMax_this_decade = dataMax1_decade;
+      }
+      else {
+        dataMax_this = dataMax2;
+        dataMax_this_decade = dataMax2_decade;
+      }
+    }
 
     // three way
     int mode = ui.getFirstPage().getDisplayMode();
@@ -277,13 +290,13 @@ class FirstPlot {
 
     //for (float v = dataMin; v <= dataMax[i]; v += volumeInterval[i]) {
     if (ui.getFirstPage().displayMode == YEAR_MODE) {
-      for (float v = dataMin; v < dataMax*dataScale; v += int((dataMax*dataScale-dataMin)/4)/10*10) {
+      for (float v = dataMin; v < dataMax_this*dataScale; v += int((dataMax_this*dataScale-dataMin)/4)/10*10) {
 
-        float y = map(v, dataMin, dataMax*dataScale, minimumY, plotY1);  
+        float y = map(v, dataMin, dataMax_this*dataScale, minimumY, plotY1);  
         float textOffset = textAscent()/2;  // Center vertically
         if (v == dataMin) {
         } 
-        else if (v == dataMax) {
+        else if (v == dataMax_this) {
           text(round(v), plotX1 - 10*scale, y + textAscent());
         }
         else {
@@ -293,14 +306,14 @@ class FirstPlot {
       }
     }
     else if (ui.getFirstPage().displayMode == DECADE_MODE) {
-      for (float v = dataMin; v < dataMax_decade*dataScale; v += int((dataMax_decade*dataScale-dataMin)/4)/10*10) {
+      for (float v = dataMin; v < dataMax_this_decade*dataScale; v += int((dataMax_this_decade*dataScale-dataMin)/4)/10*10) {
 
-        float y = map(v, dataMin, dataMax_decade*dataScale, minimumY, plotY1);  
+        float y = map(v, dataMin, dataMax_this_decade*dataScale, minimumY, plotY1);  
         float textOffset = textAscent()/2;  // Center vertically
         if (v == dataMin) {
           //textOffset = 0;                   // Align by the bottom
         } 
-        else if (v == dataMax_decade) {
+        else if (v == dataMax_this_decade) {
           text(round(v), plotX1 - 10*scale, y + textAscent());
         }
         else {
@@ -315,19 +328,18 @@ class FirstPlot {
   private void drawDataCurve(int whichFilter, int howManyCluters, int whichGraph, ArrayList<Instance> li) {
     pushStyle();
 
-    noFill();
     //stroke(colors[colour]);
-    stroke(CURVE_COLOR_TEMP);
     strokeWeight(INLINE_WIDTH);
 
     // test function
 
     float left, right;
 
-    for (int clust=0;clust<howManyCluters;clust++) {
+    for (int clust=howManyCluters-1;clust>=0;clust--) {
       left = plotX1;
       right = left+unitWidth;
-      fill(CLUSTER_COLOR[clust]);
+      fill(CLUSTER_COLOR_TRAN[clust]);
+      //noFill();
       stroke(CLUSTER_COLOR[clust]);
       beginShape();
       //fill(CLUSTER_COLOR[clust]);
@@ -340,7 +352,7 @@ class FirstPlot {
             value += li.get(i-yearMin).getting(j);
           }
           float x = (left+right)/2;
-          float y = map(value, dataMin, dataMax*dataScale, minimumY, plotY1);
+          float y = map(value, dataMin, dataMax_this*dataScale, minimumY, plotY1);
           //ellipse(x, y, 4*scale, 6*scale);
 
           vertex(x, y);
@@ -359,25 +371,31 @@ class FirstPlot {
   void drawDataBar(int whichFilter, int howManyCluters, int whichGraph, ArrayList<Instance> li) {
     pushStyle();
 
-    fill(CLUSTER_COLOR[0]);
     noStroke();//BAR_COLOR_TEMP);
     //strokeWeight(INLINE_WIDTH);
 
     float decadeWidth = (plotX2 - plotX1) / 11;
     for (int i=0;i<11;i++) {
 
+      float[] yy = new float[7];
       float value = 0;
-      for (int j=(i*10);j<i*10+10 && j<yearCount;j++) {
-        for (int k=0;k<howManyCluters;k++) {
+      println("howManyCluters: "+howManyCluters);
+      for (int k=0;k<howManyCluters;k++) {
+        for (int j=(i*10);j<i*10+10 && j<yearCount;j++) {
           value += li.get(j).getting(k);
         }
+        yy[k] = map(value, dataMin, dataMax_this_decade*dataScale, minimumY, plotY1);
+        println("i: "+i+" yy["+k+"]: "+yy[k]+" value: "+value);
       }
       float xx1 = plotX1 + decadeWidth*(i+0.2);
       float xx2 = plotX1 + decadeWidth*(i+0.8);
-      float yy = map(value, dataMin, dataMax_decade*dataScale, minimumY, plotY1);
-      println("max, value: "+ dataMax_decade + "   " + value);
+      //float yy = map(value, dataMin, dataMax_decade*dataScale, minimumY, plotY1);
       rectMode(CORNERS);
-      rect(xx1, yy, xx2, minimumY);
+      for (int k=howManyCluters-1;k>=0;k--) {
+        fill(CLUSTER_COLOR_TRAN[k]);
+        //fill(CLUSTER_COLOR[k]);
+        rect(xx1, yy[k], xx2, minimumY);
+      }
       //println("value: "+value);
     }
     //println("dataMax_decade: "+dataMax_decade);
@@ -518,6 +536,10 @@ class FirstPlot {
   }
   private float getMax(float x, float y) {
     return (x>y)?x:y;
+  }
+
+  public void switchSameY() {
+    isSameY = !isSameY;
   }
 }
 
