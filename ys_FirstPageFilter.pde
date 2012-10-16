@@ -232,8 +232,16 @@ class ys_FirstPageFilter {
     }
 
     dataMax = (dataMax1 > dataMax2)? dataMax1:dataMax2;
+    dataMax_decade = (dataMax1_decade > dataMax2_decade)? dataMax1_decade:dataMax2_decade;
     //global_country;
     //global_budget;
+
+    println("dataMax: "+dataMax);
+    println("dataMax1: "+dataMax1);
+    println("dataMax2: "+dataMax2);
+    println("dataMax_decade: "+dataMax_decade);
+    println("dataMax1_decade: "+dataMax1_decade);
+    println("dataMax2_decade: "+dataMax2_decade);
 
     ui.getFirstPage().setNotSelecting();
   }
@@ -243,7 +251,6 @@ class ys_FirstPageFilter {
     for (int i=0;i<li.size();i++) {
       float temp_value = 0;
       for (int j=0;j<7;j++) {
-        println(li.get(i).getting(j));
         temp_value += li.get(i).getting(j);
       }
       if (temp_value > dataM) {
@@ -270,104 +277,5 @@ class ys_FirstPageFilter {
 
     return dataM * 1.05;
   }
-/*
-  private float getMax3(ArrayList<Instance> li) {
-    float dataM = 0;
-    for (int i=0;i<li.size();i++) {
-      float temp_value = 0;
-      for (int j=0;j<3;j++) {
-        temp_value += li.get(i).get(j);
-      }
-      if (temp_value > dataM) {
-        dataM = temp_value;
-      }
-    }
-    return dataM * 1.05;
-  }
-
-  private float getMax7(ArrayList<Instance> li) {
-    float dataM = 0;
-    for (int i=0;i<li.size();i++) {
-      float temp_value = 0;
-      for (int j=0;j<7;j++) {
-        temp_value += li.get(i).get(j);
-      }
-      if (temp_value > dataM) {
-        dataM = temp_value;
-      }
-    }
-    return dataM * 1.05;
-  }
-
-  private float getMaxCountry(ArrayList<Instance> li) {
-    float dataM = 0;
-    for (int i=0;i<li.size();i++) {
-      float temp_value = 0;
-      for (int j=0;j<7;j++) {
-        temp_value += li.get(i).get(j);
-      }
-      if (temp_value > dataM) {
-        dataM = temp_value;
-      }
-    }
-    return dataM * 1.05;
-  }
-
-  private float getMax3_decade(ArrayList<Instance> li) {
-    float dataM = 0;
-
-    for (int i=0;i<11;i++) {
-
-      float temp_value = 0;
-      for (int j=(i*10);j<i*10+10 && j<li.size();j++) {
-        for (int k=0;k<3;k++) {
-          temp_value += plot_1_certificate.get(j).get(k);
-        }
-      }
-      if (temp_value > dataM) {
-        dataM = temp_value;
-      }
-    }
-
-    return dataM * 1.05;
-  }
-
-  private float getMax7_decade(ArrayList<Instance> li) {
-    float dataM = 0;
-
-    for (int i=0;i<11;i++) {
-
-      float temp_value = 0;
-      for (int j=(i*10);j<i*10+10 && j<li.size();j++) {
-        for (int k=0;k<7;k++) {
-          temp_value += plot_1_certificate.get(j).get(k);
-        }
-      }
-      if (temp_value > dataM) {
-        dataM = temp_value;
-      }
-    }
-
-    return dataM * 1.05;
-  }
-  private float getMaxCountry_decade(ArrayList<Instance> li) {
-    float dataM = 0;
-
-    for (int i=0;i<11;i++) {
-
-      float temp_value = 0;
-      for (int j=(i*10);j<i*10+10 && j<li.size();j++) {
-        for (int k=0;k<7;k++) {
-          temp_value += plot_1_certificate.get(j).get(k);
-        }
-      }
-      if (temp_value > dataM) {
-        dataM = temp_value;
-      }
-    }
-
-    return dataM * 1.05;
-  }
-  */
 }
 

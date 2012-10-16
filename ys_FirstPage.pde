@@ -29,6 +29,8 @@ class ys_FirstPage {
 
   private ys_Button decadeBtn;
 
+  private ys_Button yBtn;
+
   private ys_Range range;
 
   private boolean isDrag;
@@ -76,6 +78,8 @@ class ys_FirstPage {
 
     decadeBtn = new ys_Button(DECADE_BUTTON_X, DECADE_BUTTON_Y, DECADE_BUTTON_W, DECADE_BUTTON_H, "Decade");
 
+    yBtn = new ys_Button(Y_BUTTON_X, Y_BUTTON_Y, Y_BUTTON_W, Y_BUTTON_H, "Y axis");
+
     range = new ys_Range(RANGE_X, RANGE_Y, RANGE_W, RANGE_H, RANGE_LOCK_W, RANGE_LOCK_H);
 
     isDrag = false;
@@ -95,6 +99,7 @@ class ys_FirstPage {
     yearBtn.render(false, 14);
     tabularBtn.render(false, 14);
     decadeBtn.render(false, 14);
+    yBtn.render(false, 14);
     // render right bar
     renderRight();
 
@@ -229,6 +234,10 @@ class ys_FirstPage {
         displayMode = TABULAR_MODE;
         range.resume();
       }
+      else if (yBtn.checkIn(posx, posy)) {
+        plot1.switchSameY();
+        plot2.switchSameY();
+      }
     }
   }
 
@@ -238,7 +247,7 @@ class ys_FirstPage {
     fill(TITLE_COLOR);
     textSize(TITLE_SIZE);
     textAlign(CENTER,CENTER);
-    text("MELT METRIC MONSTER MASH MILLENNIUM", width*0.5, height*0.1);
+    text("MELT METRIC MONSTER MASH MILLENNIUM", width*0.5, height*0.07);
   }
   private void renderRight() {
     pushStyle();

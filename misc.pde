@@ -52,10 +52,13 @@ final int BOARD_WEIGHT = 3*scale;
 final int RANGE_COLOR = 125;
 final int TIME_LOCK_COLOR = #ff6600;
 
-final int[] CLUSTER_COLOR = {
-  #ff0000, #00ff00, #0000ff, 255, 255, 255, 255
+final color[] CLUSTER_COLOR = {
+  #ff0000, #00ff00, #01b2f1, #0000ff, color(255,0,255), color(255,255,0), color(255,255,255)
 }; //change
-
+final color[] CLUSTER_COLOR_TRAN = {
+  0x50ff0000, 0x5000ff00, 0x5001b2f1, 0x500000ff, color(255,0,255,80), color(255,255,0,80), color(255,255,255,80)
+};
+// red green blizzard blue pink yellow white
 // about pages
 final int FIRST_PAGE = 0;
 final int MONSTER_PAGE = 1;
@@ -70,22 +73,28 @@ final int MOVIE_PAGE = 2;
 final int HOW_MANY_FILTERS = 3;
 final int HOW_MANY_GRAPH = 2;
 
+// about Y button
+final float Y_BUTTON_X = 0.82*Width;
+final float Y_BUTTON_W = 80*scale;
+final float Y_BUTTON_H = 40*scale;
+final float Y_BUTTON_Y = Height*0.4;
+
 // about Year button
-final float YEAR_BUTTON_X = 0.82*Width;
-final float YEAR_BUTTON_W = 80*scale;
-final float YEAR_BUTTON_H = 40*scale;
+final float YEAR_BUTTON_X = Y_BUTTON_X;
+final float YEAR_BUTTON_W = Y_BUTTON_W;
+final float YEAR_BUTTON_H = Y_BUTTON_H;
 final float YEAR_BUTTON_Y = Height - YEAR_BUTTON_H*3.6 - 50*scale;
 
 // about Decade button
-final float DECADE_BUTTON_X = 0.82*Width;
-final float DECADE_BUTTON_W = 80*scale;
-final float DECADE_BUTTON_H = 40*scale;
+final float DECADE_BUTTON_X = Y_BUTTON_X;
+final float DECADE_BUTTON_W = Y_BUTTON_W;
+final float DECADE_BUTTON_H = Y_BUTTON_H;
 final float DECADE_BUTTON_Y = Height - DECADE_BUTTON_H*2.4 - 50*scale;
 
 // about Tabular button
-final float TABULAR_BUTTON_X = 0.82*Width;
-final float TABULAR_BUTTON_W = 80*scale;
-final float TABULAR_BUTTON_H = 40*scale;
+final float TABULAR_BUTTON_X = Y_BUTTON_X;
+final float TABULAR_BUTTON_W = Y_BUTTON_W;
+final float TABULAR_BUTTON_H = Y_BUTTON_H;
 final float TABULAR_BUTTON_Y = Height - TABULAR_BUTTON_H*1.2 - 50*scale;
 
 // about RIGHT BAR
@@ -99,10 +108,10 @@ final float LABEL_WIDTH = 100*scale;
 
 
 final String[] FILTER_TXT_1 = {
-  "MONSTERS:\n vampire", "GENRES:\n horror", "FILTER:\n Certificate"
+  "MONSTERS:\n Vampire", "GENRES:\n Horror", "FILTER:\n CERTIFICATE"
 };
 final String[] FILTER_TXT_2 = {
-	"MONSTERS:\n vampire", "GENRES:\n horror", "FILTER:\n Certificate"
+	"MONSTERS:\n Vampire", "GENRES:\n Horror", "FILTER:\n CERTIFICATE"
 };
 //final String FILTER_TXT_1 = "1111";
 //final String FILTER_TXT_2 = "2222";
@@ -208,15 +217,28 @@ final int[] NUMBER_OF_CLUSTERS = {
 final int YEAR_MAX = 2012;
 final int YEAR_MIN = 1890;
 
+//
 final float PLOT_1_X1 = 100*scale;
 final float PLOT_1_X2 = 1300*scale;
 final float PLOT_2_X1 = PLOT_1_X1;
 final float PLOT_2_X2 = PLOT_1_X2;
 
-final float PLOT_1_Y1 = Height*0.2;
+final float PLOT_1_Y1 = Height*0.15;
 final float PLOT_1_Y2 = Height*0.5;
 final float PLOT_2_Y2 = Height*0.55;
+final float PLOT_2_Y1 = Height*0.9;
+
+/*/
+final float PLOT_1_X1 = 100*scale;
+final float PLOT_1_X2 = 680*scale;
+final float PLOT_2_X1 = 720*scale;
+final float PLOT_2_X2 = 1300*scale;
+
+final float PLOT_1_Y1 = Height*0.2;
+final float PLOT_1_Y2 = Height*0.85;
+final float PLOT_2_Y2 = Height*0.2;
 final float PLOT_2_Y1 = Height*0.85;
+/*/
 
 final int OUTLINE_WIDTH = 4*scale;
 final int INLINE_WIDTH = scale;
@@ -247,12 +269,13 @@ final float POP_UP_WINDOW_H = 0.8*Height;
 
 // about Range
 final float RANGE_X = PLOT_1_X1;
-final float RANGE_W = PLOT_1_X2 - PLOT_1_X1;
+//final float RANGE_W = PLOT_1_X2 - PLOT_1_X1;
+final float RANGE_W = PLOT_2_X2 - PLOT_1_X1;
 final float RANGE_H = 6*scale;
 final float RANGE_LOCK_W = 7*scale;
 final float RANGE_LOCK_H = 7*scale;
 
-final float RANGE_Y = Height*0.9;
+final float RANGE_Y = Height*0.95;
 
 //
 //
