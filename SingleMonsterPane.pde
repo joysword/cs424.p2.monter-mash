@@ -4,7 +4,7 @@ public class SingleMonsterPane {
   // private Map worldMap;
   //private Chart ;
   private Top5Genres top5Genres;
-  private ImageButton compareMonster;
+  private ImageButton compareMonster1;
   private MatchTaxonomy matchTax;
 
   private float centerX;
@@ -14,6 +14,7 @@ public class SingleMonsterPane {
   private boolean show=false;
   private color background;
   private monsterNode monster;
+  private monsterNode monster_2;
   private PShape hideButton;
   private PImage movieTape;
   private boolean firstTime=true;
@@ -34,7 +35,7 @@ public class SingleMonsterPane {
     //this.worldMap=new Map(loadShape("worldMap.svg"), this.centerX+this.widthT/7, this.centerY-this.heightT/5, this.widthT/3, this.heightT/3);
     //this.radar=new RadarChart(this.centerX+this.widthT/7, this.centerY+this.heightT/5, this.heightT/6, 5.0);
     this.top5Genres=new Top5Genres(this.centerX+this.widthT/7, this.centerY+this.heightT/4, this.heightT, this.heightT/3);
-    this.compareMonster=new ImageButton(loadShape("compareMonster.svg"), this.centerX+this.widthT*0.35, this.centerY+this.heightT*0.45, 400/scaling, 150/scaling);
+    this.compareMonster1=new ImageButton(loadShape("compareMonster.svg"), this.centerX+this.widthT*0.35, this.centerY+this.heightT*0.45, 400/scaling, 150/scaling);
   }
 
 
@@ -88,7 +89,7 @@ public class SingleMonsterPane {
     //worldMap.draw();
     //radar.draw();
     top5Genres.draw();
-    compareMonster.draw();
+    compareMonster1.draw();
     imageMode(CENTER);
     image(this.monster.avatar, this.centerX-this.widthT/4, this.centerY-this.heightT/4+this.heightT/20, this.monster.avatar.width/3, this.monster.avatar.height/3);
     fill(255);
