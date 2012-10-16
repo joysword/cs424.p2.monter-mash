@@ -8,17 +8,15 @@ class FirstPlot {
   float plotX1, plotX2, plotY1, plotY2;
   float unitWidth;
   float decadeWidth;
+  float tableWidth;
+  float tableHeight;
 
   int yearMin, yearMax;
   int showYearMin, showYearMax;
   int yearCount;
   int decadeCount;
 
-  //Integrator[] interpolators;
-
-  //float[] spacing; // for dashline
-
-  //Legend[] legend;
+  int showYearT;
 
   float dataScale;
   float dragStartY;
@@ -41,18 +39,7 @@ class FirstPlot {
 
     showYearMin = yearMin;
     showYearMax = yearMax;
-
-    /*
-    interpolators = new Integrator[columnCount];
-     
-     for (int column = 0; column < columnCount; column++) {
-     float initialValue = data.getFloat(0, column);
-     interpolators[column] = new Integrator(initialValue);
-     interpolators[column].attraction = 0.1;
-     }*/
-
-    // setup Colors
-    //colors = new int[] {COLOR_0, COLOR_1, COLOR_2, COLOR_3, COLOR_4, COLOR_5, COLOR_6};
+    showYearT = yearMin;
 
     plotX1 = x1;
     plotX2 = x2;
@@ -67,8 +54,6 @@ class FirstPlot {
     //tableY2 = (Height - 60)*scale;
 
     //displayNumber = DATA_SET_COUNT;
-
-    //unitHeight = (tableY2-tableY1)/displayNumber;
 
     dataMin = 0;
     dataMax_this = 0;
@@ -89,8 +74,13 @@ class FirstPlot {
   void render(int whichGraph) {
     yearCount = showYearMax-showYearMin+1;
     unitWidth = (plotX2-plotX1)/yearCount;
+    decadeWidth = (plotX2 - plotX1) / 11;
     decadeCount = 11; //change
     decadeWidth = (plotX2 - plotX1) / decadeCount;
+    tableWidth = (plotX2 - plotX1) / 11;
+    tableHeight = (plotY2 - plotY1) / 8;
+    if (tableHeight < 0) tableHeight = -tableHeight;
+
     if (isSameY) {
       dataMax_this = dataMax;
       dataMax_this_decade = dataMax_decade;
@@ -109,17 +99,17 @@ class FirstPlot {
     // three way
     int mode = ui.getFirstPage().getDisplayMode();
     if (mode == YEAR_MODE) {
-      drawPlot(whichGraph);
+      drawPlot(currentFilter, NUMBER_OF_CLUSTERS[currentFilter], whichGraph, plot_data[currentFilter+whichGraph*6]);
     }
     else if (mode == DECADE_MODE) {
-      drawBar(whichGraph);
+      drawBar(currentFilter, NUMBER_OF_CLUSTERS[currentFilter], whichGraph, plot_data[currentFilter+whichGraph*6]);
     }
     else if (mode == TABULAR_MODE) {
-      drawTable();
+      drawTable(currentFilter, NUMBER_OF_CLUSTERS[currentFilter], whichGraph, plot_data[currentFilter+whichGraph*6]);
     }
   }
 
-  private void drawPlot(int whichGraph) {
+  private void drawPlot(int whichFilter, int howManyClusters, int whichGraph, ArrayList<Instance> li) {
     pushStyle();
 
     fill(PLOT_BG_COLOR);
@@ -128,7 +118,8 @@ class FirstPlot {
     rectMode(CORNERS);
     rect(plotX1, plotY1, plotX2, plotY2);
 
-    //drawAxisLabels();
+    if (whichGraph == 0)
+      drawAxisLabels();
     drawVolumeLabels();
 
     drawYearLabels();
@@ -142,12 +133,12 @@ class FirstPlot {
 
     //////////END OF VOLUME
 
-    drawDataCurve(currentFilter, NUMBER_OF_CLUSTERS[currentFilter], whichGraph, plot_data[currentFilter + whichGraph*6]);
+    drawDataCurve(whichFilter, howManyClusters, whichGraph, li);
 
     popStyle();
   }
 
-  private void drawBar(int whichGraph) {
+  private void drawBar(int whichFilter, int howManyClusters, int whichGraph, ArrayList<Instance> li) {
     pushStyle();
 
     fill(PLOT_BG_COLOR);
@@ -156,27 +147,79 @@ class FirstPlot {
     rectMode(CORNERS);
     rect(plotX1, plotY1, plotX2, plotY2);
 
+    if (whichGraph == 0) {
+      drawAxisLabels();
+    }
+
     drawVolumeLabels();
 
     drawDecadeLabels();
 
     noFill();
     strokeWeight(INLINE_WIDTH);
-    drawDataBar(currentFilter, NUMBER_OF_CLUSTERS[currentFilter], whichGraph, plot_data[currentFilter + whichGraph*6]); //change
+    drawDataBar(whichFilter, howManyClusters, whichGraph, li);
 
+    popStyle();
+  }
+
+  private void drawTable(int whichFilter, int howManyClusters, int whichGraph, ArrayList<Instance> li) {
+    pushStyle();
+
+    rectMode(CORNER);
+    textSize(14*scale);
+    float yUp = (whichGraph == 0)? plotY1:plotY2;
+
+    strokeWeight(2*scale);
+    stroke(0); //change
+
+    // lines
+    for (int i=1;i<10;i++) {
+      line(plotX1 + tableWidth * i, plotY1, plotX1 + tableWidth * i, plotY2);
+    }
+
+    // fill
+    for (int i=0;i<8;i++) {
+      if (i % 2 == 0) fill(255);
+      else fill(100);
+      for (int j=0;j<11;j++) {
+        rect(plotX1 + j*tableWidth, yUp+i*tableHeight, tableWidth, tableHeight);
+      }
+    }
+    // data
+      // year
+    textAlign(CENTER,CENTER);
+    fill(100);
+    for (int j=1;j<11;j++) {
+      text(showYearT+j, plotX1 + j*tableWidth + 0.5*tableWidth, yUp + tableHeight*0.5);
+    }
+
+      // title
+    textAlign(LEFT,CENTER);
+    for (int i=1;i<8;i++) {
+      if (i % 2 == 0) fill(100);
+      else fill(255);
+      text("separate code for title", plotX1 + 0.05*tableWidth, yUp + i*tableHeight+tableHeight*0.5);
+    }
+    textAlign(RIGHT, CENTER);
+    for (int i=1;i<8;i++) {
+      if (i % 2 == 0) fill(100);
+      else fill(255);
+      for (int j=1;j<11;j++) {
+        text(li.get(j+showYearT-yearMin-1).getting(i-1), plotX1 + j*tableWidth + 0.9*tableWidth, yUp+i*tableHeight+tableHeight*0.5);
+      }
+    }
     popStyle();
   }
 
   private void drawAxisLabels() {
     pushStyle();
-    /*fill(0);
-     textSize(13*scale);
-     textLeading(15);
-     
-     textAlign(RIGHT, CENTER);
-     text("What\nthe\nX", labelX, (plotY1+plotY2)/2);
-     textAlign(CENTER);
-     text("What the Y", (plotX1+plotX2)/2, labelY);*/
+    fill(TEXT_COLOR);
+    textSize(13*scale);
+    textLeading(15);
+    textAlign(CENTER, CENTER);
+    text("number of movies", plotX1, plotY1 - 15*scale);
+    //textAlign(CENTER);
+    //text("What the Y", (plotX1+plotX2)/2, labelY);
     popStyle();
   }
 
@@ -251,7 +294,7 @@ class FirstPlot {
     popStyle();
   }
 
-  void drawDecadeLabels() {
+  private void drawDecadeLabels() {
     pushStyle();
 
     fill(PLOT_LINE_COLOR);
@@ -278,7 +321,7 @@ class FirstPlot {
     popStyle();
   }
 
-  void drawVolumeLabels() {
+  private void drawVolumeLabels() {
 
     pushStyle();
     fill(PLOT_LINE_COLOR);
@@ -367,25 +410,21 @@ class FirstPlot {
     popStyle();
   }
 
-
-  void drawDataBar(int whichFilter, int howManyCluters, int whichGraph, ArrayList<Instance> li) {
+  private void drawDataBar(int whichFilter, int howManyCluters, int whichGraph, ArrayList<Instance> li) {
     pushStyle();
 
     noStroke();//BAR_COLOR_TEMP);
     //strokeWeight(INLINE_WIDTH);
 
-    float decadeWidth = (plotX2 - plotX1) / 11;
     for (int i=0;i<11;i++) {
 
       float[] yy = new float[7];
       float value = 0;
-      println("howManyCluters: "+howManyCluters);
       for (int k=0;k<howManyCluters;k++) {
         for (int j=(i*10);j<i*10+10 && j<yearCount;j++) {
           value += li.get(j).getting(k);
         }
         yy[k] = map(value, dataMin, dataMax_this_decade*dataScale, minimumY, plotY1);
-        println("i: "+i+" yy["+k+"]: "+yy[k]+" value: "+value);
       }
       float xx1 = plotX1 + decadeWidth*(i+0.2);
       float xx2 = plotX1 + decadeWidth*(i+0.8);
@@ -400,97 +439,6 @@ class FirstPlot {
     }
     //println("dataMax_decade: "+dataMax_decade);
 
-    popStyle();
-  }
-
-  void drawDataCurveDash(int row, int colour, int i, int yMin, int yMax, int begin, int end) {
-    pushStyle();
-    /*
-    noFill();
-     stroke(colors[colour]);
-     
-     float[][] dashPoint = new float[columnCount][2];
-     
-     float left = plotX1;
-     float right = left+unitWidth;
-     
-     for (int col = showYearMin-yearMin; col < showYearMax-yearMin+1; col++) {
-     if (dataSets[i].getData().isValid(row, col) && col>=begin-1980 && col<=end-1980) {
-     float value = dataSets[i].getData().getFloat(row, col);
-     float x = (left+right)/2;
-     float y = map(value, dataMin, dataMax[i]*dataScale, minimumY, plotY1);
-     dashPoint[col][0] = x;
-     dashPoint[col][1] = y;
-     ellipse(x, y, 3*scale, 4*scale);
-     }
-     else {
-     dashPoint[col][0] = -1000;
-     dashPoint[col][1] = -1000;
-     }
-     
-     left = right;
-     right += unitWidth;
-     }
-     
-     for (int col = showYearMin-yearMin+1; col < showYearMax-yearMin+1; col++) {
-     if (dashPoint[col-1][0] != -1000 && dashPoint[col][0] != -1000)
-     dashline(dashPoint[col-1][0], dashPoint[col-1][1], dashPoint[col][0], dashPoint[col][1], spacing);
-     }
-     */
-    popStyle();
-  }
-
-  void drawDataCurveDashSpecial(int[] row, int colour, int i, int yMin, int yMax, int begin, int end) {
-    pushStyle();
-    /*
-    noFill();
-     stroke(colors[colour]);
-     
-     float[][] dashPoint = new float[columnCount][2];
-     
-     float left = plotX1;
-     float right = left+unitWidth;
-     
-     int ct = row.length;
-     
-     for (int col = showYearMin-yearMin; col < showYearMax-yearMin+1; col++) {
-     if (col>=begin-1980 && col<=end-1980) {
-     float value = 0;
-     for (int j=0;j<ct;j++) {
-     value += dataSets[i].getData().getFloat(row[j], col);
-     }
-     float x = (left+right)/2;
-     float y = map(value, dataMin, dataMax[i]*dataScale, minimumY, plotY1);
-     dashPoint[col][0] = x;
-     dashPoint[col][1] = y;
-     ellipse(x, y, 3*scale, 4*scale);
-     }
-     else {
-     dashPoint[col][0] = -1000;
-     dashPoint[col][1] = -1000;
-     }
-     
-     left = right;
-     right += unitWidth;
-     }
-     
-     for (int col = showYearMin-yearMin+1; col < showYearMax-yearMin+1; col++) {
-     if (dashPoint[col-1][0] != -1000 && dashPoint[col][0] != -1000)
-     dashline(dashPoint[col-1][0], dashPoint[col-1][1], dashPoint[col][0], dashPoint[col][1], spacing);
-     }
-     */
-    popStyle();
-  }
-
-  private void drawTable() {
-    pushStyle();
-
-    for (int i=0;i<3;i++) { //change
-      for (int j=0;j<yearCount;j++) {
-        rectMode(CORNER);
-        rect(plotX1 + j*unitWidth, plotY1+i*50*scale, unitWidth, 50*scale);
-      }
-    }
     popStyle();
   }
 
@@ -540,6 +488,20 @@ class FirstPlot {
 
   public void switchSameY() {
     isSameY = !isSameY;
+  }
+
+  public void plusShowYearT(int i) {
+    showYearT += i;
+    if (showYearT > yearMax - 9) {
+      showYearT = yearMax - 9;
+    }
+  }
+
+  public void minusShowYearT(int i) {
+    showYearT -= i;
+    if (showYearT < yearMin) {
+      showYearT = yearMin;
+    }
   }
 }
 

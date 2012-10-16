@@ -236,13 +236,15 @@ class ys_FirstPageFilter {
     //global_country;
     //global_budget;
 
+/*
     println("dataMax: "+dataMax);
     println("dataMax1: "+dataMax1);
     println("dataMax2: "+dataMax2);
     println("dataMax_decade: "+dataMax_decade);
     println("dataMax1_decade: "+dataMax1_decade);
     println("dataMax2_decade: "+dataMax2_decade);
-
+*/
+    // close the Filter Panel
     ui.getFirstPage().setNotSelecting();
   }
 

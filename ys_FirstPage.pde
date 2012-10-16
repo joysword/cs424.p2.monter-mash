@@ -24,12 +24,15 @@ class ys_FirstPage {
   private MenuWindow popUp;
 
   private ys_Button yearBtn;
-
   private ys_Button tabularBtn;
-
   private ys_Button decadeBtn;
 
   private ys_Button yBtn;
+
+  private ys_Button nextYearBtn;
+  private ys_Button preYearBtn;
+  private ys_Button nextDecadeBtn;
+  private ys_Button preDecadeBtn;
 
   private ys_Range range;
 
@@ -73,12 +76,15 @@ class ys_FirstPage {
     popUp = new MenuWindow(0, 0, POP_UP_MENU_W, POP_UP_MENU_N, POP_UP_BUTTON_H, POP_UP_BUTTON_NAME);
 
     yearBtn = new ys_Button(YEAR_BUTTON_X, YEAR_BUTTON_Y, YEAR_BUTTON_W, YEAR_BUTTON_H, "Year");
-
     tabularBtn = new ys_Button(TABULAR_BUTTON_X, TABULAR_BUTTON_Y, TABULAR_BUTTON_W, TABULAR_BUTTON_H, "Tabular");
-
     decadeBtn = new ys_Button(DECADE_BUTTON_X, DECADE_BUTTON_Y, DECADE_BUTTON_W, DECADE_BUTTON_H, "Decade");
 
-    yBtn = new ys_Button(Y_BUTTON_X, Y_BUTTON_Y, Y_BUTTON_W, Y_BUTTON_H, "Y axis");
+    yBtn = new ys_Button(Y_BUTTON_X, Y_BUTTON_Y, Y_BUTTON_W, Y_BUTTON_H, "Y align");
+
+    nextYearBtn = new ys_Button(NEXT_YEAR_BTN_X, NEXT_YEAR_BTN_Y, NEXT_YEAR_BTN_W, NEXT_YEAR_BTN_H, "Year +");
+    preYearBtn = new ys_Button(PRE_YEAR_BTN_X, PRE_YEAR_BTN_Y, PRE_YEAR_BTN_W, PRE_YEAR_BTN_H, "Year -");
+    nextDecadeBtn = new ys_Button(NEXT_DECADE_BTN_X, NEXT_DECADE_BTN_Y, NEXT_DECADE_BTN_W, NEXT_DECADE_BTN_H, "Decade +");
+    preDecadeBtn = new ys_Button(PRE_DECADE_BTN_X, PRE_DECADE_BTN_Y, PRE_DECADE_BTN_W, PRE_DECADE_BTN_H, "Decade -");
 
     range = new ys_Range(RANGE_X, RANGE_Y, RANGE_W, RANGE_H, RANGE_LOCK_W, RANGE_LOCK_H);
 
@@ -92,14 +98,22 @@ class ys_FirstPage {
     // render graph
     plot1.render(0);
     plot2.render(1);
-    if (displayMode == YEAR_MODE)
+    if (displayMode == YEAR_MODE) {
       range.render();
+    }
+    else if (displayMode == TABULAR_MODE) {
+      nextYearBtn.render(false, 14);
+      preYearBtn.render(false, 14);
+      nextDecadeBtn.render(false, 14);
+      preDecadeBtn.render(false, 14);
+    }
 
     // render buttons
     yearBtn.render(false, 14);
     tabularBtn.render(false, 14);
     decadeBtn.render(false, 14);
     yBtn.render(false, 14);
+
     // render right bar
     renderRight();
 
@@ -235,8 +249,28 @@ class ys_FirstPage {
         range.resume();
       }
       else if (yBtn.checkIn(posx, posy)) {
-        plot1.switchSameY();
-        plot2.switchSameY();
+        if (displayMode == YEAR_MODE) {
+          plot1.switchSameY();
+          plot2.switchSameY();
+        }
+      }
+      else if (displayMode == TABULAR_MODE) {
+        if (preDecadeBtn.checkIn(posx, posy)) {
+          plot1.minusShowYearT(10);
+          plot2.minusShowYearT(10);
+        }
+        else if (preYearBtn.checkIn(posx, posy)) {
+          plot1.minusShowYearT(1);
+          plot2.minusShowYearT(1);
+        }
+        else if (nextYearBtn.checkIn(posx, posy)) {
+          plot1.plusShowYearT(1);
+          plot2.plusShowYearT(1);
+        }
+        else if (nextDecadeBtn.checkIn(posx, posy)) {
+          plot1.plusShowYearT(10);
+          plot2.plusShowYearT(10);
+        }
       }
     }
   }

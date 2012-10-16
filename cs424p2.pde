@@ -132,19 +132,19 @@ void setup()
   //global_data = ui.getDB().getFormat("horror","vampire");
   //global_data = ui.getDB().getCertificates("horror", "vampire");
 
-  plot_data[0].addAll(ui.getDB().getQuality("horror", "vampire"));
-  plot_data[1].addAll(ui.getDB().getQuality("horror", "vampire"));
-  plot_data[2].addAll(ui.getDB().getFormat("horror", "vampire"));
-  plot_data[3].addAll(ui.getDB().getPopularity("horror", "vampire"));
-  plot_data[4].addAll(ui.getDB().getCountries("horror","vampire"));
-  plot_data[5].addAll(ui.getDB().getCertificates("horror","vampire"));
+  plot_data[0].addAll(ui.getDB().getQuality("Horror", "vampire"));
+  plot_data[1].addAll(ui.getDB().getQuality("Horror", "vampire"));
+  plot_data[2].addAll(ui.getDB().getFormat("Horror", "vampire"));
+  plot_data[3].addAll(ui.getDB().getPopularity("Horror", "vampire"));
+  plot_data[4].addAll(ui.getDB().getCountries("Horror","vampire"));
+  plot_data[5].addAll(ui.getDB().getCertificates("Horror","vampire"));
 
-  plot_data[6].addAll(ui.getDB().getQuality("horror", "vampire"));
-  plot_data[7].addAll(ui.getDB().getQuality("horror", "vampire"));
-  plot_data[8].addAll(ui.getDB().getFormat("horror", "vampire"));
-  plot_data[9].addAll(ui.getDB().getPopularity("horror", "vampire"));
-  plot_data[10].addAll(ui.getDB().getCountries("horror","vampire"));
-  plot_data[11].addAll(ui.getDB().getCertificates("horror","vampire"));
+  plot_data[6].addAll(ui.getDB().getQuality("Horror", "vampire"));
+  plot_data[7].addAll(ui.getDB().getQuality("Horror", "vampire"));
+  plot_data[8].addAll(ui.getDB().getFormat("Horror", "vampire"));
+  plot_data[9].addAll(ui.getDB().getPopularity("Horror", "vampire"));
+  plot_data[10].addAll(ui.getDB().getCountries("Horror","vampire"));
+  plot_data[11].addAll(ui.getDB().getCertificates("Horror","vampire"));
 
   //println("cer: "+plot_1_certificate.size());
   //println("pop: "+plot_1_popularity.size());

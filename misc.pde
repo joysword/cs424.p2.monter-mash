@@ -97,6 +97,28 @@ final float TABULAR_BUTTON_W = Y_BUTTON_W;
 final float TABULAR_BUTTON_H = Y_BUTTON_H;
 final float TABULAR_BUTTON_Y = Height - TABULAR_BUTTON_H*1.2 - 50*scale;
 
+
+// about Tabular control buttons
+final float PRE_DECADE_BTN_X = Width*0.35;
+final float PRE_DECADE_BTN_W = Y_BUTTON_W;
+final float PRE_DECADE_BTN_H = Y_BUTTON_H;
+final float PRE_DECADE_BTN_Y = Height*0.95 - PRE_DECADE_BTN_H*0.5;  // center will be at 95%
+
+final float PRE_YEAR_BTN_X = PRE_DECADE_BTN_X + PRE_DECADE_BTN_W * 1.1;
+final float PRE_YEAR_BTN_W = Y_BUTTON_W;
+final float PRE_YEAR_BTN_H = Y_BUTTON_H;
+final float PRE_YEAR_BTN_Y = PRE_DECADE_BTN_Y;
+
+final float NEXT_YEAR_BTN_X = PRE_YEAR_BTN_X + PRE_YEAR_BTN_W * 1.1;
+final float NEXT_YEAR_BTN_W = Y_BUTTON_W;
+final float NEXT_YEAR_BTN_H = Y_BUTTON_H;
+final float NEXT_YEAR_BTN_Y = PRE_DECADE_BTN_Y;
+
+final float NEXT_DECADE_BTN_X = NEXT_YEAR_BTN_X + NEXT_YEAR_BTN_W * 1.1;
+final float NEXT_DECADE_BTN_W = Y_BUTTON_W;
+final float NEXT_DECADE_BTN_H = Y_BUTTON_H;
+final float NEXT_DECADE_BTN_Y = PRE_DECADE_BTN_Y;
+
 // about RIGHT BAR
 final float RIGHT_BAR_WIDTH = Width*0.1;
 final float RIGHT_BAR_Y_1 = Height*0.0;
