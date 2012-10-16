@@ -146,8 +146,9 @@ float finalX, finalY;
 
   void mouseReleased_(float xPos, float yPos) {
    if (taxonomy.indexMoving!=-1) {
-     
-     if((abs(xPos-finalX)<40/scaling && abs(yPos-finalY)<40/scaling)){print("\nmosso"); 
+         print("\naaa "+abs(xPos-finalX));
+
+     if((abs(xPos-finalX)<40/scaling || abs(yPos-finalY)<40/scaling)){print("\nmosso"); 
      taxonomy.singleMonsterPane.setMonster((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving));
    taxonomy.singleMonsterPane.show();}
     //print(""+((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving)).moving);
