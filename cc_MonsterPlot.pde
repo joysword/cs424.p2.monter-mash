@@ -59,8 +59,6 @@ public class cc_MonsterPlot {
 
 
   public void monsterSetup() {
-    dataManager1.setData(cc_PlottedData.NUMBER_FILMS); 
-    dataManager2.setData(cc_PlottedData.NUMBER_FILMS); 
     scroll.scrollSetup();
   }
 
@@ -75,7 +73,8 @@ public class cc_MonsterPlot {
     drawYaxe();
     drawLabels();
     drawDataPlot1();
-    drawDataPlot2();
+    if(dataManager2!=null)
+      drawDataPlot2();
   }
 
   private void drawDataPlot1() {
@@ -195,6 +194,8 @@ public class cc_MonsterPlot {
   }
 
   private float getMax() {
+    if (dataManager2==null)
+      return dataManager1.getDataMax();
     if (dataManager2.getDataMax()>dataManager1.getDataMax())
       return dataManager2.getDataMax();
     else return dataManager1.getDataMax();

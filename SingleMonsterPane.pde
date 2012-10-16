@@ -59,7 +59,7 @@ public class SingleMonsterPane {
 
     if (firstTime) {
       setupMonster1();
-      setupMonster2();
+      //setupMonster2();
       firstTime=false;
       plot1.monsterSetup();
     }
