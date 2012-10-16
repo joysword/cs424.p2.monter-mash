@@ -1,12 +1,16 @@
-public class Instance{
-	private int[] count={0,0,0,0,0,0,0};
+class Instance{
+	public int[] count={0,0,0,0,0,0,0};
 	private int year;
 
 	public Instance(int year){
 		this.year=year;
 	}
 
-	public int get(int i){
+	public float getting(int i){
+		return count[i];
+	}
+
+	public float geee(int i) {
 		return count[i];
 	}
 

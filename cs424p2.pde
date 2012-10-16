@@ -44,7 +44,12 @@ float dataMax, dataMax_decade;
 float dataMax1, dataMax2;
 float dataMax1_decade, dataMax2_decade;
 
-ArrayList<Instance> plot_1_format;
+int numberOfFilters = 12;
+
+ArrayList[] plot_data = new ArrayList[numberOfFilters];
+
+/*
+plot_1_format;
 
 ArrayList<Instance> plot_1_certificate;
 
@@ -58,7 +63,7 @@ ArrayList<Instance> plot_2_certificate;
 ArrayList<Instance> plot_2_country;
 ArrayList<Instance> plot_2_popularity;
 ArrayList<Instance> plot_2_quality;
-ArrayList<Instance> plot_2_budget;
+ArrayList<Instance> plot_2_budget;*/
 
 String[] filterTxt1;
 String[] filterTxt2;
@@ -102,6 +107,11 @@ void setup()
   global_isDragLeft = false;
 
   //global_data = new ArrayList<Instance>();
+
+  for (int i=0;i<numberOfFilters;i++) {
+    plot_data[i] = new ArrayList<Instance>();
+  }
+  /*
   plot_1_certificate = new ArrayList<Instance>();
   plot_1_format = new ArrayList<Instance>();
   //plot_1_budget;
@@ -115,20 +125,26 @@ void setup()
   plot_2_quality = new ArrayList<Instance>();
   plot_2_country = new ArrayList<Instance>();
   plot_2_popularity = new ArrayList<Instance>();
+  */
 
   ui = new UserInterface();
 
   //global_data = ui.getDB().getFormat("horror","vampire");
   //global_data = ui.getDB().getCertificates("horror", "vampire");
-  plot_1_certificate = ui.getDB().getCertificates("horror", "vampire");
-  plot_1_popularity = ui.getDB().getPopularity("horror", "vampire");
-  plot_1_quality = ui.getDB().getQuality("horror", "vampire");
-  plot_1_format = ui.getDB().getFormat("horror", "vampire");
 
-  plot_2_certificate = ui.getDB().getCertificates("horror", "vampire");
-  plot_2_popularity = ui.getDB().getPopularity("horror", "vampire");
-  plot_2_quality = ui.getDB().getQuality("horror", "vampire");
-  plot_2_format = ui.getDB().getFormat("horror", "vampire");
+  plot_data[0].addAll(ui.getDB().getQuality("horror", "vampire"));
+  plot_data[1].addAll(ui.getDB().getQuality("horror", "vampire"));
+  plot_data[2].addAll(ui.getDB().getFormat("horror", "vampire"));
+  plot_data[3].addAll(ui.getDB().getPopularity("horror", "vampire"));
+  plot_data[4].addAll(ui.getDB().getCountries("horror","vampire"));
+  plot_data[5].addAll(ui.getDB().getCertificates("horror","vampire"));
+
+  plot_data[6].addAll(ui.getDB().getQuality("horror", "vampire"));
+  plot_data[7].addAll(ui.getDB().getQuality("horror", "vampire"));
+  plot_data[8].addAll(ui.getDB().getFormat("horror", "vampire"));
+  plot_data[9].addAll(ui.getDB().getPopularity("horror", "vampire"));
+  plot_data[10].addAll(ui.getDB().getCountries("horror","vampire"));
+  plot_data[11].addAll(ui.getDB().getCertificates("horror","vampire"));
 
   //println("cer: "+plot_1_certificate.size());
   //println("pop: "+plot_1_popularity.size());
@@ -138,13 +154,18 @@ void setup()
   filterTxt1 = FILTER_TXT_1;
   filterTxt2 = FILTER_TXT_2;
 
-  dataMax = ui.getFirstPage().getFilter(0).getMax7(plot_1_certificate);
-  dataMax_decade = ui.getFirstPage().getFilter(0).getMax7_decade(plot_1_certificate);
+  //dataMax = ui.getFirstPage().getFilter(0).getMax(plot_1_certificate);
+  //dataMax_decade = ui.getFirstPage().getFilter(0).getMax7_decade(plot_1_certificate);
+
+  dataMax = ui.getFirstPage().getFilter(0).getMax(plot_data[5]); //certificate
+  dataMax_decade = ui.getFirstPage().getFilter(0).getMax_decade(plot_data[5]); //certificate
 
   dataMax1 = dataMax;
   dataMax2 = dataMax;
   dataMax1_decade = dataMax_decade;
   dataMax2_decade = dataMax_decade;
+
+  //println("max: " + dataMax_decade);
 
   // setup other things
 

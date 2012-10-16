@@ -88,7 +88,8 @@ class ys_FirstPage {
     // render graph
     plot1.render(0);
     plot2.render(1);
-    range.render();
+    if (displayMode == YEAR_MODE)
+      range.render();
 
     // render buttons
     yearBtn.render(false, 14);
@@ -209,7 +210,6 @@ class ys_FirstPage {
     // filter
     for (int i=0;i<HOW_MANY_GRAPH;i++) {
       if (isSelecting[i]) {
-        println("start to update "+i);
         canSeeButton = false;
         filter[i].update(posx, posy, ui.getDB(), i);
         break; // only 1 is under attack
@@ -304,6 +304,12 @@ class ys_FirstPage {
 
   public ys_FirstPageFilter getFilter(int i) {
     return filter[i];
+  }
+
+  public void setNotSelecting() {
+    for (int i=0;i<HOW_MANY_GRAPH;i++) {
+      isSelecting[i] = false;
+    }
   }
 }
 

@@ -99,7 +99,7 @@ class FirstPlot {
       drawPlot(whichGraph);
     }
     else if (mode == DECADE_MODE) {
-      drawBar();
+      drawBar(whichGraph);
     }
     else if (mode == TABULAR_MODE) {
       drawTable();
@@ -129,13 +129,12 @@ class FirstPlot {
 
     //////////END OF VOLUME
 
-    //drawDataCurve(currentRow[j], j, i, showYearMin, showYearMax);
-    drawDataCurve(currentFilter, NUMBER_OF_CLUSTERS[currentFilter], whichGraph);
+    drawDataCurve(currentFilter, NUMBER_OF_CLUSTERS[currentFilter], whichGraph, plot_data[currentFilter + whichGraph*6]);
 
     popStyle();
   }
 
-  private void drawBar() {
+  private void drawBar(int whichGraph) {
     pushStyle();
 
     fill(PLOT_BG_COLOR);
@@ -150,7 +149,7 @@ class FirstPlot {
 
     noFill();
     strokeWeight(INLINE_WIDTH);
-    drawDataBar(currentFilter, NUMBER_OF_CLUSTERS[currentFilter]); //change
+    drawDataBar(currentFilter, NUMBER_OF_CLUSTERS[currentFilter], whichGraph, plot_data[currentFilter + whichGraph*6]); //change
 
     popStyle();
   }
@@ -313,7 +312,7 @@ class FirstPlot {
     popStyle();
   }
 
-  private void drawDataCurve(int whichFilter, int howManyCluters, int whichGraph) {
+  private void drawDataCurve(int whichFilter, int howManyCluters, int whichGraph, ArrayList<Instance> li) {
     pushStyle();
 
     noFill();
@@ -338,19 +337,13 @@ class FirstPlot {
           //float value = random(40,80);//(i+showYearMin)%100;//(i%10>4)?50:40; //change
           float value = 0;
           for (int j=0;j<=clust;j++) {
-            if (whichGraph == 0) {
-              value += plot_1_certificate.get(i-yearMin).get(j);
-            }
-            else {
-              value += plot_2_certificate.get(i-yearMin).get(j);
-            }
+            value += li.get(i-yearMin).getting(j);
           }
           float x = (left+right)/2;
           float y = map(value, dataMin, dataMax*dataScale, minimumY, plotY1);
           //ellipse(x, y, 4*scale, 6*scale);
 
           vertex(x, y);
-          println("x,y: "+x+ " "+y);
         }
         left = right;
         right += unitWidth;
@@ -363,7 +356,7 @@ class FirstPlot {
   }
 
 
-  void drawDataBar(int whichFilter, int howManyCluters) {
+  void drawDataBar(int whichFilter, int howManyCluters, int whichGraph, ArrayList<Instance> li) {
     pushStyle();
 
     fill(CLUSTER_COLOR[0]);
@@ -376,12 +369,13 @@ class FirstPlot {
       float value = 0;
       for (int j=(i*10);j<i*10+10 && j<yearCount;j++) {
         for (int k=0;k<howManyCluters;k++) {
-          value += plot_1_certificate.get(j).get(k);
+          value += li.get(j).getting(k);
         }
       }
       float xx1 = plotX1 + decadeWidth*(i+0.2);
       float xx2 = plotX1 + decadeWidth*(i+0.8);
       float yy = map(value, dataMin, dataMax_decade*dataScale, minimumY, plotY1);
+      println("max, value: "+ dataMax_decade + "   " + value);
       rectMode(CORNERS);
       rect(xx1, yy, xx2, minimumY);
       //println("value: "+value);

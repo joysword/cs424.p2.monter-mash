@@ -121,7 +121,7 @@ float finalX, finalY;
     finalY=((monsterNode)taxonomy.nodesList.get(i)).centerY;
   break;}}
   
-  print("\nx "+finalX+" y "+finalY);
+  //print("\nx "+finalX+" y "+finalY);
     
   }
 
