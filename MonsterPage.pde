@@ -2,7 +2,7 @@ class MonsterPage {
   boolean taxonomyTab;
   boolean movieTab;
   boolean showTop10;
-
+float finalX, finalY;
   SingleMoviePane moviePane;
   Movie movie;
   Top10Pane top10Pane;
@@ -58,7 +58,7 @@ class MonsterPage {
     */
   }
 
-  void mousePressed_(float posx, float posy) {
+  void mousePressed_(float xPos, float yPos) {
     /*
     if (top10Button.checkOn(posx, posy)) {
       if (showTop10) {
@@ -79,35 +79,50 @@ class MonsterPage {
       movieTab = false;
     }*/
 
-    if (taxonomyTab) {
-      if (taxonomy.singleMonsterPane.show) {
-        taxonomy.singleMonsterPane.checkHideButton(posx, posy);
-      }
-      scrollMouseManager.knobPressed(taxonomy.getMonsterPane().getPlot(), posx, posy);
+   if (taxonomyTab) { 
+      taxonomy.noMoving();
+    if (this.taxonomy.singleMonsterPane.show) {
+      this.taxonomy.singleMonsterPane.checkHideButton(xPos, yPos);
     }
-    else if (movieTab) {
-      String a = moviePane.keyboard.checkPress(posx, posy);
-      if (a == "backspace" && moviePane.suggestionBox.input.length()>0) {
-        moviePane.suggestionBox.input = moviePane.suggestionBox.input.substring(0, moviePane.suggestionBox.input.length()-1);
+    scrollMouseManager.knobPressed(taxonomy.getMonsterPane().getPlot(), xPos, yPos);
+  }
+
+  else if (movieTab) {
+    String a= moviePane.keyboard.checkPress(xPos, yPos);
+    if (a=="backspace" ) {
+      if(moviePane.suggestionBox.input.length()>0){
+      moviePane.suggestionBox.input=moviePane.suggestionBox.input.substring(0, moviePane.suggestionBox.input.length()-1);}
+    else{int j=1;}
+  }
+
+    else {
+      if (a!="") {
+        print("sonooooo\n");
+        moviePane.suggestionBox.setInput(moviePane.suggestionBox.input+a);
       }
-      else {
-        if (a!="") {
-          print("sonooooo\n");
-          moviePane.suggestionBox.setInput(moviePane.suggestionBox.input+a);
-        }
-        if (moviePane.suggestionBox.input!="") {
-          print("\n" + moviePane.suggestionBox.input);
-          moviePane.suggestionBox.checkSuggestions();
-        }
-        int check = moviePane.suggestionBox.checkOnSuggestion(posx, posy);
-        if (check!=-1 && moviePane.suggestionBox.suggestions.size() > 0) {
-          moviePane.suggestionBox.inputTaken = (String)moviePane.suggestionBox.suggestions.get(check);
-          print("\n" + check + moviePane.suggestionBox.inputTaken);
-          moviePane.suggestionBox.input = "";
-          moviePane.suggestionBox.suggestions.clear();
-        }
+      if (moviePane.suggestionBox.input!="") {
+        print("\n"+moviePane.suggestionBox.input);
+        moviePane.suggestionBox.checkSuggestions();
+      } 
+      int check=moviePane.suggestionBox.checkOnSuggestion(xPos, yPos);
+      if (check!=-1 && moviePane.suggestionBox.suggestions.size()>0) {
+        moviePane.suggestionBox.inputTaken=(String)moviePane.suggestionBox.suggestions.get(check);
+        print("\n"+check+moviePane.suggestionBox.inputTaken);
+        moviePane.suggestionBox.input="";
+        moviePane.suggestionBox.suggestions.clear();
       }
-    }
+    
+    }}
+    
+      for (int i=0;i<taxonomy.nodesList.size();i++) {
+
+      if (((monsterNode)taxonomy.nodesList.get(i)).checkOn(xPos, yPos)){
+  finalX=((monsterNode)taxonomy.nodesList.get(i)).centerX;
+    finalY=((monsterNode)taxonomy.nodesList.get(i)).centerY;
+  break;}}
+  
+  print("\nx "+finalX+" y "+finalY);
+    
   }
 
   void mouseDragged_(float posx, float posy) {
@@ -121,13 +136,20 @@ class MonsterPage {
     }
   }
 
-  void mouseReleased_(float posx, float posy) {
-    if (!this.taxonomy.singleMonsterPane.show) {
-      taxonomy.selectNodes(posx, posy);
-      taxonomy.noMoving();
-    }
-    taxonomy.indexMoving = -1;
-    scrollMouseManager.knobReleased(taxonomy.getMonsterPane().getPlot(), posx);
+  void mouseReleased_(float xPos, float yPos) {
+   if (taxonomy.indexMoving!=-1) {
+     
+     if((abs(xPos-finalX)<40/scaling && abs(yPos-finalY)<40/scaling)){print("\nmosso"); 
+     taxonomy.singleMonsterPane.setMonster((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving));
+   taxonomy.singleMonsterPane.show();}
+    //print(""+((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving)).moving);
+  
+
+    taxonomy.selectNodes(xPos, yPos);
+    taxonomy.noMoving();
+  }
+  taxonomy.indexMoving=-1;
+  scrollMouseManager.knobReleased(taxonomy.getMonsterPane().getPlot(), xPos);
   }
 
   monsterTaxonomy getTaxonomy() {
