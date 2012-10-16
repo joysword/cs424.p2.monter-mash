@@ -61,8 +61,8 @@ public class Top5Genres {
       textSize(this.widthG/30);
       textAlign(RIGHT, CENTER);
       fill(255);
-      if (i%5==0) {
-        print("C");
+      if (i%(this.maxYvalue/5)==0) {
+        
         text(i, this.centerX-this.widthG/2, this.centerY+this.heightG/2-map(i, 0, this.maxYvalue, 0, this.heightG));
         line(this.centerX-this.widthG/2, this.centerY+this.heightG/2-map(i, 0, this.maxYvalue, 0, this.heightG), this.centerX+this.widthG/2, this.centerY+this.heightG/2-map(i, 0, this.maxYvalue, 0, this.heightG));
       }
