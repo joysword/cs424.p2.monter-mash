@@ -27,7 +27,7 @@ class UserInterface {
     // customize position
     //helpWindow = new ys_HelpWindow(HELP_WINDOW_x, HELP_WINDOW_y, HELP_WINDOW_w, HELP_WINDOW_h, HELP_WINDOW_c);
     helpWindow = new ys_HelpWindow((Width - HELP_WINDOW_w)*0.5, (Height-HELP_WINDOW_h)*0.5, HELP_WINDOW_w, HELP_WINDOW_h, HELP_WINDOW_c);
-
+creditWindow = new ys_HelpWindow((Width - HELP_WINDOW_w)*0.5, (Height-HELP_WINDOW_h)*0.5, HELP_WINDOW_w, HELP_WINDOW_h, CREDIT_WINDOW_c);
     leftBar = new ys_LeftBar(LEFT_MENU_WIDTH, BTN_NUMBER, BTN_H, LEFT_BTN_NAME);
 
     db = new cc_DatabaseManager(applet);
