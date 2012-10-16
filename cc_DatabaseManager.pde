@@ -44,6 +44,9 @@ public class cc_DatabaseManager {
   public static final String BIGFOOT_REF="bigfoot";
   public static final String VAMPIRE_REF="vampire";
   public static final String WEREWOLF_REF="werewolf";
+  public static final String ALIEN_REF="alien";
+  public static final String PREDATOR_REF="predator";
+  public static final String PIRANHA_REF="piranha";
   private float[] inflation= {
     25, 25, 25, 25.64, 26.32, 27.03, 27.03, 27.78, 27.78, 27.78, 27.03, 27.03, 26.32, 26.32, 25.64, 
     26.32, 25.64, 24.39, 25, 25, 24.39, 24.39, 23.81, 23.26, 22.73, 22.73, 20.83, 17.86, 15.15, 13.33, 11.49, 12.82, 13.7, 
@@ -54,7 +57,9 @@ public class cc_DatabaseManager {
     1.46, 1.43, 1.41, 1.38, 1.33, 1.3, 1.27, 1.25, 1.21, 1.17, 1.14, 1.11, 1.06, 1.07, 1.05, 1.02, 1
   };
   //-------------------------------- IMDB CLASS --------------------------------------------
-
+  private String[] pirhana_kwords= {
+    "piranha", "piranha-pool", "piranha-attack", "red-bellied-piranha"
+  };
   private String[] vampire_kwords= {
     "vampire", "vampire-slayer", "vampire-hunter", "vampire-bat", "vampire-bite", 
     "vampire-human-love", "vampire-vs-vampire", "chinese-vampire", "child-vampire", "vampire-human-relationship", 
@@ -199,6 +204,18 @@ public class cc_DatabaseManager {
     "shark"
   };
 
+  private String[] alien_kwords= {
+    "alien" ,"alien-invasion" ,"alien-abduction" ,"alien-contact" ,"illegal-alien" ,"alien-technology" ,"60alien-race" ,"human-alien" ,"alien-planet","half-alien" ,"alien-creature" ,"alien-attack" ,"alien-possession" ,"alien-civilization" ,"alien-species" ,"space-alien" ,"sex-with-alien" ,"alien-girl" ,"baby-alien" ,"alien-life-form" ,"20alien-love" ,"human-versus-alien" ,"shape-shifting-alien" ,"alien-spoof" ,"alien-monster" ,"alien-baby" ,"female-alien" ,"alien-dna" ,"modular-transforming-alien-battle-fortress" ,"alien-as-woman" ,"alien-creature-as-pet" ,"alien-smuggler","10alien-hunter" ,"10sex-with-an-alien-woman" ,"alien-hunt" ,"alien-sex" ,"human-alien-relationship" ,"alien-slave" ,"alien-disguised-as-human" ,"alien-assasin" ,"alien-ruling-earth" ,"alien-fugitive" ,"alien-breeding" ,"alien-friendship" ,"friendly-alien" ,"human-alien-sexual-relations" ,"alien-conspiracy" ,"alien-intrusion" ,"alien-parasite" ,"gay-alien" ,"human-body-alien-host" ,"nude-female-alien" ,"human-body-as-an-alien-host" ,"alien-world" ,"alien-weapons" ,"alien-rape" ,"alien-reproduction" ,"alien-infection" ,"alien-narrator" ,"alien-child" ,"alien-impostor" ,"enemy-alien" ,"alien-suit" ,"alien-robot" ,"killing-an-alien" ,"human-needed-to-save-alien-planet" ,"mistaken-for-alien" ,"alien-encounter" ,"human-taken-to-an-alien-planet" ,"alien-clone" ,"alien-plant" ,"alien-device" ,"alien-pods" ,"alien-spouse" ,"alien-implant" ,"alien-pod" ,"alien-food" ,"alien-versus-alien" ,"alien-blood" ,"resident-alien" ,"alien-zombie" ,"alien-bird" ,"alien-equipment" ,"alien-infestation" ,"one-eyed-alien" ,"alien-animal" ,"alien-boy" ,"alien-bodies" ,"alien-weapon" ,"alien-wife" ,"alien-communication" ,"attacked-by-an-alien" ,"alien-puzzle" ,"alien-body" ,"alien-judge" ,"sex-with-alien-woman"  ,"alien-theorists" ,"alien-insect" ,"alien-driving-car" ,"crying-alien" ,"alien-detective" ,"alien-being" ,"young-alien" ,"killed-by-aliens" ,"alien-invasion-vanguard" ,"alien-autopsy" ,"searching-for-alien-life-form" ,"alien-royalty" ,"scientist-doesn't-want-alien-killed" ,"alien-monkey" ,"experiments-on-aliens" ,"undesirable-alien" ,"alien-transmission" ,"alien-soldiers" ,"3-eyed-alien" ,"human-needed-to-save-an-alien-planet" ,"captured-by-aliens"
+  };
+
+  private String[] dinosaur_kwords={
+    "dinosaur" ,"dinosaur-as-dog" ,"cartoon-dinosaur" ,"anthropomorphic-dinosaur" ,"dinosaur-skeleton" ,"live-dinosaur" ,"dinosaur-egg" ,"toy-dinosaur" ,"dinosaur-fossil" ,"dinosaur-bone" ,"baby-dinosaur" ,"dinosaur-attack" ,"dinosaur-costume" ,"pet-dinosaur" ,"dinosaur-foot-print" ,"lizards-used-as-dinosaurs" ,"dinosaur-hunting" ,"collapse-of-dinosaur-skeleton" ,"dinosaur-herd" ,"barney-the-dinosaur" ,"dinosaur-statue" ,"danny-dinosaur" ,"dinosaur-exhibition" ,"fight-between-dinosaurs" ,"dinoshark" ,"dinosaur-mask" ,"juvenile-dinosaur" ,"dinosaur-family"  ,"dinosaur-extinction"
+  };
+
+  private String[] predator_kwords={
+    "predatorial-horror"
+  };
+
 
 
 
@@ -340,14 +357,30 @@ public class cc_DatabaseManager {
       if(godzilla_kwords.length>i)
         keyword_list=keyword_list+godzilla_kwords[i]+"\n";
     } else if (keyword.equals(SHARK_REF)) {
-      for (int i=0;i<4 && i<snake_kwords.length;i++)
+      for (int i=0;i<4 && i<shark_kwords.length;i++)
       if(shark_kwords.length>i)
         keyword_list=keyword_list+shark_kwords[i]+"\n";
     } else if (keyword.equals(SNAKE_REF)) {
       for (int i=0;i<4 && i<snake_kwords.length;i++)
       if(snake_kwords.length>i)
         keyword_list=keyword_list+snake_kwords[i]+"\n";
-    }
+    } else if (keyword.equals(ALIEN_REF)) {
+      for (int i=0;i<4 && i<alien_kwords.length;i++)
+      if(alien_kwords.length>i)
+        keyword_list=keyword_list+alien_kwords[i]+"\n";
+    }else if (keyword.equals(DINOSAUR_REF)) {
+      for (int i=0;i<4 && i<dinosaur_kwords.length;i++)
+      if(alien_kwords.length>i)
+        keyword_list=keyword_list+dinosaur_kwords[i]+"\n";
+    }else if (keyword.equals(PREDATOR_REF)) {
+      for (int i=0;i<4 && i<dinosaur_kwords.length;i++)
+      if(predator_kwords.length>i)
+        keyword_list=keyword_list+predator_kwords[i]+"\n";
+    }else if (keyword.equals(PIRANHA_REF)) {
+      for (int i=0;i<4 && i<piranha_kwords.length;i++)
+      if(piranha_kwords.length>i)
+
+       
     if(keyword_list.length()<2) return "";
     keyword_list=keyword_list.substring(0, keyword_list.length()-1);
     
@@ -1587,6 +1620,19 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
         else if (keyword.equals(WEREWOLF_REF)) {
       for (int i=0;i<werewolf_kwords.length;i++)
         keyword_list=keyword_list+" k.keyword='"+werewolf_kwords[i]+"' or";
+    }
+      else if (keyword.equals(ALIEN_REF)) {
+      for (int i=0;i<alien_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+alien_kwords[i]+"' or";
+    }else if (keyword.equals(DINOSAUR_REF)) {
+      for (int i=0;i<dinosaur_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+dinosaur_kwords[i]+"' or";
+    }else if (keyword.equals(PREDATOR_REF)) {
+      for (int i=0;i<predator_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+predator_kwords[i]+"' or";
+    }else if (keyword.equals(PIRHANA_REF)) {
+      for (int i=0;i<piranha_kwords.length;i++)
+        keyword_list=keyword_list+" k.keyword='"+piranha_kwords[i]+"' or";
     }
     if (keyword_list.length()<2) return "";
     keyword_list=keyword_list.substring(0, keyword_list.length()-2);
