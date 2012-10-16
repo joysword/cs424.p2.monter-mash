@@ -227,7 +227,7 @@ class ys_FirstPageFilter {
     //global_budget;
   }
 
-  private float getMax3(ArrayList<FormatInstance> li) {
+  private float getMax3(ArrayList<Instance> li) {
     float dataM = 0;
     for (int i=0;i<li.size();i++) {
       float temp_value = 0;
@@ -241,7 +241,7 @@ class ys_FirstPageFilter {
     return dataM * 1.05;
   }
 
-  private float getMax7(ArrayList<CertificateInstance> li) {
+  private float getMax7(ArrayList<Instance> li) {
     float dataM = 0;
     for (int i=0;i<li.size();i++) {
       float temp_value = 0;
@@ -255,7 +255,7 @@ class ys_FirstPageFilter {
     return dataM * 1.05;
   }
 
-  private float getMaxCountry(ArrayList<CountryInstance> li) {
+  private float getMaxCountry(ArrayList<Instance> li) {
     float dataM = 0;
     for (int i=0;i<li.size();i++) {
       float temp_value = 0;
@@ -269,7 +269,7 @@ class ys_FirstPageFilter {
     return dataM * 1.05;
   }
 
-  private float getMax3_decade(ArrayList<FormatInstance> li) {
+  private float getMax3_decade(ArrayList<Instance> li) {
     float dataM = 0;
 
     for (int i=0;i<11;i++) {
@@ -288,7 +288,7 @@ class ys_FirstPageFilter {
     return dataM * 1.05;
   }
 
-  private float getMax7_decade(ArrayList<CertificateInstance> li) {
+  private float getMax7_decade(ArrayList<Instance> li) {
     float dataM = 0;
 
     for (int i=0;i<11;i++) {
@@ -306,7 +306,7 @@ class ys_FirstPageFilter {
 
     return dataM * 1.05;
   }
-  private float getMaxCountry_decade(ArrayList<CountryInstance> li) {
+  private float getMaxCountry_decade(ArrayList<Instance> li) {
     float dataM = 0;
 
     for (int i=0;i<11;i++) {

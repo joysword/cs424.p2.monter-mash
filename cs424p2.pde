@@ -44,21 +44,21 @@ float dataMax, dataMax_decade;
 float dataMax1, dataMax2;
 float dataMax1_decade, dataMax2_decade;
 
-ArrayList<FormatInstance> plot_1_format;
+ArrayList<Instance> plot_1_format;
 
-ArrayList<CertificateInstance> plot_1_certificate;
+ArrayList<Instance> plot_1_certificate;
 
-ArrayList<CountryInstance> plot_1_country;
-ArrayList<FormatInstance> plot_1_popularity;
-ArrayList<FormatInstance> plot_1_quality;
-ArrayList<FormatInstance> plot_1_budget;
+ArrayList<Instance> plot_1_country;
+ArrayList<Instance> plot_1_popularity;
+ArrayList<Instance> plot_1_quality;
+ArrayList<Instance> plot_1_budget;
 
-ArrayList<FormatInstance> plot_2_format;
-ArrayList<CertificateInstance> plot_2_certificate;
-ArrayList<CountryInstance> plot_2_country;
-ArrayList<FormatInstance> plot_2_popularity;
-ArrayList<FormatInstance> plot_2_quality;
-ArrayList<FormatInstance> plot_2_budget;
+ArrayList<Instance> plot_2_format;
+ArrayList<Instance> plot_2_certificate;
+ArrayList<Instance> plot_2_country;
+ArrayList<Instance> plot_2_popularity;
+ArrayList<Instance> plot_2_quality;
+ArrayList<Instance> plot_2_budget;
 
 String[] filterTxt1;
 String[] filterTxt2;
@@ -101,20 +101,20 @@ void setup()
   global_isDragRight = false;
   global_isDragLeft = false;
 
-  //global_data = new ArrayList<FormatInstance>();
-  plot_1_certificate = new ArrayList<CertificateInstance>();
-  plot_1_format = new ArrayList<FormatInstance>();
+  //global_data = new ArrayList<Instance>();
+  plot_1_certificate = new ArrayList<Instance>();
+  plot_1_format = new ArrayList<Instance>();
   //plot_1_budget;
-  plot_1_quality = new ArrayList<FormatInstance>();
-  plot_1_country = new ArrayList<CountryInstance>();
-  plot_1_popularity = new ArrayList<FormatInstance>();
+  plot_1_quality = new ArrayList<Instance>();
+  plot_1_country = new ArrayList<Instance>();
+  plot_1_popularity = new ArrayList<Instance>();
 
-  plot_2_certificate = new ArrayList<CertificateInstance>();
-  plot_2_format = new ArrayList<FormatInstance>();
+  plot_2_certificate = new ArrayList<Instance>();
+  plot_2_format = new ArrayList<Instance>();
   //plot_2_budget;
-  plot_2_quality = new ArrayList<FormatInstance>();
-  plot_2_country = new ArrayList<CountryInstance>();
-  plot_2_popularity = new ArrayList<FormatInstance>();
+  plot_2_quality = new ArrayList<Instance>();
+  plot_2_country = new ArrayList<Instance>();
+  plot_2_popularity = new ArrayList<Instance>();
 
   ui = new UserInterface();
 
