@@ -55,7 +55,6 @@ class ys_LeftMenu {
         if (posy > yy && posy < yy + leftButton[i].getHeight()) {
           if (i<3) {
             currentPage = i; 
-            println("currentPage: "+currentPage);
           }
           else if (i == 3) {
             // change language 语言
@@ -63,6 +62,9 @@ class ys_LeftMenu {
           else if (i == 4) {
             ui.getHelpWindow().switchDisplay();
           } // on -> off, off -> on
+          else if (i == 5) {
+            ui.getCreditWindow().switchDisplay();
+          }
           break;
         }
       }

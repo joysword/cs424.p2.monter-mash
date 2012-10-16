@@ -56,6 +56,7 @@ class UserInterface {
     // below are always render last
     leftBar.render();
     helpWindow.render();
+    creditWindow.render();
   }
 
   public void updateFirstPage(float posx, float posy) {
@@ -70,6 +71,10 @@ class UserInterface {
 
   public ys_HelpWindow getHelpWindow() {
     return helpWindow;
+  }
+
+  public ys_HelpWindow getCreditWindow() {
+    return creditWindow;
   }
 
   public ys_FirstPage getFirstPage() {
