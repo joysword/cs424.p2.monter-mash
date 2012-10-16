@@ -40,12 +40,25 @@ int currentPage;
 boolean global_isDragLeft; //drag Left Timelock of Range on First Page
 boolean global_isDragRight;
 
-ArrayList<FormatInstance> global_format;
-ArrayList<CertificateInstance> global_certificate;
-//ArrayList<> global_country;
-ArrayList<FormatInstance> global_popularity;
-ArrayList<FormatInstance> global_quality;
-//ArrayList<> global_budget;
+float dataMax, dataMax_decade;
+float dataMax1, dataMax2;
+float dataMax1_decade, dataMax2_decade;
+
+ArrayList<FormatInstance> plot_1_format;
+
+ArrayList<CertificateInstance> plot_1_certificate;
+
+ArrayList<CountryInstance> plot_1_country;
+ArrayList<FormatInstance> plot_1_popularity;
+ArrayList<FormatInstance> plot_1_quality;
+ArrayList<FormatInstance> plot_1_budget;
+
+ArrayList<FormatInstance> plot_2_format;
+ArrayList<CertificateInstance> plot_2_certificate;
+ArrayList<CountryInstance> plot_2_country;
+ArrayList<FormatInstance> plot_2_popularity;
+ArrayList<FormatInstance> plot_2_quality;
+ArrayList<FormatInstance> plot_2_budget;
 
 String[] filterTxt1;
 String[] filterTxt2;
@@ -89,24 +102,49 @@ void setup()
   global_isDragLeft = false;
 
   //global_data = new ArrayList<FormatInstance>();
-  global_certificate = new ArrayList<CertificateInstance>();
-  global_format = new ArrayList<FormatInstance>();
-  //global_budget;
-  global_quality = new ArrayList<FormatInstance>();
-  //global_country;
-  global_popularity = new ArrayList<FormatInstance>();
+  plot_1_certificate = new ArrayList<CertificateInstance>();
+  plot_1_format = new ArrayList<FormatInstance>();
+  //plot_1_budget;
+  plot_1_quality = new ArrayList<FormatInstance>();
+  plot_1_country = new ArrayList<CountryInstance>();
+  plot_1_popularity = new ArrayList<FormatInstance>();
+
+  plot_2_certificate = new ArrayList<CertificateInstance>();
+  plot_2_format = new ArrayList<FormatInstance>();
+  //plot_2_budget;
+  plot_2_quality = new ArrayList<FormatInstance>();
+  plot_2_country = new ArrayList<CountryInstance>();
+  plot_2_popularity = new ArrayList<FormatInstance>();
 
   ui = new UserInterface();
 
   //global_data = ui.getDB().getFormat("horror","vampire");
   //global_data = ui.getDB().getCertificates("horror", "vampire");
-  global_certificate = ui.getDB().getCertificates("horror", "vampire");
-  global_popularity = ui.getDB().getPopularity("horror", "vampire");
-  global_quality = ui.getDB().getQuality("horror", "vampire");
-  global_format = ui.getDB().getFormat("horror", "vampire");
+  plot_1_certificate = ui.getDB().getCertificates("horror", "vampire");
+  plot_1_popularity = ui.getDB().getPopularity("horror", "vampire");
+  plot_1_quality = ui.getDB().getQuality("horror", "vampire");
+  plot_1_format = ui.getDB().getFormat("horror", "vampire");
+
+  plot_2_certificate = ui.getDB().getCertificates("horror", "vampire");
+  plot_2_popularity = ui.getDB().getPopularity("horror", "vampire");
+  plot_2_quality = ui.getDB().getQuality("horror", "vampire");
+  plot_2_format = ui.getDB().getFormat("horror", "vampire");
+
+  //println("cer: "+plot_1_certificate.size());
+  //println("pop: "+plot_1_popularity.size());
+  //println("qua: "+plot_1_quality.size());
+  //println("for: "+plot_1_format.size());
 
   filterTxt1 = FILTER_TXT_1;
   filterTxt2 = FILTER_TXT_2;
+
+  dataMax = ui.getFirstPage().getFilter(0).getMax7(plot_1_certificate);
+  dataMax_decade = ui.getFirstPage().getFilter(0).getMax7_decade(plot_1_certificate);
+
+  dataMax1 = dataMax;
+  dataMax2 = dataMax;
+  dataMax1_decade = dataMax_decade;
+  dataMax2_decade = dataMax_decade;
 
   // setup other things
 

@@ -102,10 +102,10 @@ class ys_FirstPageFilter {
   }
 
 
-  void update(float posx, float posy, cc_DatabaseManager db) {
+  void update(float posx, float posy, cc_DatabaseManager db, int whichFilter) {
 
     if (posx>btnx && posx < btnx + btnw && posy>btny && posy<btny + btnh) {
-      updateConfirm(posx, posy, db);
+      updateConfirm(posx, posy, db, whichFilter);
     }
     else {
       updateFilter(posx, posy);
@@ -125,7 +125,7 @@ class ys_FirstPageFilter {
   }
 
   // update data to show
-  private void updateConfirm(float x, float y, cc_DatabaseManager db) {
+  private void updateConfirm(float x, float y, cc_DatabaseManager db, int whichFilter) {
     filter_current = filter_temp;
     isDisplay = false;
 
@@ -156,12 +156,173 @@ class ys_FirstPageFilter {
     //test function
     // mon = -1
     // gen = -1
-    global_certificate = ui.getDB().getCertificates(gen, mon);
-    global_format = ui.getDB().getFormat(gen, mon);
-    global_popularity = ui.getDB().getPopularity(gen, mon);
-    global_quality = ui.getDB().getQuality(gen, mon);
+
+    if (whichFilter == 0) {
+      switch(currentFilter) {
+        case CERTIFICATE:
+        plot_1_certificate = ui.getDB().getCertificates(gen, mon);
+        dataMax1 = getMax7(plot_1_certificate);
+        dataMax1_decade = getMax7_decade(plot_1_certificate);
+        break;
+        case FORMAT:
+        plot_1_format = ui.getDB().getFormat(gen, mon);
+        dataMax1 = getMax3(plot_1_format);
+        dataMax1_decade = getMax3_decade(plot_1_format);
+        break;
+        case POPULARITY:
+        plot_1_popularity = ui.getDB().getPopularity(gen, mon);
+        dataMax1 = getMax3(plot_1_popularity);
+        dataMax1_decade = getMax3_decade(plot_1_popularity);
+        break;
+        case QUALITY:
+        plot_1_quality = ui.getDB().getQuality(gen, mon);
+        dataMax1 = getMax3(plot_1_quality);
+        dataMax1_decade = getMax3_decade(plot_1_quality);
+        break;
+        case COUNTRY:
+        plot_1_country = ui.getDB().getCountries(gen,mon);
+        dataMax1 = getMaxCountry(plot_1_country);
+        dataMax1_decade = getMaxCountry_decade(plot_1_country);
+        case BUDGET:
+      }
+      filterTxt1[0] = "MONSTERS:\n "+mon;
+      filterTxt1[1] = "GENRES:\n "+gen;
+      filterTxt1[2] = "FILTER:\n"+FILTER_TYPE[currentFilter];
+    }
+    else if (whichFilter == 1){
+      switch(currentFilter) {
+        case CERTIFICATE:
+        plot_2_certificate = ui.getDB().getCertificates(gen, mon);
+        dataMax2 = getMax7(plot_2_certificate);
+        dataMax2_decade = getMax7_decade(plot_2_certificate);
+        break;
+        case FORMAT:
+        plot_2_format = ui.getDB().getFormat(gen, mon);
+        dataMax2 = getMax3(plot_2_format);
+        dataMax2_decade = getMax3_decade(plot_2_format);
+        break;
+        case POPULARITY:
+        plot_2_popularity = ui.getDB().getPopularity(gen, mon);
+        dataMax2 = getMax3(plot_2_popularity);
+        dataMax2_decade = getMax3_decade(plot_2_popularity);
+        break;
+        case QUALITY:
+        plot_2_quality = ui.getDB().getQuality(gen, mon);
+        dataMax2 = getMax3(plot_2_quality);
+        dataMax2_decade = getMax3_decade(plot_2_quality);
+        break;
+        case COUNTRY:
+        plot_2_country = ui.getDB().getCountries(gen,mon);
+        dataMax2 = getMaxCountry(plot_2_country);
+        dataMax2_decade = getMaxCountry_decade(plot_2_country);
+        case BUDGET:
+      }
+      filterTxt2[0] = "MONSTERS:\n "+mon;
+      filterTxt2[1] = "GENRES:\n "+gen;
+      filterTxt2[2] = "FILTER:\n"+FILTER_TYPE[currentFilter];
+    }
+
+    dataMax = (dataMax1 > dataMax2)? dataMax1:dataMax2;
     //global_country;
     //global_budget;
+  }
+
+  private float getMax3(ArrayList<FormatInstance> li) {
+    float dataM = 0;
+    for (int i=0;i<li.size();i++) {
+      float temp_value = 0;
+      for (int j=0;j<3;j++) {
+        temp_value += li.get(i).get(j);
+      }
+      if (temp_value > dataM) {
+        dataM = temp_value;
+      }
+    }
+    return dataM * 1.05;
+  }
+
+  private float getMax7(ArrayList<CertificateInstance> li) {
+    float dataM = 0;
+    for (int i=0;i<li.size();i++) {
+      float temp_value = 0;
+      for (int j=0;j<7;j++) {
+        temp_value += li.get(i).get(j);
+      }
+      if (temp_value > dataM) {
+        dataM = temp_value;
+      }
+    }
+    return dataM * 1.05;
+  }
+
+  private float getMaxCountry(ArrayList<CountryInstance> li) {
+    float dataM = 0;
+    for (int i=0;i<li.size();i++) {
+      float temp_value = 0;
+      for (int j=0;j<7;j++) {
+        temp_value += li.get(i).get(j);
+      }
+      if (temp_value > dataM) {
+        dataM = temp_value;
+      }
+    }
+    return dataM * 1.05;
+  }
+
+  private float getMax3_decade(ArrayList<FormatInstance> li) {
+    float dataM = 0;
+
+    for (int i=0;i<11;i++) {
+
+      float temp_value = 0;
+      for (int j=(i*10);j<i*10+10 && j<li.size();j++) {
+        for (int k=0;k<3;k++) {
+          temp_value += plot_1_certificate.get(j).get(k);
+        }
+      }
+      if (temp_value > dataM) {
+        dataM = temp_value;
+      }
+    }
+
+    return dataM * 1.05;
+  }
+
+  private float getMax7_decade(ArrayList<CertificateInstance> li) {
+    float dataM = 0;
+
+    for (int i=0;i<11;i++) {
+
+      float temp_value = 0;
+      for (int j=(i*10);j<i*10+10 && j<li.size();j++) {
+        for (int k=0;k<7;k++) {
+          temp_value += plot_1_certificate.get(j).get(k);
+        }
+      }
+      if (temp_value > dataM) {
+        dataM = temp_value;
+      }
+    }
+
+    return dataM * 1.05;
+  }
+  private float getMaxCountry_decade(ArrayList<CountryInstance> li) {
+    float dataM = 0;
+
+    for (int i=0;i<11;i++) {
+
+      float temp_value = 0;
+      for (int j=(i*10);j<i*10+10 && j<li.size();j++) {
+        for (int k=0;k<7;k++) {
+          temp_value += plot_1_certificate.get(j).get(k);
+        }
+      }
+      if (temp_value > dataM) {
+        dataM = temp_value;
+      }
+    }
+
+    return dataM * 1.05;
   }
 }
 

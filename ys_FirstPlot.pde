@@ -1,8 +1,8 @@
 class FirstPlot {
 
   float dataMin;
-  float dataMax;
-  float dataMax_decade;
+  //float dataMax;
+  //float dataMax_decade;
   float originalDataMax;
 
   float plotX1, plotX2, plotY1, plotY2;
@@ -77,13 +77,6 @@ class FirstPlot {
 
     //setupDecade();
 
-    //used by dashline
-    //setupDashLine(DASH_LINE_SPACING1, DASH_LINE_SPACING2);
-
-    //dropBox= new DropBox(1, 1, 120, 10, li, inli, 0);
-    //dropBox= new DropBox(1, 1, 120);
-
-    //
     //    legend = new Legend[DATA_SET_COUNT];
     //    for (int i=0;i<DATA_SET_COUNT;i++) {
     //      legend[i] = new Legend(PAGE_BTN_X+PAGE_BTN_W+LEGEND_DIFF, LIST_Y + (i - 1)*2.1*LIST_LINE_H + 12*scale, LIST_LINE_H, ui.dataSelector[i].getTxt()+"\n"+unitText[i], colors[i]);
@@ -94,7 +87,7 @@ class FirstPlot {
   }
 
 
-  void render() {
+  void render(int whichGraph) {
     yearCount = showYearMax-showYearMin+1;
     unitWidth = (plotX2-plotX1)/yearCount;
     decadeCount = 11; //change
@@ -103,7 +96,7 @@ class FirstPlot {
     // three way
     int mode = ui.getFirstPage().getDisplayMode();
     if (mode == YEAR_MODE) {
-      drawPlot();
+      drawPlot(whichGraph);
     }
     else if (mode == DECADE_MODE) {
       drawBar();
@@ -113,7 +106,7 @@ class FirstPlot {
     }
   }
 
-  private void drawPlot() {
+  private void drawPlot(int whichGraph) {
     pushStyle();
 
     fill(PLOT_BG_COLOR);
@@ -137,7 +130,7 @@ class FirstPlot {
     //////////END OF VOLUME
 
     //drawDataCurve(currentRow[j], j, i, showYearMin, showYearMax);
-    drawDataCurve(currentFilter, NUMBER_OF_CLUSTERS[currentFilter]);
+    drawDataCurve(currentFilter, NUMBER_OF_CLUSTERS[currentFilter], whichGraph);
 
     popStyle();
   }
@@ -320,7 +313,7 @@ class FirstPlot {
     popStyle();
   }
 
-  private void drawDataCurve(int whichFilter, int howManyCluters) {
+  private void drawDataCurve(int whichFilter, int howManyCluters, int whichGraph) {
     pushStyle();
 
     noFill();
@@ -330,47 +323,41 @@ class FirstPlot {
 
     // test function
 
-    dataMax = 0;
-
-    for (int i=0;i<global_certificate.size();i++) {
-      float temp_value = 0;
-      for (int j=0;j<howManyCluters;j++) {
-        temp_value += global_certificate.get(i).get(j);
-      }
-      if (temp_value > dataMax) {
-        dataMax = temp_value;
-      }
-    }
-
-    dataMax *= 1.05;
-
     float left, right;
 
     for (int clust=0;clust<howManyCluters;clust++) {
       left = plotX1;
       right = left+unitWidth;
-      beginShape();
-      stroke(CLUSTER_COLOR[clust]);
       fill(CLUSTER_COLOR[clust]);
+      stroke(CLUSTER_COLOR[clust]);
+      beginShape();
+      //fill(CLUSTER_COLOR[clust]);
 
       for (int i=showYearMin;i<=showYearMax;i++) {
         if (true == true) {
           //float value = random(40,80);//(i+showYearMin)%100;//(i%10>4)?50:40; //change
           float value = 0;
           for (int j=0;j<=clust;j++) {
-            value += global_certificate.get(i-yearMin).get(j);
+            if (whichGraph == 0) {
+              value += plot_1_certificate.get(i-yearMin).get(j);
+            }
+            else {
+              value += plot_2_certificate.get(i-yearMin).get(j);
+            }
           }
           float x = (left+right)/2;
           float y = map(value, dataMin, dataMax*dataScale, minimumY, plotY1);
           //ellipse(x, y, 4*scale, 6*scale);
-          noFill();
 
           vertex(x, y);
+          println("x,y: "+x+ " "+y);
         }
         left = right;
         right += unitWidth;
       }
-      endShape();
+      vertex(plotX2-unitWidth*0.5, minimumY);
+      vertex(plotX1+unitWidth*0.5, minimumY);
+      endShape(CLOSE);
     }
     popStyle();
   }
@@ -379,31 +366,18 @@ class FirstPlot {
   void drawDataBar(int whichFilter, int howManyCluters) {
     pushStyle();
 
-
     fill(CLUSTER_COLOR[0]);
     noStroke();//BAR_COLOR_TEMP);
     //strokeWeight(INLINE_WIDTH);
-
-    dataMax_decade = 0;
-
-    for (int i=0;i<global_certificate.size();i++) {
-      float temp_value = 0;
-      for (int j=0;j<howManyCluters;j++) {
-        temp_value += global_certificate.get(i).get(j);
-      }
-      if (temp_value > dataMax_decade) {
-        dataMax_decade = temp_value;
-      }
-    }
-
-    dataMax_decade *= 1.05;
 
     float decadeWidth = (plotX2 - plotX1) / 11;
     for (int i=0;i<11;i++) {
 
       float value = 0;
       for (int j=(i*10);j<i*10+10 && j<yearCount;j++) {
-        value += global_certificate.get(j).get(0);
+        for (int k=0;k<howManyCluters;k++) {
+          value += plot_1_certificate.get(j).get(k);
+        }
       }
       float xx1 = plotX1 + decadeWidth*(i+0.2);
       float xx2 = plotX1 + decadeWidth*(i+0.8);
