@@ -18,19 +18,7 @@ public class cc_PlotDataManager {
   }
 
   public void setData(cc_PlottedData dataType) {
-    if (!animal()) {
-      if (dataType==cc_PlottedData.NUMBER_FILMS)
         data=db.getFilmNumber(monster);
-      else if (dataType==cc_PlottedData.POPULARITY)
-        //print("cane");
-        data=db.getPopularity(monster);
-    }
-    else {
-      if (dataType==cc_PlottedData.NUMBER_FILMS)
-        data=db.getFilmNumberAnimal(monster);
-      else if (dataType==cc_PlottedData.POPULARITY)
-        data=db.getPopularityAnimal(monster);
-    }
   }
 
   public float getDataMax() {

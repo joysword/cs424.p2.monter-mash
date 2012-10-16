@@ -1,4 +1,4 @@
-class FilterQuality {
+  class FilterQuality {
   float x, y, w, h;
 
   int checkItemCount; // number of level

@@ -400,6 +400,15 @@ public class cc_DatabaseManager {
     while (msql.next ());
     return array;
   } 
+  
+    private ArrayList<StringCountPair> createArrayFromQueryGenre(ArrayList<StringCountPair> array, MySQL msql) {
+      while(msql.next ())
+      {
+         array.add(new StringCountPair(msql.getFloat(2),msql.getString(1))); 
+      }
+      return array;
+  } 
+
 
   //------------------------- USE THIS METHOD TO COUNT FILM WITH A GIVEN KEYWORD PER YEAR --------------------------------
   // Method to retrieve a list of pairs year-count containing the number of films related to the searched keyword
@@ -825,6 +834,36 @@ public class cc_DatabaseManager {
     return array;
   }
 
+public ArrayList<StringCountPair> getFilmList() {
+    ArrayList<StringCountPair> array = new ArrayList<StringCountPair>();
+    if ( msql.connect() )
+    {
+      String query="SELECT distinct title, id from title group by title";
+      msql.query(query);
+      array=createArrayFromQueryGenre(array, msql);
+    }
+    else {
+    }
+    return array;
+  }
+
+
+public ArrayList<StringCountPair> getGenresTOP5(String keyword) {
+    ArrayList<StringCountPair> array = new ArrayList<StringCountPair>();
+    if ( msql.connect() )
+    {
+      String query="SELECT genre, SUM( count ) FROM quality_count WHERE monster =  \""+
+                   keyword+"\" GROUP BY genre ORDER BY SUM( count ) DESC  LIMIT 5";
+      print(query);
+      msql.query(query);
+      array=createArrayFromQueryGenre(array, msql);
+    }
+
+    else {
+    }
+    return array;
+  }
+
 private void initArray(ArrayList<Instance> array){
   for(int i=0;i<123;i++){
    array.add(new Instance(1890+i)); 
@@ -958,7 +997,7 @@ public ArrayList<Instance> getFormat(String genre, String monster){
     if ( msql.connect() )
     {
       String query1=   
-      "SELECT year,count "+
+      "SELECT year,sum(count) "+
       "from format_count "+
       "where "+
       genre+
@@ -971,7 +1010,7 @@ public ArrayList<Instance> getFormat(String genre, String monster){
       msql.query(query1);
       add(0,array,msql);
       String query2=   
-         "SELECT year,count "+
+         "SELECT year,sum(count) "+
       "from format_count "+
       "where "+
       genre+
@@ -983,7 +1022,7 @@ public ArrayList<Instance> getFormat(String genre, String monster){
       msql.query(query2);
       add(1,array,msql);
        String query3=   
-       "SELECT year,count "+
+       "SELECT year,sum(count) "+
       "from format_count "+
       "where "+
       genre+
@@ -1080,7 +1119,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
     if ( msql.connect() )
     {
       String query1=   
-      "SELECT year,count "+
+      "SELECT year,sum(count) "+
       "from certificates_count "+
       "where "+
       genre+
@@ -1093,7 +1132,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       msql.query(query1);
       add(0,array,msql);
       String query2=   
-         "SELECT year,count "+
+         "SELECT year,sum(count) "+
       "from certificates_count "+
       "where "+
       genre+
@@ -1105,7 +1144,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       msql.query(query2);
       add(1,array,msql);
        String query3=   
-       "SELECT year,count "+
+       "SELECT year,sum(count) "+
       "from certificates_count "+
       "where "+
       genre+
@@ -1117,7 +1156,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       msql.query(query3);
       add(2,array,msql);
             String query4=   
-       "SELECT year,count "+
+       "SELECT year,sum(count) "+
       "from certificates_count "+
       "where "+
       genre+
@@ -1129,7 +1168,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       msql.query(query4);
       add(3,array,msql);
             String query5=   
-       "SELECT year,count "+
+       "SELECT year,sum(count) "+
       "from certificates_count "+
       "where "+
       genre+
@@ -1141,7 +1180,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       msql.query(query5);
       add(4,array,msql);
             String query6=   
-       "SELECT year,count "+
+       "SELECT year,sum(count) "+
       "from certificates_count "+
       "where "+
       genre+
@@ -1153,7 +1192,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       msql.query(query6);
       add(5,array,msql);
             String query7=   
-       "SELECT year,count "+
+       "SELECT year,sum(count) "+
       "from certificates_count "+
       "where "+
       genre+
@@ -1179,7 +1218,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
     if ( msql.connect() )
     {
       String query1=   
-      "SELECT year,count "+
+      "SELECT year,sum(count) "+
       "from certificates_count "+
       "where "+
       genre+
@@ -1192,7 +1231,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       msql.query(query1);
       add(0,array,msql);
       String query2=   
-         "SELECT year,count "+
+         "SELECT year,sum(count) "+
       "from certificates_count "+
       "where "+
       genre+
@@ -1204,7 +1243,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       msql.query(query2);
       add(1,array,msql);
        String query3=   
-       "SELECT year,count "+
+       "SELECT year,sum(count) "+
       "from certificates_count "+
       "where "+
       genre+
@@ -1216,7 +1255,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       msql.query(query3);
       add(2,array,msql);
             String query4=   
-       "SELECT year,count "+
+       "SELECT year,sum(count) "+
       "from certificates_count "+
       "where "+
       genre+
@@ -1228,7 +1267,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       msql.query(query4);
       add(3,array,msql);
             String query5=   
-       "SELECT year,count "+
+       "SELECT year,sum(count) "+
       "from certificates_count "+
       "where "+
       genre+
@@ -1240,7 +1279,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       msql.query(query5);
       add(4,array,msql);
             String query6=   
-       "SELECT year,count "+
+       "SELECT year,sum(count) "+
       "from certificates_count "+
       "where "+
       genre+
@@ -1252,7 +1291,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       msql.query(query6);
       add(5,array,msql);
             String query7=   
-       "SELECT year,count "+
+       "SELECT year,sum(count) "+
       "from certificates_count "+
       "where "+
       genre+
@@ -1279,7 +1318,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
     if ( msql.connect() )
     {
       String query1=   
-      "SELECT year,count "+
+      "SELECT year,sum(count) "+
       "from quality_count "+
       "where "+
       genre+
@@ -1292,7 +1331,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       msql.query(query1);
       add(0,array,msql);
       String query2=   
-         "SELECT year,count "+
+         "SELECT year,sum(count) "+
       "from quality_count "+
       "where "+
       genre+
@@ -1304,7 +1343,7 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       msql.query(query2);
       add(1,array,msql);
        String query3=   
-       "SELECT year,count "+
+       "SELECT year,sum(count) "+
       "from quality_count "+
       "where "+
       genre+
