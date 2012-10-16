@@ -91,6 +91,11 @@ float finalX, finalY;
       if(this.taxonomy.singleMonsterPane.compareMonster1.checkOn(xPos, yPos)){
       this.taxonomy.singleMonsterPane.hide();
       monsterToSelect=1;}
+      
+      else if(this.taxonomy.singleMonsterPane.compareMonster2.checkOn(xPos, yPos)){
+      this.taxonomy.singleMonsterPane.hide();
+      monsterToSelect=2;}
+      
     }
     scrollMouseManager.knobPressed(taxonomy.getMonsterPane().getPlot(), xPos, yPos);
   }
@@ -153,11 +158,20 @@ float finalX, finalY;
          print("\naaa "+abs(xPos-finalX));
 
      if((abs(xPos-finalX)<taxonomy.nodeDiameterChild/2 || abs(yPos-finalY)<taxonomy.nodeDiameterChild/2)){print("\nmosso"); 
+    
      if(monsterToSelect==1){
      taxonomy.singleMonsterPane.monster1=((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving)).monsterName;
       taxonomy.singleMonsterPane.monster=((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving));
      taxonomy.singleMonsterPane.setupMonster1();
-   taxonomy.singleMonsterPane.show();}}
+   taxonomy.singleMonsterPane.show();}
+ 
+ if(monsterToSelect==2){
+     taxonomy.singleMonsterPane.monster2=((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving)).monsterName;
+      taxonomy.singleMonsterPane.monster_2=((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving));
+     taxonomy.singleMonsterPane.setupMonster2();
+   taxonomy.singleMonsterPane.show();}
+   
+ }
     //print(""+((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving)).moving);
   
 
