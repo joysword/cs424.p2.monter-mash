@@ -38,7 +38,7 @@ class MonsterPage {
     fill(TITLE_COLOR);
     textSize(TITLE_SIZE);
     textAlign(CENTER,CENTER);
-    text("MADDENED MUSCLE MONSTER MASH MUSEUM", width*0.5, height*0.1);
+    text("MADDENED MUSCLE MONSTER MASH MUSEUM", width*0.5, height*0.07);
 
     popStyle();
     //taxonomyButton.draw();

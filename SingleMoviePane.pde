@@ -38,14 +38,14 @@ public class SingleMoviePane {
     fill(255);
     textAlign(LEFT, CENTER);
     textSize(200/scaling);
-    text(this.movie.title, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.35);
-    text("("+this.movie.year+")", this.centerX-this.widthS/2+this.widthS*0.05+textWidth(this.movie.title)+this.widthS/40, this.centerY-this.heightS/2+this.heightS*0.35);
+    text(this.movie.title, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.40);
+    text("("+this.movie.year+")", this.centerX-this.widthS/2+this.widthS*0.05+textWidth(this.movie.title)+this.widthS/40, this.centerY-this.heightS/2+this.heightS*0.40);
     textSize(130/scaling);
-    text("Genre: "+this.movie.genre, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.50);
-    text("Running time: "+this.movie.runtime+"minutes", this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.60);
-    text("Plot: "+this.movie.description, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.70);
-    text("Certificate: "+this.movie.certificate, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.80);
-    text("Budget: "+this.movie.budget, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.90);
+    text("Genre:  "+this.movie.genre, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.55);
+    text("Running time:  "+this.movie.runtime+"minutes", this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.65);
+    //text("Plot: "+this.movie.description, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.70);
+    text("Certificate:  "+this.movie.certificate, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.75);
+    text("Budget:  "+this.movie.budget, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.85);
   }
 }
 
