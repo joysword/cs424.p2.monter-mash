@@ -13,7 +13,4 @@ public class Instance{
 	public void set(int i,int value){
 		count[i]=value;
 	}
-
-
-
 }

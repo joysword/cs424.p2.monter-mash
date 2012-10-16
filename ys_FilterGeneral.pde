@@ -26,6 +26,9 @@ class FilterGeneral {
     filterName = new String[checkItemCount];
     for (int i=0;i<checkItemCount;i++) {
       filterName[i] = FILTER_TYPE[i];
+      if (FILTER_TYPE[i] == " CERTIFICATE") {
+        checkItems[i].switchCheck();
+      }
     }
   }
 
@@ -65,6 +68,17 @@ class FilterGeneral {
               checkItems[j].uncheckIt();
             }
           }
+        }
+        //
+        else {
+          boolean allGone = true;
+          for (int j=0;j<checkItemCount;j++) {
+            if (checkItems[i].getIsCheck()) {
+              allGone = false;
+              break;
+            }
+          }
+          if (allGone) checkItems[i].checkIt();
         }
         //
         break;

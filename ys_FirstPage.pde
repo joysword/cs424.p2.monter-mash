@@ -86,8 +86,8 @@ class ys_FirstPage {
   void render() {
     renderTitle();
     // render graph
-    plot1.render();
-    plot2.render();
+    plot1.render(0);
+    plot2.render(1);
     range.render();
 
     // render buttons
@@ -200,6 +200,7 @@ class ys_FirstPage {
             if (j != i) isSelecting[j] = false;
           }
         }
+        println("filter 1: " + isSelecting[0] + "  filter 2: " + isSelecting[1]);
         break;
       }
     }
@@ -208,8 +209,9 @@ class ys_FirstPage {
     // filter
     for (int i=0;i<HOW_MANY_GRAPH;i++) {
       if (isSelecting[i]) {
-        filter[i].update(posx, posy, ui.getDB());
+        println("start to update "+i);
         canSeeButton = false;
+        filter[i].update(posx, posy, ui.getDB(), i);
         break; // only 1 is under attack
       }
     }
@@ -237,7 +239,6 @@ class ys_FirstPage {
     textSize(TITLE_SIZE);
     textAlign(CENTER,CENTER);
     text("MELT METRIC MONSTER MASH MILLENNIUM", width*0.5, height*0.1);
-
   }
   private void renderRight() {
     pushStyle();
@@ -250,11 +251,11 @@ class ys_FirstPage {
     for (int i=0;i<HOW_MANY_FILTERS;i++) {
       //1
       fill(#01b2f1);
-      text(filterTxt1[i], rightX+25*scale, rightY1 + 20*scale + i * 35*scale);
+      text(filterTxt1[i], rightX+25*scale, rightY1 + 20*scale + i * height*0.15);
 
       //2
       fill(#29C567);
-      text(filterTxt2[i], rightX+25*scale, (rightY1+rightY2) * 0.5 + 20*scale + i * 35*scale);
+      text(filterTxt2[i], rightX+25*scale, (rightY1+rightY2) * 0.5 + 20*scale + i * height*0.15);
     }
     strokeWeight(BOARD_WEIGHT);
     stroke(BUTTON_COLOR);
@@ -277,6 +278,14 @@ class ys_FirstPage {
     return false;
   }
 
+  public boolean getIsSelecting_1() {
+    return isSelecting[0];
+  }
+
+  public boolean getIsSelecting_2() {
+    return isSelecting[1];
+  }
+
   public ys_Range getRange() {
     return range;
   }
@@ -291,6 +300,10 @@ class ys_FirstPage {
 
   public int getDisplayMode() {
     return displayMode;
+  }
+
+  public ys_FirstPageFilter getFilter(int i) {
+    return filter[i];
   }
 }
 
