@@ -44,13 +44,13 @@ public class SingleMonsterPane {
 
 
   private void setupMonster1(){
-    plot1.setupDataMonster1(monster1);
-    top5Genres.setupDataMonster1(monster1);
+    plot1.setupDataMonster1(matchName(monster1));
+    top5Genres.setupDataMonster1(matchName(monster1));
   }
   
   private void setupMonster2(){
-    plot1.setupDataMonster2(monster2);
-    top5Genres.setupDataMonster2(monster2);
+    plot1.setupDataMonster2(matchName(monster2));
+    top5Genres.setupDataMonster2(matchName(monster2));
   }
   
   
@@ -110,6 +110,7 @@ public class SingleMonsterPane {
 
   public void setMonster(monsterNode monster) {
     this.monster = monster;
+    monster1=monster.monsterName;
   }
 
   public void checkHideButton(float myX, float myY) {

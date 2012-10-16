@@ -47,6 +47,7 @@ public class Top5Genres {
 
   public void setupDataMonster1(String monster1) {
      genresNames=db.getGenresTOP5(monster1);
+     if(genresNames.size()>0)
      maxYvalue=genresNames.get(0).getCount();
   }
   

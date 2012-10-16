@@ -388,7 +388,8 @@ public class cc_DatabaseManager {
   private ArrayList<cc_YearCountPair> createArrayFromQuery(ArrayList<cc_YearCountPair> array, MySQL msql) {
     int old=1890;
     int i=0;
-    do {
+    if(msql==null) return array;
+    while(msql.next()) {
       i=1;
       while (msql.getInt(1)>old) {
         array.add(new cc_YearCountPair(0.0, old));
@@ -398,7 +399,7 @@ public class cc_DatabaseManager {
       array.add(new cc_YearCountPair(msql.getFloat(2), msql.getInt(1)));
       old++;
     }
-    while (msql.next ());
+  
     return array;
   } 
   
@@ -483,7 +484,6 @@ public class cc_DatabaseManager {
         "order by t.production_year ";
       msql.query(query);
       array=createArrayFromQuery(array, msql);
-      println("OK!");
     }
     else {
     }
@@ -500,8 +500,10 @@ public class cc_DatabaseManager {
         "from "+
         "quality_count "+
         "where monster=\""+keyword+"\""+
+        " and year>=1890 and year<=2012 "+
         " group by year "+
         "order by year ";
+        println(query);
       msql.query(query);
       array=createArrayFromQuery(array, msql);
     }
@@ -532,7 +534,6 @@ public class cc_DatabaseManager {
         "order by t.production_year ";
       msql.query(query);
       array=createArrayFromQuery(array, msql);
-      println("OK!");
     }
     else {
     }
@@ -565,7 +566,6 @@ public class cc_DatabaseManager {
         "order by t.production_year ";
       msql.query(query);
       array=createArrayFromQuery(array, msql);
-      println("OK!");
     }
     else {
     }
@@ -600,7 +600,6 @@ public class cc_DatabaseManager {
         "order by t.production_year ";
       msql.query(query);
       array=createArrayFromQuery(array, msql);
-      println("OK!");
     }
     else {
     }
@@ -633,7 +632,6 @@ public class cc_DatabaseManager {
         "order by t.production_year ";
       msql.query(query);
       array=createArrayFromQuery(array, msql);
-      println("OK!");
     }
     else {
     }
@@ -964,7 +962,6 @@ private void addLow(ArrayList<FormatInstance> array,MySQL msql){
 private void addMed(ArrayList<FormatInstance> array,MySQL msql){
   int year,count;
   while(msql.next()){
-    println("CANE");
     year=msql.getInt(1);
     count=msql.getInt(2);
         if(year>1889)
@@ -975,7 +972,6 @@ private void addMed(ArrayList<FormatInstance> array,MySQL msql){
 private void addHigh(ArrayList<FormatInstance> array,MySQL msql){
   int year,count;
   while(msql.next()){
-    println("CAVALLO");
     year=msql.getInt(1);
     count=msql.getInt(2);
         if(year>1889)
