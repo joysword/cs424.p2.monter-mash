@@ -121,7 +121,7 @@ float finalX, finalY;
       }
     
     }}
-    
+  if(this.taxonomy.singleMonsterPane.show==false){
       for (int i=0;i<taxonomy.nodesList.size();i++) {
 
       if (((monsterNode)taxonomy.nodesList.get(i)).checkOn(xPos, yPos)){
@@ -130,7 +130,7 @@ float finalX, finalY;
     distanceX=finalX-xPos;
     distanceY=finalY-yPos;
     taxonomy.indexMoving=i;
-  break;}}
+  break;}}}
   
   //print("\nx "+finalX+" y "+finalY);
   
@@ -165,18 +165,20 @@ float finalX, finalY;
 
      if(((abs((xPos+distanceX)-finalX)<=20/scaling || abs((yPos+distanceY)-finalY)<=20/scaling)  )&& 
      !this.taxonomy.singleMonsterPane.show && !this.taxonomy.singleMonsterPane.compareMonster1.checkOn(xPos, yPos) && !this.taxonomy.singleMonsterPane.compareMonster2.checkOn(xPos, yPos)){print("\nmosso"); 
-    
-     if(monsterToSelect==1){
+    print(""+this.taxonomy.singleMonsterPane.show);
+     if(monsterToSelect==1 && this.taxonomy.singleMonsterPane.show==false){
      taxonomy.singleMonsterPane.monster1=((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving)).monsterName;
       taxonomy.singleMonsterPane.monster=((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving));
      taxonomy.singleMonsterPane.setupMonster1();
-   taxonomy.singleMonsterPane.show();}
+   taxonomy.singleMonsterPane.show();
+ this.taxonomy.singleMonsterPane.show=true;}
  
- if(monsterToSelect==2){
+ if(monsterToSelect==2 && this.taxonomy.singleMonsterPane.show==false){
      taxonomy.singleMonsterPane.monster2=((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving)).monsterName;
       taxonomy.singleMonsterPane.monster_2=((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving));
      taxonomy.singleMonsterPane.setupMonster2();
-   taxonomy.singleMonsterPane.show();}
+   taxonomy.singleMonsterPane.show();
+  this.taxonomy.singleMonsterPane.show=true;}
    
  }
     //print(""+((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving)).moving);
