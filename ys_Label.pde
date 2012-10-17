@@ -21,7 +21,7 @@ class Label {
     pushStyle();
     textAlign(LEFT, CENTER);
     fill(TEXT_COLOR); //change
-    textSize(14*scale);
+    textSize(13*scale);
     text(txt[LA], x+2*scale, y+h*0.5);
     popStyle();
   }
