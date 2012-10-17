@@ -2,7 +2,7 @@
 void touchDown(int ID, float xPos, float yPos, float xWidth, float yWidth) {
 
   if (currentPage == FIRST_PAGE) {
-    if (ui.getFirstPage().getIsSelecting() == false && ui.getFirstPage().getDisplayMode() == YEAR_MODE) {
+    if (ui.getFirstPage().getIsSelecting() == false && ui.getFirstPage().getDisplayMode() == YEAR_MODE && ui.getLeftBar().getIsDisplay() == false) {
 
       if (yPos <= ui.getFirstPage().getRange().getY_High() + 4*scale && yPos >= ui.getFirstPage().getRange().getY_Low() - 4*scale ) {
         if (xPos >= ui.getFirstPage().getRange().getX_L() && xPos <= ui.getFirstPage().getRange().getX_R()) {
