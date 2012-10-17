@@ -25,16 +25,18 @@ String[] UPDATE =  {"UPDATE","更新"}; // good
 String[] MONSTER_TXT = {"MONSTER:\n          ","怪物：\n          "}; // good
 String[] GENRE_TXT = {"GENRE:\n          ","电影类别：\n          "}; // good
 String[] FILTER_TXT = {"FILTER:\n          ","过滤器：\n          "}; // good
+
 String[] HIGH_TXT = {"   HIGH","   高："}; // good
 String[] MED_TXT = {"   MEDIUM","   中："}; // good
 String[] LOW_TXT = {"   LOW","   低："};  // good
+
 String[] NO_TXT = {"   NO","   无："};  // good
 String[] USA_TXT = {"   USA","   美国"};  // good
-String[] UK_TXT = {"   Uk","   英国"};  // good
-String[] FRA_TXT = {"   FRANCE","   法国"};  // good
-String[] JP_TXT = {"   JAPAN","   日本"};  // good
-String[] GER_TXT = {"   GERMANY","   德国"};  // good
-String[] CA_TXT = {"   CANARA","   加拿大"};  // good
+String[] UK_TXT = {"   GBR","   英国"};  // good
+String[] FRA_TXT = {"   FRA","   法国"};  // good
+String[] JP_TXT = {"   JPN","   日本"};  // good
+String[] GER_TXT = {"   GER","   德国"};  // good
+String[] CA_TXT = {"   CAN","   加拿大"};  // good
 String[] OTHER_TXT = {"   OTHERS","   其他"};  // good
 String[] MOVIE_TXT = {"   MOVIE","   电影"};  // good
 String[] TV_TXT = {"   TV MOVIE","   电视电影"};  // good

@@ -160,15 +160,15 @@ final int NUMBER_EACH_LINE_GENERAL = 1;
 // FIRST_PAGE_FILTER_X is decided by RIGHT_BAR_WIDTH and FIRST_PAGE_FILTER_W
 //final float FIRST_PAGE_FILTER_X = 0.6*Width;
 final float FIRST_PAGE_FILTER_Y = 0.4*Height;
-final float FIRST_PAGE_FILTER_W = 0.7*Width - RIGHT_BAR_WIDTH;
+final float FIRST_PAGE_FILTER_W = 0.6*Width;// - RIGHT_BAR_WIDTH;
 final float FIRST_PAGE_FILTER_H = Height - FIRST_PAGE_FILTER_Y;
 final float FPF_BTN_X_RELATIVE = 0.9;
 final float FPF_BTN_Y_RELATIVE = 0.85;
 final float FPF_BTN_W = 60*scale;
 final float FPF_BTN_H = 30*scale;
 
-final float LEGEND_HEIGHT = 30*scale;
-final float LEGEND_WIDTH = 40*scale;
+final float LEGEND_HEIGHT = 25*scale;
+final float LEGEND_WIDTH = 28*scale;
 
 // Monster
 final float FILTER_MONSTER_X_RELATIVE = 0.02;

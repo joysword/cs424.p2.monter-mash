@@ -214,7 +214,7 @@ class FirstPlot {
           text("   NC-17", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           fill(100);
           j = j+1;
-          text("   OTHERS", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(OTHER_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           fill(255);
           j = j+1;
           text("   NR", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
@@ -514,62 +514,78 @@ class FirstPlot {
 
   private void drawLegend(int whichFilter, int howManyCluters, int whichGraph) {
 
-    float x_ = Width - RIGHT_BAR_WIDTH+5*scale;
-    float y_ = Height /  (whichGraph+1.0) - 60*scale;
-    float y_t = y_ + LEGEND_HEIGHT + 7*scale;
+    pushStyle();
+
+    float x_ = Width - RIGHT_BAR_WIDTH+8*scale;
+    float y_ = Height*0.5 *(1+whichGraph)- 60*scale;
+    float y_t = y_ + LEGEND_HEIGHT + 10*scale;
     if (whichGraph == 0) {
       fill(#01b2f1);
     }
     else {
       fill(#29C567);
     }
-    for (int i=0;i<howManyCluters;i++) {
-      fill(CLUSTER_COLOR[i]);
-      noStroke();
-      rectMode(CORNER);
-      rect(x_ + i*(5*scale+LEGEND_WIDTH), y_,LEGEND_WIDTH,LEGEND_HEIGHT);
+    if (howManyCluters == 7) {
+      for (int i=0;i<howManyCluters;i++) {
+        fill(CLUSTER_COLOR[i]);
+        noStroke();
+        rectMode(CORNER);
+        rect(x_ + i*(13*scale+LEGEND_WIDTH), y_,LEGEND_WIDTH,LEGEND_HEIGHT);
+      }
     }
-    textAlign(LEFT,CENTER);
+    else {
+      for (int i=0;i<howManyCluters;i++) {
+        fill(CLUSTER_COLOR[i]);
+        noStroke();
+        rectMode(CORNER);
+        rect(x_ + i*(22*scale+LEGEND_WIDTH), y_,LEGEND_WIDTH,LEGEND_HEIGHT);
+      }
+    }
+    textAlign(CENTER,CENTER);
+    textSize(11*scale);
+    fill(TEXT_COLOR);
     switch (whichFilter){
         case BUDGET:
           text(HIGH_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5, y_t);
-          text(LOW_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 5*scale, y_t);
-          text(NO_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 10*scale, y_t);
+          text(LOW_TXT[LA].substring(3), x_ + LEGEND_WIDTH*1.5 + 22*scale, y_t);
+          text(NO_TXT[LA].substring(3), x_ + LEGEND_WIDTH*2.5 + 44*scale, y_t);
           break;
         case CERTIFICATE:
           text("G", x_ + LEGEND_WIDTH*0.5 + 0*scale, y_t);
-          text("PG", x_ + LEGEND_WIDTH*0.5 + 5*scale, y_t);
-          text("R", x_ + LEGEND_WIDTH*0.5 + 10*scale, y_t);
-          text("PG-13", x_ + LEGEND_WIDTH*0.5 + 15*scale, y_t);
-          text("NC-17", x_ + LEGEND_WIDTH*0.5 + 20*scale, y_t);
-          text("OTHERS", x_ + LEGEND_WIDTH*0.5 + 25*scale, y_t);
-          text("NR", x_ + LEGEND_WIDTH*0.5 + 30*scale, y_t);
+          text("PG", x_ + LEGEND_WIDTH*1.5 + 13*scale, y_t);
+          text("R", x_ + LEGEND_WIDTH*2.5 + 26*scale, y_t);
+          text("PG-13", x_ + LEGEND_WIDTH*3.5 + 39*scale, y_t);
+          text("NC-17", x_ + LEGEND_WIDTH*4.5 + 52*scale, y_t);
+          text(OTHER_TXT[LA].substring(3), x_ + LEGEND_WIDTH*5.5 + 65*scale, y_t);
+          text("NR", x_ + LEGEND_WIDTH*6.5 + 78*scale, y_t);
           break;
         case COUNTRY:
           text(USA_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 0*scale, y_t);
-          text(UK_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 5*scale, y_t);
-          text(FRA_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 10*scale, y_t);
-          text(OTHER_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 15*scale, y_t);
-          text(GER_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 20*scale, y_t);
-          text(CA_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 25*scale, y_t);
-          text(OTHER_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 30*scale, y_t);
+          text(UK_TXT[LA].substring(3), x_ + LEGEND_WIDTH*1.5 + 13*scale, y_t);
+          text(FRA_TXT[LA].substring(3), x_ + LEGEND_WIDTH*2.5 + 26*scale, y_t);
+          text(JP_TXT[LA].substring(3), x_ + LEGEND_WIDTH*3.5 + 39*scale, y_t);
+          text(GER_TXT[LA].substring(3), x_ + LEGEND_WIDTH*4.5 + 52*scale, y_t);
+          text(CA_TXT[LA].substring(3), x_ + LEGEND_WIDTH*5.5 + 65*scale, y_t);
+          text(OTHER_TXT[LA].substring(3), x_ + LEGEND_WIDTH*6.5 + 78*scale, y_t);
           break;
         case POPULARITY:
           text(LOW_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 0*scale, y_t);
-          text(MED_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 5*scale, y_t);
-          text(HIGH_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 10*scale, y_t);
+          text(MED_TXT[LA].substring(3), x_ + LEGEND_WIDTH*1.5 + 22*scale, y_t);
+          text(HIGH_TXT[LA].substring(3), x_ + LEGEND_WIDTH*2.5 + 44*scale, y_t);
           break;
         case QUALITY:
           text(LOW_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 0*scale, y_t);
-          text(MED_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 5*scale, y_t);
-          text(HIGH_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 10*scale, y_t);
+          text(MED_TXT[LA].substring(3), x_ + LEGEND_WIDTH*1.5 + 22*scale, y_t);
+          text(HIGH_TXT[LA].substring(3), x_ + LEGEND_WIDTH*2.5 + 44*scale, y_t);
           break;
         case FORMAT:
           text(MOVIE_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 0*scale, y_t);
-          text(TV_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 5*scale, y_t);
-          text(VIDEO_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 10*scale, y_t);
+          text(TV_TXT[LA].substring(3), x_ + LEGEND_WIDTH*1.5 + 22*scale, y_t);
+          text(VIDEO_TXT[LA].substring(3), x_ + LEGEND_WIDTH*2.5 + 44*scale, y_t);
           break;
       }
+
+      popStyle();
   }
 
   // used in YEAR MODE to find DECADE
@@ -634,4 +650,3 @@ class FirstPlot {
     }
   }
 }
-
