@@ -33,7 +33,7 @@ class ys_HelpWindow
       rect(x, y, w, h);
       fill(POP_UP_WINDOW_TEXT_COLOR);
       textAlign(LEFT, CENTER);
-      textSize(120/scaling);
+      textSize(BOARD_WEIGHT*5);
       text(content[LA], x+w*0.04, y+h*0.5);
       popStyle();
     }
