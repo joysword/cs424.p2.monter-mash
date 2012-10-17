@@ -133,6 +133,7 @@ float finalX, finalY;
   }
 
   void mouseDragged_(float posx, float posy) {
+    scrollMouseManager.knobDragged2(taxonomy.getMonsterPane().getPlot(), posx);
     if (taxonomyTab) {
       if (!this.taxonomy.singleMonsterPane.show) {
         taxonomy.dragNodes(posx, posy);

@@ -243,6 +243,7 @@ public class cc_MonsterPlot {
   }
 
   public void setKnobPos(float posX){
+    println("set pos monster");
     scroll.setPositions(posX);
   }
 }

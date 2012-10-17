@@ -146,9 +146,11 @@ public class cc_MonsterScroll {
   }
 
   public void setPositionRight(float posX){
+    println("setpos1 scroll");
     rightKnob.setPosition(posX);
   }
   public void setPositionLeft(float posX){
+     println("setpos2 scroll");
     leftKnob.setPosition(posX);
   }
   public void setPositions(float posX){

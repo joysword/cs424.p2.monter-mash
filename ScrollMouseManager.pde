@@ -7,6 +7,7 @@ public class ScrollMouseManager {
   public void knobPressed(cc_MonsterPlot plot, float posX, float posY) {
     minValue=mouseX-plot.getActualKnobXLeft();
     maxValue=mouseX-plot.getActualKnobXRight();
+
     if (plot.inKnobLeftMouse(posX, posY)) {
       plot.setKnobLeftSelected(true, posX);
     }
@@ -26,8 +27,12 @@ public class ScrollMouseManager {
 
   public void knobDragged(cc_MonsterPlot plot, float xPos) {
     plot.setRefX(minValue, maxValue, xPos);
+  }
+
+  public void knobDragged2(cc_MonsterPlot plot, float xPos) {
     plot.setKnobPos(xPos);
   }
+
 } 
 
 
