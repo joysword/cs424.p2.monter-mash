@@ -57,7 +57,9 @@ class ys_LeftMenu {
             currentPage = i; 
           }
           else if (i == 3) {
-            // change language 语言
+            if (LA == 1) LA = 0;
+            else if (LA == 0) LA = 1;
+            println("language: " + LA);
           }
           else if (i == 4) { // help
             ui.getHelpWindow().switchDisplay();
