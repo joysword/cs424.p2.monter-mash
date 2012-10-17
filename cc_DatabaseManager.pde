@@ -921,7 +921,7 @@ public ArrayList<StringCountPair> getMonsterTOP10(int min,int max) {
     if ( msql.connect() )
     {
       String query="SELECT distinct monster, SUM( count ) FROM quality_count WHERE year>="+min+" and"+
-      " year<"+max+" group by monster ORDER BY SUM( count ) DESC  LIMIT 10";
+      " year<"+max+" and monster!=\"ghost\" and monster!=\"giant\" group by monster ORDER BY SUM( count ) DESC  LIMIT 10";
       print(query);
       msql.query(query);
       array=createArrayFromQueryGenre(array, msql);
@@ -937,7 +937,7 @@ public ArrayList<StringCountPair> getMonsterTOP10(int min,int max) {
     ArrayList<StringCountPair> array = new ArrayList<StringCountPair>();
     if ( msql.connect() )
     {
-      String query="SELECT distinct monster, SUM( count ) FROM quality_count group by monster ORDER BY SUM( count ) DESC  LIMIT 10";
+      String query="SELECT distinct monster, SUM( count ) FROM quality_count where monster!=\"ghost\" and monster!=\"giant\" group by monster ORDER BY SUM( count ) DESC  LIMIT 10";
       print(query);
       msql.query(query);
       array=createArrayFromQueryGenre(array, msql);

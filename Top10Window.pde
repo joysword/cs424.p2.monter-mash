@@ -23,7 +23,7 @@ class Top10Window {
     minimumLine = cenY + h * 0.4; // 0.9
     maximumLine = cenY - h * 0.02; // 0.38
 
-    nodeDiameterFather = h/3;
+    nodeDiameterFather = h/5;
     nodeDiameterChild = h/5;
 
     topMonsters = new ArrayList<monsterNode>();
@@ -33,16 +33,26 @@ class Top10Window {
     init=true;
   }
 
+  void initImages(){
+    for(StringCountPair s: numberMovies){
+      topMonsters.add(new monsterNode(s.getString(),cenX,cenY,nodeDiameterChild,loadImage(MatchTaxonomy.matchImage(s.getString()))));
+    }
+  }
+
   void initDb(int min){
     numberMovies=db.getMonsterTOP10(min,min+10);
-    if(numberMovies.size()>0)
+    if(numberMovies.size()>0){
       maximumNumber=numberMovies.get(0).getCount();
+    }
+
   }
 
   void initDbOverall(int min){
     numberMovies=db.getMonsterTOP10Overall();
-    if(numberMovies.size()>0)
+    if(numberMovies.size()>0){
       maximumNumber=numberMovies.get(0).getCount();
+
+    }
   }
 
   void setInit(){
@@ -72,10 +82,12 @@ class Top10Window {
     int yearr = yearX/10*10;
     if(init & yearr!=10000){
       initDb(yearr);
+      initImages();
       init=false;
     }
     if(init & yearr==10000){
       initDbOverall(yearr);
+      initImages();
       init=false;
     }
 
@@ -95,8 +107,8 @@ class Top10Window {
       noStroke();
       rect(cenX-w/11/2-w/11*this.numberMovies.size()/2+w/11*(i+1)-this.barWidth/2, value, 
       cenX-w/11/2-w/11*this.numberMovies.size()/2+w/11*(i+1)+this.barWidth/2, minimumLine);
-      //((monsterNode)this.topMonsters.get(i)).setCenter(cenX-w/11/2-w/11*this.topMonsters.size()/2+w/11*(i+1), value-nodeDiameterChild/2);
-      //((monsterNode)this.topMonsters.get(i)).draw();
+      ((monsterNode)this.topMonsters.get(i)).setCenter(cenX-w/11/2-w/11*this.topMonsters.size()/2+w/11*(i+1), value-nodeDiameterChild/2);
+      ((monsterNode)this.topMonsters.get(i)).draw();
 
       textSize(20*scale); //change
       textAlign(CENTER, BOTTOM);

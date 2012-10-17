@@ -28,6 +28,7 @@ public class monsterNode {
     noStroke();
     // fill(this.nodeColor);
     imageMode(CENTER);
+    print(monsterName);
     image(this.avatar, this.centerX, this.centerY, diameter, diameter);
     //ellipse(this.centerX, this.centerY, diameter, diameter);
     fill(0);
