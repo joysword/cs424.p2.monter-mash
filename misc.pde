@@ -130,10 +130,10 @@ final float LABEL_WIDTH = 100*scale;
 
 
 final String[] FILTER_TXT_1 = {
-  "MONSTERS:\n Vampire", "GENRES:\n Horror", "FILTER:\n CERTIFICATE"
+  "MONSTERS:\n vampire", "GENRES:\n Horror", "FILTER:\n CERTIFICATE"
 };
 final String[] FILTER_TXT_2 = {
-	"MONSTERS:\n Vampire", "GENRES:\n Horror", "FILTER:\n CERTIFICATE"
+	"MONSTERS:\n vampire", "GENRES:\n Horror", "FILTER:\n CERTIFICATE"
 };
 //final String FILTER_TXT_1 = "1111";
 //final String FILTER_TXT_2 = "2222";

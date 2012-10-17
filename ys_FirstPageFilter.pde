@@ -219,7 +219,7 @@ class ys_FirstPageFilter {
       }
       filterTxt2[0] = MONSTER_TXT[LA]+mon;
       filterTxt2[1] = GENRE_TXT[LA]+gen;
-      filterTxt2[2] = FILTER_TXT[LA]+FILTER_TYPE[currentFilter[0]];
+      filterTxt2[2] = FILTER_TXT[LA]+FILTER_TYPE[currentFilter[1]];
     }
 
     dataMax = (dataMax1 > dataMax2)? dataMax1:dataMax2;
