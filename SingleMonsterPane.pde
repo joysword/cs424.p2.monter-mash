@@ -75,8 +75,8 @@ public class SingleMonsterPane {
     textAlign(CENTER, CENTER);
     textSize(120/scaling);
     fill(255, 0, 0);
-    text("Most common keywords", this.centerX+this.widthT/7, this.centerY-1000/scaling);
-    text("Most common genres", this.centerX+this.widthT/7, this.centerY-100/scaling);
+    text(MOST_KWORDS[LA], this.centerX+this.widthT/7, this.centerY-1000/scaling);
+    text(MOST_GENRES[LA], this.centerX+this.widthT/7, this.centerY-100/scaling);
  
 
     fill(255);
@@ -95,7 +95,7 @@ public class SingleMonsterPane {
       textAlign(CENTER, CENTER);
     textSize(110/scaling);
     fill(255, 0, 0);
-       text("Number of movies per year", this.centerX-this.widthT/4, this.centerY-100/scaling);
+       text(NUMBER_MOVIE[LA], this.centerX-this.widthT/4, this.centerY-100/scaling);
     //worldMap.draw();
     //radar.draw();
     top5Genres.draw();

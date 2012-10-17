@@ -69,16 +69,16 @@ class ys_FirstPage {
 
     popUp = new MenuWindow(0, 0, POP_UP_MENU_W, POP_UP_MENU_N, POP_UP_BUTTON_H, POP_UP_BUTTON_NAME);
 
-    yearBtn = new ys_Button(YEAR_BUTTON_X, YEAR_BUTTON_Y, YEAR_BUTTON_W, YEAR_BUTTON_H, "Year");
-    tabularBtn = new ys_Button(TABULAR_BUTTON_X, TABULAR_BUTTON_Y, TABULAR_BUTTON_W, TABULAR_BUTTON_H, "Tabular");
-    decadeBtn = new ys_Button(DECADE_BUTTON_X, DECADE_BUTTON_Y, DECADE_BUTTON_W, DECADE_BUTTON_H, "Decade");
+    yearBtn = new ys_Button(YEAR_BUTTON_X, YEAR_BUTTON_Y, YEAR_BUTTON_W, YEAR_BUTTON_H, YEAR_BUTTON_TXT[LA]);
+    tabularBtn = new ys_Button(TABULAR_BUTTON_X, TABULAR_BUTTON_Y, TABULAR_BUTTON_W, TABULAR_BUTTON_H, TABULAR_BUTTON_TXT[LA]);
+    decadeBtn = new ys_Button(DECADE_BUTTON_X, DECADE_BUTTON_Y, DECADE_BUTTON_W, DECADE_BUTTON_H, DECADE_BUTTON_TXT[LA]);
 
-    yBtn = new ys_Button(Y_BUTTON_X, Y_BUTTON_Y, Y_BUTTON_W, Y_BUTTON_H, "Y align");
+    yBtn = new ys_Button(Y_BUTTON_X, Y_BUTTON_Y, Y_BUTTON_W, Y_BUTTON_H, Y_BUTTON_TXT[LA]);
 
-    nextYearBtn = new ys_Button(NEXT_YEAR_BTN_X, NEXT_YEAR_BTN_Y, NEXT_YEAR_BTN_W, NEXT_YEAR_BTN_H, "Year +");
-    preYearBtn = new ys_Button(PRE_YEAR_BTN_X, PRE_YEAR_BTN_Y, PRE_YEAR_BTN_W, PRE_YEAR_BTN_H, "Year -");
-    nextDecadeBtn = new ys_Button(NEXT_DECADE_BTN_X, NEXT_DECADE_BTN_Y, NEXT_DECADE_BTN_W, NEXT_DECADE_BTN_H, "Decade +");
-    preDecadeBtn = new ys_Button(PRE_DECADE_BTN_X, PRE_DECADE_BTN_Y, PRE_DECADE_BTN_W, PRE_DECADE_BTN_H, "Decade -");
+    nextYearBtn = new ys_Button(NEXT_YEAR_BTN_X, NEXT_YEAR_BTN_Y, NEXT_YEAR_BTN_W, NEXT_YEAR_BTN_H, YEAR_PLUS_TXT[LA]);
+    preYearBtn = new ys_Button(PRE_YEAR_BTN_X, PRE_YEAR_BTN_Y, PRE_YEAR_BTN_W, PRE_YEAR_BTN_H, YEAR_MINUS_TXT[LA]);
+    nextDecadeBtn = new ys_Button(NEXT_DECADE_BTN_X, NEXT_DECADE_BTN_Y, NEXT_DECADE_BTN_W, NEXT_DECADE_BTN_H, DECADE_PLUS_TXT[LA]);
+    preDecadeBtn = new ys_Button(PRE_DECADE_BTN_X, PRE_DECADE_BTN_Y, PRE_DECADE_BTN_W, PRE_DECADE_BTN_H, DECADE_MINUS_TXT[LA]);
 
     range = new ys_Range(RANGE_X, RANGE_Y, RANGE_W, RANGE_H, RANGE_LOCK_W, RANGE_LOCK_H);
 
@@ -221,7 +221,6 @@ class ys_FirstPage {
             if (j != i) isSelecting[j] = false;
           }
         }
-        println("filter 1: " + isSelecting[0] + "  filter 2: " + isSelecting[1]);
         break;
       }
     }
@@ -232,7 +231,6 @@ class ys_FirstPage {
       if (isSelecting[i]) {
         canSeeButton = false;
         filter[i].update(posx, posy, ui.getDB(), i);
-        println("I just updated filter["+i+"]");
         break; // only 1 is under attack
       }
     }

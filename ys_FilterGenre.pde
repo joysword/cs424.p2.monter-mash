@@ -40,7 +40,7 @@ class FilterGenre {
     fill(TEXT_COLOR);
     textAlign(LEFT);
     textSize(24*scale);
-    text("Genre:", x, y); //change
+    text(FILTER_GENRE_TXT[LA], x, y); //change
     popStyle();
     for (int i=0;i<checkItemCount;i++) {
       checkItemsForFilterGenre[i].render();

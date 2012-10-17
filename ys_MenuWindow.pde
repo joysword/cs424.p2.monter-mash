@@ -70,7 +70,6 @@ class MenuWindow {
         break;
       case TOP_10_OVERALL:
         top10AllWindow.render(10000);
-        println("render overall");
         break;
       }
     }
@@ -98,7 +97,6 @@ class MenuWindow {
       y = _y - h;
       break;
     }
-    println("("+x+", "+y+")");
     for (int i=0;i<num;i++) {
       popUpButton[i].setPos(x, y + i * lineH);
     }

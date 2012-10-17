@@ -53,7 +53,12 @@ class ys_Button {
   }
 
   public void setName(int yearr) {
-    name = "Top 10 Monsters of " + (yearr/10*10) + "'s";
+    if (LA == 0) {
+      name = "Top 10 Monsters of " + (yearr/10*10) + "'s";
+    }
+    else if (LA == 1) {
+      name = "出镜率最高的10种魔兽 (" + (yearr/10*10) + "'s)";
+    }
   }
 }
 

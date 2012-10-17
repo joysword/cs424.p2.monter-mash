@@ -62,7 +62,6 @@ float finalX, finalY;
   }
 
   void mousePressed_(float xPos, float yPos) {
-    print("\n moving: "+taxonomy.indexMoving);
     /*
     if (top10Button.checkOn(posx, posy)) {
       if (showTop10) {
@@ -105,22 +104,20 @@ float finalX, finalY;
 
     else {
       if (a!="") {
-        print("sonooooo\n");
         moviePane.suggestionBox.setInput(moviePane.suggestionBox.input+a);
       }
       if (moviePane.suggestionBox.input!="") {
-        print("\n"+moviePane.suggestionBox.input);
         moviePane.suggestionBox.checkSuggestions();
       } 
       int check=moviePane.suggestionBox.checkOnSuggestion(xPos, yPos);
       if (check!=-1 && moviePane.suggestionBox.suggestions.size()>0) {
         moviePane.suggestionBox.inputTaken=moviePane.suggestionBox.suggestions.get(check).getString();
-        print("\n"+check+moviePane.suggestionBox.inputTaken);
         moviePane.suggestionBox.input="";
         moviePane.suggestionBox.suggestions.clear();
       }
     
     }}
+    
   if(this.taxonomy.singleMonsterPane.show==false){
       for (int i=0;i<taxonomy.nodesList.size();i++) {
 
@@ -133,8 +130,6 @@ float finalX, finalY;
   break;}}}
   
   //print("\nx "+finalX+" y "+finalY);
-  
-   print("\n moving: "+taxonomy.indexMoving); 
   }
 
   void mouseDragged_(float posx, float posy) {
@@ -161,17 +156,18 @@ float finalX, finalY;
       this.taxonomy.singleMonsterPane.checkHideButton(xPos, yPos);}
       
    if (taxonomy.indexMoving!=-1) {
-         print("\naaa "+abs(xPos-finalX));
 
      if(((abs((xPos+distanceX)-finalX)<=20/scaling || abs((yPos+distanceY)-finalY)<=20/scaling)  )&& 
      !this.taxonomy.singleMonsterPane.show && !this.taxonomy.singleMonsterPane.compareMonster1.checkOn(xPos, yPos) && !this.taxonomy.singleMonsterPane.compareMonster2.checkOn(xPos, yPos)){print("\nmosso"); 
-    print(""+this.taxonomy.singleMonsterPane.show);
+    
+     print(""+this.taxonomy.singleMonsterPane.show);
      if(monsterToSelect==1 && this.taxonomy.singleMonsterPane.show==false){
      taxonomy.singleMonsterPane.monster1=((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving)).monsterName;
       taxonomy.singleMonsterPane.monster=((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving));
      taxonomy.singleMonsterPane.setupMonster1();
    taxonomy.singleMonsterPane.show();
- this.taxonomy.singleMonsterPane.show=true;}
+   this.taxonomy.singleMonsterPane.show=true;}
+
  
  if(monsterToSelect==2 && this.taxonomy.singleMonsterPane.show==false){
      taxonomy.singleMonsterPane.monster2=((monsterNode)taxonomy.nodesList.get(taxonomy.indexMoving)).monsterName;

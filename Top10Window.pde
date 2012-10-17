@@ -93,10 +93,15 @@ class Top10Window {
 
     // Overall
     if (yearr == 10000) {
-      text("     Top 10 Monsters Overall", cenX - w*0.5, cenY-h*0.4225);
+      text(TOP_10_ALL_TITLE[LA], cenX - w*0.5, cenY-h*0.4225);
     }
     else {
-      text("     Top 10 Monsters of "+yearr+"'s", cenX - w*0.5, cenY-h*0.4225);
+      if (LA == 0) {
+        text("     Top 10 Monsters of "+yearr+"'s", cenX - w*0.5, cenY-h*0.4225);
+      }
+      else if (LA == 1) {
+        text("     出镜率最高的10种魔兽 ("+yearr+"'s)", cenX - w*0.5, cenY-h*0.4225);
+      }
     }
 
     for (int i=0;i<this.numberMovies.size();i++) {

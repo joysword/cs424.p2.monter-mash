@@ -82,14 +82,14 @@ class ys_FirstPageFilter {
       break;
     }
     textSize(24*scale);
-    text("Select Filters for Graph " + (i+1) + ":", x+5*scale, y-5*scale);//change
+    text(SELECT_FILTER[LA] + (i+1) + ":", x+5*scale, y-5*scale);//change
     fill(BUTTON_COLOR);
     noStroke();
     rect(btnx, btny, btnw, btnh);
     textAlign(CENTER, CENTER);
     fill(255);
     textSize(13*scale);
-    text("UPDATE", btnx + btnw*0.5, btny + btnh*0.5);
+    text(UPDATE[LA], btnx + btnw*0.5, btny + btnh*0.5);
     popStyle();
 
     monF.render();
@@ -180,10 +180,9 @@ class ys_FirstPageFilter {
         dataMax1_decade = getMax_decade(plot_data[BUDGET]);
         break;
       }
-      filterTxt1[0] = "MONSTERS:\n "+mon;
-      filterTxt1[1] = "GENRES:\n "+gen;
-      filterTxt1[2] = "FILTER:\n"+FILTER_TYPE[currentFilter[0]];
-      println("firsttttttt");
+      filterTxt1[0] = MONSTER_TXT[LA]+mon;
+      filterTxt1[1] = GENRE_TXT[LA]+gen;
+      filterTxt1[2] = FILTER_TXT[LA]+FILTER_TYPE[currentFilter[0]];
     }
     else if (whichFilter == 1){
       switch(currentFilter[1]) {
@@ -218,10 +217,9 @@ class ys_FirstPageFilter {
         dataMax2_decade = getMax_decade(plot_data[BUDGET+6]);
         break;
       }
-      filterTxt2[0] = "MONSTERS:\n "+mon;
-      filterTxt2[1] = "GENRES:\n "+gen;
-      filterTxt2[2] = "FILTER:\n"+FILTER_TYPE[currentFilter[1]];
-      println("second");
+      filterTxt2[0] = MONSTER_TXT[LA]+mon;
+      filterTxt2[1] = GENRE_TXT[LA]+gen;
+      filterTxt2[2] = FILTER_TXT[LA]+FILTER_TYPE[currentFilter[0]];
     }
 
     dataMax = (dataMax1 > dataMax2)? dataMax1:dataMax2;

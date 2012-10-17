@@ -36,7 +36,7 @@ class FilterMonster {
     fill(TEXT_COLOR);
     textAlign(LEFT);
     textSize(24*scale);
-    text("Monster:", x, y); //change
+    text(FILTER_MONSTER_TXT[LA], x, y); //change
     popStyle();
     for (int i=0;i<checkItemCount;i++) {
       checkItemsForFilterMonster[i].render();
@@ -71,17 +71,6 @@ class FilterMonster {
         break;
       }
     }
-  }
-
-  ArrayList<Integer> getList(cc_DatabaseManager db) {
-    // foreach CheckItem, sum all their list to return
-    ArrayList<Integer> listt = new ArrayList<Integer>();
-    for (int i=0;i<checkItemCount;i++) {
-      if (checkItemsForFilterMonster[i].isCheck()) {
-        //listt.addAll(db.getFilmForMonster(monster[i]));
-      }
-    }
-    return listt;
   }
 
   int getMonsterType() {

@@ -191,13 +191,13 @@ class FirstPlot {
         case BUDGET:
           fill(255);
           j = j+1;
-          text("   HIGH", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(HIGH_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           fill(100);
           j = j+1;
-          text("   LOW", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(LOW_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           fill(255);
           j = j+1;
-          text("   NO", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(NO_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           break;
         case CERTIFICATE:
           fill(255);
@@ -225,58 +225,58 @@ class FirstPlot {
         case COUNTRY:
           fill(255);
           j = j+1;
-          text("   USA", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(USA_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           fill(100);
           j = j+1;
-          text("   UK", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(UK_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           fill(255);
           j = j+1;
-          text("   FRANCE", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(FRA_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           fill(100);
           j = j+1;
-          text("   JAPAN", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(JP_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           fill(255);
           j = j+1;
-          text("   GERMANY", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(GER_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           fill(100);
           j = j+1;
-          text("   CANADA", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(CA_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           fill(255);
           j = j+1;
-          text("   OTHERS", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(OTHER_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           break;
         case POPULARITY:
           fill(255);
           j = j+1;
-          text("   LOW", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(LOW_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           fill(100);
           j = j+1;
-          text("   MEDIUM", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(MED_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           fill(255);
           j = j+1;
-          text("   HIGH", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(HIGH_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           break;
         case QUALITY:
           fill(255);
           j = j+1;
-          text("   LOW", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(LOW_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           fill(100);
           j = j+1;
-          text("   MEDIUM", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(MED_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           fill(255);
           j = j+1;
-          text("   HIGH", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(HIGH_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           break;
         case FORMAT:
           fill(255);
           j = j+1;
-          text("   MOVIE", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(MOVIE_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           fill(100);
           j = j+1;
-          text("   TV MOVIE", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(TV_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           fill(255);
           j = j+1;
-          text("   VIDEO", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          text(VIDEO_TXT[LA], plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
           break;
       }
     textAlign(RIGHT, CENTER);
@@ -296,7 +296,7 @@ class FirstPlot {
     textSize(13*scale);
     textLeading(15);
     textAlign(CENTER, CENTER);
-    text("number of movies", plotX1, plotY1 - 15*scale);
+    text(Y_LABEL[LA], plotX1, plotY1 - 15*scale);
     //textAlign(CENTER);
     //text("What the Y", (plotX1+plotX2)/2, labelY);
     popStyle();
@@ -388,7 +388,7 @@ class FirstPlot {
         line(plotX1+i*decadeWidth, plotY2 - OUTLINE_WIDTH*0.5, plotX1+i*decadeWidth, plotY1 + OUTLINE_WIDTH*0.5);
       }
       for (int i=1;i<12;i++) {
-        text((showYearMin+(i-1)*10) + "'s"/* + " -- " + (showYearMin+i*10-1)*/, plotX1+(i-0.5)*decadeWidth, plotY2 + textAscent() + 5*scale);
+        text((showYearMin+(i-1)*10) + "'s", plotX1+(i-0.5)*decadeWidth, plotY2 + textAscent() + 5*scale);
       }
     }
     else {
