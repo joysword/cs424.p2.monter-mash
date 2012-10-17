@@ -85,8 +85,12 @@ public class SingleMonsterPane {
     imageMode(CENTER);
     //image(this.movieTape, this.centerX+this.widthT/2*0.87, this.centerY, this.widthT/2*0.2, this.heightT);
     textAlign(LEFT, CENTER);
-    textSize(100/scaling);
-    text(this.monster.monsterName, this.centerX-this.widthT/2+this.widthT/50, this.centerY-this.heightT/2+this.heightT/8);
+    textSize(150/scaling);
+    if(this.monster_2==null){
+    text(this.monster.monsterName, this.centerX-this.widthT/2+this.widthT/50, this.centerY-this.heightT/2+this.heightT/12);}
+    else{text(this.monster.monsterName, this.centerX-this.widthT/2+this.widthT/50, this.centerY-this.heightT/2+this.heightT/12);
+    text("vs", this.centerX-this.widthT/2+this.widthT/50, this.centerY-this.heightT/2+this.heightT/5.5);
+  text(this.monster_2.monsterName, this.centerX-this.widthT/2+this.widthT/50, this.centerY-this.heightT/2+this.heightT/3.5);}
     plot1.monsterDraw();
       textAlign(CENTER, CENTER);
     textSize(110/scaling);

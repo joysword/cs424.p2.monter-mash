@@ -39,7 +39,7 @@ public class Top5Genres {
 
       float value=map((genresNames.get(i).getCount()), 0, this.maxYvalue, 0, this.heightG);
       rectMode(CENTER);
-      fill(255, 0, 0);
+      fill(#bf0000);
       rect(this.centerX-this.widthG/2+this.widthG/6*(i+1), this.centerY+this.heightG/2-value/2, this.barWidth, value);
       }  
   }
