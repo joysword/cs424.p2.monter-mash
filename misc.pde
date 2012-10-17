@@ -167,7 +167,7 @@ final int NUMBER_EACH_LINE_GENERAL = 1;
 
 // FIRST_PAGE_FILTER_X is decided by RIGHT_BAR_WIDTH and FIRST_PAGE_FILTER_W
 //final float FIRST_PAGE_FILTER_X = 0.6*Width;
-final float FIRST_PAGE_FILTER_Y = 0.4*Height;
+final float FIRST_PAGE_FILTER_Y = 0.3*Height;
 final float FIRST_PAGE_FILTER_W = 0.6*Width;// - RIGHT_BAR_WIDTH;
 final float FIRST_PAGE_FILTER_H = Height - FIRST_PAGE_FILTER_Y;
 final float FPF_BTN_X_RELATIVE = 0.9;
