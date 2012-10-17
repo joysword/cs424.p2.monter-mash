@@ -60,6 +60,7 @@ public class cc_MonsterPlot {
 
   public void monsterSetup() {
     scroll.scrollSetup();
+        smooth();
   }
 
   public void monsterDraw() {
@@ -79,11 +80,10 @@ public class cc_MonsterPlot {
 
   private void drawDataPlot1() {
     pushStyle();
-    smooth();
     strokeWeight(LINE_PROPORITON*(rightX-leftX)*STROKE_1_PROPORTION);
     beginShape();
-    stroke(60, 200, 20);
-    fill(60, 200, 20, OP);
+    stroke(103, 169, 207);
+    fill(103, 169, 207, OP);
     x = map(scroll.getMinYear(), scroll.getMinYear(), scroll.getMaxYear(), innerLeftX, innerRightX); 
     y = map(0, dataManager1.getDataMin(), max, innerLowerY, innerUpperY);
     vertex(x, y);
@@ -129,9 +129,9 @@ public class cc_MonsterPlot {
   }
 
   private void drawYaxe() {
-    float volumeInterval=20;
+    int volumeInterval=floor(max/5);
     pushStyle();
-    float volumeIntervalMinor=10;
+    float volumeIntervalMinor=floor(max/10);
     fill(0);
     setFontSize();
     textAlign(RIGHT);
@@ -143,7 +143,8 @@ public class cc_MonsterPlot {
     for (float v = 0; v <= max; v += volumeIntervalMinor) {
       if (v % volumeIntervalMinor == 0) {     // If a tick mark
         float y = map(v, 0, max, innerLowerY, innerUpperY);  
-        if (v % volumeInterval == 0) {        // If a major tick mark
+          //if (v % volumeInterval == 0) {        // If a major tick mark
+          if (true) {
           float textOffset = textAscent()/2;  // Center vertically
           if (v == 0) {
             textOffset = 0;                   // Align by the bottom
@@ -154,7 +155,7 @@ public class cc_MonsterPlot {
 
           text(floor(v), innerLeftX -(rightX-leftX)*0.02, y + textOffset);
           line(innerLeftX -(rightX-leftX)*0.01, y, innerLeftX, y);     // Draw major tick
-        } 
+         } 
         else {
           line(innerLeftX -(rightX-leftX)*0.005, y, innerLeftX, y);     // Draw minor tick
         }
