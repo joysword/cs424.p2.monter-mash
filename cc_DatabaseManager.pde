@@ -932,7 +932,24 @@ public ArrayList<StringCountPair> getMonsterTOP10(int min,int max) {
     }
     return array;
   }
+
+  public ArrayList<StringCountPair> getMonsterTOP10Overall() {
+    ArrayList<StringCountPair> array = new ArrayList<StringCountPair>();
+    if ( msql.connect() )
+    {
+      String query="SELECT distinct monster, SUM( count ) FROM quality_count group by monster ORDER BY SUM( count ) DESC  LIMIT 10";
+      print(query);
+      msql.query(query);
+      array=createArrayFromQueryGenre(array, msql);
+      printArray(array);
+    }
+
+    else {
+    }
+    return array;
+  }
   
+
 public void printArray(ArrayList<StringCountPair> array){
   println("MANNAGGIAACCRISTO");
   for (StringCountPair p: array) {
