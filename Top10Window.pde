@@ -118,7 +118,16 @@ class Top10Window {
 
       textSize(20*scale); //change
       textAlign(CENTER, BOTTOM);
-      text(numberMovies.get(i).getString(), cenX-w/11/2-w/11*this.numberMovies.size()/2+w/11*(i+1), value-nodeDiameterChild*1.3);
+      String stt = numberMovies.get(i).getString();
+      if (LA == 1) {
+        for (int qq = 0;qq<FILTER_MONSTER_NUM;qq++) {
+          if (stt.equals(MONSTER_TYPE[qq][0].substring(1)) == true) {
+            stt = MONSTER_TYPE[qq][1].substring(1);
+            break;
+          }
+        }
+      }
+      text(stt, cenX-w/11/2-w/11*this.numberMovies.size()/2+w/11*(i+1), value-nodeDiameterChild*1.3);
       text((int(this.numberMovies.get(i).getCount())), cenX-w/11/2-w/11*this.numberMovies.size()/2+w/11*(i+1), value-nodeDiameterChild*1.05);
     }
 

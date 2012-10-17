@@ -184,13 +184,18 @@ final float FILTER_MONSTER_Y_RELATIVE = 0.1;
 final float FILTER_MONSTER_W = FIRST_PAGE_FILTER_W;
 final float FILTER_MONSTER_H = CHECK_ITEM_HEIGHT;
 String[][] MONSTER_TYPE = {
-  {" alien"," 外星人"},
+  {" alien"," 异形"},
+  {" animal"," 动物"},
   {" demon"," 恶魔"},
+  {" dinosaur"," 恐龙"},
   {" dracula"," 德古拉"},
   {" female-vampire"," 女吸血鬼"},
+  {" frankenstein"," 弗兰肯斯坦"},
   {" freddy-krueger"," 弗莱德"},
   {" ghost"," 鬼"},
+  {" giant"," 巨人"},
   {" godzilla"," 哥斯拉"},
+  {" humanoids"," 类人"},
   {" invisible-man"," 隐形人"},
   {" jason"," 杰森"},
   {" living-dead"," 活死人"},
@@ -199,11 +204,16 @@ String[][] MONSTER_TYPE = {
   {" mummy"," 木乃伊"},
   {" mutant"," 变种人"},
   {" muted-cretures"," 变异生物"},
+  {" piranha"," 食人鱼"},
+  {" possessed"," 附魔"},
+  {" predator"," 铁血战士"},
+  {" shark"," 鲨鱼"},
+  {" snake"," 蛇"},
   {" supernatural"," 超自然"},
   {" swamp"," 斯万普"},
   {" vampire"," 吸血鬼"},
   {" werewolf"," 狼人"},
-  {" witch-wizards"," 女巫"},
+  {" witch-wizards"," 巫师"},
   {" zombie"," 僵尸"}
 };
 final int FILTER_MONSTER_NUM = MONSTER_TYPE.length;

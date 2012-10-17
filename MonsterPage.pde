@@ -7,8 +7,6 @@ class MonsterPage {
   boolean showTop10;
 float finalX, finalY;
   SingleMoviePane moviePane;
-  Movie movie;
-  Top10Pane top10Pane;
 
   monsterTaxonomy taxonomy;
   PApplet context;
@@ -28,8 +26,6 @@ float finalX, finalY;
     
 
     //movie = moviePane.suggestionBox.suggestions.get(0);
-    moviePane = new SingleMoviePane(width/2, height/2, width/6*4, height*0.95, movie);
-    top10Pane = new Top10Pane(width/2, height/2, width/6*4, height*0.8,1990,2000);
     taxonomy = new monsterTaxonomy(width*0.5, height*0.57, width*0.95, height*0.79, color(255));
     taxonomy.setup();
   }
@@ -44,45 +40,10 @@ float finalX, finalY;
     text("MADDENED MUSCLE MONSTER MASH MUSEUM", width*0.5, height*0.07);
 
     popStyle();
-    //taxonomyButton.draw();
-    //movieButton.draw();
-    //top10Button.draw();
-
-    //if (taxonomyTab) {
-      taxonomy.draw();
-    //}
-    /*else if (movieTab) {
-      moviePane.draw();
-    }*/
-/*
-    if (showTop10) {
-      top10Pane.draw();
-    }
-    */
+    taxonomy.draw();
   }
 
   void mousePressed_(float xPos, float yPos) {
-    /*
-    if (top10Button.checkOn(posx, posy)) {
-      if (showTop10) {
-        showTop10 = false;
-      }
-      else {
-        showTop10 = true;
-      }
-      
-    }
-    */
-    /*
-    if (movieButton.checkOn(posx, posy)) {
-      movieTab = true;
-      taxonomyTab = false;
-    }
-    else if (taxonomyButton.checkOn(posx, posy)) {
-      taxonomyTab = true;
-      movieTab = false;
-    }*/
-
    if (taxonomyTab) { 
       taxonomy.noMoving();
     if (this.taxonomy.singleMonsterPane.show) {
@@ -93,30 +54,6 @@ float finalX, finalY;
     }
     scrollMouseManager.knobPressed(taxonomy.getMonsterPane().getPlot(), xPos, yPos);
   }
-
-  else if (movieTab) {
-    String a= moviePane.keyboard.checkPress(xPos, yPos);
-    if (a=="backspace" ) {
-      if(moviePane.suggestionBox.input.length()>0){
-      moviePane.suggestionBox.input=moviePane.suggestionBox.input.substring(0, moviePane.suggestionBox.input.length()-1);}
-    else{int j=1;}
-  }
-
-    else {
-      if (a!="") {
-        moviePane.suggestionBox.setInput(moviePane.suggestionBox.input+a);
-      }
-      if (moviePane.suggestionBox.input!="") {
-        moviePane.suggestionBox.checkSuggestions();
-      } 
-      int check=moviePane.suggestionBox.checkOnSuggestion(xPos, yPos);
-      if (check!=-1 && moviePane.suggestionBox.suggestions.size()>0) {
-        moviePane.suggestionBox.inputTaken=moviePane.suggestionBox.suggestions.get(check).getTitle();
-        moviePane.suggestionBox.input="";
-        moviePane.suggestionBox.suggestions.clear();
-      }
-    
-    }}
     
   if(this.taxonomy.singleMonsterPane.show==false){
       for (int i=0;i<taxonomy.nodesList.size();i++) {

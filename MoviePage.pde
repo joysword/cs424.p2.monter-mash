@@ -1,73 +1,37 @@
 public class MoviePage {
-  boolean taxonomyTab;
-  boolean movieTab;
-  boolean showTop10;
 
   SingleMoviePane moviePane;
   Movie movie;
-  Top10Pane top10Pane;
 
   monsterTaxonomy taxonomy;
   PApplet context;
   ScrollMouseManager scrollMouseManager;
   
 
-
   MoviePage() {
-    taxonomyTab = false;
-    movieTab = true;
-    showTop10 = false;
 
     context = applet;
     //movie = moviePane.suggestionBox.suggestions.get(0);
     scrollMouseManager = new ScrollMouseManager();
 
-    moviePane = new SingleMoviePane(width/2, height/2, width/6*4, height*0.95, movie);
-    top10Pane = new Top10Pane(width/2, height/2, width/6*4, height*0.8,2000,2010);
-    taxonomy = new monsterTaxonomy(width/2, height/2, width/6*4, height*0.95, color(255));
-    taxonomy.setup();
+    moviePane = new SingleMoviePane(width*0.5, height*0.57, width*0.5, height*0.79, movie);
   }
 
   void render() {
 
-    if (taxonomyTab) {
-      taxonomy.draw();
-    }
-    else if (movieTab) {
-      moviePane.draw();
-    }
+    pushStyle();
 
-    if (showTop10) {
-      top10Pane.draw();
-    }
+    fill(TITLE_COLOR);
+    textSize(TITLE_SIZE);
+    textAlign(CENTER,CENTER);
+    text("MONARCHY MOMENT MONSTER MASH MEMORY", width*0.5, height*0.07);
+
+    popStyle();
+    moviePane.draw();
   }
 
-  void mousePressed_(float posx, float posy) {
-    /*if (top10Button.checkOn(posx, posy)) {
-      if (showTop10) {
-        showTop10 = false;
-      }
-      else {
-        showTop10 = true;
-      }
-    }
 
-    if (movieButton.checkOn(posx, posy)) {
-      movieTab = true;
-      taxonomyTab = false;
-    }
-    else if (taxonomyButton.checkOn(posx, posy)) {
-      taxonomyTab = true;
-      movieTab = false;
-    }
-*/
-    if (taxonomyTab) {
-      if (taxonomy.singleMonsterPane.show) {
-        taxonomy.singleMonsterPane.checkHideButton(posx, posy);
-      }
-      scrollMouseManager.knobPressed(taxonomy.getMonsterPane().getPlot(), posx, posy);
-    }
-    else if (movieTab) {
+  void mousePressed_(float posx, float posy) {
       String a = moviePane.keyboard.checkPress(posx, posy);
       if (a == "backspace" && moviePane.suggestionBox.input.length()>0) {
         moviePane.suggestionBox.input = moviePane.suggestionBox.input.substring(0, moviePane.suggestionBox.input.length()-1);
@@ -89,27 +53,12 @@ public class MoviePage {
           moviePane.suggestionBox.suggestions.clear();
         }
       }
-    }
   }
 
   void mouseDragged_(float posx, float posy) {
-    if (taxonomyTab) {
-      if (!this.taxonomy.singleMonsterPane.show) {
-        taxonomy.dragNodes(posx, posy);
-      }
-      if (taxonomy.getMonsterPane().getPlot().isSelected()) {
-        scrollMouseManager.knobDragged(taxonomy.getMonsterPane().getPlot(), posx);
-      }
-    }
   }
 
   void mouseReleased_(float posx, float posy) {
-    if (!this.taxonomy.singleMonsterPane.show) {
-      taxonomy.selectNodes(posx, posy);
-      taxonomy.noMoving();
-    }
-    taxonomy.indexMoving = -1;
-    scrollMouseManager.knobReleased(taxonomy.getMonsterPane().getPlot(), posx);
   }
 
   monsterTaxonomy getTaxonomy() {
