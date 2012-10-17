@@ -5,16 +5,19 @@ class ys_HelpWindow
 
   boolean isDisplay; // whether this window is being displayed
 
-  String content; // what to show in this window
+  String[] content; // what to show in this window
 
-  ys_HelpWindow(float _x, float _y, float _w, float _h, String helpContent)
+  ys_HelpWindow(float _x, float _y, float _w, float _h, String[] helpContent)
   {
     x = _x;
     y = _y;
     w = _w;
     h = _h;
 
-    content = helpContent;
+    content = new String[2];
+
+    content[0] = helpContent[0];
+    content[1] = helpContent[1];
 
     isDisplay = false;
   }
@@ -31,7 +34,7 @@ class ys_HelpWindow
       fill(POP_UP_WINDOW_TEXT_COLOR);
       textAlign(LEFT, CENTER);
       textSize(120/scaling);
-      text(content, x+w*0.04, y+h*0.5);
+      text(content[LA], x+w*0.04, y+h*0.5);
       popStyle();
     }
   }

@@ -64,6 +64,7 @@ void setup()
 {
   size(Width, Height);
 
+
   //Make the connection to the tracker machine (uncomment this if testing with touch)
   //omicronManager.ConnectToTracker(7001, 7340, "131.193.77.159");
 

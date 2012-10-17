@@ -27,7 +27,7 @@ class MenuWindow {
   int which;
 
 
-  MenuWindow(float _x, float _y, float _w, int n, float btn_h, String[] strs) {
+  MenuWindow(float _x, float _y, float _w, int n, float btn_h, String[][] strs) {
 
     x = _x;
     y = _y;

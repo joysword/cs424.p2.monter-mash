@@ -15,7 +15,7 @@ class ys_LeftMenu {
 
   int num; // number of buttons
 
-  ys_LeftMenu(float _w, int n, float btn_h, String[] strs) {
+  ys_LeftMenu(float _w, int n, float btn_h, String[][] strs) {
     // width, number, height, names
 
       x = LEFT_BAR_DEFAULT_WIDTH;
@@ -59,7 +59,6 @@ class ys_LeftMenu {
           else if (i == 3) {
             if (LA == 1) LA = 0;
             else if (LA == 0) LA = 1;
-            println("language: " + LA);
           }
           else if (i == 4) { // help
             ui.getHelpWindow().switchDisplay();

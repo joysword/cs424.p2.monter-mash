@@ -10,7 +10,7 @@ class ys_LeftBar {
 
   ys_LeftMenu menu;
 
-  ys_LeftBar(float _w, int n, float btn_h, String[] strs) {
+  ys_LeftBar(float _w, int n, float btn_h, String[][] strs) {
 
     isDisplay = false;
 
