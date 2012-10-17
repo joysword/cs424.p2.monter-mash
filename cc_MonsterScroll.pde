@@ -135,14 +135,26 @@ public class cc_MonsterScroll {
     return leftKnob.getX();
   }
 
-  public boolean overlappedKnobs() {
+  public boolean overlappedKnobs(float posX) {
     float rightExtremeX=rightKnob.getX()+radius;
     float leftExtremeX=leftKnob.getX()-radius;
     if (rightKnob.isSelected())
-      return mouseX<=leftExtremeX;
+      return posX<=leftExtremeX;
     if (leftKnob.isSelected())
-      return mouseX>=rightExtremeX;
+      return posX>=rightExtremeX;
     return false;
   }
+
+  public void setPositionRight(float posX){
+    rightKnob.setPosition(posX);
+  }
+  public void setPositionLeft(float posX){
+    leftKnob.setPosition(posX);
+  }
+  public void setPositions(float posX){
+    setPositionLeft(posX);
+    setPositionRight(posX);
+  }
+
 }
 

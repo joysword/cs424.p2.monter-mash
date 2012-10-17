@@ -28,8 +28,7 @@ public class cc_KnobScroll {
     radius=lowerY-upperY;
   }
 
-  public void knobDraw() {
-    setPosition();
+  public void knobDraw(float posX) {
     int stroke_weight=round((upperY-lowerY)/20);
     pushStyle();
     strokeWeight(stroke_weight);
@@ -41,13 +40,13 @@ public class cc_KnobScroll {
   }
 
   //dovrebbe essere chiamato da mouseDragged!
-  private void setPosition() {
-    if (selected&&!scroll.overlappedKnobs())
-      if (mouseX<leftX)
+  public void setPosition(float posX) {
+    if (selected&&!scroll.overlappedKnobs(posX))
+      if (posX<leftX)
         actualX=leftX;
-      else if (mouseX>rightX)
+      else if (posX>rightX)
         actualX=rightX;
-      else actualX=mouseX;
+      else actualX=posX;
   }
 
   public float getX() {

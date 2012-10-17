@@ -241,5 +241,9 @@ public class cc_MonsterPlot {
   public float getActualKnobXLeft() {
     return scroll.getActualKnobXLeft();
   }
+
+  public void setKnobPos(float posX){
+    scroll.setPositions(posX);
+  }
 }
 
