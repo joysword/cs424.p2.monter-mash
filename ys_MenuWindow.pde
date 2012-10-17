@@ -47,11 +47,10 @@ class MenuWindow {
     isDisplayWindow = false;
 
     whichWindow = -1;
-    int min=1990;
-    int max=2000;
-    top10Window = new Top10Window(POP_UP_WINDOW_X, POP_UP_WINDOW_Y, POP_UP_WINDOW_W, POP_UP_WINDOW_H,min,max);
 
-    top10AllWindow = new Top10Window(POP_UP_WINDOW_X, POP_UP_WINDOW_Y, POP_UP_WINDOW_W, POP_UP_WINDOW_H,min,max);
+    top10Window = new Top10Window(POP_UP_WINDOW_X, POP_UP_WINDOW_Y, POP_UP_WINDOW_W, POP_UP_WINDOW_H);
+
+    top10AllWindow = new Top10Window(POP_UP_WINDOW_X, POP_UP_WINDOW_Y, POP_UP_WINDOW_W, POP_UP_WINDOW_H);
     
     which = 0;
   }
@@ -107,6 +106,8 @@ class MenuWindow {
 
   void shutDown() {
     isDisplayMenu = false;
+    top10Window.setInit();
+    top10AllWindow.setInit();
   }
 
   void turnOn(int _x, int _which) {

@@ -14,7 +14,7 @@ class Top10Window {
   boolean init;
 
 
-  Top10Window(float _x, float _y, float _w, float _h, int min, int max) {
+  Top10Window(float _x, float _y, float _w, float _h) {
     cenX = _x;
     cenY = _y;
     w = _w;
@@ -37,6 +37,10 @@ class Top10Window {
     numberMovies=db.getMonsterTOP10(min,min+10);
     if(numberMovies.size()>0)
       maximumNumber=numberMovies.get(0).getCount();
+  }
+
+  void setInit(){
+    init=true;
   }
 
   void render(int yearX) {
