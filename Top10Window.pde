@@ -34,6 +34,7 @@ class Top10Window {
   }
 
   void initImages(){
+    topMonsters.clear();
     for(StringCountPair s: numberMovies){
       topMonsters.add(new monsterNode(s.getString(),cenX,cenY,nodeDiameterChild,loadImage(MatchTaxonomy.matchImage(s.getString()))));
     }

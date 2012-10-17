@@ -16,8 +16,10 @@ public class cc_MonsterScroll {
     this.rightX=rightX;
     this.upperY=upperY;
     this.lowerY=lowerY;
-    lowerYScroll=upperY+(lowerY-upperY)/2;
-    upperYScroll=lowerY-(lowerY-upperY)/4;
+   // lowerYScroll=upperY+(lowerY-upperY)/2;
+    //upperYScroll=lowerY-(lowerY-upperY)/4;
+    lowerYScroll=upperY+(lowerY-upperY)*3/4;
+    upperYScroll=lowerY;
     rightKnob=new cc_KnobScroll(leftX, rightX, upperYScroll, lowerYScroll, rightX-30, this);
     leftKnob=new cc_KnobScroll(leftX, rightX, upperYScroll, lowerYScroll, leftX+60, this);
     centerY=upperYScroll+(lowerYScroll-upperYScroll)/2;

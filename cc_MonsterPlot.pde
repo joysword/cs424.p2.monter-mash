@@ -13,7 +13,7 @@ public class cc_MonsterPlot {
   private static final float Y_UPPER_PROPORTION_INNER= 0.15;
   private static final float Y_LOWER_PROPORTION_INNER= 0.15;
   private static final float DISTANCE_LABEL_FROM_PLOT= 0.03;
-  private static final float TEXT_FACTOR=0.007;
+  private static final float TEXT_FACTOR=0.022;
   private static final float STROKE_1_PROPORTION=0.001;
   private static final float LINE_PROPORITON=3.0;
   private static final int OP=50;
@@ -131,7 +131,7 @@ public class cc_MonsterPlot {
   private void drawYaxe() {
     int volumeInterval=floor(max/5);
     pushStyle();
-    float volumeIntervalMinor=floor(max/10);
+    float volumeIntervalMinor=floor(max/5);
     fill(0);
     setFontSize();
     textAlign(RIGHT);
@@ -175,13 +175,17 @@ public class cc_MonsterPlot {
     x = map(1890, dataManager1.getYearMin(), dataManager1.getYearMax(), innerLeftX, innerRightX);
     text(1890, x, innerLowerY+(lowerY-upperY)*DISTANCE_LABEL_FROM_PLOT);
     line(x, innerUpperY, x, innerLowerY);
+    int matchthing=1;
     float x;
     for (int i=0;i<dataManager1.datasetSize();i++) {
+      if ((matchthing%3==1)){
       if ((i%intervalYear==0)) {
         x = map(dataManager1.getX(i), dataManager1.getYearMin(), dataManager1.getYearMax(), innerLeftX, innerRightX);
         text(dataManager1.getX(i), x, innerLowerY+(lowerY-upperY)*DISTANCE_LABEL_FROM_PLOT);
         line(x, innerUpperY, x, innerLowerY);
       }
+    }
+      matchthing++;
     }
     popStyle();
   }
