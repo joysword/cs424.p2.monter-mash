@@ -117,11 +117,12 @@ class FirstPlot {
     rectMode(CORNERS);
     rect(plotX1, plotY1, plotX2, plotY2);
 
-    if (whichGraph == 0)
+    if (whichGraph == 0) {
       drawAxisLabels();
+    }
+    
     drawVolumeLabels();
-
-    drawYearLabels();
+    drawYearLabels(whichGraph);
 
     noFill();
     strokeWeight(INLINE_WIDTH);
@@ -152,7 +153,7 @@ class FirstPlot {
 
     drawVolumeLabels();
 
-    drawDecadeLabels();
+    drawDecadeLabels(whichGraph);
 
     noFill();
     strokeWeight(INLINE_WIDTH);
@@ -312,7 +313,7 @@ class FirstPlot {
     popStyle();
   }
 
-  private void drawYearLabels() {
+  private void drawYearLabels(int whichGraph) {
     pushStyle();
 
     fill(PLOT_LINE_COLOR);
@@ -324,7 +325,7 @@ class FirstPlot {
 
 
     float x = plotX1 + unitWidth*0.5;
-    if (which == 1) {
+    if (whichGraph == 0) {
       if (yearCount > 80) {
         for (int i=0;i<yearCount;i+=5) {
           text(showYearMin+i, x, plotY2 + textAscent() + 5*scale);
@@ -383,7 +384,7 @@ class FirstPlot {
     popStyle();
   }
 
-  private void drawDecadeLabels() {
+  private void drawDecadeLabels(int whichGraph) {
     pushStyle();
 
     fill(PLOT_LINE_COLOR);
@@ -393,7 +394,7 @@ class FirstPlot {
     stroke(100);
     strokeWeight(scale);
 
-    if (which == 1) {
+    if (whichGraph == 0) {
       for (int i=1;i<11;i++) {
         line(plotX1+i*decadeWidth, plotY2 - OUTLINE_WIDTH*0.5, plotX1+i*decadeWidth, plotY1 + OUTLINE_WIDTH*0.5);
       }
