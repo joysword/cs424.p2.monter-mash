@@ -13,6 +13,7 @@ void touchDown(int ID, float xPos, float yPos, float xWidth, float yWidth) {
         }
       }
     }
+    ui.updateFirstPage(xPos, yPos);
   }
   else if (currentPage == MONSTER_PAGE) {
     ui.getMonsterPage().mousePressed_(xPos, yPos);
@@ -30,7 +31,6 @@ void touchUp(int ID, float xPos, float yPos, float xWidth, float yWidth) {
   ui.updateLeftBar(xPos, yPos);
   //
   if (currentPage == FIRST_PAGE) {
-    ui.updateFirstPage(xPos, yPos);
   }
   else if (currentPage == MONSTER_PAGE) {
     ui.getMonsterPage().mouseReleased_(xPos, yPos);

@@ -77,9 +77,15 @@ void setup()
   // Sets applet to this sketch
   applet = this;
   context = this;
-
+  
+  PFont plotFont;
   // setup Font
-  PFont plotFont = createFont("Helvetica-Bold", 14*scale);//change
+  //if (scale == 1) {
+    plotFont = loadFont("Helvetica-Bold-14.vlw");
+  //}
+  //else if (scale == 5) {
+    //plotFont = loadFont("Helvetica-Bold-70.vlw");
+ // }
   textFont(plotFont);
 
   currentPage = FIRST_PAGE;
