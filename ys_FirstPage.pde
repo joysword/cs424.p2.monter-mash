@@ -290,7 +290,7 @@ class ys_FirstPage {
     rectMode(CORNERS);
     rect(rightX, rightY1, Width, rightY2);
     textAlign(LEFT);
-    textSize(14*scale);
+    textSize(18*scale);
     for (int i=0;i<HOW_MANY_FILTERS;i++) {
       //1
       fill(#01b2f1);

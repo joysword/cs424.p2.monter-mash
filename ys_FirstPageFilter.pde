@@ -131,16 +131,22 @@ class ys_FirstPageFilter {
 
     // get which monster
     int monId = monF.getMonsterType();
-    String mon = "";
+    String[] mon = new String[2];
+    mon[0] = "";
+    mon[1] = "";
     if (monId >= 0 && monId < FILTER_MONSTER_NUM) {
-      mon = MONSTER_TYPE[monId][0].substring(1); // get rid of space
+      mon[0] = MONSTER_TYPE[monId][0].substring(1); // get rid of space
+      mon[1] = MONSTER_TYPE[monId][1].substring(1); // get rid of space
     }
 
     // get which genre
     int genId = genF.getGenreType();
-    String gen = "";
+    String[] gen = new String[2];
+    gen[0] = "";
+    gen[1] = "";
     if (genId >= 0 && genId < FILTER_GENRE_NUM) {
-      gen = GENRE_TYPE[genId][0].substring(1);  // get rid of space
+      gen[0] = GENRE_TYPE[genId][0].substring(1);  // get rid of space
+      gen[1] = GENRE_TYPE[genId][1].substring(1);  // get rid of space
     } 
 
     // get which filter
@@ -150,79 +156,79 @@ class ys_FirstPageFilter {
     if (whichFilter == 0) {
       switch(currentFilter[0]) {
         case CERTIFICATE:
-        plot_data[CERTIFICATE] = ui.getDB().getCertificates(gen, mon);
+        plot_data[CERTIFICATE] = ui.getDB().getCertificates(gen[0], mon[0]);
         dataMax1 = getMax(plot_data[CERTIFICATE]);
         dataMax1_decade = getMax_decade(plot_data[CERTIFICATE]);
         break;
         case FORMAT:
-        plot_data[FORMAT] = ui.getDB().getFormat(gen, mon);
+        plot_data[FORMAT] = ui.getDB().getFormat(gen[0], mon[0]);
         dataMax1 = getMax(plot_data[FORMAT]);
         dataMax1_decade = getMax_decade(plot_data[FORMAT]);
         break;
         case POPULARITY:
-        plot_data[POPULARITY] = ui.getDB().getPopularity(gen, mon);
+        plot_data[POPULARITY] = ui.getDB().getPopularity(gen[0], mon[0]);
         dataMax1 = getMax(plot_data[POPULARITY]);
         dataMax1_decade = getMax_decade(plot_data[POPULARITY]);
         break;
         case QUALITY:
-        plot_data[QUALITY] = ui.getDB().getQuality(gen, mon);
+        plot_data[QUALITY] = ui.getDB().getQuality(gen[0], mon[0]);
         dataMax1 = getMax(plot_data[QUALITY]);
         dataMax1_decade = getMax_decade(plot_data[QUALITY]);
         break;
         case COUNTRY:
-        plot_data[COUNTRY] = ui.getDB().getCountries(gen,mon);
+        plot_data[COUNTRY] = ui.getDB().getCountries(gen[0],mon[0]);
         dataMax1 = getMax(plot_data[COUNTRY]);
         dataMax1_decade = getMax_decade(plot_data[COUNTRY]);
         break;
         case BUDGET:
-        plot_data[BUDGET] = ui.getDB().getBudget(gen,mon);
+        plot_data[BUDGET] = ui.getDB().getBudget(gen[0],mon[0]);
         dataMax1 = getMax(plot_data[BUDGET]);
         dataMax1_decade = getMax_decade(plot_data[BUDGET]);
         break;
       }
       for (int i=0;i<2;i++) {
-        filterTxt1[0][i] = MONSTER_TXT[i]+mon;
-        filterTxt1[1][i] = GENRE_TXT[i]+gen;
-        filterTxt1[2][i] = FILTER_TXT[i]+FILTER_TYPE[currentFilter[0]];
+        filterTxt1[0][i] = MONSTER_TXT[i]+mon[i];
+        filterTxt1[1][i] = GENRE_TXT[i]+gen[i];
+        filterTxt1[2][i] = FILTER_TXT[i]+FILTER_TYPE[currentFilter[0]][i];
       }
     }
     else if (whichFilter == 1){
       switch(currentFilter[1]) {
         case CERTIFICATE:
-        plot_data[CERTIFICATE+6] = ui.getDB().getCertificates(gen, mon);
+        plot_data[CERTIFICATE+6] = ui.getDB().getCertificates(gen[0], mon[0]);
         dataMax2 = getMax(plot_data[CERTIFICATE+6]);
         dataMax2_decade = getMax_decade(plot_data[CERTIFICATE+6]);
         break;
         case FORMAT:
-        plot_data[FORMAT+6] = ui.getDB().getFormat(gen, mon);
+        plot_data[FORMAT+6] = ui.getDB().getFormat(gen[0], mon[0]);
         dataMax2 = getMax(plot_data[FORMAT+6]);
         dataMax2_decade = getMax_decade(plot_data[FORMAT+6]);
         break;
         case POPULARITY:
-        plot_data[POPULARITY+6] = ui.getDB().getPopularity(gen, mon);
+        plot_data[POPULARITY+6] = ui.getDB().getPopularity(gen[0], mon[0]);
         dataMax2 = getMax(plot_data[POPULARITY+6]);
         dataMax2_decade = getMax_decade(plot_data[POPULARITY+6]);
         break;
         case QUALITY:
-        plot_data[QUALITY+6] = ui.getDB().getQuality(gen, mon);
+        plot_data[QUALITY+6] = ui.getDB().getQuality(gen[0], mon[0]);
         dataMax2 = getMax(plot_data[QUALITY+6]);
         dataMax2_decade = getMax_decade(plot_data[QUALITY+6]);
         break;
         case COUNTRY:
-        plot_data[COUNTRY+6] = ui.getDB().getCountries(gen,mon);
+        plot_data[COUNTRY+6] = ui.getDB().getCountries(gen[0],mon[0]);
         dataMax2 = getMax(plot_data[COUNTRY+6]);
         dataMax2_decade = getMax_decade(plot_data[COUNTRY+6]);
         break;
         case BUDGET:
-        plot_data[BUDGET+6] = ui.getDB().getBudget(gen,mon);
+        plot_data[BUDGET+6] = ui.getDB().getBudget(gen[0],mon[0]);
         dataMax2 = getMax(plot_data[BUDGET+6]);
         dataMax2_decade = getMax_decade(plot_data[BUDGET+6]);
         break;
       }
       for (int i=0;i<2;i++) {
-        filterTxt2[0][i] = MONSTER_TXT[i]+mon;
-        filterTxt2[1][i] = GENRE_TXT[i]+gen;
-        filterTxt2[2][i] = FILTER_TXT[i]+FILTER_TYPE[currentFilter[1]];
+        filterTxt2[0][i] = MONSTER_TXT[i]+mon[i];
+        filterTxt2[1][i] = GENRE_TXT[i]+gen[i];
+        filterTxt2[2][i] = FILTER_TXT[i]+FILTER_TYPE[currentFilter[1]][i];
       }
     }
 
