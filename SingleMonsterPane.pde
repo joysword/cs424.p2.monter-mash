@@ -35,8 +35,8 @@ public class SingleMonsterPane {
     //this.worldMap=new Map(loadShape("worldMap.svg"), this.centerX+this.widthT/7, this.centerY-this.heightT/5, this.widthT/3, this.heightT/3);
     //this.radar=new RadarChart(this.centerX+this.widthT/7, this.centerY+this.heightT/5, this.heightT/6, 5.0);
     this.top5Genres=new Top5Genres(this.centerX+this.widthT/7, this.centerY+this.heightT/4*0.89, this.heightT, this.heightT/3*1.1);
-    this.compareMonster1=new ImageButton(loadShape("compareMonster.svg"), this.centerX+this.widthT*0.35, this.centerY+this.heightT*0.45, 400/scaling, 150/scaling);
-     this.compareMonster2=new ImageButton(loadShape("compareMonster2.svg"), this.centerX+this.widthT*0.43, this.centerY+this.heightT*0.45, 400/scaling, 150/scaling);
+    this.compareMonster1=new ImageButton(loadShape("compareMonster.svg"), this.centerX+this.widthT*0.35, this.centerY+this.heightT*0.45, this.heightT/6, this.heightT/20);
+     this.compareMonster2=new ImageButton(loadShape("compareMonster2.svg"), this.centerX+this.widthT*0.41, this.centerY+this.heightT*0.45, this.heightT/6, this.heightT/20);
 
   }
 
@@ -73,10 +73,10 @@ public class SingleMonsterPane {
     rect(this.centerX, this.centerY, this.widthT, this.heightT);
     fill(255);
     textAlign(CENTER, CENTER);
-    textSize(120/scaling);
+    textSize(this.heightT/20);
     fill(255, 0, 0);
-    text(MOST_KWORDS[LA], this.centerX+this.widthT/7, this.centerY-1000/scaling);
-    text(MOST_GENRES[LA], this.centerX+this.widthT/7, this.centerY-100/scaling);
+    text(MOST_KWORDS[LA], this.centerX+this.widthT/7, this.centerY-this.heightT*0.4);
+    text(MOST_GENRES[LA], this.centerX+this.widthT/7, this.centerY-this.heightT*0.025);
  
 
     fill(255);
@@ -85,7 +85,7 @@ public class SingleMonsterPane {
     imageMode(CENTER);
     //image(this.movieTape, this.centerX+this.widthT/2*0.87, this.centerY, this.widthT/2*0.2, this.heightT);
     textAlign(LEFT, CENTER);
-    textSize(150/scaling);
+    textSize(this.heightT/20);
     if(this.monster_2==null){
     text(this.monster.monsterName, this.centerX-this.widthT/2+this.widthT/50, this.centerY-this.heightT/2+this.heightT/12);}
     else{text(this.monster.monsterName, this.centerX-this.widthT/2+this.widthT/50, this.centerY-this.heightT/2+this.heightT/12);
@@ -93,9 +93,9 @@ public class SingleMonsterPane {
   text(this.monster_2.monsterName, this.centerX-this.widthT/2+this.widthT/50, this.centerY-this.heightT/2+this.heightT/3.5);}
     plot1.monsterDraw();
       textAlign(CENTER, CENTER);
-    textSize(110/scaling);
+    textSize(this.heightT/20);
     fill(255, 0, 0);
-       text(NUMBER_MOVIE[LA], this.centerX-this.widthT/4, this.centerY-100/scaling);
+       text(NUMBER_MOVIE[LA], this.centerX-this.widthT/4, this.centerY-this.heightT*0.025);
     //worldMap.draw();
     //radar.draw();
     top5Genres.draw();
@@ -103,21 +103,21 @@ public class SingleMonsterPane {
         compareMonster2.draw();
 
     imageMode(CENTER);
-    if(this.monster_2==null){image(this.monster.avatar, this.centerX-this.widthT/4, this.centerY-this.heightT/3+this.heightT/20, 750/scaling, 750/scaling);}
+    if(this.monster_2==null){image(this.monster.avatar, this.centerX-this.widthT/4, this.centerY-this.heightT/3+this.heightT/20, this.heightT/3.3,this.heightT/3.3);}
     else{ 
-    image(this.monster.avatar, this.centerX-this.widthT/4-450/scaling, this.centerY-this.heightT/3+this.heightT/20, 750/scaling, 750/scaling);
-    image(this.monster_2.avatar, this.centerX-this.widthT/4+450/scaling, this.centerY-this.heightT/3+this.heightT/20, 750/scaling, 750/scaling);}
+    image(this.monster.avatar, this.centerX-this.widthT/4-this.widthT/13, this.centerY-this.heightT/3+this.heightT/20,  this.heightT/3.3,this.heightT/3.3);
+    image(this.monster_2.avatar, this.centerX-this.widthT/4+this.widthT/13, this.centerY-this.heightT/3+this.heightT/20,  this.heightT/3.3,this.heightT/3.3);}
 
     fill(255);
-    shape(this.hideButton, this.centerX+this.widthT*0.47, this.centerY+this.heightT*0.44, 130/scaling, 130/scaling);
+    shape(this.hideButton, this.centerX+this.widthT*0.47, this.centerY+this.heightT*0.44, this.heightT/15, this.heightT/15);
     textAlign(CENTER, BOTTOM);
-    textSize(100/scaling);
+    textSize(this.heightT/24);
     
        if(this.monster_2==null){
-    text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster.monsterName)), this.centerX+this.widthT/7, this.centerY-240/scaling);}
+    text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster.monsterName)), this.centerX+this.widthT/7, this.centerY-this.heightT/15);}
 else{
-text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster.monsterName)), this.centerX+this.widthT/15, this.centerY-240/scaling);
-   text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster_2.monsterName)), this.centerX+this.widthT/4, this.centerY-240/scaling);}
+text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster.monsterName)), this.centerX+this.widthT/15, this.centerY-this.heightT/15);
+   text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster_2.monsterName)), this.centerX+this.widthT/4, this.centerY-this.heightT/15);}
 
     popStyle();
   }
@@ -136,8 +136,8 @@ text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster.monsterNam
   }
 
   public void checkHideButton(float myX, float myY) {
-    if (myX>this.centerX+this.widthT*0.47-130/scaling/2 && myX<this.centerX+this.widthT*0.47+130/scaling/2
-      && myY>this.centerY+this.heightT*0.44-130/scaling/2 && myY<this.centerY+this.heightT*0.44+130/scaling/2) {
+    if (myX>this.centerX+this.widthT*0.47-this.heightT/15/2 && myX<this.centerX+this.widthT*0.47+this.heightT/15/2
+      && myY>this.centerY+this.heightT*0.44-this.heightT/15/2 && myY<this.centerY+this.heightT*0.44+this.heightT/15/2) {
       this.hide();
       ui.getMonsterPage().getTaxonomy().indexMoving=-1;
     }
