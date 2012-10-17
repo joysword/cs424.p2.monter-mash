@@ -1298,9 +1298,15 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
     }
     else {
     }
+    //printInstance(array);
     return array;
 
   }
+/*
+  public void printInstance(ArrayList<Instance> array){
+    for(Instance i:array)
+        println(i.getYear()+" "+i.geee(0)+" "+i.geee(1)+" "+i.geee(2)+" "+i.geee(3)+" "+i.geee(4)+" "+i.geee(5)+" "+i.geee(6));
+  }*/
 
   public ArrayList<Instance> getCountries(String genre, String monster){
     ArrayList<Instance> array = new ArrayList<Instance>();

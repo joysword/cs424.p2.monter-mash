@@ -112,7 +112,8 @@ class Top10Window {
       noStroke();
       rect(cenX-w/11/2-w/11*this.numberMovies.size()/2+w/11*(i+1)-this.barWidth/2, value, 
       cenX-w/11/2-w/11*this.numberMovies.size()/2+w/11*(i+1)+this.barWidth/2, minimumLine);
-      ((monsterNode)this.topMonsters.get(i)).setCenter(cenX-w/11/2-w/11*this.topMonsters.size()/2+w/11*(i+1), value-nodeDiameterChild/2);
+      //((monsterNode)this.topMonsters.get(i)).setCenter(cenX-w/11/2-w/11*this.topMonsters.size()/2+w/11*(i+1), value-nodeDiameterChild/2);
+      ((monsterNode)this.topMonsters.get(i)).setCenter(cenX-w/11/2-w/11*this.numberMovies.size()/2+w/11*(i+1), value-nodeDiameterChild/2);
       ((monsterNode)this.topMonsters.get(i)).draw();
 
       textSize(20*scale); //change

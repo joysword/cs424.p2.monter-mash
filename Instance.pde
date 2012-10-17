@@ -17,4 +17,8 @@ class Instance{
 	public void set(int i,int value){
 		count[i]=value;
 	}
+
+	public int getYear(){
+		return year;
+	}
 }
