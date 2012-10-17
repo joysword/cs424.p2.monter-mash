@@ -329,12 +329,13 @@ final int LOWER_LEFT = 2;
 final int LOWER_RIGHT = 3;
 
 final float POP_UP_MENU_W = 200*scale;
-final int POP_UP_MENU_N = 3; //change
+final int POP_UP_MENU_N = 4; //change
 final float POP_UP_BUTTON_H = 30*scale;
 String[][] POP_UP_BUTTON_NAME = {
   {"Top 10 Monsters of Decade", "十年出镜率最高十佳怪物"},
   {"Top 10 Monsters overall","出镜率最高十佳怪物(总)"},
-  {"Movie in this year","本年影片"}
+  {"Movie in this year","本年影片"},
+  {"No events in this decade","本年代无大事件"}
 };
 
 final int TOP_10_WINDOW = 0;

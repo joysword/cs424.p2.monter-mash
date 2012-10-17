@@ -47,7 +47,6 @@ class UserInterface {
       monsterPage.render();
       break;
     }
-
     // below are always render last
     leftBar.render();
     helpWindow.render();

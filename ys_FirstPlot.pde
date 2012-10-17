@@ -57,6 +57,7 @@ class FirstPlot {
     decadeWidth = (plotX2 - plotX1) / decadeCount;
     tableWidth = (plotX2 - plotX1) / 11;
     tableHeight = (plotY2 - plotY1) / (NUMBER_OF_CLUSTERS[currentFilter[whichGraph]]+1);
+
     if (NUMBER_OF_CLUSTERS[currentFilter[whichGraph]] == 3) {
       tableHeight *= 0.8;
     }
@@ -81,11 +82,43 @@ class FirstPlot {
     // three way
     int mode = ui.getFirstPage().getDisplayMode();
     if (mode == YEAR_MODE) {
-      drawPlot(currentFilter[whichGraph], NUMBER_OF_CLUSTERS[currentFilter[whichGraph]], whichGraph, plot_data[currentFilter[whichGraph]+whichGraph*6]);
+      int increase;
+      if (dataMax_this > 50) {
+        increase = int(dataMax_this/4)/10*10;
+      }
+      else if (dataMax_this > 20) {
+        increase = int(dataMax_this/4)/5*5;
+      }
+      else if (dataMax_this > 10) {
+        increase = int(dataMax_this/4)/2*2;
+      }
+      else if (dataMax_this > 4) {
+        increase = int(dataMax_this/4);
+      }
+      else {
+        increase = 1;
+      }
+      drawPlot(currentFilter[whichGraph], NUMBER_OF_CLUSTERS[currentFilter[whichGraph]], whichGraph, plot_data[currentFilter[whichGraph]+whichGraph*6], increase);
       drawLegend(currentFilter[whichGraph], NUMBER_OF_CLUSTERS[currentFilter[whichGraph]], whichGraph);// plot_data[currentFilter[whichGraph]+whichGraph*6]);
     }
     else if (mode == DECADE_MODE) {
-      drawBar(currentFilter[whichGraph], NUMBER_OF_CLUSTERS[currentFilter[whichGraph]], whichGraph, plot_data[currentFilter[whichGraph]+whichGraph*6]);
+      int increase;
+      if (dataMax_this_decade > 50) {
+        increase = int(dataMax_this_decade/4)/10*10;
+      }
+      else if (dataMax_this_decade > 20) {
+        increase = int(dataMax_this_decade/4)/5*5;
+      }
+      else if (dataMax_this_decade > 10) {
+        increase = int(dataMax_this_decade/4)/2*2;
+      }
+      else if (dataMax_this_decade > 4) {
+        increase = int(dataMax_this_decade/4);
+      }
+      else {
+        increase = 1;
+      }
+      drawBar(currentFilter[whichGraph], NUMBER_OF_CLUSTERS[currentFilter[whichGraph]], whichGraph, plot_data[currentFilter[whichGraph]+whichGraph*6], increase);
       drawLegend(currentFilter[whichGraph], NUMBER_OF_CLUSTERS[currentFilter[whichGraph]], whichGraph);// plot_data[currentFilter[whichGraph]+whichGraph*6]);
     }
     else if (mode == TABULAR_MODE) {
@@ -93,7 +126,7 @@ class FirstPlot {
     }
   }
 
-  private void drawPlot(int whichFilter, int howManyClusters, int whichGraph, ArrayList<Instance> li) {
+  private void drawPlot(int whichFilter, int howManyClusters, int whichGraph, ArrayList<Instance> li, int increase) {
 
     pushStyle();
 
@@ -107,8 +140,10 @@ class FirstPlot {
       drawAxisLabels();
     }
     
-    drawVolumeLabels();
+    drawVolumeLabels(increase);
+
     drawYearLabels(whichGraph);
+
 
     noFill();
     strokeWeight(INLINE_WIDTH);
@@ -124,7 +159,7 @@ class FirstPlot {
     popStyle();
   }
 
-  private void drawBar(int whichFilter, int howManyClusters, int whichGraph, ArrayList<Instance> li) {
+  private void drawBar(int whichFilter, int howManyClusters, int whichGraph, ArrayList<Instance> li, int increase) {
     pushStyle();
 
     fill(PLOT_BG_COLOR);
@@ -137,7 +172,7 @@ class FirstPlot {
       drawAxisLabels();
     }
 
-    drawVolumeLabels();
+    drawVolumeLabels(increase);
 
     drawDecadeLabels(whichGraph);
 
@@ -397,7 +432,7 @@ class FirstPlot {
     popStyle();
   }
 
-  private void drawVolumeLabels() {
+  private void drawVolumeLabels(int increase) {
 
     pushStyle();
     fill(PLOT_LINE_COLOR);
@@ -409,7 +444,7 @@ class FirstPlot {
 
     //for (float v = dataMin; v <= dataMax[i]; v += volumeInterval[i]) {
     if (ui.getFirstPage().displayMode == YEAR_MODE) {
-      for (float v = dataMin; v < dataMax_this; v += int((dataMax_this-dataMin)/4)/10*10) {
+      for (float v = dataMin; v < dataMax_this; v += increase) {
 
         float y = map(v, dataMin, dataMax_this, minimumY, plotY1);  
         float textOffset = textAscent()/2;  // Center vertically
@@ -425,7 +460,7 @@ class FirstPlot {
       }
     }
     else if (ui.getFirstPage().displayMode == DECADE_MODE) {
-      for (float v = dataMin; v < dataMax_this_decade; v += int((dataMax_this_decade-dataMin)/4)/10*10) {
+      for (float v = dataMin; v < dataMax_this_decade; v += increase) {
 
         float y = map(v, dataMin, dataMax_this_decade, minimumY, plotY1);  
         float textOffset = textAscent()/2;  // Center vertically

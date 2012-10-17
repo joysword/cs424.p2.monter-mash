@@ -161,7 +161,8 @@ class ys_FirstPage {
             int type = (posx<rightX*0.6)? ( (posy<Height*0.5)?UPPER_LEFT:LOWER_LEFT ):
             ( (posy<Height*0.5)?UPPER_RIGHT:LOWER_RIGHT );
             popUp.setPos(posx, posy, type);
-            popUp.getButton().setName(year_); // change name by year
+            popUp.getButton(0).setName(year_, 0); // change name by year
+            popUp.getButton(3).setName(year_, 3); // change name by year
             popUp.turnOn(year_, 1);
           }
           else {
@@ -170,7 +171,8 @@ class ys_FirstPage {
               int type = (posx<rightX*0.6)? ( (posy<Height*0.5)?UPPER_LEFT:LOWER_LEFT ):
               ( (posy<Height*0.5)?UPPER_RIGHT:LOWER_RIGHT );
               popUp.setPos(posx, posy, type);
-              popUp.getButton().setName(year_); // change name by year
+              popUp.getButton(0).setName(year_, 0); // change name by year
+              popUp.getButton(3).setName(year_, 3); // change name by year
               popUp.turnOn(year_, 2);
             }
           }
@@ -182,7 +184,8 @@ class ys_FirstPage {
             int type = (posx<rightX*0.6)? ( (posy<Height*0.5)?UPPER_LEFT:LOWER_LEFT ):
             ( (posy<Height*0.5)?UPPER_RIGHT:LOWER_RIGHT );
             popUp.setPos(posx, posy, type);
-            popUp.getButton().setName(year_); // change name by year
+            popUp.getButton(0).setName(year_, 0);
+            popUp.getButton(3).setName(year_, 3); // change name by year
             popUp.turnOn(year_, 1);
           }
           else {
@@ -191,7 +194,8 @@ class ys_FirstPage {
               int type = (posx<rightX*0.6)? ( (posy<Height*0.5)?UPPER_LEFT:LOWER_LEFT ):
               ( (posy<Height*0.5)?UPPER_RIGHT:LOWER_RIGHT );
               popUp.setPos(posx, posy, type);
-              popUp.getButton().setName(year_); // change name by year
+              popUp.getButton(0).setName(year_, 0);
+              popUp.getButton(3).setName(year_, 3); // change name by year
               popUp.turnOn(year_, 2);
             }
           }

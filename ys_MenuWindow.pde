@@ -142,8 +142,8 @@ class MenuWindow {
     }
   }
 
-  ys_Button getButton() {
-    return popUpButton[0];
+  ys_Button getButton(int i) {
+    return popUpButton[i];
   }
 }
 

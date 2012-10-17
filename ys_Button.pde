@@ -55,13 +55,14 @@ class ys_Button {
     return false;
   }
 
-  public void setName(int yearr) {
-    if (LA == 0) {
+  public void setName(int yearr, int i) {
+    if (i == 0) {// first pop up button
       name[0] = "Top 10 Monsters of " + (yearr/10*10) + "'s";
-    }
-    else if (LA == 1) {
       name[1] = "出镜率最高的10种魔兽 (" + (yearr/10*10) + "'s)";
+    }
+    else if (i == 3) {
+      name[0] = "Show events of " + (yearr/10*10) + "'s";
+      name[1] = (yearr/10*10) + "年代大事件";
     }
   }
 }
-
