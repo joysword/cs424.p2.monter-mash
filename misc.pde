@@ -56,10 +56,18 @@ final int RANGE_COLOR = 125;
 final int TIME_LOCK_COLOR = #ff6600;
 
 final color[] CLUSTER_COLOR = {
-  #ff0000, #00ff00, #01b2f1, #0000ff, color(255,0,255), color(255,255,0), color(255,255,255)
+  //#ff0000, #01b2f1, #0000ff, color(255,0,255), #ff6600, color(255,255,255), #00ff00
+  //0xffffcc,0xd9f0a3,0xaddd8e,0x78c679,0x41ab5d,0x238443,0x005a32
+  //0x66c2a5,0xfc8d62,0x8da0cb,0xe78ac3,0xa6d854,0xffd92f,0xe5c494
+  //0x1b9e77,0xd95f02,0x7570b3,0xe7298a,0x66a61e,0xe6ab02,0xa6761d
+  #b3de69, #fdb462, #80b1d3, #fb8072, #bebada, #ffffb3,#8dd3c7
 }; //change
 final color[] CLUSTER_COLOR_TRAN = {
-  0x50ff0000, 0x5000ff00, 0x5001b2f1, 0x500000ff, color(255,0,255,80), color(255,255,0,80), color(255,255,255,80)
+  //0x50ff0000, 0x5001b2f1, 0x500000ff, color(255,0,255,80), 0x50ff6600, color(255,255,255,80), 0x5000ff00
+  //0x50ffffcc,0x50d9f0a3,0x50addd8e,0x5078c679,0x5041ab5d,0x50238443,0x50005a32
+  //0x5066c2a5,0x50fc8d62,0x508da0cb,0x50e78ac3,0x50a6d854,0x50ffd92f,0x50e5c494
+  //0x501b9e77,0x50d95f02,0x507570b3,0x50e7298a,0x5066a61e,0x50e6ab02,0x50a6761d
+  0x50b3de69, 0x50fdb462, 0x5080b1d3, 0x50fb8072, 0x50bebada, 0x50ffffb3,0x50dd3c7
 };
 // red green blizzard blue pink yellow white
 // about pages
@@ -176,25 +184,27 @@ final float FILTER_MONSTER_Y_RELATIVE = 0.1;
 final float FILTER_MONSTER_W = FIRST_PAGE_FILTER_W;
 final float FILTER_MONSTER_H = CHECK_ITEM_HEIGHT;
 String[][] MONSTER_TYPE = {
+  {" alien"," 外星人"},
   {" demon"," 恶魔"},
   {" dracula"," 德古拉"},
   {" female-vampire"," 女吸血鬼"},
-  {" freddy-krueger"," "},
+  {" freddy-krueger"," 弗莱德"},
   {" ghost"," 鬼"},
   {" godzilla"," 哥斯拉"},
   {" invisible-man"," 隐形人"},
   {" jason"," 杰森"},
   {" living-dead"," 活死人"},
-  {" michael-myers",""},
-  {" mr-hyde",""},
+  {" michael-myers"," 迈克梅尔"},
+  {" mr-hyde"," 海德先生"},
   {" mummy"," 木乃伊"},
   {" mutant"," 变种人"},
   {" muted-cretures"," 变异生物"},
   {" supernatural"," 超自然"},
-  {" swamp",""},
+  {" swamp"," 斯万普"},
   {" vampire"," 吸血鬼"},
   {" werewolf"," 狼人"},
-  {" witch-wizrds"," 女巫"}
+  {" witch-wizards"," 女巫"},
+  {" zombie"," 僵尸"}
 };
 final int FILTER_MONSTER_NUM = MONSTER_TYPE.length;
 

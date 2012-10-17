@@ -492,9 +492,11 @@ class FirstPlot {
     for (int clust=howManyCluters-1;clust>=0;clust--) {
       left = plotX1;
       right = left+unitWidth;
-      fill(CLUSTER_COLOR_TRAN[clust]);
+      //fill(CLUSTER_COLOR_TRAN[clust]);
+      fill(CLUSTER_COLOR[clust]);
       //noFill();
-      stroke(CLUSTER_COLOR[clust]);
+      //stroke(CLUSTER_COLOR_TRAN[clust]);
+      noStroke();
       beginShape();
       //fill(CLUSTER_COLOR[clust]);
 
@@ -539,7 +541,8 @@ class FirstPlot {
       float xx2 = plotX1 + decadeWidth*(i+0.8);
       rectMode(CORNERS);
       for (int k=howManyCluters-1;k>=0;k--) {
-        fill(CLUSTER_COLOR_TRAN[k]);
+        //fill(CLUSTER_COLOR_TRAN[k]);
+        fill(CLUSTER_COLOR[k]);
         rect(xx1, yy[k], xx2, minimumY);
       }
     }
@@ -562,6 +565,7 @@ class FirstPlot {
     }
     if (howManyCluters == 7) {
       for (int i=0;i<howManyCluters;i++) {
+        //fill(CLUSTER_COLOR_TRAN[i]);
         fill(CLUSTER_COLOR[i]);
         noStroke();
         rectMode(CORNER);
@@ -570,7 +574,7 @@ class FirstPlot {
     }
     else {
       for (int i=0;i<howManyCluters;i++) {
-        fill(CLUSTER_COLOR[i]);
+        fill(CLUSTER_COLOR_TRAN[i]);
         noStroke();
         rectMode(CORNER);
         rect(x_ + i*(22*scale+LEGEND_WIDTH), y_,LEGEND_WIDTH,LEGEND_HEIGHT);
