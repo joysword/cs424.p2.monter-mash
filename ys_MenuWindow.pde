@@ -47,10 +47,11 @@ class MenuWindow {
     isDisplayWindow = false;
 
     whichWindow = -1;
+    int min=1990;
+    int max=2000;
+    top10Window = new Top10Window(POP_UP_WINDOW_X, POP_UP_WINDOW_Y, POP_UP_WINDOW_W, POP_UP_WINDOW_H,min,max);
 
-    top10Window = new Top10Window(POP_UP_WINDOW_X, POP_UP_WINDOW_Y, POP_UP_WINDOW_W, POP_UP_WINDOW_H);
-
-    top10AllWindow = new Top10Window(POP_UP_WINDOW_X, POP_UP_WINDOW_Y, POP_UP_WINDOW_W, POP_UP_WINDOW_H);
+    top10AllWindow = new Top10Window(POP_UP_WINDOW_X, POP_UP_WINDOW_Y, POP_UP_WINDOW_W, POP_UP_WINDOW_H,min,max);
     
     which = 0;
   }

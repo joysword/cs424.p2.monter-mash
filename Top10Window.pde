@@ -8,10 +8,13 @@ class Top10Window {
   float barWidth = 50*scale;
 
   ArrayList<monsterNode> topMonsters;
-  ArrayList<Float> numberMovies;
+  ArrayList<StringCountPair> numberMovies;
   float nodeDiameterFather, nodeDiameterChild;
+  cc_DatabaseManager db;
+  boolean init;
 
-  Top10Window(float _x, float _y, float _w, float _h) {
+
+  Top10Window(float _x, float _y, float _w, float _h, int min, int max) {
     cenX = _x;
     cenY = _y;
     w = _w;
@@ -26,14 +29,14 @@ class Top10Window {
     topMonsters = new ArrayList<monsterNode>();
 
     numberMovies = new ArrayList();
+    db=new cc_DatabaseManager(context);
+    init=true;
+  }
 
-    monster1 = new monsterNode("werewolves", 0, 0, nodeDiameterChild, loadImage("werewolves.png"));
-    monster2 = new monsterNode("dracula", 0, 0, nodeDiameterChild, loadImage("dracula.png"));
-
-    topMonsters.add(monster1);
-    topMonsters.add(monster2);
-    numberMovies.add(40.0);
-    numberMovies.add(17.0);
+  void initDb(int min){
+    numberMovies=db.getMonsterTOP10(min,min+10);
+    if(numberMovies.size()>0)
+      maximumNumber=numberMovies.get(0).getCount();
   }
 
   void render(int yearX) {
@@ -57,7 +60,10 @@ class Top10Window {
     textAlign(LEFT, CENTER);
     textSize(22*scale);
     int yearr = yearX/10*10;
-
+    if(init){
+      initDb(yearr);
+      init=false;
+    }
     // Overall
     if (yearr == 10000) {
       text("     Top 10 Monsters Overall", cenX - w*0.5, cenY-h*0.4225);
@@ -66,21 +72,21 @@ class Top10Window {
       text("     Top 10 Monsters of "+yearr+"'s", cenX - w*0.5, cenY-h*0.4225);
     }
 
-    for (int i=0;i<this.topMonsters.size();i++) {
-      float value=map((float)numberMovies.get(i), 0, maximumNumber, minimumLine, maximumLine);
+    for (int i=0;i<this.numberMovies.size();i++) {
+      float value=map(numberMovies.get(i).getCount(), 0, maximumNumber, minimumLine, maximumLine);
 
       rectMode(CORNERS);
       fill(0);
       noStroke();
-      rect(cenX-w/11/2-w/11*this.topMonsters.size()/2+w/11*(i+1)-this.barWidth/2, value, 
-      cenX-w/11/2-w/11*this.topMonsters.size()/2+w/11*(i+1)+this.barWidth/2, minimumLine);
-      ((monsterNode)this.topMonsters.get(i)).setCenter(cenX-w/11/2-w/11*this.topMonsters.size()/2+w/11*(i+1), value-nodeDiameterChild/2);
-      ((monsterNode)this.topMonsters.get(i)).draw();
+      rect(cenX-w/11/2-w/11*this.numberMovies.size()/2+w/11*(i+1)-this.barWidth/2, value, 
+      cenX-w/11/2-w/11*this.numberMovies.size()/2+w/11*(i+1)+this.barWidth/2, minimumLine);
+      //((monsterNode)this.topMonsters.get(i)).setCenter(cenX-w/11/2-w/11*this.topMonsters.size()/2+w/11*(i+1), value-nodeDiameterChild/2);
+      //((monsterNode)this.topMonsters.get(i)).draw();
 
       textSize(20*scale); //change
       textAlign(CENTER, BOTTOM);
-      text(((monsterNode)this.topMonsters.get(i)).monsterName, cenX-w/11/2-w/11*this.topMonsters.size()/2+w/11*(i+1), value-nodeDiameterChild*1.3);
-      text((int)Math.round((float)this.numberMovies.get(i)), cenX-w/11/2-w/11*this.topMonsters.size()/2+w/11*(i+1), value-nodeDiameterChild*1.05);
+      text(numberMovies.get(i).getString(), cenX-w/11/2-w/11*this.numberMovies.size()/2+w/11*(i+1), value-nodeDiameterChild*1.3);
+      text((int(this.numberMovies.get(i).getCount())), cenX-w/11/2-w/11*this.numberMovies.size()/2+w/11*(i+1), value-nodeDiameterChild*1.05);
     }
 
     popStyle();
