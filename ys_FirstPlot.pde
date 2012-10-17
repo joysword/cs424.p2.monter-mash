@@ -574,7 +574,7 @@ class FirstPlot {
     }
     else {
       for (int i=0;i<howManyCluters;i++) {
-        fill(CLUSTER_COLOR_TRAN[i]);
+        fill(CLUSTER_COLOR[i]);
         noStroke();
         rectMode(CORNER);
         rect(x_ + i*(22*scale+LEGEND_WIDTH), y_,LEGEND_WIDTH,LEGEND_HEIGHT);
