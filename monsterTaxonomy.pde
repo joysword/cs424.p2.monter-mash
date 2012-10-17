@@ -95,7 +95,7 @@ public class monsterTaxonomy {
 
   public void setup() {
 
-    singleMonsterPane=new SingleMonsterPane(this.centerX, this.centerY, this.widthT*0.7, this.heightT*0.9, color(0));
+    singleMonsterPane=new SingleMonsterPane(this.centerX, this.centerY, this.widthT*0.7, this.heightT*0.95, color(0));
     //vampires
 
     vampires_pic=loadImage("vampires.png");

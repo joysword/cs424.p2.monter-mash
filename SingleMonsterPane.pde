@@ -31,10 +31,10 @@ public class SingleMonsterPane {
     this.movieTape=loadImage("movieTape.png");
     // this.plot1=new cc_MonsterPlot(this.centerX-this.widthT/4,this.centerY+this.heightT/5,this.widthT/3,this.heightT/3,"vampire","zombie",context);
     this.plot1=new cc_MonsterPlot(round(this.centerX-this.widthT/4-this.widthT/3/2), round(this.centerX-this.widthT/4+this.widthT/3/2), 
-    round(this.centerY+this.heightT/5-this.heightT/3/2), round(this.centerY+this.heightT/5+this.heightT/4));
+    round(this.centerY+this.heightT/5-this.heightT/3*0.7), round(this.centerY+this.heightT/5+this.heightT/4));
     //this.worldMap=new Map(loadShape("worldMap.svg"), this.centerX+this.widthT/7, this.centerY-this.heightT/5, this.widthT/3, this.heightT/3);
     //this.radar=new RadarChart(this.centerX+this.widthT/7, this.centerY+this.heightT/5, this.heightT/6, 5.0);
-    this.top5Genres=new Top5Genres(this.centerX+this.widthT/7, this.centerY+this.heightT/4, this.heightT, this.heightT/3);
+    this.top5Genres=new Top5Genres(this.centerX+this.widthT/7, this.centerY+this.heightT/4*0.89, this.heightT, this.heightT/3*1.1);
     this.compareMonster1=new ImageButton(loadShape("compareMonster.svg"), this.centerX+this.widthT*0.35, this.centerY+this.heightT*0.45, 400/scaling, 150/scaling);
      this.compareMonster2=new ImageButton(loadShape("compareMonster2.svg"), this.centerX+this.widthT*0.43, this.centerY+this.heightT*0.45, 400/scaling, 150/scaling);
 
@@ -73,11 +73,11 @@ public class SingleMonsterPane {
     rect(this.centerX, this.centerY, this.widthT, this.heightT);
     fill(255);
     textAlign(CENTER, CENTER);
-    textSize(85/scaling);
+    textSize(120/scaling);
     fill(255, 0, 0);
-    text("Most common keywords", this.centerX+this.widthT/7, this.centerY-700/scaling);
-    text("Most common genres", this.centerX+this.widthT/7, this.centerY+15/scaling);
-    text("Number of movies per year", this.centerX-this.widthT/4, this.centerY+15/scaling);
+    text("Most common keywords", this.centerX+this.widthT/7, this.centerY-1000/scaling);
+    text("Most common genres", this.centerX+this.widthT/7, this.centerY-100/scaling);
+ 
 
     fill(255);
     rectMode(CENTER);
@@ -88,6 +88,10 @@ public class SingleMonsterPane {
     textSize(100/scaling);
     text(this.monster.monsterName, this.centerX-this.widthT/2+this.widthT/50, this.centerY-this.heightT/2+this.heightT/8);
     plot1.monsterDraw();
+      textAlign(CENTER, CENTER);
+    textSize(110/scaling);
+    fill(255, 0, 0);
+       text("Number of movies per year", this.centerX-this.widthT/4, this.centerY-100/scaling);
     //worldMap.draw();
     //radar.draw();
     top5Genres.draw();
@@ -95,21 +99,21 @@ public class SingleMonsterPane {
         compareMonster2.draw();
 
     imageMode(CENTER);
-    if(this.monster_2==null){image(this.monster.avatar, this.centerX-this.widthT/4, this.centerY-this.heightT/4.3+this.heightT/20, 750/scaling, 750/scaling);}
+    if(this.monster_2==null){image(this.monster.avatar, this.centerX-this.widthT/4, this.centerY-this.heightT/3+this.heightT/20, 750/scaling, 750/scaling);}
     else{ 
-    image(this.monster.avatar, this.centerX-this.widthT/4-450/scaling, this.centerY-this.heightT/4.3+this.heightT/20, 750/scaling, 750/scaling);
-    image(this.monster_2.avatar, this.centerX-this.widthT/4+450/scaling, this.centerY-this.heightT/4.3+this.heightT/20, 750/scaling, 750/scaling);}
+    image(this.monster.avatar, this.centerX-this.widthT/4-450/scaling, this.centerY-this.heightT/3+this.heightT/20, 750/scaling, 750/scaling);
+    image(this.monster_2.avatar, this.centerX-this.widthT/4+450/scaling, this.centerY-this.heightT/3+this.heightT/20, 750/scaling, 750/scaling);}
 
     fill(255);
     shape(this.hideButton, this.centerX+this.widthT*0.47, this.centerY+this.heightT*0.44, 130/scaling, 130/scaling);
     textAlign(CENTER, BOTTOM);
-    textSize(75/scaling);
+    textSize(100/scaling);
     
        if(this.monster_2==null){
-    text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster.monsterName)), this.centerX+this.widthT/7, this.centerY-120/scaling);}
+    text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster.monsterName)), this.centerX+this.widthT/7, this.centerY-240/scaling);}
 else{
-text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster.monsterName)), this.centerX+this.widthT/10, this.centerY-120/scaling);
-   text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster_2.monsterName)), this.centerX+this.widthT/5, this.centerY-120/scaling);}
+text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster.monsterName)), this.centerX+this.widthT/15, this.centerY-240/scaling);
+   text(plot1.dataManager1.db.getPureKeywords(matchTax.matchName(monster_2.monsterName)), this.centerX+this.widthT/4, this.centerY-240/scaling);}
 
     popStyle();
   }
