@@ -98,14 +98,14 @@ void setup()
 
   ui = new UserInterface();
 
-  plot_data[0].addAll(ui.getDB().getQuality("Horror", "vampire"));
+  plot_data[0].addAll(ui.getDB().getBudget("Horror", "vampire"));
   plot_data[1].addAll(ui.getDB().getQuality("Horror", "vampire"));
   plot_data[2].addAll(ui.getDB().getFormat("Horror", "vampire"));
   plot_data[3].addAll(ui.getDB().getPopularity("Horror", "vampire"));
   plot_data[4].addAll(ui.getDB().getCountries("Horror","vampire"));
   plot_data[5].addAll(ui.getDB().getCertificates("Horror","vampire"));
 
-  plot_data[6].addAll(ui.getDB().getQuality("Horror", "vampire"));
+  plot_data[6].addAll(ui.getDB().getBudget("Horror", "vampire"));
   plot_data[7].addAll(ui.getDB().getQuality("Horror", "vampire"));
   plot_data[8].addAll(ui.getDB().getFormat("Horror", "vampire"));
   plot_data[9].addAll(ui.getDB().getPopularity("Horror", "vampire"));
