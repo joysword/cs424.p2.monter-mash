@@ -163,7 +163,10 @@ class ys_FirstPage {
             popUp.setPos(posx, posy, type);
             popUp.getButton().setName(year_); // change name by year
             popUp.turnOn(year_, 1);
+<<<<<<< HEAD
        
+=======
+>>>>>>> origin/master
           }
           else {
             year_ = plot2.getYear(posx, posy);

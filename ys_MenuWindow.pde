@@ -106,6 +106,8 @@ class MenuWindow {
 
   void shutDown() {
     isDisplayMenu = false;
+    top10Window.setInit();
+    top10AllWindow.setInit();
   }
 
   void turnOn(int _x, int _which) {

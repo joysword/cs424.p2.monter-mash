@@ -78,7 +78,7 @@ public class cc_DatabaseManager {
   };
 
   private String[] female_vampire_kwords= {
-    "female-vampire", "lesbian-vampire", "vampire_girl", "vampire_queen"
+    "female-vampire", "vampire_girl", "vampire_queen", "vampire-woman","lesbian-vampire"
   };
 
   private String[] dracula_kwords= {
@@ -114,7 +114,7 @@ public class cc_DatabaseManager {
     "supernatural-horror", "supernatural-being", "supernatural-murderer", "supernatural-creature"
   };
   private String[] demon_kwords= {
-    "demon", "demonic-possession", "demon-rape", "demon-hunter", "demoness", "demonic", "demon-spawn", "inner-demon", 
+    "demon", "demonic-possession", "demon-hunter", "demoness", "demon-rape", "demonic", "demon-spawn", "inner-demon", 
     "female-demon", "demonic-spirit", "impregnated-by-demon", "horned-demon", "balan-the-demon", 
     "shadow-demon", "demon-lady", "impish-demon", "rogue-demon-hunter", "giant-demon"
   };
@@ -438,7 +438,7 @@ public class cc_DatabaseManager {
    msql.next();
    }
    else
-   array.add(new cc_YearCountPair(0.0,i));
+   array.add(new cc_YearCountPair(0.0));
    }
    return array;
    }
@@ -915,6 +915,30 @@ public ArrayList<StringCountPair> getGenresTOP5(String keyword) {
     }
     return array;
   }
+
+public ArrayList<StringCountPair> getMonsterTOP10(int min,int max) {
+    ArrayList<StringCountPair> array = new ArrayList<StringCountPair>();
+    if ( msql.connect() )
+    {
+      String query="SELECT distinct monster, SUM( count ) FROM quality_count WHERE year>="+min+" and"+
+      " year<"+max+" group by monster ORDER BY SUM( count ) DESC  LIMIT 10";
+      print(query);
+      msql.query(query);
+      array=createArrayFromQueryGenre(array, msql);
+      printArray(array);
+    }
+
+    else {
+    }
+    return array;
+  }
+  
+public void printArray(ArrayList<StringCountPair> array){
+  println("MANNAGGIAACCRISTO");
+  for (StringCountPair p: array) {
+ println(p.getString()+" "+p.getCount());
+ } 
+}
 
 private void initArray(ArrayList<Instance> array){
   for(int i=0;i<123;i++){
