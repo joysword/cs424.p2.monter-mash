@@ -92,6 +92,9 @@ class ys_FirstPage {
     // render title
     renderTitle();
 
+    // render right bar
+    renderRight();
+
     // render graph
     plot1.render(0);
     plot2.render(1);
@@ -112,9 +115,6 @@ class ys_FirstPage {
     tabularBtn.render(false, 14);
     decadeBtn.render(false, 14);
     yBtn.render(false, 14);
-
-    // render right bar
-    renderRight();
 
     // render filter panel
     for (int i=0;i<HOW_MANY_GRAPH;i++) {
@@ -294,11 +294,11 @@ class ys_FirstPage {
     for (int i=0;i<HOW_MANY_FILTERS;i++) {
       //1
       fill(#01b2f1);
-      text(filterTxt1[i][LA], rightX+25*scale, rightY1 + 20*scale + i * height*0.15);
+      text(filterTxt1[i][LA], rightX+25*scale, rightY1 + 25*scale + i * height*0.11);
 
       //2
       fill(#29C567);
-      text(filterTxt2[i][LA], rightX+25*scale, (rightY1+rightY2) * 0.5 + 20*scale + i * height*0.15);
+      text(filterTxt2[i][LA], rightX+25*scale, (rightY1+rightY2) * 0.5 + 25*scale + i * height*0.11);
     }
     strokeWeight(BOARD_WEIGHT);
     stroke(BUTTON_COLOR);

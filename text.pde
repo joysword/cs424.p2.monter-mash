@@ -11,7 +11,7 @@ String[] DECADE_PLUS_TXT = {"Decade +","加十年"}; // good
 String[] DECADE_MINUS_TXT = {"Decade -","减十年"}; // good
 String[] FILTER_MONSTER_TXT = {"Monster:","怪物"}; // good
 String[] FILTER_GENRE_TXT = {"Genre:","电影类别"}; // good
-String[] FILTER_GENERAL_TXT = {"Filters:","过滤器"}; // good
+String[] FILTER_GENERAL_TXT = {"Filter:","过滤器"}; // good
 String[] TOP_10_ALL_TITLE = {"     Top 10 Monsters Overall","     出镜率最高十佳怪物(总)"}; // good
 
 // single monster
@@ -22,9 +22,9 @@ String[] NUMBER_MOVIE = {"Number of movies per year", "逐年电影数量"}; // 
 // Filter Panel
 String[] SELECT_FILTER = {"Select Filters for Graph ", "选择过滤器为图"}; // good
 String[] UPDATE =  {"UPDATE","更新"}; // good
-String[] MONSTER_TXT = {"MONSTERS:\n ","怪物：\n "}; // good
-String[] GENRE_TXT = {"GENRES:\n ","电影类别：\n "}; // good
-String[] FILTER_TXT = {"FILTER:\n","过滤器：\n"}; // good
+String[] MONSTER_TXT = {"MONSTER:\n          ","怪物：\n          "}; // good
+String[] GENRE_TXT = {"GENRE:\n          ","电影类别：\n          "}; // good
+String[] FILTER_TXT = {"FILTER:\n          ","过滤器：\n          "}; // good
 String[] HIGH_TXT = {"   HIGH","   高："}; // good
 String[] MED_TXT = {"   MEDIUM","   中："}; // good
 String[] LOW_TXT = {"   LOW","   低："};  // good

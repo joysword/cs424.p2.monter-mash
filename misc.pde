@@ -77,7 +77,7 @@ final int HOW_MANY_FILTERS = 3;
 final int HOW_MANY_GRAPH = 2;
 
 // about Y button
-final float Y_BUTTON_X = 0.82*Width;
+final float Y_BUTTON_X = 0.76*Width;
 final float Y_BUTTON_W = 80*scale;
 final float Y_BUTTON_H = 40*scale;
 final float Y_BUTTON_Y = Height*0.4;
@@ -123,7 +123,7 @@ final float NEXT_DECADE_BTN_H = Y_BUTTON_H;
 final float NEXT_DECADE_BTN_Y = PRE_DECADE_BTN_Y;
 
 // about RIGHT BAR
-final float RIGHT_BAR_WIDTH = Width*0.1;
+final float RIGHT_BAR_WIDTH = Width*0.18;
 final float RIGHT_BAR_Y_1 = Height*0.0;
 final float RIGHT_BAR_Y_2 = Height*1.0;
 final float FILTER_X = Width - 180*scale;
@@ -133,14 +133,14 @@ final float LABEL_WIDTH = 100*scale;
 
 
 final String[][] FILTER_TXT_1 = {
-  {"MONSTERS:\n vampire","怪物：\n 吸血鬼"},
-  {"GENRES:\n Horror","电影类别：\n 恐怖"},
-  {"FILTER:\n CERTIFICATE","过滤器：\n 评级"}
+  {"MONSTER:\n          vampire","怪物：\n          吸血鬼"},
+  {"GENRE:\n          Horror","电影类别：\n          恐怖"},
+  {"FILTER:\n          CERTIFICATE","过滤器：\n          评级"}
 };
 final String[][] FILTER_TXT_2 = {
-  {"MONSTERS:\n vampire","怪物：\n 吸血鬼"},
-  {"GENRES:\n Horror","电影类别：\n 恐怖"},
-  {"FILTER:\n CERTIFICATE","过滤器：\n 评级"}
+  {"MONSTER:\n          vampire","怪物：\n          吸血鬼"},
+  {"GENRE:\n          Horror","电影类别：\n          恐怖"},
+  {"FILTER:\n          CERTIFICATE","过滤器：\n          评级"}
 };
 //final String FILTER_TXT_1 = "1111";
 //final String FILTER_TXT_2 = "2222";
@@ -166,6 +166,9 @@ final float FPF_BTN_X_RELATIVE = 0.9;
 final float FPF_BTN_Y_RELATIVE = 0.85;
 final float FPF_BTN_W = 60*scale;
 final float FPF_BTN_H = 30*scale;
+
+final float LEGEND_HEIGHT = 30*scale;
+final float LEGEND_WIDTH = 40*scale;
 
 // Monster
 final float FILTER_MONSTER_X_RELATIVE = 0.02;
@@ -295,8 +298,8 @@ final int YEAR_MAX = 2012;
 final int YEAR_MIN = 1890;
 
 //
-final float PLOT_1_X1 = 100*scale;
-final float PLOT_1_X2 = 1300*scale;
+final float PLOT_1_X1 = 75*scale;
+final float PLOT_1_X2 = 1225*scale;
 final float PLOT_2_X1 = PLOT_1_X1;
 final float PLOT_2_X2 = PLOT_1_X2;
 

@@ -43,11 +43,6 @@ class FirstPlot {
     dataMax_this = 0;
     dataMax_this_decade = 0;
 
-    //    legend = new Legend[DATA_SET_COUNT];
-    //    for (int i=0;i<DATA_SET_COUNT;i++) {
-    //      legend[i] = new Legend(PAGE_BTN_X+PAGE_BTN_W+LEGEND_DIFF, LIST_Y + (i - 1)*2.1*LIST_LINE_H + 12*scale, LIST_LINE_H, ui.dataSelector[i].getTxt()+"\n"+unitText[i], colors[i]);
-    //    }
-
     minimumY = plotY2 - (plotY2 - plotY1) * 0.05;
 
     isSameY = false;
@@ -87,9 +82,11 @@ class FirstPlot {
     int mode = ui.getFirstPage().getDisplayMode();
     if (mode == YEAR_MODE) {
       drawPlot(currentFilter[whichGraph], NUMBER_OF_CLUSTERS[currentFilter[whichGraph]], whichGraph, plot_data[currentFilter[whichGraph]+whichGraph*6]);
+      drawLegend(currentFilter[whichGraph], NUMBER_OF_CLUSTERS[currentFilter[whichGraph]], whichGraph);// plot_data[currentFilter[whichGraph]+whichGraph*6]);
     }
     else if (mode == DECADE_MODE) {
       drawBar(currentFilter[whichGraph], NUMBER_OF_CLUSTERS[currentFilter[whichGraph]], whichGraph, plot_data[currentFilter[whichGraph]+whichGraph*6]);
+      drawLegend(currentFilter[whichGraph], NUMBER_OF_CLUSTERS[currentFilter[whichGraph]], whichGraph);// plot_data[currentFilter[whichGraph]+whichGraph*6]);
     }
     else if (mode == TABULAR_MODE) {
       drawTable(currentFilter[whichGraph], NUMBER_OF_CLUSTERS[currentFilter[whichGraph]], whichGraph, plot_data[currentFilter[whichGraph]+whichGraph*6]);
@@ -296,7 +293,7 @@ class FirstPlot {
     textSize(13*scale);
     textLeading(15);
     textAlign(CENTER, CENTER);
-    text(Y_LABEL[LA], plotX1, plotY1 - 15*scale);
+    text(Y_LABEL[LA], plotX1+30*scale, plotY1 - 15*scale);
     //textAlign(CENTER);
     //text("What the Y", (plotX1+plotX2)/2, labelY);
     popStyle();
@@ -513,6 +510,66 @@ class FirstPlot {
     }
 
     popStyle();
+  }
+
+  private void drawLegend(int whichFilter, int howManyCluters, int whichGraph) {
+
+    float x_ = Width - RIGHT_BAR_WIDTH+5*scale;
+    float y_ = Height /  (whichGraph+1.0) - 60*scale;
+    float y_t = y_ + LEGEND_HEIGHT + 7*scale;
+    if (whichGraph == 0) {
+      fill(#01b2f1);
+    }
+    else {
+      fill(#29C567);
+    }
+    for (int i=0;i<howManyCluters;i++) {
+      fill(CLUSTER_COLOR[i]);
+      noStroke();
+      rectMode(CORNER);
+      rect(x_ + i*(5*scale+LEGEND_WIDTH), y_,LEGEND_WIDTH,LEGEND_HEIGHT);
+    }
+    textAlign(LEFT,CENTER);
+    switch (whichFilter){
+        case BUDGET:
+          text(HIGH_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5, y_t);
+          text(LOW_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 5*scale, y_t);
+          text(NO_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 10*scale, y_t);
+          break;
+        case CERTIFICATE:
+          text("G", x_ + LEGEND_WIDTH*0.5 + 0*scale, y_t);
+          text("PG", x_ + LEGEND_WIDTH*0.5 + 5*scale, y_t);
+          text("R", x_ + LEGEND_WIDTH*0.5 + 10*scale, y_t);
+          text("PG-13", x_ + LEGEND_WIDTH*0.5 + 15*scale, y_t);
+          text("NC-17", x_ + LEGEND_WIDTH*0.5 + 20*scale, y_t);
+          text("OTHERS", x_ + LEGEND_WIDTH*0.5 + 25*scale, y_t);
+          text("NR", x_ + LEGEND_WIDTH*0.5 + 30*scale, y_t);
+          break;
+        case COUNTRY:
+          text(USA_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 0*scale, y_t);
+          text(UK_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 5*scale, y_t);
+          text(FRA_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 10*scale, y_t);
+          text(OTHER_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 15*scale, y_t);
+          text(GER_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 20*scale, y_t);
+          text(CA_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 25*scale, y_t);
+          text(OTHER_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 30*scale, y_t);
+          break;
+        case POPULARITY:
+          text(LOW_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 0*scale, y_t);
+          text(MED_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 5*scale, y_t);
+          text(HIGH_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 10*scale, y_t);
+          break;
+        case QUALITY:
+          text(LOW_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 0*scale, y_t);
+          text(MED_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 5*scale, y_t);
+          text(HIGH_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 10*scale, y_t);
+          break;
+        case FORMAT:
+          text(MOVIE_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 0*scale, y_t);
+          text(TV_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 5*scale, y_t);
+          text(VIDEO_TXT[LA].substring(3), x_ + LEGEND_WIDTH*0.5 + 10*scale, y_t);
+          break;
+      }
   }
 
   // used in YEAR MODE to find DECADE
