@@ -26,7 +26,7 @@ public class ScrollMouseManager {
 
   public void knobDragged(cc_MonsterPlot plot, float xPos) {
     plot.setRefX(minValue, maxValue, xPos);
-    plot.setPositions(xPos);
+    plot.setKnobPos(xPos);
   }
 } 
 

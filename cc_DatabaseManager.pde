@@ -431,8 +431,9 @@ public class cc_DatabaseManager {
   private ArrayList<cc_YearCountPair> createArrayFromQuery(ArrayList<cc_YearCountPair> array, MySQL msql) {
     int old=1890;
     int i=0;
+    //int check=0;
     if(msql==null) return array;
-    while(msql.next()) {
+    while(msql.next() ) {
       i=1;
       while (msql.getInt(1)>old) {
         array.add(new cc_YearCountPair(0.0, old));
@@ -441,6 +442,7 @@ public class cc_DatabaseManager {
       print(msql.getFloat(1)+" "+msql.getFloat(2));
       array.add(new cc_YearCountPair(msql.getFloat(2), msql.getInt(1)));
       old++;
+
     }
   
     return array;
@@ -452,6 +454,7 @@ public class cc_DatabaseManager {
     while(msql.next()) {
       array.add(new Movie(msql.getString(1),msql.getInt(2),msql.getString(3),msql.getString(4),msql.getString(5),
         msql.getString(6),""));
+
     }
     return array;
   } 

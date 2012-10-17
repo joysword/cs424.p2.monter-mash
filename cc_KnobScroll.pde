@@ -28,7 +28,7 @@ public class cc_KnobScroll {
     radius=lowerY-upperY;
   }
 
-  public void knobDraw(float posX) {
+  public void knobDraw() {
     int stroke_weight=round((upperY-lowerY)/20);
     pushStyle();
     strokeWeight(stroke_weight);
