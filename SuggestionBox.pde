@@ -5,6 +5,7 @@ public class SuggestionBox {
   private float heightB;
   private String input;
   private String inputTaken;
+  private String inputMovie;
   private ArrayList<Movie> movieTitles;
   private ArrayList<Movie> suggestions;
   private cc_DatabaseManager db;

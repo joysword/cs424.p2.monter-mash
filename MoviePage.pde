@@ -47,8 +47,8 @@ public class MoviePage {
         }
         int check = moviePane.suggestionBox.checkOnSuggestion(posx, posy);
         if (check!=-1 && moviePane.suggestionBox.suggestions.size() > 0) {
-          moviePane.suggestionBox.inputTaken = moviePane.suggestionBox.suggestions.get(check).getTitle();
-          print("\n" + check + moviePane.suggestionBox.inputTaken);
+          moviePane.movie = moviePane.suggestionBox.suggestions.get(check);
+         // print("\n" + check + moviePane.suggestionBox.inputMovie);
           moviePane.suggestionBox.input = "";
           moviePane.suggestionBox.suggestions.clear();
         }
