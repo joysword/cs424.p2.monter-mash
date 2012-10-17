@@ -163,10 +163,7 @@ class ys_FirstPage {
             popUp.setPos(posx, posy, type);
             popUp.getButton().setName(year_); // change name by year
             popUp.turnOn(year_, 1);
-<<<<<<< HEAD
-       
-=======
->>>>>>> origin/master
+           
           }
           else {
             year_ = plot2.getYear(posx, posy);
@@ -179,7 +176,7 @@ class ys_FirstPage {
             }
           }
         }
-        
+
         else if (displayMode == DECADE_MODE) {
           int year_ = plot1.getDecade(posx, posy);
           if (year_!=-1) {
@@ -285,7 +282,7 @@ class ys_FirstPage {
     noStroke();
     fill(TITLE_COLOR);
     textSize(TITLE_SIZE);
-    textAlign(CENTER,CENTER);
+    textAlign(CENTER, CENTER);
     text("MELT METRIC MONSTER MASH MILLENNIUM", width*0.5, height*0.07);
   }
   private void renderRight() {
