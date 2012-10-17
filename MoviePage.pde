@@ -19,12 +19,9 @@ public class MoviePage {
     showTop10 = false;
 
     context = applet;
-
+    //movie = moviePane.suggestionBox.suggestions.get(0);
     scrollMouseManager = new ScrollMouseManager();
 
-    
-
-    movie = new Movie("Tutti belli Meluelli", 2012, "horror", 60, "very good movie", "PG13", 3000);
     moviePane = new SingleMoviePane(width/2, height/2, width/6*4, height*0.95, movie);
     top10Pane = new Top10Pane(width/2, height/2, width/6*4, height*0.8,2000,2010);
     taxonomy = new monsterTaxonomy(width/2, height/2, width/6*4, height*0.95, color(255));
@@ -32,7 +29,6 @@ public class MoviePage {
   }
 
   void render() {
-   
 
     if (taxonomyTab) {
       taxonomy.draw();
@@ -87,7 +83,7 @@ public class MoviePage {
         }
         int check = moviePane.suggestionBox.checkOnSuggestion(posx, posy);
         if (check!=-1 && moviePane.suggestionBox.suggestions.size() > 0) {
-          moviePane.suggestionBox.inputTaken = moviePane.suggestionBox.suggestions.get(check).getString();
+          moviePane.suggestionBox.inputTaken = moviePane.suggestionBox.suggestions.get(check).getTitle();
           print("\n" + check + moviePane.suggestionBox.inputTaken);
           moviePane.suggestionBox.input = "";
           moviePane.suggestionBox.suggestions.clear();

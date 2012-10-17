@@ -5,8 +5,8 @@ public class SuggestionBox {
   private float heightB;
   private String input;
   private String inputTaken;
-  private ArrayList<StringCountPair> movieTitles;
-  private ArrayList<StringCountPair> suggestions;
+  private ArrayList<Movie> movieTitles;
+  private ArrayList<Movie> suggestions;
   private cc_DatabaseManager db;
 
 
@@ -23,8 +23,7 @@ public class SuggestionBox {
     this.heightB=heightB;
     this.input="";
     this.inputTaken="";
-    //this.movieTitles=db.getFilmList();
-    this.suggestions=new ArrayList<StringCountPair>();
+    this.suggestions=new ArrayList<Movie>();
   }
 
   public void setInput(String input) {
@@ -59,8 +58,10 @@ public class SuggestionBox {
       textSize(this.heightB*0.8);
       textAlign(LEFT, CENTER);
       fill(0);
-
-      text(suggestions.get(i).getString(), this.centerX-this.widthB/2, this.centerY+this.heightB*(i+1));
+      println("DIOCRISTO");
+      if(suggestions.size()>0)
+      text(suggestions.get(i).getTitle(), this.centerX-this.widthB/2, this.centerY+this.heightB*(i+1));
+      println("DIOCRISTO2");
     }
   }
 
@@ -79,7 +80,7 @@ public class SuggestionBox {
   public ArrayList getMatch(String query) {
     String movie = null;
     query = query.toLowerCase();
-    ArrayList<StringCountPair> matched=db.getFilmList(query);
+    ArrayList<Movie> matched=db.getFilmList(query);
     /*
     ArrayList matched = new ArrayList();
     for (int i=0; i<this.movieTitles.size(); i++) {

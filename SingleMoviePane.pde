@@ -33,8 +33,7 @@ public class SingleMoviePane {
     //rect(width/2,height/2,width/6*4,height*0.95);
     this.keyboard.draw();
     this.suggestionBox.draw();
-
-
+    if(movie!=null){
     fill(255);
     textAlign(LEFT, CENTER);
     textSize(200/scaling);
@@ -46,6 +45,7 @@ public class SingleMoviePane {
     //text("Plot: "+this.movie.description, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.70);
     text("Certificate:  "+this.movie.certificate, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.75);
     text("Budget:  "+this.movie.budget, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.85);
+    }
   }
 }
 

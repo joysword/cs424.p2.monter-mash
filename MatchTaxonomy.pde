@@ -37,7 +37,7 @@ public static class MatchTaxonomy {
       return "snake";
     if (matchString.equals("Dinosaurs"))
       return "dinosaur";
-    if (matchString.equals("Aquatic\nCreatures"))
+    if (matchString.equals("Piranha"))
       return "piranha";
     if (matchString.equals("Sharks"))
       return "shark";

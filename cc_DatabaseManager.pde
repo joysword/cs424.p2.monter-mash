@@ -427,22 +427,7 @@ public class cc_DatabaseManager {
     }
     return array;
   }
-  /*
-  // private method to put the query into an arraylist
-   private ArrayList<cc_YearCountPair> createArrayFromQuery(ArrayList<cc_YearCountPair> array, MySQL msql) {
-   msql.next();
-   for(int i=1890;i<=2012;i++){
-   println(msql.getInt(1));
-   if(msql.getInt(1)==i){
-   array.add(new cc_YearCountPair(msql.getFloat(2), msql.getInt(1)));
-   msql.next();
-   }
-   else
-   array.add(new cc_YearCountPair(0.0));
-   }
-   return array;
-   }
-   */
+
   private ArrayList<cc_YearCountPair> createArrayFromQuery(ArrayList<cc_YearCountPair> array, MySQL msql) {
     int old=1890;
     int i=0;
@@ -460,9 +445,20 @@ public class cc_DatabaseManager {
   
     return array;
   } 
+
+
+  private ArrayList<Movie> createArrayFromQueryMovie(ArrayList<Movie> array, MySQL msql) {
+    if(msql==null) return array;
+    while(msql.next()) {
+      array.add(new Movie(msql.getString(1),msql.getInt(2),msql.getString(3),msql.getString(4),msql.getString(5),
+        msql.getString(6),""));
+    }
+    return array;
+  } 
   
     private ArrayList<StringCountPair> createArrayFromQueryGenre(ArrayList<StringCountPair> array, MySQL msql) {
-      while(msql.next ())
+      if(msql==null) return array;
+      while(msql.next())
       {
          array.add(new StringCountPair(msql.getFloat(2),msql.getString(1))); 
       }
@@ -885,14 +881,16 @@ public class cc_DatabaseManager {
     return array;
   }
 
-public ArrayList<StringCountPair> getFilmList(String input) {
-    ArrayList<StringCountPair> array = new ArrayList<StringCountPair>();
+public ArrayList<Movie> getFilmList(String input) {
+    ArrayList<Movie> array = new ArrayList<Movie>();
     if ( msql.connect() )
     {
-      String query="SELECT distinct title, id from title where title like \"%"+input+"%\" limit 3";
+      String query=
+      "SELECT title, production_year, genre, running_time, certificate, budget FROM title "+
+      " WHERE title LIKE  \"%"+input+"%\" LIMIT 3" ;
       print(query);
       msql.query(query);
-      array=createArrayFromQueryGenre(array, msql);
+      array=createArrayFromQueryMovie(array, msql);
     }
     else {
     }
@@ -921,7 +919,7 @@ public ArrayList<StringCountPair> getMonsterTOP10(int min,int max) {
     if ( msql.connect() )
     {
       String query="SELECT distinct monster, SUM( count ) FROM quality_count WHERE year>="+min+" and"+
-      " year<"+max+" and monster!=\"ghost\" and monster!=\"giant\" group by monster ORDER BY SUM( count ) DESC  LIMIT 10";
+      " year<"+max+" and monster!=\"ghost\" and monster!=\"giant\" and monster!=\"mr-hyde\" group by monster ORDER BY SUM( count ) DESC  LIMIT 10";
       print(query);
       msql.query(query);
       array=createArrayFromQueryGenre(array, msql);
@@ -1552,7 +1550,6 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
     else {
     }
     return array;
-
   } 
   
 

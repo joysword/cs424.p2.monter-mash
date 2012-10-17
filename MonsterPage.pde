@@ -27,7 +27,7 @@ float finalX, finalY;
 
     
 
-    movie = new Movie("Tutti belli Meluelli", 2012, "horror", 60, "very good movie", "PG13", 3000);
+    //movie = moviePane.suggestionBox.suggestions.get(0);
     moviePane = new SingleMoviePane(width/2, height/2, width/6*4, height*0.95, movie);
     top10Pane = new Top10Pane(width/2, height/2, width/6*4, height*0.8,1990,2000);
     taxonomy = new monsterTaxonomy(width*0.5, height*0.57, width*0.95, height*0.79, color(255));
@@ -111,7 +111,7 @@ float finalX, finalY;
       } 
       int check=moviePane.suggestionBox.checkOnSuggestion(xPos, yPos);
       if (check!=-1 && moviePane.suggestionBox.suggestions.size()>0) {
-        moviePane.suggestionBox.inputTaken=moviePane.suggestionBox.suggestions.get(check).getString();
+        moviePane.suggestionBox.inputTaken=moviePane.suggestionBox.suggestions.get(check).getTitle();
         moviePane.suggestionBox.input="";
         moviePane.suggestionBox.suggestions.clear();
       }
