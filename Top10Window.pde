@@ -39,6 +39,12 @@ class Top10Window {
       maximumNumber=numberMovies.get(0).getCount();
   }
 
+  void initDbOverall(int min){
+    numberMovies=db.getMonsterTOP10Overall();
+    if(numberMovies.size()>0)
+      maximumNumber=numberMovies.get(0).getCount();
+  }
+
   void setInit(){
     init=true;
   }
@@ -64,10 +70,15 @@ class Top10Window {
     textAlign(LEFT, CENTER);
     textSize(22*scale);
     int yearr = yearX/10*10;
-    if(init){
+    if(init & yearr!=10000){
       initDb(yearr);
       init=false;
     }
+    if(init & yearr==10000){
+      initDbOverall(yearr);
+      init=false;
+    }
+
     // Overall
     if (yearr == 10000) {
       text("     Top 10 Monsters Overall", cenX - w*0.5, cenY-h*0.4225);
