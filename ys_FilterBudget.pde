@@ -22,9 +22,9 @@ class FilterBudget {
     upperBound = new float[checkItemCount];
     for (int i=0;i<checkItemCount;i++) {
       //change
-      checkItemsForFilterBudget[i] = 
-        new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH) * scale, y + (i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH+2) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-1), h, 
-      (i == 0)?"High":((i==1)?"Low":"None")); //change
+      //checkItemsForFilterBudget[i] = 
+        //new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH) * scale, y + (i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH+2) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-1), h, 
+      //(i == 0)?"High":((i==1)?"Low":"None")); //change
       lowerBound[i] = i+0.1;//change
       upperBound[i] = i+1;//change
     }

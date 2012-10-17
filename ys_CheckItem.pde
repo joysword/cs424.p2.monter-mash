@@ -7,7 +7,7 @@ class CheckItem {
 
   Label lbl;
 
-  CheckItem(float _x, float _y, float w1, float w2, float _h, String strr) { 
+  CheckItem(float _x, float _y, float w1, float w2, float _h, String[] strr) { 
     cb = new CheckBox(_x, _y, w1, _h);
     lbl = new Label(_x+w1, _y, w2, _h, strr);
 

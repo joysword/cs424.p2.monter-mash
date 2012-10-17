@@ -133,14 +133,14 @@ class ys_FirstPageFilter {
     int monId = monF.getMonsterType();
     String mon = "";
     if (monId >= 0 && monId < FILTER_MONSTER_NUM) {
-      mon = MONSTER_TYPE[monId].substring(1); // get rid of space
+      mon = MONSTER_TYPE[monId][0].substring(1); // get rid of space
     }
 
     // get which genre
     int genId = genF.getGenreType();
     String gen = "";
     if (genId >= 0 && genId < FILTER_GENRE_NUM) {
-      gen = GENRE_TYPE[genId].substring(1);  // get rid of space
+      gen = GENRE_TYPE[genId][0].substring(1);  // get rid of space
     } 
 
     // get which filter
@@ -180,9 +180,11 @@ class ys_FirstPageFilter {
         dataMax1_decade = getMax_decade(plot_data[BUDGET]);
         break;
       }
-      filterTxt1[0] = MONSTER_TXT[LA]+mon;
-      filterTxt1[1] = GENRE_TXT[LA]+gen;
-      filterTxt1[2] = FILTER_TXT[LA]+FILTER_TYPE[currentFilter[0]];
+      for (int i=0;i<2;i++) {
+        filterTxt1[0][i] = MONSTER_TXT[i]+mon;
+        filterTxt1[1][i] = GENRE_TXT[i]+gen;
+        filterTxt1[2][i] = FILTER_TXT[i]+FILTER_TYPE[currentFilter[0]];
+      }
     }
     else if (whichFilter == 1){
       switch(currentFilter[1]) {
@@ -217,9 +219,11 @@ class ys_FirstPageFilter {
         dataMax2_decade = getMax_decade(plot_data[BUDGET+6]);
         break;
       }
-      filterTxt2[0] = MONSTER_TXT[LA]+mon;
-      filterTxt2[1] = GENRE_TXT[LA]+gen;
-      filterTxt2[2] = FILTER_TXT[LA]+FILTER_TYPE[currentFilter[1]];
+      for (int i=0;i<2;i++) {
+        filterTxt2[0][i] = MONSTER_TXT[i]+mon;
+        filterTxt2[1][i] = GENRE_TXT[i]+gen;
+        filterTxt2[2][i] = FILTER_TXT[i]+FILTER_TYPE[currentFilter[1]];
+      }
     }
 
     dataMax = (dataMax1 > dataMax2)? dataMax1:dataMax2;

@@ -25,7 +25,7 @@ String[][] LEFT_BTN_NAME = {
   {"Timeline","时间线"},
   {"Monsters","怪物"},
   {"Movies","影片"},
-  {"English/中文","English/中文"},
+  {"English/中文","中文/English"},
   {"Help","帮助"},
   {"Credits","关于"}
 };
@@ -132,11 +132,15 @@ final float FILTER_DIFF = 80*scale;
 final float LABEL_WIDTH = 100*scale;
 
 
-final String[] FILTER_TXT_1 = {
-  "MONSTERS:\n vampire", "GENRES:\n Horror", "FILTER:\n CERTIFICATE"
+final String[][] FILTER_TXT_1 = {
+  {"MONSTERS:\n vampire","怪物：\n 吸血鬼"},
+  {"GENRES:\n Horror","电影类别：\n 恐怖"},
+  {"FILTER:\n CERTIFICATE","过滤器：\n 评级"}
 };
-final String[] FILTER_TXT_2 = {
-	"MONSTERS:\n vampire", "GENRES:\n Horror", "FILTER:\n CERTIFICATE"
+final String[][] FILTER_TXT_2 = {
+  {"MONSTERS:\n vampire","怪物：\n 吸血鬼"},
+  {"GENRES:\n Horror","电影类别：\n 恐怖"},
+  {"FILTER:\n CERTIFICATE","过滤器：\n 评级"}
 };
 //final String FILTER_TXT_1 = "1111";
 //final String FILTER_TXT_2 = "2222";
@@ -168,8 +172,26 @@ final float FILTER_MONSTER_X_RELATIVE = 0.02;
 final float FILTER_MONSTER_Y_RELATIVE = 0.1;
 final float FILTER_MONSTER_W = FIRST_PAGE_FILTER_W;
 final float FILTER_MONSTER_H = CHECK_ITEM_HEIGHT;
-final String[] MONSTER_TYPE = {
-  " demon", " dracula", " female-vampire", " freddy-krueger", " ghost", " godzilla", " invisible-man", " jason", " living-dead", " michael-myers", " mr-hyde", " mummy", " mutant", " muted-cretures", " supernatural", " swamp", " vampire", " werewolf", " witch-wizrds"
+String[][] MONSTER_TYPE = {
+  {" demon"," 恶魔"},
+  {" dracula"," 德古拉"},
+  {" female-vampire"," 女吸血鬼"},
+  {" freddy-krueger"," "},
+  {" ghost"," 鬼"},
+  {" godzilla"," 哥斯拉"},
+  {" invisible-man"," 隐形人"},
+  {" jason"," 杰森"},
+  {" living-dead"," 活死人"},
+  {" michael-myers",""},
+  {" mr-hyde",""},
+  {" mummy"," 木乃伊"},
+  {" mutant"," 变种人"},
+  {" muted-cretures"," 变异生物"},
+  {" supernatural"," 超自然"},
+  {" swamp",""},
+  {" vampire"," 吸血鬼"},
+  {" werewolf"," 狼人"},
+  {" witch-wizrds"," 女巫"}
 };
 final int FILTER_MONSTER_NUM = MONSTER_TYPE.length;
 
@@ -179,8 +201,34 @@ final float FILTER_GENRE_Y_RELATIVE = 0.1;
 final float FILTER_GENRE_W = FIRST_PAGE_FILTER_W;
 final float FILTER_GENRE_H = CHECK_ITEM_HEIGHT;
 final int FILTER_GENRE_NUM = 27;
-final String[] GENRE_TYPE = {
-  " Action", " Adventure", " Animation", " Biography", " Comedy", " Crime", " Drama", " Experimental", " Family", " Fantasy", " Film-Noir", " Game-Show", " History", " Horror", " Music", " Musical", " Mystery", " News", " Reality TV", " Romance", " Sci-Fi", " Short", " Sport", " Talk-Show", " Thriller", " War", " Western"
+String[][] GENRE_TYPE = {
+  {" Action"," 动作"},
+  {" Adventure"," 冒险"},
+  {" Animation"," 动画"},
+  {" Biography"," 传记"},
+  {" Comedy"," 喜剧"},
+  {" Crime"," 犯罪"},
+  {" Drama"," 戏剧"},
+  {" Experimental"," 试验"},
+  {" Family"," 家庭"},
+  {" Fantasy"," 幻想"},
+  {" Film-Noir"," 黑色"},
+  {" Game-Show"," 游戏"},
+  {" History"," 历史"},
+  {" Horror"," 恐怖"},
+  {" Music"," 音乐"},
+  {" Musical"," 音乐"},
+  {" Mystery"," 神秘"},
+  {" News"," 新闻"},
+  {" Reality TV"," 真视"},
+  {" Romance"," 浪漫"},
+  {" Sci-Fi"," 科幻"},
+  {" Short"," 短片"},
+  {" Sport"," 运动"},
+  {" Talk-Show"," 脱口"},
+  {" Thriller"," 惊悚"},
+  {" War"," 战争"},
+  {" Western"," 西部"}
 };
 
 // Rating (Quality)
@@ -222,8 +270,13 @@ final float FILTER_GENERAL_W = FIRST_PAGE_FILTER_W;
 final float FILTER_GENERAL_H = CHECK_ITEM_HEIGHT;
 final int FILTER_GENERAL_NUM = 6;
 final int NUMBER_OF_FILTERS = FILTER_GENERAL_NUM * 2;
-final String[] FILTER_TYPE = {
-  " BUDGET", " QUALITY", " FORMAT", " POPULARITY", " COUNTRY", " CERTIFICATE"
+String[][] FILTER_TYPE = {
+  {" BUDGET"," 预算"},
+  {" QUALITY"," 评分"},
+  {" FORMAT"," 格式"},
+  {" POPULARITY"," 票数"},
+  {" COUNTRY"," 国家"},
+  {" CERTIFICATE"," 评级"}
 };
 final int BUDGET = 0;
 final int QUALITY = 1;

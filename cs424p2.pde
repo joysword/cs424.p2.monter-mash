@@ -48,8 +48,8 @@ int numberOfFilters = 12;
 
 ArrayList[] plot_data = new ArrayList[numberOfFilters];
 
-String[] filterTxt1;
-String[] filterTxt2;
+String[][] filterTxt1;
+String[][] filterTxt2;
 
 int[] currentFilter;
 

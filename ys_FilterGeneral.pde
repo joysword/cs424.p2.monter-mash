@@ -5,8 +5,6 @@ class FilterGeneral {
 
   CheckItem[] checkItems;
 
-  String[] filterName;
-
   FilterGeneral(float _x, float _y, float _w, float _h, int n) {
     x = _x;
     y = _y;
@@ -23,10 +21,8 @@ class FilterGeneral {
       FILTER_TYPE[i]); //change
     }
 
-    filterName = new String[checkItemCount];
     for (int i=0;i<checkItemCount;i++) {
-      filterName[i] = FILTER_TYPE[i];
-      if (FILTER_TYPE[i] == " CERTIFICATE") {
+      if (FILTER_TYPE[i][0] == " CERTIFICATE") {
         checkItems[i].switchCheck();
       }
     }

@@ -178,7 +178,7 @@ class FirstPlot {
       // upper-left
     textAlign(CENTER,CENTER);
     fill(100);
-    text(FILTER_TYPE[whichFilter].substring(1).toLowerCase(), plotX1 + 0.5*tableWidth, yUp + tableHeight*0.5);
+    text(FILTER_TYPE[whichFilter][LA].substring(1).toLowerCase(), plotX1 + 0.5*tableWidth, yUp + tableHeight*0.5);
       // year
     for (int j=1;j<11;j++) {
       text(showYearT+j-1, plotX1 + j*tableWidth + 0.5*tableWidth, yUp + tableHeight*0.5);

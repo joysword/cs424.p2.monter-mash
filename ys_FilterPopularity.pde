@@ -22,9 +22,9 @@ class FilterPopularity {
     upperBound = new int[checkItemCount];
     for (int i=0;i<checkItemCount;i++) {
       //change
-      checkItemsForFilterPopularity[i] = 
-        new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH) * scale, y + (i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH+2) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-1), h, 
-      String.valueOf((i+0.1)*100)+'~'+String.valueOf((i+1)*100)); //change
+      //checkItemsForFilterPopularity[i] = 
+        //new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH) * scale, y + (i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH+2) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-1), h, 
+      //String.valueOf((i+0.1)*100)+'~'+String.valueOf((i+1)*100)); //change
       lowerBound[i] = i*100;
       upperBound[i] = (i+1)*100;
     }
