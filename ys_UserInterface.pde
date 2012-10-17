@@ -5,8 +5,7 @@
 
 class UserInterface {
 
-  // define every elements of user interface
-  //ys_MonsterPage monsterPage;
+  // define everything
   ys_HelpWindow helpWindow;
   ys_HelpWindow creditWindow;
   ys_FirstPage firstPage;
@@ -20,15 +19,12 @@ class UserInterface {
 
   UserInterface() {
 
-    //monsterPage = new ys_MonsterPage();
     firstPage = new ys_FirstPage(RIGHT_BAR_WIDTH, RIGHT_BAR_Y_1, RIGHT_BAR_Y_2);
     monsterPage = new MonsterPage();
     moviePage = new MoviePage();
 
     // customize position
-    //helpWindow = new ys_HelpWindow(HELP_WINDOW_x, HELP_WINDOW_y, HELP_WINDOW_w, HELP_WINDOW_h, HELP_WINDOW_c);
     helpWindow = new ys_HelpWindow((Width - HELP_WINDOW_w)*0.5, (Height-HELP_WINDOW_h)*0.5, HELP_WINDOW_w, HELP_WINDOW_h, HELP_WINDOW_c);
-
     creditWindow = new ys_HelpWindow((Width - HELP_WINDOW_w)*0.5, (Height-HELP_WINDOW_h)*0.5, HELP_WINDOW_w, HELP_WINDOW_h, CREDIT_WINDOW_c);
 
     leftBar = new ys_LeftBar(LEFT_MENU_WIDTH, BTN_NUMBER, BTN_H, LEFT_BTN_NAME);
@@ -39,7 +35,7 @@ class UserInterface {
 
   void render() {
 
-    // render everything here
+    // render everything
     switch (currentPage) {
       case (FIRST_PAGE):
       firstPage.render();
@@ -51,7 +47,6 @@ class UserInterface {
       monsterPage.render();
       break;
     }
-
 
     // below are always render last
     leftBar.render();
@@ -69,6 +64,7 @@ class UserInterface {
     leftBar.update(posx, posy);
   }
 
+///////// GET MEMBERS
   public ys_HelpWindow getHelpWindow() {
     return helpWindow;
   }
@@ -97,4 +93,3 @@ class UserInterface {
     return db;
   }
 }
-

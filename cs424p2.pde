@@ -48,29 +48,11 @@ int numberOfFilters = 12;
 
 ArrayList[] plot_data = new ArrayList[numberOfFilters];
 
-/*
-plot_1_format;
-
-ArrayList<Instance> plot_1_certificate;
-
-ArrayList<Instance> plot_1_country;
-ArrayList<Instance> plot_1_popularity;
-ArrayList<Instance> plot_1_quality;
-ArrayList<Instance> plot_1_budget;
-
-ArrayList<Instance> plot_2_format;
-ArrayList<Instance> plot_2_certificate;
-ArrayList<Instance> plot_2_country;
-ArrayList<Instance> plot_2_popularity;
-ArrayList<Instance> plot_2_quality;
-ArrayList<Instance> plot_2_budget;*/
-
 String[] filterTxt1;
 String[] filterTxt2;
 
 int currentFilter;
 
-//cc_MonsterPlot plot;
 ///////////////////////////////////
 //
 //
@@ -80,8 +62,8 @@ int currentFilter;
 ///////////////////////////////////
 void setup()
 {
-  //size(Width*scale, Height*scale);
   size(Width, Height);
+
   //Make the connection to the tracker machine (uncomment this if testing with touch)
   //omicronManager.ConnectToTracker(7001, 7340, "131.193.77.159");
 
@@ -101,36 +83,17 @@ void setup()
 
   currentPage = FIRST_PAGE;
 
-  currentFilter = 5; // certificate
+  currentFilter = CERTIFICATE;
 
   global_isDragRight = false;
   global_isDragLeft = false;
 
-  //global_data = new ArrayList<Instance>();
 
   for (int i=0;i<numberOfFilters;i++) {
     plot_data[i] = new ArrayList<Instance>();
   }
-  /*
-  plot_1_certificate = new ArrayList<Instance>();
-  plot_1_format = new ArrayList<Instance>();
-  //plot_1_budget;
-  plot_1_quality = new ArrayList<Instance>();
-  plot_1_country = new ArrayList<Instance>();
-  plot_1_popularity = new ArrayList<Instance>();
-
-  plot_2_certificate = new ArrayList<Instance>();
-  plot_2_format = new ArrayList<Instance>();
-  //plot_2_budget;
-  plot_2_quality = new ArrayList<Instance>();
-  plot_2_country = new ArrayList<Instance>();
-  plot_2_popularity = new ArrayList<Instance>();
-  */
 
   ui = new UserInterface();
-
-  //global_data = ui.getDB().getFormat("horror","vampire");
-  //global_data = ui.getDB().getCertificates("horror", "vampire");
 
   plot_data[0].addAll(ui.getDB().getQuality("Horror", "vampire"));
   plot_data[1].addAll(ui.getDB().getQuality("Horror", "vampire"));
@@ -146,37 +109,18 @@ void setup()
   plot_data[10].addAll(ui.getDB().getCountries("Horror","vampire"));
   plot_data[11].addAll(ui.getDB().getCertificates("Horror","vampire"));
 
-  //println("cer: "+plot_1_certificate.size());
-  //println("pop: "+plot_1_popularity.size());
-  //println("qua: "+plot_1_quality.size());
-  //println("for: "+plot_1_format.size());
-
   filterTxt1 = FILTER_TXT_1;
   filterTxt2 = FILTER_TXT_2;
 
-  //dataMax = ui.getFirstPage().getFilter(0).getMax(plot_1_certificate);
-  //dataMax_decade = ui.getFirstPage().getFilter(0).getMax7_decade(plot_1_certificate);
-
-  dataMax = ui.getFirstPage().getFilter(0).getMax(plot_data[5]); //certificate
-  dataMax_decade = ui.getFirstPage().getFilter(0).getMax_decade(plot_data[5]); //certificate
+  dataMax = ui.getFirstPage().getFilter(0).getMax(plot_data[currentFilter]);
+  dataMax_decade = ui.getFirstPage().getFilter(0).getMax_decade(plot_data[currentFilter]);
 
   dataMax1 = dataMax;
   dataMax2 = dataMax;
   dataMax1_decade = dataMax_decade;
   dataMax2_decade = dataMax_decade;
 
-  //println("max: " + dataMax_decade);
-
-  // setup other things
-
-    // end of setup
   smooth();
-
-
-  //test
-
-  //plot = new cc_MonsterPlot(100,1000,200,400,"female_vampire",this);
-  //plot.monsterSetup();
 } // end of setup
 
 ///////////////////////////////////
@@ -190,14 +134,8 @@ void draw() {
 
   background(BG_COLOR);
 
-  //render graphs or other things
-  //plot.monsterPlot();
-
-  //end of redner graphs or other things
-
   //draw User Interface
   ui.render();
 
   omicronManager.process();
 }
-

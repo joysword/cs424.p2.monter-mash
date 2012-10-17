@@ -1,25 +1,22 @@
 //
 //
-// need change
-// currently it has random position values
+// This is main visualization page (timeline)
+//
 
 class ys_FirstPage {
 
-  private float rightX, rightY1, rightY2;
+  private float rightX, rightY1, rightY2; // right bar
 
-  private float filterX, filterY, filterW, filterH;
+  private float filterX, filterY, filterW, filterH; // filter panel
 
-  private float btnx, btny, btnw, btnh;
+  private float btnx, btny, btnw, btnh; // filter button
 
   private boolean isSelecting[];
 
   private ys_FirstPageFilter[] filter;
 
   private FirstPlot plot1;
-
   private FirstPlot plot2;
-
-  //private cc_DatabaseManager db;
 
   private MenuWindow popUp;
 
@@ -59,19 +56,16 @@ class ys_FirstPage {
     btnh = FPF_BTN_H;
 
     filter = new ys_FirstPageFilter[HOW_MANY_GRAPH];
+
     isSelecting = new boolean[HOW_MANY_GRAPH];
     for (int i=0;i<HOW_MANY_GRAPH;i++) {
       isSelecting[i] = false;
       filter[i] = new ys_FirstPageFilter(filterX, filterY, filterW, filterH, btnx, btny, btnw, btnh);
     }
 
-    //db = new cc_DatabaseManager(applet);
+    plot1 = new FirstPlot(PLOT_1_X1, PLOT_1_Y1, PLOT_1_X2, PLOT_1_Y2);
 
-    //db = ui.getDB(); //change
-
-    plot1 = new FirstPlot(PLOT_1_X1, PLOT_1_Y1, PLOT_1_X2, PLOT_1_Y2, 1);
-
-    plot2 = new FirstPlot(PLOT_2_X1, PLOT_2_Y1, PLOT_2_X2, PLOT_2_Y2, 2);
+    plot2 = new FirstPlot(PLOT_2_X1, PLOT_2_Y1, PLOT_2_X2, PLOT_2_Y2);
 
     popUp = new MenuWindow(0, 0, POP_UP_MENU_W, POP_UP_MENU_N, POP_UP_BUTTON_H, POP_UP_BUTTON_NAME);
 
@@ -94,10 +88,15 @@ class ys_FirstPage {
   }
 
   void render() {
+
+    // render title
     renderTitle();
+
     // render graph
     plot1.render(0);
     plot2.render(1);
+
+    // render range or paging buttons
     if (displayMode == YEAR_MODE) {
       range.render();
     }
@@ -124,6 +123,8 @@ class ys_FirstPage {
         break;
       }
     }
+
+    // render pop up menu
     popUp.render();
   }
 
@@ -140,8 +141,8 @@ class ys_FirstPage {
       if (!selecting) {
         updateGraph(posx, posy);
       }
+      updateInterface(posx, posy);
     }
-    updateInterface(posx, posy);
   }
 
   private void updateGraph(float posx, float posy) {
@@ -162,6 +163,7 @@ class ys_FirstPage {
             popUp.setPos(posx, posy, type);
             popUp.getButton().setName(year_); // change name by year
             popUp.turnOn(year_, 1);
+            asdadsf
           }
           else {
             year_ = plot2.getYear(posx, posy);

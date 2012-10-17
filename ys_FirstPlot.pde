@@ -21,16 +21,11 @@ class FirstPlot {
   float dataScale;
   float dragStartY;
 
-  int which; // 1 or 2
-
   float minimumY;
 
   boolean isSameY;
 
-  FirstPlot(float x1, float y1, float x2, float y2, int _which) {
-
-
-    which = _which;
+  FirstPlot(float x1, float y1, float x2, float y2) {
     //rowCount = dataSets[0].getData().getRowCount();
     //columnCount = dataSets[0].getData().getColumnCount();
 
@@ -78,7 +73,11 @@ class FirstPlot {
     decadeCount = 11; //change
     decadeWidth = (plotX2 - plotX1) / decadeCount;
     tableWidth = (plotX2 - plotX1) / 11;
-    tableHeight = (plotY2 - plotY1) / 8;
+    tableHeight = (plotY2 - plotY1) / (NUMBER_OF_CLUSTERS[currentFilter]+1);
+    if (NUMBER_OF_CLUSTERS[currentFilter] == 3) {
+      tableHeight *= 0.8;
+    }
+    
     if (tableHeight < 0) tableHeight = -tableHeight;
 
     if (isSameY) {
@@ -86,7 +85,7 @@ class FirstPlot {
       dataMax_this_decade = dataMax_decade;
     }
     else {
-      if (whichGraph == 0) {
+      if (whichGraph == 1) {
         dataMax_this = dataMax1;
         dataMax_this_decade = dataMax1_decade;
       }
@@ -178,7 +177,7 @@ class FirstPlot {
     }
 
     // fill
-    for (int i=0;i<8;i++) {
+    for (int i=0;i<NUMBER_OF_CLUSTERS[currentFilter]+1;i++) {
       if (i % 2 == 0) fill(255);
       else fill(100);
       for (int j=0;j<11;j++) {
@@ -190,27 +189,6 @@ class FirstPlot {
     textAlign(CENTER,CENTER);
     fill(100);
     text(FILTER_TYPE[whichFilter].substring(1).toLowerCase(), plotX1 + 0.5*tableWidth, yUp + tableHeight*0.5);
-    /*
-    switch (whichFilter){
-      case BUDGET:
-        text("budget", plotX1 + 0.5*tableWidth, yUp + tableHeight*0.5);
-        break;
-      case CERTIFICATE:
-        text("certificate", plotX1 + 0.5*tableWidth, yUp + tableHeight*0.5);
-        break;
-      case COUNTRY:
-        text("country", plotX1 + 0.5*tableWidth, yUp + tableHeight*0.5);
-        break;
-      case POPULARITY:
-        text("popularity", plotX1 + 0.5*tableWidth, yUp + tableHeight*0.5);
-        break;
-      case QUALITY:
-        text("quality", plotX1 + 0.5*tableWidth, yUp + tableHeight*0.5);
-        break;
-      case FORMAT:
-        text("FORMAT", plotX1 + 0.5*tableWidth, yUp + tableHeight*0.5);
-        break;
-    }*/
       // year
     for (int j=1;j<11;j++) {
       text(showYearT+j-1, plotX1 + j*tableWidth + 0.5*tableWidth, yUp + tableHeight*0.5);
@@ -312,7 +290,7 @@ class FirstPlot {
           break;
       }
     textAlign(RIGHT, CENTER);
-    for (int i=1;i<8;i++) {
+    for (int i=1;i<=NUMBER_OF_CLUSTERS[currentFilter];i++) {
       if (i % 2 == 0) fill(100);
       else fill(255);
       for (int qq=1;qq<11;qq++) {
