@@ -22,9 +22,9 @@
     upperBound = new float[checkItemCount];
     for (int i=0;i<checkItemCount;i++) {
       //change
-      checkItemsForFilterQuality[i] = 
-        new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH) * scale, y + (i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH+2) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-1), h, 
-      String.valueOf(i+0.1)+'~'+String.valueOf(i+1)+".0"); //change
+      //checkItemsForFilterQuality[i] = 
+        //new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH) * scale, y + (i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH+2) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-1), h, 
+      //String.valueOf(i+0.1)+'~'+String.valueOf(i+1)+".0"); //change
       lowerBound[i] = i+0.1;
       upperBound[i] = i+1;
     }

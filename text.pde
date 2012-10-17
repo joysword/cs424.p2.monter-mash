@@ -1,18 +1,18 @@
 int LA = 0;
 
 
-String[] YEAR_BUTTON_TXT = {"Year","逐年查看"}; // no
-String[] TABULAR_BUTTON_TXT = {"Tabular","表格查看"}; // no
-String[] DECADE_BUTTON_TXT = {"Decade","CHINESE"}; // no
-String[] Y_BUTTON_TXT = {"Y align","CHINESE"}; // no
-String[] YEAR_PLUS_TXT = {"Year +","CHINESE"}; // no
-String[] YEAR_MINUS_TXT = {"Year -","CHINESE"}; // no
-String[] DECADE_PLUS_TXT = {"Decade +","CHINESE"}; // no
-String[] DECADE_MINUS_TXT = {"Decade -","CHINESE"}; // no
-String[] FILTER_MONSTER_TXT = {"Monster:","怪物"}; // no
-String[] FILTER_GENRE_TXT = {"Genre:","电影类别"}; // no
-String[] FILTER_GENERAL_TXT = {"Filters:","过滤器"}; // no
-String[] TOP_10_ALL_TITLE = {"     Top 10 Monsters Overall","     出镜率最高十佳怪物(总)"}; // no
+String[] YEAR_BUTTON_TXT = {"Year","逐年查看"}; // good
+String[] TABULAR_BUTTON_TXT = {"Tabular","表格查看"}; // good
+String[] DECADE_BUTTON_TXT = {"Decade","十年"}; // good
+String[] Y_BUTTON_TXT = {"Y align","对齐Y轴"}; // good
+String[] YEAR_PLUS_TXT = {"Year +","加一年"}; // good
+String[] YEAR_MINUS_TXT = {"Year -","减一年"}; // good
+String[] DECADE_PLUS_TXT = {"Decade +","加十年"}; // good
+String[] DECADE_MINUS_TXT = {"Decade -","减十年"}; // good
+String[] FILTER_MONSTER_TXT = {"Monster:","怪物"}; // good
+String[] FILTER_GENRE_TXT = {"Genre:","电影类别"}; // good
+String[] FILTER_GENERAL_TXT = {"Filters:","过滤器"}; // good
+String[] TOP_10_ALL_TITLE = {"     Top 10 Monsters Overall","     出镜率最高十佳怪物(总)"}; // good
 
 // single monster
 String[] MOST_KWORDS = {"Most common keywords", "最常见关键词"}; // good

@@ -22,7 +22,7 @@ class FilterMonster {
       checkItemsForFilterMonster[i] = 
         new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH), y + i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH + 8*scale) + TITLE_TO_BOX, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-2*scale), h, 
       MONSTER_TYPE[i]); //change
-        if (MONSTER_TYPE[i] == " vampire") {
+        if (MONSTER_TYPE[i][0] == " vampire") {
         checkItemsForFilterMonster[i].switchCheck();
       }
     }

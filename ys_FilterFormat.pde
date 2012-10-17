@@ -19,9 +19,9 @@ class FilterFormat {
 
     for (int i=0;i<checkItemCount;i++) {
       //change
-      checkItemsForFilterFormat[i] = 
-        new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH) * scale, y + (i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH+2) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-1), h, 
-      KIND_TYPE[i]); //change
+      //checkItemsForFilterFormat[i] = 
+        //new CheckItem(x + (i % NUMBER_EACH_LINE) * (CHECK_BOX_WIDTH*RELATIVE_WIDTH) * scale, y + (i / NUMBER_EACH_LINE * (CHECK_BOX_WIDTH+2) + TITLE_TO_BOX) * scale, CHECK_BOX_WIDTH, CHECK_BOX_WIDTH * (RELATIVE_WIDTH-1), h, 
+      //KIND_TYPE[i]); //change
     }
 
     kindId = new int[checkItemCount];

@@ -294,11 +294,11 @@ class ys_FirstPage {
     for (int i=0;i<HOW_MANY_FILTERS;i++) {
       //1
       fill(#01b2f1);
-      text(filterTxt1[i], rightX+25*scale, rightY1 + 20*scale + i * height*0.15);
+      text(filterTxt1[i][LA], rightX+25*scale, rightY1 + 20*scale + i * height*0.15);
 
       //2
       fill(#29C567);
-      text(filterTxt2[i], rightX+25*scale, (rightY1+rightY2) * 0.5 + 20*scale + i * height*0.15);
+      text(filterTxt2[i][LA], rightX+25*scale, (rightY1+rightY2) * 0.5 + 20*scale + i * height*0.15);
     }
     strokeWeight(BOARD_WEIGHT);
     stroke(BUTTON_COLOR);

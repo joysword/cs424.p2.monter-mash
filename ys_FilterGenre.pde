@@ -5,8 +5,6 @@ class FilterGenre {
 
   CheckItem[] checkItemsForFilterGenre;
 
-  String[] genre;
-
   FilterGenre(float _x, float _y, float _w, float _h, int n) {	
 
     x = _x;
@@ -24,14 +22,9 @@ class FilterGenre {
       GENRE_TYPE[i]); //change
 
     
-        if (GENRE_TYPE[i] == " Horror") {
+        if (GENRE_TYPE[i][0] == " Horror") {
           checkItemsForFilterGenre[i].switchCheck(); // horror
         }
-    }
-
-    genre = new String[checkItemCount];
-    for (int i=0;i<checkItemCount;i++) {
-      genre[i] = GENRE_TYPE[i];
     }
   }
   void render() {
