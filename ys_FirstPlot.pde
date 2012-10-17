@@ -21,16 +21,11 @@ class FirstPlot {
   float dataScale;
   float dragStartY;
 
-  int which; // 1 or 2
-
   float minimumY;
 
   boolean isSameY;
 
-  FirstPlot(float x1, float y1, float x2, float y2, int _which) {
-
-
-    which = _which;
+  FirstPlot(float x1, float y1, float x2, float y2) {
     //rowCount = dataSets[0].getData().getRowCount();
     //columnCount = dataSets[0].getData().getColumnCount();
 
@@ -39,7 +34,7 @@ class FirstPlot {
 
     showYearMin = yearMin;
     showYearMax = yearMax;
-    showYearT = yearMin;
+    showYearT = 1960;
 
     plotX1 = x1;
     plotX2 = x2;
@@ -78,7 +73,11 @@ class FirstPlot {
     decadeCount = 11; //change
     decadeWidth = (plotX2 - plotX1) / decadeCount;
     tableWidth = (plotX2 - plotX1) / 11;
-    tableHeight = (plotY2 - plotY1) / 8;
+    tableHeight = (plotY2 - plotY1) / (NUMBER_OF_CLUSTERS[currentFilter]+1);
+    if (NUMBER_OF_CLUSTERS[currentFilter] == 3) {
+      tableHeight *= 0.8;
+    }
+    
     if (tableHeight < 0) tableHeight = -tableHeight;
 
     if (isSameY) {
@@ -86,7 +85,7 @@ class FirstPlot {
       dataMax_this_decade = dataMax_decade;
     }
     else {
-      if (whichGraph == 0) {
+      if (whichGraph == 1) {
         dataMax_this = dataMax1;
         dataMax_this_decade = dataMax1_decade;
       }
@@ -178,7 +177,7 @@ class FirstPlot {
     }
 
     // fill
-    for (int i=0;i<8;i++) {
+    for (int i=0;i<NUMBER_OF_CLUSTERS[currentFilter]+1;i++) {
       if (i % 2 == 0) fill(255);
       else fill(100);
       for (int j=0;j<11;j++) {
@@ -186,26 +185,116 @@ class FirstPlot {
       }
     }
     // data
-      // year
+      // upper-left
     textAlign(CENTER,CENTER);
     fill(100);
+    text(FILTER_TYPE[whichFilter].substring(1).toLowerCase(), plotX1 + 0.5*tableWidth, yUp + tableHeight*0.5);
+      // year
     for (int j=1;j<11;j++) {
-      text(showYearT+j, plotX1 + j*tableWidth + 0.5*tableWidth, yUp + tableHeight*0.5);
+      text(showYearT+j-1, plotX1 + j*tableWidth + 0.5*tableWidth, yUp + tableHeight*0.5);
     }
 
       // title
     textAlign(LEFT,CENTER);
-    for (int i=1;i<8;i++) {
-      if (i % 2 == 0) fill(100);
-      else fill(255);
-      text("separate code for title", plotX1 + 0.05*tableWidth, yUp + i*tableHeight+tableHeight*0.5);
-    }
+      float j = 0.5;
+      switch (whichFilter){
+        case BUDGET:
+          fill(255);
+          j = j+1;
+          text("   HIGH", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(100);
+          j = j+1;
+          text("   LOW", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(255);
+          j = j+1;
+          text("   NO", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          break;
+        case CERTIFICATE:
+          fill(255);
+          j = j+1;
+          text("   G", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(100);
+          j = j+1;
+          text("   PG", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(255);
+          j = j+1;
+          text("   R", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(100);
+          j = j+1;
+          text("   PG-13", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(255);
+          j = j+1;
+          text("   NC-17", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(100);
+          j = j+1;
+          text("   OTHERS", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(255);
+          j = j+1;
+          text("   NR", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          break;
+        case COUNTRY:
+          fill(255);
+          j = j+1;
+          text("   USA", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(100);
+          j = j+1;
+          text("   UK", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(255);
+          j = j+1;
+          text("   FRANCE", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(100);
+          j = j+1;
+          text("   JAPAN", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(255);
+          j = j+1;
+          text("   GERMANY", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(100);
+          j = j+1;
+          text("   CANADA", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(255);
+          j = j+1;
+          text("   OTHERS", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          break;
+        case POPULARITY:
+          fill(255);
+          j = j+1;
+          text("   LOW", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(100);
+          j = j+1;
+          text("   MEDIUM", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(255);
+          j = j+1;
+          text("   HIGH", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          break;
+        case QUALITY:
+          fill(255);
+          j = j+1;
+          text("   LOW", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(100);
+          j = j+1;
+          text("   MEDIUM", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(255);
+          j = j+1;
+          text("   HIGH", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          break;
+        case FORMAT:
+          fill(255);
+          j = j+1;
+          text("   MOVIE", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(100);
+          j = j+1;
+          text("   TV MOVIE", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          fill(255);
+          j = j+1;
+          text("   VIDEO", plotX1 + 0.05*tableWidth, yUp + j*tableHeight);
+          break;
+      }
     textAlign(RIGHT, CENTER);
-    for (int i=1;i<8;i++) {
+    for (int i=1;i<=NUMBER_OF_CLUSTERS[currentFilter];i++) {
       if (i % 2 == 0) fill(100);
       else fill(255);
-      for (int j=1;j<11;j++) {
-        text(li.get(j+showYearT-yearMin-1).getting(i-1), plotX1 + j*tableWidth + 0.9*tableWidth, yUp+i*tableHeight+tableHeight*0.5);
+      for (int qq=1;qq<11;qq++) {
+        text(int(li.get(qq-1+showYearT-yearMin).getting(i-1)), plotX1 + qq*tableWidth + 0.9*tableWidth, yUp+i*tableHeight+tableHeight*0.5);
       }
     }
     popStyle();
@@ -396,7 +485,6 @@ class FirstPlot {
           }
           float x = (left+right)/2;
           float y = map(value, dataMin, dataMax_this*dataScale, minimumY, plotY1);
-          //ellipse(x, y, 4*scale, 6*scale);
 
           vertex(x, y);
         }
@@ -414,7 +502,6 @@ class FirstPlot {
     pushStyle();
 
     noStroke();//BAR_COLOR_TEMP);
-    //strokeWeight(INLINE_WIDTH);
 
     for (int i=0;i<11;i++) {
 
@@ -428,16 +515,12 @@ class FirstPlot {
       }
       float xx1 = plotX1 + decadeWidth*(i+0.2);
       float xx2 = plotX1 + decadeWidth*(i+0.8);
-      //float yy = map(value, dataMin, dataMax_decade*dataScale, minimumY, plotY1);
       rectMode(CORNERS);
       for (int k=howManyCluters-1;k>=0;k--) {
         fill(CLUSTER_COLOR_TRAN[k]);
-        //fill(CLUSTER_COLOR[k]);
         rect(xx1, yy[k], xx2, minimumY);
       }
-      //println("value: "+value);
     }
-    //println("dataMax_decade: "+dataMax_decade);
 
     popStyle();
   }
