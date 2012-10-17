@@ -232,6 +232,7 @@ class ys_FirstPage {
       if (isSelecting[i]) {
         canSeeButton = false;
         filter[i].update(posx, posy, ui.getDB(), i);
+        println("I just updated filter["+i+"]");
         break; // only 1 is under attack
       }
     }

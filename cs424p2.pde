@@ -51,7 +51,7 @@ ArrayList[] plot_data = new ArrayList[numberOfFilters];
 String[] filterTxt1;
 String[] filterTxt2;
 
-int currentFilter;
+int[] currentFilter;
 
 ///////////////////////////////////
 //
@@ -83,7 +83,10 @@ void setup()
 
   currentPage = FIRST_PAGE;
 
-  currentFilter = CERTIFICATE;
+  currentFilter = new int[2];
+
+  currentFilter[0] = CERTIFICATE;
+  currentFilter[1] = CERTIFICATE;
 
   global_isDragRight = false;
   global_isDragLeft = false;
@@ -95,14 +98,14 @@ void setup()
 
   ui = new UserInterface();
 
-  plot_data[0].addAll(ui.getDB().getQuality("Horror", "vampire"));
+  plot_data[0].addAll(ui.getDB().getBudget("Horror", "vampire"));
   plot_data[1].addAll(ui.getDB().getQuality("Horror", "vampire"));
   plot_data[2].addAll(ui.getDB().getFormat("Horror", "vampire"));
   plot_data[3].addAll(ui.getDB().getPopularity("Horror", "vampire"));
   plot_data[4].addAll(ui.getDB().getCountries("Horror","vampire"));
   plot_data[5].addAll(ui.getDB().getCertificates("Horror","vampire"));
 
-  plot_data[6].addAll(ui.getDB().getQuality("Horror", "vampire"));
+  plot_data[6].addAll(ui.getDB().getBudget("Horror", "vampire"));
   plot_data[7].addAll(ui.getDB().getQuality("Horror", "vampire"));
   plot_data[8].addAll(ui.getDB().getFormat("Horror", "vampire"));
   plot_data[9].addAll(ui.getDB().getPopularity("Horror", "vampire"));
@@ -112,13 +115,14 @@ void setup()
   filterTxt1 = FILTER_TXT_1;
   filterTxt2 = FILTER_TXT_2;
 
-  dataMax = ui.getFirstPage().getFilter(0).getMax(plot_data[currentFilter]);
-  dataMax_decade = ui.getFirstPage().getFilter(0).getMax_decade(plot_data[currentFilter]);
+  dataMax1 = ui.getFirstPage().getFilter(0).getMax(plot_data[currentFilter[0]]);
+  dataMax1_decade = ui.getFirstPage().getFilter(0).getMax_decade(plot_data[currentFilter[0]]);
 
-  dataMax1 = dataMax;
-  dataMax2 = dataMax;
-  dataMax1_decade = dataMax_decade;
-  dataMax2_decade = dataMax_decade;
+  dataMax2 = ui.getFirstPage().getFilter(0).getMax(plot_data[currentFilter[1]+6]);
+  dataMax2_decade = ui.getFirstPage().getFilter(0).getMax_decade(plot_data[currentFilter[1]+6]);
+
+  dataMax = (dataMax1>dataMax2)?dataMax1:dataMax2;
+  dataMax_decade = (dataMax1_decade>dataMax2_decade)?dataMax1_decade:dataMax2_decade;
 
   smooth();
 } // end of setup

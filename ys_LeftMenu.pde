@@ -59,11 +59,13 @@ class ys_LeftMenu {
           else if (i == 3) {
             // change language 语言
           }
-          else if (i == 4) {
+          else if (i == 4) { // help
             ui.getHelpWindow().switchDisplay();
+            ui.getCreditWindow().setNotDisplay();
           } // on -> off, off -> on
-          else if (i == 5) {
+          else if (i == 5) { // credit
             ui.getCreditWindow().switchDisplay();
+            ui.getHelpWindow().setNotDisplay();
           }
           break;
         }

@@ -129,13 +129,6 @@ class ys_FirstPageFilter {
     filter_current = filter_temp;
     isDisplay = false;
 
-    //ArrayList<Integer> monL = monF.getList(db);
-    //ArrayList<ys_IdGenrePair> genL = genF.getList(db);
-    //ArrayList<Integer> forL = forF.getList(db);
-    //ArrayList<ys_IdQualityPair> quaL = quaF.getList(db);
-    //ArrayList<ys_IdPopularityPair> popL = popF.getList(db);
-    //ArrayList<ys_IdBudgetPair> budL = budF.getList(db);
-
     // get which monster
     int monId = monF.getMonsterType();
     String mon = "";
@@ -148,17 +141,14 @@ class ys_FirstPageFilter {
     String gen = "";
     if (genId >= 0 && genId < FILTER_GENRE_NUM) {
       gen = GENRE_TYPE[genId].substring(1);  // get rid of space
-    }
+    } 
 
     // get which filter
-    currentFilter = generalF.getFilterType();
+    currentFilter[whichFilter] = generalF.getFilterType();
 
     //test function
-    // mon = -1
-    // gen = -1
-
     if (whichFilter == 0) {
-      switch(currentFilter) {
+      switch(currentFilter[0]) {
         case CERTIFICATE:
         plot_data[CERTIFICATE] = ui.getDB().getCertificates(gen, mon);
         dataMax1 = getMax(plot_data[CERTIFICATE]);
@@ -185,16 +175,18 @@ class ys_FirstPageFilter {
         dataMax1_decade = getMax_decade(plot_data[COUNTRY]);
         break;
         case BUDGET:
-        plot_data[BUDGET] = ui.getDB().getQuality(gen,mon);
+        plot_data[BUDGET] = ui.getDB().getBudget(gen,mon);
         dataMax1 = getMax(plot_data[BUDGET]);
         dataMax1_decade = getMax_decade(plot_data[BUDGET]);
+        break;
       }
       filterTxt1[0] = "MONSTERS:\n "+mon;
       filterTxt1[1] = "GENRES:\n "+gen;
-      filterTxt1[2] = "FILTER:\n"+FILTER_TYPE[currentFilter];
+      filterTxt1[2] = "FILTER:\n"+FILTER_TYPE[currentFilter[0]];
+      println("firsttttttt");
     }
     else if (whichFilter == 1){
-      switch(currentFilter) {
+      switch(currentFilter[1]) {
         case CERTIFICATE:
         plot_data[CERTIFICATE+6] = ui.getDB().getCertificates(gen, mon);
         dataMax2 = getMax(plot_data[CERTIFICATE+6]);
@@ -221,29 +213,20 @@ class ys_FirstPageFilter {
         dataMax2_decade = getMax_decade(plot_data[COUNTRY+6]);
         break;
         case BUDGET:
-        plot_data[BUDGET+6] = ui.getDB().getQuality(gen,mon);
+        plot_data[BUDGET+6] = ui.getDB().getBudget(gen,mon);
         dataMax2 = getMax(plot_data[BUDGET+6]);
         dataMax2_decade = getMax_decade(plot_data[BUDGET+6]);
         break;
       }
       filterTxt2[0] = "MONSTERS:\n "+mon;
       filterTxt2[1] = "GENRES:\n "+gen;
-      filterTxt2[2] = "FILTER:\n"+FILTER_TYPE[currentFilter];
+      filterTxt2[2] = "FILTER:\n"+FILTER_TYPE[currentFilter[1]];
+      println("second");
     }
 
     dataMax = (dataMax1 > dataMax2)? dataMax1:dataMax2;
     dataMax_decade = (dataMax1_decade > dataMax2_decade)? dataMax1_decade:dataMax2_decade;
-    //global_country;
-    //global_budget;
-
-/*
-    println("dataMax: "+dataMax);
-    println("dataMax1: "+dataMax1);
-    println("dataMax2: "+dataMax2);
-    println("dataMax_decade: "+dataMax_decade);
-    println("dataMax1_decade: "+dataMax1_decade);
-    println("dataMax2_decade: "+dataMax2_decade);
-*/
+  
     // close the Filter Panel
     ui.getFirstPage().setNotSelecting();
   }

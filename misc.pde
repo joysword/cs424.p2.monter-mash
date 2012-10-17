@@ -286,7 +286,7 @@ final int[] POP_UP_WINDOW = {
 };
 final float POP_UP_WINDOW_X = 0.5*Width; //change
 final float POP_UP_WINDOW_Y = 0.45*Height;
-final float POP_UP_WINDOW_W = 0.7*Width;
+final float POP_UP_WINDOW_W = 0.8*Width;
 final float POP_UP_WINDOW_H = 0.8*Height;
 
 // about Range

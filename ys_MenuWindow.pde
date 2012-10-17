@@ -142,7 +142,6 @@ class MenuWindow {
         break;
       }
     }
-    println("whichWindow:"+whichWindow);
   }
 
   ys_Button getButton() {

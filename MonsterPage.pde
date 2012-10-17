@@ -163,7 +163,7 @@ float finalX, finalY;
    if (taxonomy.indexMoving!=-1) {
          print("\naaa "+abs(xPos-finalX));
 
-     if(((abs(xPos-finalX)<taxonomy.nodeDiameterChild/2 || abs(yPos-finalY)<taxonomy.nodeDiameterChild/2)  )&& 
+     if(((abs((xPos+distanceX)-finalX)<=20/scaling || abs((yPos+distanceY)-finalY)<=20/scaling)  )&& 
      !this.taxonomy.singleMonsterPane.show && !this.taxonomy.singleMonsterPane.compareMonster1.checkOn(xPos, yPos) && !this.taxonomy.singleMonsterPane.compareMonster2.checkOn(xPos, yPos)){print("\nmosso"); 
     
      if(monsterToSelect==1){
