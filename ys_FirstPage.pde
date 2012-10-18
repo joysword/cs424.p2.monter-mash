@@ -60,7 +60,7 @@ class ys_FirstPage {
     isSelecting = new boolean[HOW_MANY_GRAPH];
     for (int i=0;i<HOW_MANY_GRAPH;i++) {
       isSelecting[i] = false;
-      filter[i] = new ys_FirstPageFilter(filterX, filterY, filterW, filterH, btnx, btny, btnw, btnh);
+      filter[i] = new ys_FirstPageFilter(filterX, filterY, filterW, filterH, btnx, btny, btnw, btnh, i+1);
     }
 
     plot1 = new FirstPlot(PLOT_1_X1, PLOT_1_Y1, PLOT_1_X2, PLOT_1_Y2);

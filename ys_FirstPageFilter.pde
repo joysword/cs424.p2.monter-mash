@@ -28,7 +28,7 @@ class ys_FirstPageFilter {
 
   boolean isDisplay;
 
-  ys_FirstPageFilter(float _x, float _y, float _w, float _h, float bx, float by, float bw, float bh) {
+  ys_FirstPageFilter(float _x, float _y, float _w, float _h, float bx, float by, float bw, float bh, int _1_2) {
 
     x = _x;
     y = _y;
@@ -47,7 +47,7 @@ class ys_FirstPageFilter {
     //quaF = new FilterQuality(x+FILTER_QUALITY_X_RELATIVE * w, y+FILTER_QUALITY_Y_RELATIVE * h, FILTER_QUALITY_W, FILTER_QUALITY_H, FILTER_QUALITY_NUM);
     //popF = new FilterPopularity(x+FILTER_POPULARITY_X_RELATIVE * w, y+FILTER_POPULARITY_Y_RELATIVE * h, FILTER_POPULARITY_W, FILTER_POPULARITY_H, FILTER_POPULARITY_NUM);
     //budF = new FilterBudget(x+FILTER_BUDGET_X_RELATIVE * w, y+FILTER_BUDGET_Y_RELATIVE * h, FILTER_BUDGET_W, FILTER_BUDGET_H, FILTER_BUDGET_NUM);
-    generalF = new FilterGeneral(x+FILTER_GENERAL_X_RELATIVE * w, y+FILTER_GENERAL_Y_RELATIVE * h, FILTER_GENERAL_W, FILTER_GENERAL_H, FILTER_GENERAL_NUM);
+    generalF = new FilterGeneral(x+FILTER_GENERAL_X_RELATIVE * w, y+FILTER_GENERAL_Y_RELATIVE * h, FILTER_GENERAL_W, FILTER_GENERAL_H, FILTER_GENERAL_NUM, _1_2);
 
     isDisplay = false;
 

@@ -142,13 +142,13 @@ final float LABEL_WIDTH = 100*scale;
 
 final String[][] FILTER_TXT_1 = {
   {"MONSTER:\n          vampire","怪物：\n          吸血鬼"},
-  {"GENRE:\n          Horror","电影类别：\n          恐怖"},
-  {"FILTER:\n          CERTIFICATE","过滤器：\n          评级"}
+  {"GENRE:\n","电影类别：\n"},
+  {"FILTER:\n          QUALITY","过滤器：\n          评级"}
 };
 final String[][] FILTER_TXT_2 = {
   {"MONSTER:\n          vampire","怪物：\n          吸血鬼"},
-  {"GENRE:\n          Horror","电影类别：\n          恐怖"},
-  {"FILTER:\n          CERTIFICATE","过滤器：\n          评级"}
+  {"GENRE:\n","电影类别：\n"},
+  {"FILTER:\n          POPULARITY","过滤器：\n          热度"}
 };
 //final String FILTER_TXT_1 = "1111";
 //final String FILTER_TXT_2 = "2222";
@@ -297,7 +297,7 @@ String[][] FILTER_TYPE = {
   {" BUDGET"," 预算"},
   {" QUALITY"," 评分"},
   {" FORMAT"," 格式"},
-  {" POPULARITY"," 票数"},
+  {" POPULARITY"," 热度"},
   {" COUNTRY"," 国家"},
   {" CERTIFICATE"," 评级"}
 };

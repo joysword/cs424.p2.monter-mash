@@ -81,7 +81,7 @@ void setup()
   PFont plotFont;
   // setup Font
   //if (scale == 1) {
-    plotFont = loadFont("Helvetica-Bold-14.vlw");
+    plotFont = loadFont("Helvetica-Bold-70.vlw");
   //}
   //else if (scale == 5) {
     //plotFont = loadFont("Helvetica-Bold-70.vlw");
@@ -92,8 +92,8 @@ void setup()
 
   currentFilter = new int[2];
 
-  currentFilter[0] = CERTIFICATE;
-  currentFilter[1] = CERTIFICATE;
+  currentFilter[0] = QUALITY;
+  currentFilter[1] = POPULARITY;
 
   global_isDragRight = false;
   global_isDragLeft = false;
@@ -105,19 +105,19 @@ void setup()
 
   ui = new UserInterface();
 
-  plot_data[0].addAll(ui.getDB().getBudget("Horror", "vampire"));
-  plot_data[1].addAll(ui.getDB().getQuality("Horror", "vampire"));
-  plot_data[2].addAll(ui.getDB().getFormat("Horror", "vampire"));
-  plot_data[3].addAll(ui.getDB().getPopularity("Horror", "vampire"));
-  plot_data[4].addAll(ui.getDB().getCountries("Horror","vampire"));
-  plot_data[5].addAll(ui.getDB().getCertificates("Horror","vampire"));
+  plot_data[0].addAll(ui.getDB().getBudget("", "vampire"));
+  plot_data[1].addAll(ui.getDB().getQuality("", "vampire"));
+  plot_data[2].addAll(ui.getDB().getFormat("", "vampire"));
+  plot_data[3].addAll(ui.getDB().getPopularity("", "vampire"));
+  plot_data[4].addAll(ui.getDB().getCountries("","vampire"));
+  plot_data[5].addAll(ui.getDB().getCertificates("","vampire"));
 
-  plot_data[6].addAll(ui.getDB().getBudget("Horror", "vampire"));
-  plot_data[7].addAll(ui.getDB().getQuality("Horror", "vampire"));
-  plot_data[8].addAll(ui.getDB().getFormat("Horror", "vampire"));
-  plot_data[9].addAll(ui.getDB().getPopularity("Horror", "vampire"));
-  plot_data[10].addAll(ui.getDB().getCountries("Horror","vampire"));
-  plot_data[11].addAll(ui.getDB().getCertificates("Horror","vampire"));
+  plot_data[6].addAll(ui.getDB().getBudget("", "vampire"));
+  plot_data[7].addAll(ui.getDB().getQuality("", "vampire"));
+  plot_data[8].addAll(ui.getDB().getFormat("", "vampire"));
+  plot_data[9].addAll(ui.getDB().getPopularity("", "vampire"));
+  plot_data[10].addAll(ui.getDB().getCountries("","vampire"));
+  plot_data[11].addAll(ui.getDB().getCertificates("","vampire"));
 
   filterTxt1 = FILTER_TXT_1;
   filterTxt2 = FILTER_TXT_2;

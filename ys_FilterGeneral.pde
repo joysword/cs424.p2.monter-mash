@@ -5,7 +5,7 @@ class FilterGeneral {
 
   CheckItem[] checkItems;
 
-  FilterGeneral(float _x, float _y, float _w, float _h, int n) {
+  FilterGeneral(float _x, float _y, float _w, float _h, int n, int _1_2) {
     x = _x;
     y = _y;
     w = _w;
@@ -21,9 +21,18 @@ class FilterGeneral {
       FILTER_TYPE[i]); //change
     }
 
-    for (int i=0;i<checkItemCount;i++) {
-      if (FILTER_TYPE[i][0] == " CERTIFICATE") {
-        checkItems[i].switchCheck();
+    if (_1_2 == 1) {
+      for (int i=0;i<checkItemCount;i++) {
+        if (FILTER_TYPE[i][0] == " QUALITY") {
+          checkItems[i].switchCheck();
+        }
+      }
+    }
+    else {
+      for (int i=0;i<checkItemCount;i++) {
+        if (FILTER_TYPE[i][0] == " POPULARITY") {
+          checkItems[i].switchCheck();
+        }
       }
     }
   }

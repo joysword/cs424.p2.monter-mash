@@ -101,7 +101,7 @@ class Top10Window {
         text("     Top 10 Monsters of "+yearr+"'s", cenX - w*0.5, cenY-h*0.4225);
       }
       else if (LA == 1) {
-        text("     出镜率最高的10种魔兽 ("+yearr+"'s)", cenX - w*0.5, cenY-h*0.4225);
+        text("     出镜率最高的10种怪物 ("+yearr+"'s)", cenX - w*0.5, cenY-h*0.4225);
       }
     }
 
