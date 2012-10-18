@@ -52,7 +52,7 @@ public class SingleMoviePane {
     text("Running time:  "+running+"minutes", this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.65);
     //text("Plot: "+this.movie.description, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.70);
     certificate=this.movie.certificate;
-        if(certificate.equals("")) certificate="G";
+        if(certificate.equals("")) certificate="NR";
     text("Certificate:  "+certificate, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.75);
     budget=this.movie.budget;
         if(budget.equals("")) budget="NO_BUDGET";
