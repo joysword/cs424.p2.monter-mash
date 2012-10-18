@@ -13,6 +13,7 @@ public class SingleMoviePane {
   private String certificate;
   private String budget;
   private String running;
+  private String title;
 
   public SingleMoviePane(float centerX, float centerY, float widthS, float heightS, Movie movie) {
     this.centerX=centerX;
@@ -40,16 +41,19 @@ public class SingleMoviePane {
     if(movie!=null){
     fill(255);
     textAlign(LEFT, CENTER);
-    textSize(200/scaling);
-    text(this.movie.title, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.40);
+    textSize(this.heightS/10);
+    title=this.movie.title;
+    if(title.length()>22)
+      title=title.substring(0, 22)+"...";
+    text(title, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.40);
     text("("+this.movie.year+")", this.centerX-this.widthS/2+this.widthS*0.05+textWidth(this.movie.title)+this.widthS/40, this.centerY-this.heightS/2+this.heightS*0.40);
-    textSize(130/scaling);
+    textSize(this.heightS/16);
     genre=this.movie.genre;
     if(genre.equals("")) genre="Comedy";
     text("Genre:  "+genre,this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.55);
     running=this.movie.runtime;
     if(running.equals("")) running="UNKOWN";
-    text("Running time:  "+running+"minutes", this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.65);
+    text("Running time:  "+running, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.65);
     //text("Plot: "+this.movie.description, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.70);
     certificate=this.movie.certificate;
         if(certificate.equals("")) certificate="NR";
