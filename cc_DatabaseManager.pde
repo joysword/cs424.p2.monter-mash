@@ -1086,6 +1086,9 @@ public ArrayList<Instance> getFormat(String genre, String monster){
     initArray(array);
             if(!genre.equals(""))
           genre=" genre=\""+genre+"\" and";
+          if(!monster.equals("")){
+          monster=" monster=\""+monster+"\" and";
+        }
     if ( msql.connect() )
     {
       String query1=   
@@ -1093,9 +1096,8 @@ public ArrayList<Instance> getFormat(String genre, String monster){
       "from format_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=1 "+
+      " clustered_by=1 "+
       "group by year "+
       "order by year";
       println(query1);
@@ -1106,9 +1108,9 @@ public ArrayList<Instance> getFormat(String genre, String monster){
       "from format_count "+
       "where "+
       genre+
-      " monster=\""+
+
       monster+
-      "\" and clustered_by=3 "+
+      " clustered_by=3 "+
       "group by year "+
       "order by year";
       msql.query(query2);
@@ -1118,9 +1120,9 @@ public ArrayList<Instance> getFormat(String genre, String monster){
       "from format_count "+
       "where "+
       genre+
-      " monster=\""+
+
       monster+
-      "\" and clustered_by=4 "+
+      " clustered_by=4 "+
       "group by year "+
       "order by year";
       msql.query(query3);
@@ -1208,6 +1210,9 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
     initArray(array);
     if(!genre.equals(""))
        genre=" genre=\""+genre+"\" and";
+          if(!monster.equals("")){
+          monster=" monster=\""+monster+"\" and";
+        }
     if ( msql.connect() )
     {
       String query1=   
@@ -1215,9 +1220,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from certificates_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"G\" "+
+      " clustered_by=\"G\" "+
       "group by year "+
       "order by year";
       println(query1);
@@ -1228,9 +1232,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from certificates_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"PG\" "+
+      " clustered_by=\"PG\" "+
       "group by year "+
       "order by year";
       msql.query(query2);
@@ -1240,9 +1243,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from certificates_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"R\" "+
+      " clustered_by=\"R\" "+
       "group by year "+
       "order by year";
       msql.query(query3);
@@ -1252,9 +1254,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from certificates_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"PG-13\" "+
+      " clustered_by=\"PG-13\" "+
       "group by year "+
       "order by year";
       msql.query(query4);
@@ -1264,9 +1265,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from certificates_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"NC-17\" "+
+      " clustered_by=\"NC-17\" "+
       "group by year "+
       "order by year";
       msql.query(query5);
@@ -1276,9 +1276,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from certificates_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"OTHERS\" "+
+      " clustered_by=\"OTHERS\" "+
       "group by year "+
       "order by year";
       msql.query(query6);
@@ -1288,9 +1287,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from certificates_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"NR\" "+
+      " clustered_by=\"NR\" "+
       "group by year "+
       "order by year";
       msql.query(query7);
@@ -1313,6 +1311,9 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
     initArray(array);
         if(!genre.equals(""))
           genre=" genre=\""+genre+"\" and";
+        if(!monster.equals("")){
+          monster=" monster=\""+monster+"\" and";
+        }
     if ( msql.connect() )
     {
       String query1=   
@@ -1320,9 +1321,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from countries_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"USA\" "+
+      " clustered_by=\"USA\" "+
       "group by year "+
       "order by year";
       println(query1);
@@ -1333,9 +1333,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from countries_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"UK\" "+
+      " clustered_by=\"UK\" "+
       "group by year "+
       "order by year";
       msql.query(query2);
@@ -1345,9 +1344,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from countries_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"France\" "+
+      " clustered_by=\"France\" "+
       "group by year "+
       "order by year";
       println(query3);
@@ -1358,9 +1356,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from countries_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"Japan\" "+
+      " clustered_by=\"Japan\" "+
       "group by year "+
       "order by year";
       println(query4);
@@ -1371,9 +1368,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from countries_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"Germany\" "+
+      " clustered_by=\"Germany\" "+
       "group by year "+
       "order by year";
       msql.query(query5);
@@ -1383,9 +1379,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from countries_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"Canada\" "+
+      " clustered_by=\"Canada\" "+
       "group by year "+
       "order by year";
       msql.query(query6);
@@ -1395,9 +1390,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from countries_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"Others\" "+
+      " clustered_by=\"Others\" "+
       "group by year "+
       "order by year";
       msql.query(query7);
@@ -1415,6 +1409,9 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
     initArray(array);
     if(!genre.equals(""))
           genre=" genre=\""+genre+"\" and";
+    if(!monster.equals("")){
+          monster=" monster=\""+monster+"\" and";
+        }
     if ( msql.connect() )
     {
       String query1=   
@@ -1422,9 +1419,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from quality_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"LOW\" "+
+      " clustered_by=\"LOW\" "+
       "group by year "+
       "order by year";
       println(query1);
@@ -1435,9 +1431,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from quality_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"MEDIUM\" "+
+      " clustered_by=\"MEDIUM\" "+
       "group by year "+
       "order by year";
       msql.query(query2);
@@ -1447,9 +1442,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from quality_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"HIGH\" "+
+      " clustered_by=\"HIGH\" "+
       "group by year "+
       "order by year";
       msql.query(query3);
@@ -1464,6 +1458,9 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
     ArrayList<Instance> array = new ArrayList<Instance>();
     if(!genre.equals(""))
           genre=" genre=\""+genre+"\" and";
+    if(!monster.equals("")){
+          monster=" monster=\""+monster+"\" and";
+        }
     initArray(array);
     if ( msql.connect() )
     {
@@ -1472,9 +1469,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from popularity_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"LOW\" "+
+      " clustered_by=\"LOW\" "+
       "group by year "+
       "order by year";
       println(query1);
@@ -1485,9 +1481,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from popularity_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"MEDIUM\" "+
+      " clustered_by=\"MEDIUM\" "+
       "group by year "+
       "order by year";
       msql.query(query2);
@@ -1497,9 +1492,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from popularity_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"HIGH\" "+
+      " clustered_by=\"HIGH\" "+
       "group by year "+
       "order by year";
       msql.query(query3);
@@ -1515,7 +1509,11 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
     ArrayList<Instance> array = new ArrayList<Instance>();
     if(!genre.equals(""))
           genre=" genre=\""+genre+"\" and";
+            if(!monster.equals("")){
+          monster=" monster=\""+monster+"\" and";
+        }
     initArray(array);
+
     if ( msql.connect() )
     {
       String query1=   
@@ -1523,9 +1521,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from budget_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"HIGH_BUDGET\" "+
+      " clustered_by=\"HIGH_BUDGET\" "+
       "group by year "+
       "order by year";
       println(query1);
@@ -1536,9 +1533,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from budget_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"LOW_BUDGET\" "+
+      " clustered_by=\"LOW_BUDGET\" "+
       "group by year "+
       "order by year";
       msql.query(query2);
@@ -1548,9 +1544,8 @@ public ArrayList<Instance> getCertificates(String genre, String monster){
       "from budget_count "+
       "where "+
       genre+
-      " monster=\""+
       monster+
-      "\" and clustered_by=\"NO_BUDGET\" "+
+      " clustered_by=\"NO_BUDGET\" "+
       "group by year "+
       "order by year";
       msql.query(query3);
