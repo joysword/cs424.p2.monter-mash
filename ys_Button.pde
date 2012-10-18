@@ -61,8 +61,46 @@ class ys_Button {
       name[1] = "出镜率最高的10种魔兽 (" + (yearr/10*10) + "'s)";
     }
     else if (i == 3) {
-      name[0] = "Show events of " + (yearr/10*10) + "'s";
-      name[1] = (yearr/10*10) + "年代大事件";
+      //name[0] = "Show events of " + (yearr/10*10) + "'s";
+      //name[1] = (yearr/10*10) + "年代大事件";
+      name[0]=setEvent(yearr/10*10);
+      name[1]=setEventCH(yearr/10*10);
     }
+  }
+
+  public String setEvent(int yearr){
+      if(yearr==1890)
+        return "First Lumière brothers movie";
+      else if(yearr==1910)
+        return "World War I in 1914";
+      else if(yearr==1940)
+        return "1945: Japan Atomic Bombing";
+      else if(yearr==1960)
+        return "1969: Moon Landing"; 
+      else if(yearr==1970)
+        return "The Exorcist"; 
+      else if(yearr==1980)
+        return "Chernobyl Disaster"; 
+      else if(yearr==1990)
+        return "Bram Stoker's Dracula";
+      else return "No events for this decade!";
+  }
+
+  public String setEventCH(int yearr){
+      if(yearr==1890)
+        return "First Lumière brothers movie";
+      else if(yearr==1910)
+        return "World War I in 1914";
+      else if(yearr==1940)
+        return "1945: Japan Atomic Bombing";
+      else if(yearr==1960)
+        return "1969: Moon Landing"; 
+      else if(yearr==1970)
+        return "The Exorcist"; 
+      else if(yearr==1980)
+        return "Chernobyl Disaster"; 
+      else if(yearr==1990)
+        return "Bram Stoker's Dracula";
+      else return "No events for this decade!";
   }
 }
