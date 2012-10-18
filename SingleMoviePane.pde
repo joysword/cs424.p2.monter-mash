@@ -43,7 +43,7 @@ public class SingleMoviePane {
     textAlign(LEFT, CENTER);
     textSize(this.heightS/10);
     title=this.movie.title;
-    if(title.length()>22)
+    if(title.length()>20)
       title=title.substring(0, 22)+"...";
     text(title, this.centerX-this.widthS/2+this.widthS*0.05, this.centerY-this.heightS/2+this.heightS*0.40);
     text("("+this.movie.year+")", this.centerX-this.widthS/2+this.widthS*0.05+textWidth(this.movie.title)+this.widthS/40, this.centerY-this.heightS/2+this.heightS*0.40);
